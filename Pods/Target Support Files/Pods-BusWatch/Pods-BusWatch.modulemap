@@ -1,0 +1,6 @@
+framework module Pods_BusWatch {
+  umbrella header "Pods-BusWatch-umbrella.h"
+
+  export *
+  module * { export * }
+}
