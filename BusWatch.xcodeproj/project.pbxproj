@@ -32,6 +32,7 @@
 		B45988CE2442A363006F9B32 /* MKMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45988CD2442A363006F9B32 /* MKMapView.swift */; };
 		B45988D02442A88C006F9B32 /* LocationLocalDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45988CF2442A88C006F9B32 /* LocationLocalDataStore.swift */; };
 		B45988D32442AC2A006F9B32 /* LastLocationTableMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45988D22442AC2A006F9B32 /* LastLocationTableMapper.swift */; };
+		B463645F2471EBDF00C6EDBB /* TimedNetworkPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B463645E2471EBDF00C6EDBB /* TimedNetworkPublisher.swift */; };
 		B477CD66243BF7280027AE11 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B477CD65243BF7280027AE11 /* AppDelegate.swift */; };
 		B477CD68243BF7280027AE11 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B477CD67243BF7280027AE11 /* SceneDelegate.swift */; };
 		B477CD6A243BF7280027AE11 /* StopMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B477CD69243BF7280027AE11 /* StopMapViewController.swift */; };
@@ -84,6 +85,7 @@
 		B45988CD2442A363006F9B32 /* MKMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKMapView.swift; sourceTree = "<group>"; };
 		B45988CF2442A88C006F9B32 /* LocationLocalDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationLocalDataStore.swift; sourceTree = "<group>"; };
 		B45988D22442AC2A006F9B32 /* LastLocationTableMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastLocationTableMapper.swift; sourceTree = "<group>"; };
+		B463645E2471EBDF00C6EDBB /* TimedNetworkPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimedNetworkPublisher.swift; sourceTree = "<group>"; };
 		B477CD62243BF7280027AE11 /* BusWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BusWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B477CD65243BF7280027AE11 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B477CD67243BF7280027AE11 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -291,6 +293,14 @@
 			path = Tables;
 			sourceTree = "<group>";
 		};
+		B463645D2471EBA000C6EDBB /* Publishers */ = {
+			isa = PBXGroup;
+			children = (
+				B463645E2471EBDF00C6EDBB /* TimedNetworkPublisher.swift */,
+			);
+			path = Publishers;
+			sourceTree = "<group>";
+		};
 		B477CD59243BF7280027AE11 = {
 			isa = PBXGroup;
 			children = (
@@ -400,6 +410,7 @@
 		B48FE2482450F7A9002A5C6C /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				B463645D2471EBA000C6EDBB /* Publishers */,
 				B41AE570243FFBEB0024FFC1 /* Extensions */,
 			);
 			path = Common;
@@ -667,6 +678,7 @@
 				B4155D3A243C1E0500F933C1 /* StopLocalDataStore.swift in Sources */,
 				B49700C4244BA337007AB5FC /* OverviewTitleHeaderView.swift in Sources */,
 				B4155D38243C16ED00F933C1 /* Stop.swift in Sources */,
+				B463645F2471EBDF00C6EDBB /* TimedNetworkPublisher.swift in Sources */,
 				B4FDF66B244BB6A800539C92 /* MapCell.swift in Sources */,
 				B43E0726245516ED00393B76 /* PredictionCell.swift in Sources */,
 				B4981B0224454C94003F161F /* StopMapAnnotation.swift in Sources */,

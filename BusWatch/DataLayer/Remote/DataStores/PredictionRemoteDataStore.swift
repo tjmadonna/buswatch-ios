@@ -11,6 +11,7 @@ import Combine
 
 enum NetworkError: Error {
     case responseNot200
+    case noDataInResponse
 }
 
 final class PredictionRemoteDataStore {
@@ -23,14 +24,7 @@ final class PredictionRemoteDataStore {
 
     func getPredictionsForStopId(_ stopId: String) -> AnyPublisher<[Prediction], Error> {
         let url = NetworkConfig.authenticatedURLPredictionsForStopId(stopId)
-        return urlSession.dataTaskPublisher(for: url)
-            .tryMap { (data, response) in
-                guard let statusCode = (response as? HTTPURLResponse)?.statusCode, 200 ... 299 ~= statusCode else {
-                    throw NetworkError.responseNot200
-                }
-                return data
-            }
-            .decode(type: PredictionsResponseDecodable.self, decoder: JSONDecoder())
+        return TimedNetworkPublisher<PredictionsResponseDecodable>(url: url, timeInterval: 30)
             .compactMap { response in response.predictions }
             .map { predictions in predictions.compactMap { prediction in prediction.mapToPrediction() } }
             .eraseToAnyPublisher()
