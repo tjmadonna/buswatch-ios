@@ -221,6 +221,7 @@ extension StopMapViewController: MKMapViewDelegate {
         view?.isEnabled = true
         view?.canShowCallout = true
         view?.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+        view?.rightCalloutAccessoryView?.tintColor = Colors.navBarColor
         return view
     }
 
