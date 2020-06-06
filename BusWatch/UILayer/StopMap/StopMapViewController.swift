@@ -27,14 +27,20 @@ final class StopMapViewController: UIViewController {
         button.layer.cornerRadius = 35
         button.tintColor = .white
         button.setImage(UIImage(systemName: "location"), for: .normal)
-        // The below line will give you what you want
-        let buttonSize = CGSize(width: button.layer.cornerRadius * 2, height: button.layer.cornerRadius * 2)
-        let imageSize = CGSize(width: 50, height: 50)
+        // Must set the background color for the image to be centered. Not really sure why...
+        button.imageView?.backgroundColor = .clear
+        button.contentVerticalAlignment = .fill
+        button.contentHorizontalAlignment = .fill
+        let buttonSize = CGSize(width: button.layer.cornerRadius * 2.0, height: button.layer.cornerRadius * 2.0)
+        let imageSize = CGSize(width: 30, height: 30)
+        let leftRightInset = (buttonSize.width - imageSize.width) / 2.0
+        let topBottomInset = (buttonSize.height - imageSize.height) / 2
         button.imageEdgeInsets = UIEdgeInsets(
-            top: (buttonSize.height - imageSize.height) / 2,
-            left: (buttonSize.width - imageSize.width) / 2,
-            bottom: (buttonSize.height - imageSize.height) / 2,
-            right: (buttonSize.width - imageSize.width) / 2)
+            top: topBottomInset,
+            left: leftRightInset,
+            bottom: topBottomInset,
+            right: leftRightInset
+        )
         button.addTarget(self, action: #selector(handleFabButtonTouch(sender:)), for: UIControl.Event.touchUpInside)
         return button
     }()
