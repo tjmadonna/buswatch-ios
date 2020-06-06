@@ -51,7 +51,7 @@ final class StopMapViewController: UIViewController {
 
     private var cancellables = Set<AnyCancellable>()
 
-    private var currentStopAnnotations = [StopAnnotation]()
+    private var currentStopAnnotations: [StopAnnotation]?
 
     private var fabWidthConstraint: NSLayoutConstraint?
 
@@ -168,6 +168,12 @@ final class StopMapViewController: UIViewController {
 
         let newStopAnnotations = stops.map { stop in StopAnnotation(stop: stop) }
 
+        guard let currentStopAnnotations = self.currentStopAnnotations else {
+            self.currentStopAnnotations = newStopAnnotations
+            mapView.addAnnotations(newStopAnnotations)
+            return
+        }
+
         var stopAnnotationsToAdd = [StopAnnotation]()
         var stopAnnotationsToRemove = [StopAnnotation]()
 
@@ -187,7 +193,7 @@ final class StopMapViewController: UIViewController {
             }
         }
 
-        currentStopAnnotations = newStopAnnotations
+        self.currentStopAnnotations = currentStopAnnotations.applying(diffs)!
 
         mapView.addAnnotations(stopAnnotationsToAdd)
         mapView.removeAnnotations(stopAnnotationsToRemove)
