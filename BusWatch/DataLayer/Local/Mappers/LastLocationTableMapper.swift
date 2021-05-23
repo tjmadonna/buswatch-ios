@@ -20,4 +20,3 @@ enum LastLocationTableMapper {
         return LocationBounds(north: north, south: south, west: west, east: east)
     }
 }
-

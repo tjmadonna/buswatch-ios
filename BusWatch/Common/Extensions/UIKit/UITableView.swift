@@ -11,11 +11,11 @@ import UIKit
 extension UITableView {
 
     func update<T>(oldData: [T], newData: [T], setNewDataBlock: ([T]) -> Void) where T: Hashable {
-        let diff = newData.difference(from:oldData)
+        let diff = newData.difference(from: oldData)
 
-        var inserts:[IndexPath] = []
-        var deletes:[IndexPath] = []
-        var moves:[(from:IndexPath, to:IndexPath)] = []
+        var inserts: [IndexPath] = []
+        var deletes: [IndexPath] = []
+        var moves: [(from: IndexPath, to: IndexPath)] = []
 
         for update in diff.inferringMoves() {
             switch update {

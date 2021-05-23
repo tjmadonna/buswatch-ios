@@ -19,10 +19,10 @@ enum Colors {
     static var navBarColor: UIColor {
         return UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
             if UITraitCollection.userInterfaceStyle == .dark {
-                /// Return the color for Dark Mode
+                // Return the color for Dark Mode
                 return navBarDark
             } else {
-                /// Return the color for Light Mode
+                // Return the color for Light Mode
                 return navBarLight
             }
         }
@@ -37,10 +37,10 @@ enum Colors {
     static var backgroundColor: UIColor {
         return UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
             if UITraitCollection.userInterfaceStyle == .dark {
-                /// Return the color for Dark Mode
+                // Return the color for Dark Mode
                 return backgroundDark
             } else {
-                /// Return the color for Light Mode
+                // Return the color for Light Mode
                 return backgroundLight
             }
         }
@@ -55,10 +55,10 @@ enum Colors {
     static var raisedBackgroundColor: UIColor {
         return UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
             if UITraitCollection.userInterfaceStyle == .dark {
-                /// Return the color for Dark Mode
+                // Return the color for Dark Mode
                 return raisedBackgroundDark
             } else {
-                /// Return the color for Light Mode
+                // Return the color for Light Mode
                 return raisedBackgroundLight
             }
         }
@@ -73,10 +73,10 @@ enum Colors {
     static var decoratorBackgroundColor: UIColor {
         return UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
             if UITraitCollection.userInterfaceStyle == .dark {
-                /// Return the color for Dark Mode
+                // Return the color for Dark Mode
                 return decoratorBackgroundDark
             } else {
-                /// Return the color for Light Mode
+                // Return the color for Light Mode
                 return decoratorBackgroundLight
             }
         }
@@ -91,10 +91,10 @@ enum Colors {
     static var decoratorTextBackgroundColor: UIColor {
         return UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
             if UITraitCollection.userInterfaceStyle == .dark {
-                /// Return the color for Dark Mode
+                // Return the color for Dark Mode
                 return decoratorTextBackgroundDark
             } else {
-                /// Return the color for Light Mode
+                // Return the color for Light Mode
                 return decoratorTextBackgroundLight
             }
         }

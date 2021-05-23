@@ -82,7 +82,6 @@ enum CurrentLocationPermissionStatus {
     case denied
 }
 
-
 struct LocationPublisher: Publisher {
 
     typealias Output = CurrentLocationPermissionStatus
@@ -95,7 +94,7 @@ struct LocationPublisher: Publisher {
         self.locationManager = locationManager
     }
 
-    func receive<S>(subscriber: S) where S : Subscriber, Self.Failure == S.Failure, Self.Output == S.Input {
+    func receive<S>(subscriber: S) where S: Subscriber, Self.Failure == S.Failure, Self.Output == S.Input {
         subscriber.receive(subscription: Inner(downstream: subscriber, locationManager: locationManager))
     }
 
@@ -104,7 +103,7 @@ struct LocationPublisher: Publisher {
 
         private let locationManager: CLLocationManager
 
-        private var downstream : S?
+        private var downstream: S?
 
         init(downstream: S, locationManager: CLLocationManager = CLLocationManager()) {
             self.downstream = downstream

@@ -85,7 +85,7 @@ final class OverviewViewController: UITableViewController {
         // TODO: Handle error
     }
 
-        // MARK: - UITableViewDelegate
+    // MARK: - UITableViewDelegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = sections[indexPath.section].items[indexPath.row]

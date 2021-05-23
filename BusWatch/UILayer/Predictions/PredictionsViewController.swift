@@ -120,7 +120,6 @@ final class PredictionsViewController: UITableViewController {
     // MARK: - State Rendering
 
     private func renderNavBarState(_ state: PredictionsNavBarState) {
-        //self.title = state.title
         let image = state.favorited ? UIImage(systemName: "star.fill") :  UIImage(systemName: "star")
         self.favoritedBarButton.image = image
     }

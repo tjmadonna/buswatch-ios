@@ -31,7 +31,7 @@ struct TimedNetworkPublisher<T>: Publisher where T: Decodable {
         self.urlSession = urlSession
     }
 
-    func receive<S>(subscriber: S) where S : Subscriber, Self.Failure == S.Failure, Self.Output == S.Input {
+    func receive<S>(subscriber: S) where S: Subscriber, Self.Failure == S.Failure, Self.Output == S.Input {
         let subscription = Inner(downstream: subscriber, url: url, timeInterval: timeInterval)
         subscriber.receive(subscription: subscription)
     }
@@ -53,7 +53,7 @@ struct TimedNetworkPublisher<T>: Publisher where T: Decodable {
         // MARK: -
 
         // Downstream subscription
-        private var downstream : S?
+        private var downstream: S?
 
         // Timer for making scheduled network request
         private var timer: Timer?
@@ -65,7 +65,7 @@ struct TimedNetworkPublisher<T>: Publisher where T: Decodable {
         @Atomic
         private var requestInProgess = false
 
-        init(downstream : S, url: URL, timeInterval: TimeInterval, urlSession: URLSession = URLSession.shared) {
+        init(downstream: S, url: URL, timeInterval: TimeInterval, urlSession: URLSession = URLSession.shared) {
             self.downstream = downstream
             self.url = url
             self.timeInterval = timeInterval
@@ -84,7 +84,7 @@ struct TimedNetworkPublisher<T>: Publisher where T: Decodable {
         }
 
         @objc private func makeNetworkRequest() {
-            // On allow one network request at a time
+            // Only allow one network request at a time
             if requestInProgess { return }
             requestInProgess = true
 
