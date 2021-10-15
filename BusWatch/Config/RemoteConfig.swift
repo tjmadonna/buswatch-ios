@@ -20,8 +20,13 @@ enum NetworkConfig {
         var components = URLComponents()
         components.scheme = "https"
         components.host = NetworkConfig.host
-        components.path = "/predictions/\(stopId)"
-        components.queryItems = [ URLQueryItem(name: "key", value: NetworkConfig.apiKey) ]
+        components.path = "/bustime/api/v3/getpredictions"
+        components.queryItems = [
+            URLQueryItem(name: "key", value: NetworkConfig.apiKey),
+            URLQueryItem(name: "stpid", value: stopId),
+            URLQueryItem(name: "format", value: "json"),
+            URLQueryItem(name: "rtpidatafeed", value: "Port Authority Bus".removingPercentEncoding!)
+        ]
         guard let url = components.url else {
             fatalError("NetworkConfig Error: Cannot create a valid authenticatedURLPredictionsForStopId")
         }

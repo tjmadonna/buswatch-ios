@@ -24,8 +24,8 @@ final class PredictionRemoteDataStore {
 
     func getPredictionsForStopId(_ stopId: String) -> AnyPublisher<[Prediction], Error> {
         let url = NetworkConfig.authenticatedURLPredictionsForStopId(stopId)
-        return TimedNetworkPublisher<PredictionsResponseDecodable>(url: url, timeInterval: 30)
-            .compactMap { response in response.predictions }
+        return TimedNetworkPublisher<GetPredictionsForStopIdResponseDecodable>(url: url, timeInterval: 30)
+            .compactMap { response in response.bustimeResponse?.predictions }
             .map { predictions in predictions.compactMap { prediction in prediction.mapToPrediction() } }
             .eraseToAnyPublisher()
     }

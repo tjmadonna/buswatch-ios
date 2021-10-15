@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		62A1475FCDFE8A79D2DB4DC7 /* Pods_BusWatch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E696647DDF85ED59F1F80F /* Pods_BusWatch.framework */; };
 		B407630A245A2201008979C5 /* Prediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4076309245A2201008979C5 /* Prediction.swift */; };
-		B4076311245BA6AF008979C5 /* PredictionDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4076310245BA6AF008979C5 /* PredictionDecodable.swift */; };
-		B4076317245CFE5F008979C5 /* PredictionsResponseDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4076316245CFE5F008979C5 /* PredictionsResponseDecodable.swift */; };
 		B4155D32243C0B9400F933C1 /* AppDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4155D31243C0B9400F933C1 /* AppDatabase.swift */; };
 		B4155D35243C163500F933C1 /* DatabaseTables.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4155D34243C163500F933C1 /* DatabaseTables.swift */; };
 		B4155D38243C16ED00F933C1 /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4155D37243C16ED00F933C1 /* Stop.swift */; };
@@ -26,6 +24,7 @@
 		B43E07232455164400393B76 /* PredictionsContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43E07222455164400393B76 /* PredictionsContract.swift */; };
 		B43E0726245516ED00393B76 /* PredictionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43E0725245516ED00393B76 /* PredictionCell.swift */; };
 		B43E072824566C7E00393B76 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43E072724566C7E00393B76 /* Array.swift */; };
+		B45033792718FE5B00B12B8E /* GetPredictionsForStopIdDecodables.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45033782718FE5B00B12B8E /* GetPredictionsForStopIdDecodables.swift */; };
 		B45988C624428389006F9B32 /* LocationBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45988C524428389006F9B32 /* LocationBounds.swift */; };
 		B45988CA24429720006F9B32 /* AppComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45988C924429720006F9B32 /* AppComponent.swift */; };
 		B45988CC24429C69006F9B32 /* StopMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45988CB24429C69006F9B32 /* StopMapViewModel.swift */; };
@@ -52,6 +51,7 @@
 		B4B2084A24423CAF0099DE2A /* stops.json in Resources */ = {isa = PBXBuildFile; fileRef = B4B2084924423CAF0099DE2A /* stops.json */; };
 		B4CC2AF5244233ED0071A66D /* DatabasePopulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CC2AF4244233ED0071A66D /* DatabasePopulator.swift */; };
 		B4CC2AF82442350E0071A66D /* StopDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CC2AF72442350E0071A66D /* StopDecodable.swift */; };
+		B4D000F12719035300491EBA /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D000F02719035300491EBA /* String.swift */; };
 		B4DCAD4A245272B900A0E978 /* OverviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DCAD49245272B900A0E978 /* OverviewViewModel.swift */; };
 		B4DCAD4D2452771C00A0E978 /* OverviewContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DCAD4C2452771C00A0E978 /* OverviewContract.swift */; };
 		B4F885EC2464ED7600DF51A8 /* DefaultLocationBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F885EB2464ED7600DF51A8 /* DefaultLocationBounds.swift */; };
@@ -62,8 +62,6 @@
 /* Begin PBXFileReference section */
 		A8DD63A5CCFF92378F8EBD52 /* Pods-BusWatch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BusWatch.release.xcconfig"; path = "Target Support Files/Pods-BusWatch/Pods-BusWatch.release.xcconfig"; sourceTree = "<group>"; };
 		B4076309245A2201008979C5 /* Prediction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prediction.swift; sourceTree = "<group>"; };
-		B4076310245BA6AF008979C5 /* PredictionDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionDecodable.swift; sourceTree = "<group>"; };
-		B4076316245CFE5F008979C5 /* PredictionsResponseDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsResponseDecodable.swift; sourceTree = "<group>"; };
 		B4155D31243C0B9400F933C1 /* AppDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDatabase.swift; sourceTree = "<group>"; };
 		B4155D34243C163500F933C1 /* DatabaseTables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseTables.swift; sourceTree = "<group>"; };
 		B4155D37243C16ED00F933C1 /* Stop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stop.swift; sourceTree = "<group>"; };
@@ -79,6 +77,7 @@
 		B43E07222455164400393B76 /* PredictionsContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsContract.swift; sourceTree = "<group>"; };
 		B43E0725245516ED00393B76 /* PredictionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionCell.swift; sourceTree = "<group>"; };
 		B43E072724566C7E00393B76 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		B45033782718FE5B00B12B8E /* GetPredictionsForStopIdDecodables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPredictionsForStopIdDecodables.swift; sourceTree = "<group>"; };
 		B45988C524428389006F9B32 /* LocationBounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationBounds.swift; sourceTree = "<group>"; };
 		B45988C924429720006F9B32 /* AppComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppComponent.swift; sourceTree = "<group>"; };
 		B45988CB24429C69006F9B32 /* StopMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopMapViewModel.swift; sourceTree = "<group>"; };
@@ -107,6 +106,7 @@
 		B4B2084924423CAF0099DE2A /* stops.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = stops.json; sourceTree = "<group>"; };
 		B4CC2AF4244233ED0071A66D /* DatabasePopulator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabasePopulator.swift; sourceTree = "<group>"; };
 		B4CC2AF72442350E0071A66D /* StopDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopDecodable.swift; sourceTree = "<group>"; };
+		B4D000F02719035300491EBA /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		B4DCAD49245272B900A0E978 /* OverviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewViewModel.swift; sourceTree = "<group>"; };
 		B4DCAD4C2452771C00A0E978 /* OverviewContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewContract.swift; sourceTree = "<group>"; };
 		B4F885EB2464ED7600DF51A8 /* DefaultLocationBounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLocationBounds.swift; sourceTree = "<group>"; };
@@ -157,8 +157,7 @@
 		B407630F245BA69E008979C5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				B4076316245CFE5F008979C5 /* PredictionsResponseDecodable.swift */,
-				B4076310245BA6AF008979C5 /* PredictionDecodable.swift */,
+				B45033782718FE5B00B12B8E /* GetPredictionsForStopIdDecodables.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -474,6 +473,7 @@
 			children = (
 				B41AE571243FFBFD0024FFC1 /* URL.swift */,
 				B43E072724566C7E00393B76 /* Array.swift */,
+				B4D000F02719035300491EBA /* String.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -641,6 +641,7 @@
 			files = (
 				B43E07202455160D00393B76 /* PredictionsViewModel.swift in Sources */,
 				B41AE5772442021A0024FFC1 /* StopsTableMapper.swift in Sources */,
+				B4D000F12719035300491EBA /* String.swift in Sources */,
 				B48FE2472450F3AE002A5C6C /* NSLayoutConstraint.swift in Sources */,
 				B490A0082453B4FA000744EB /* AppCoordinator.swift in Sources */,
 				B48F2BC5245F1DFC001900BE /* SimpleMessageCell.swift in Sources */,
@@ -661,7 +662,6 @@
 				B4155D32243C0B9400F933C1 /* AppDatabase.swift in Sources */,
 				B477CD68243BF7280027AE11 /* SceneDelegate.swift in Sources */,
 				B43E072824566C7E00393B76 /* Array.swift in Sources */,
-				B4076311245BA6AF008979C5 /* PredictionDecodable.swift in Sources */,
 				B4CC2AF5244233ED0071A66D /* DatabasePopulator.swift in Sources */,
 				B48F2BC7245F1FEE001900BE /* UIViewController.swift in Sources */,
 				B490E4F824492E34006CA233 /* FavoriteStopCell.swift in Sources */,
@@ -676,6 +676,7 @@
 				B48F2BCF245F906D001900BE /* LocalConfig.swift in Sources */,
 				B4155D35243C163500F933C1 /* DatabaseTables.swift in Sources */,
 				B4155D3A243C1E0500F933C1 /* StopLocalDataStore.swift in Sources */,
+				B45033792718FE5B00B12B8E /* GetPredictionsForStopIdDecodables.swift in Sources */,
 				B49700C4244BA337007AB5FC /* OverviewTitleHeaderView.swift in Sources */,
 				B4155D38243C16ED00F933C1 /* Stop.swift in Sources */,
 				B463645F2471EBDF00C6EDBB /* TimedNetworkPublisher.swift in Sources */,
@@ -684,7 +685,6 @@
 				B4981B0224454C94003F161F /* StopMapAnnotation.swift in Sources */,
 				B45988D32442AC2A006F9B32 /* LastLocationTableMapper.swift in Sources */,
 				B41AE572243FFBFD0024FFC1 /* URL.swift in Sources */,
-				B4076317245CFE5F008979C5 /* PredictionsResponseDecodable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
