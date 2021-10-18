@@ -31,7 +31,7 @@ final class PredictionCell: UITableViewCell {
     }()
 
     private lazy var textStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [titleLabel, arrivalTimeLabel])
+        let stackView = UIStackView(arrangedSubviews: [titleLabel, capacityLabel, arrivalTimeLabel])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.alignment = .leading
@@ -45,6 +45,15 @@ final class PredictionCell: UITableViewCell {
         label.numberOfLines = 0
         label.font = UIFont.preferredFont(forTextStyle: .body)
         label.textColor = .label
+        return label
+    }()
+
+    private let capacityLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
+        label.font = UIFont.preferredFont(forTextStyle: .callout)
+        label.textColor = .secondaryLabel
         return label
     }()
 
@@ -126,6 +135,19 @@ final class PredictionCell: UITableViewCell {
 
         decoratorLabel.text = prediction.routeId
         titleLabel.text = prediction.routeTitle
+
+        switch prediction.capacity {
+        case .empty:
+            capacityLabel.text = "Empty"
+        case .halfEmpty:
+            capacityLabel.text = "Half Empty"
+        case .full:
+            capacityLabel.text = "Full"
+        default:
+            capacityLabel.text = ""
+        }
+        capacityLabel.isHidden = prediction.capacity == .notAvailable
+
 
         let seconds = prediction.arrivalTime.timeIntervalSinceNow
         switch seconds {

@@ -27,17 +27,33 @@ struct PredictionDecodable: Decodable {
 
     let arrivalTime: String?
 
+    let capacity: String?
+
     private enum CodingKeys: String, CodingKey {
         case vehicleId = "vid"
         case routeId = "rt"
         case destination = "des"
         case routeDirection = "rtdir"
         case arrivalTime = "prdtm"
+        case capacity = "psgld"
     }
 
     private var arriveTimeAsDate: Date? {
         guard let arrivalTime = arrivalTime else { return nil }
         return PredictionDecodable.dateFormatter.date(from: arrivalTime)
+    }
+
+    private var capacityType: CapacityType {
+        switch capacity?.lowercased() {
+        case "empty":
+            return .empty
+        case "half_empty":
+            return .halfEmpty
+        case "full":
+            return .full
+        default:
+            return .notAvailable
+        }
     }
 
     func mapToPrediction() -> Prediction? {
@@ -51,7 +67,8 @@ struct PredictionDecodable: Decodable {
         return Prediction(vehicleId: vehicleId,
                           routeId: routeId,
                           routeTitle: "\(destination) - \(routeDirection.capitalizingOnlyFirstLetter())",
-                          arrivalTime: arrivalTime)
+                          arrivalTime: arrivalTime,
+                          capacity: capacityType)
     }
 }
  

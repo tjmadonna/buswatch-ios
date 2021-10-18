@@ -13,6 +13,14 @@ struct Prediction {
     let routeId: String
     let routeTitle: String
     let arrivalTime: Date
+    let capacity: CapacityType
 }
 
 extension Prediction: Hashable { }
+
+enum CapacityType {
+    case empty
+    case halfEmpty
+    case full
+    case notAvailable
+}
