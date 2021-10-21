@@ -1,5 +1,5 @@
 //
-//  PredictionsViewController.swift
+//  PredictionsMainViewController.swift
 //  BusWatch
 //
 //  Created by Tyler Madonna on 4/25/20.
@@ -9,7 +9,7 @@
 import UIKit
 import Combine
 
-final class PredictionsViewController: UITableViewController {
+final class PredictionsMainViewController: UITableViewController {
 
     // MARK: - Properties
 

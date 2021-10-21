@@ -79,7 +79,7 @@ final class AppCoordinator {
                                                  stopLocalDataStore: stopDataStore,
                                                  predictionRemoteDataStore: predictionDataStore,
                                                  appCoordinator: self)
-            let viewController = PredictionsViewController(viewModel: viewModel)
+            let viewController = PredictionsMainViewController(viewModel: viewModel)
             viewController.title = stop.title
             navigationController.pushViewController(viewController, animated: true)
         } catch {
