@@ -36,8 +36,8 @@ extension UITableView {
         performBatchUpdates({
             setNewDataBlock(newData)
 
-            deleteRows(at: deletes, with: .automatic)
-            insertRows(at: inserts, with: .automatic)
+            deleteRows(at: deletes, with: .fade)
+            insertRows(at: inserts, with: .fade)
             moves.forEach { move in
                 moveRow(at: move.from, to: move.to)
             }
