@@ -71,13 +71,31 @@ struct PredictionDecodable: Decodable {
                           capacity: capacityType)
     }
 }
- 
+
+struct PredictionsErrorDecodable: Decodable {
+
+    let dataFeed: String?
+
+    let stopId: String?
+
+    let message: String?
+
+    private enum CodingKeys: String, CodingKey {
+        case dataFeed = "rtpidatafeed"
+        case stopId = "stpid"
+        case message = "msg"
+    }
+}
+
 struct BustimeResponseDecodable: Decodable {
 
     let predictions: [PredictionDecodable]?
 
+    let errors: [PredictionsErrorDecodable]?
+
     private enum CodingKeys: String, CodingKey {
         case predictions = "prd"
+        case errors = "error"
     }
 }
 
