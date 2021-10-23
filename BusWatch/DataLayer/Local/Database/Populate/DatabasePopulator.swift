@@ -6,6 +6,7 @@
 //  Copyright © 2020 Tyler Madonna. All rights reserved.
 //
 
+import Foundation
 import GRDB
 
 final class DatabasePopulator {

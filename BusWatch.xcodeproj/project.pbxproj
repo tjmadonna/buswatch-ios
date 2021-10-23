@@ -3,11 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		62A1475FCDFE8A79D2DB4DC7 /* Pods_BusWatch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E696647DDF85ED59F1F80F /* Pods_BusWatch.framework */; };
 		B407630A245A2201008979C5 /* Prediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4076309245A2201008979C5 /* Prediction.swift */; };
 		B4155D32243C0B9400F933C1 /* AppDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4155D31243C0B9400F933C1 /* AppDatabase.swift */; };
 		B4155D35243C163500F933C1 /* DatabaseTables.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4155D34243C163500F933C1 /* DatabaseTables.swift */; };
@@ -34,6 +33,7 @@
 		B463645F2471EBDF00C6EDBB /* TimedNetworkPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B463645E2471EBDF00C6EDBB /* TimedNetworkPublisher.swift */; };
 		B470C81E27235D69007CEAF9 /* PredictionsDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B470C81D27235D69007CEAF9 /* PredictionsDataViewController.swift */; };
 		B470C82027235D83007CEAF9 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B470C81F27235D83007CEAF9 /* LoadingViewController.swift */; };
+		B470C82327239368007CEAF9 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = B470C82227239368007CEAF9 /* GRDB */; };
 		B477CD66243BF7280027AE11 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B477CD65243BF7280027AE11 /* AppDelegate.swift */; };
 		B477CD68243BF7280027AE11 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B477CD67243BF7280027AE11 /* SceneDelegate.swift */; };
 		B477CD6A243BF7280027AE11 /* StopMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B477CD69243BF7280027AE11 /* StopMapViewController.swift */; };
@@ -62,7 +62,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A8DD63A5CCFF92378F8EBD52 /* Pods-BusWatch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BusWatch.release.xcconfig"; path = "Target Support Files/Pods-BusWatch/Pods-BusWatch.release.xcconfig"; sourceTree = "<group>"; };
 		B4076309245A2201008979C5 /* Prediction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prediction.swift; sourceTree = "<group>"; };
 		B4155D31243C0B9400F933C1 /* AppDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDatabase.swift; sourceTree = "<group>"; };
 		B4155D34243C163500F933C1 /* DatabaseTables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseTables.swift; sourceTree = "<group>"; };
@@ -116,8 +115,6 @@
 		B4F885EB2464ED7600DF51A8 /* DefaultLocationBounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLocationBounds.swift; sourceTree = "<group>"; };
 		B4FA416E2446888B0066F81E /* OverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewViewController.swift; sourceTree = "<group>"; };
 		B4FDF66A244BB6A800539C92 /* MapCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCell.swift; sourceTree = "<group>"; };
-		F8E696647DDF85ED59F1F80F /* Pods_BusWatch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BusWatch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FFCA9C96BB05552989DD69BD /* Pods-BusWatch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BusWatch.debug.xcconfig"; path = "Target Support Files/Pods-BusWatch/Pods-BusWatch.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,30 +122,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62A1475FCDFE8A79D2DB4DC7 /* Pods_BusWatch.framework in Frameworks */,
+				B470C82327239368007CEAF9 /* GRDB in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		47DF610B74A122455A980AC7 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				FFCA9C96BB05552989DD69BD /* Pods-BusWatch.debug.xcconfig */,
-				A8DD63A5CCFF92378F8EBD52 /* Pods-BusWatch.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
-		9A7BE3061CC9E5FE5472D793 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				F8E696647DDF85ED59F1F80F /* Pods_BusWatch.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		B407630E245BA67C008979C5 /* Remote */ = {
 			isa = PBXGroup;
 			children = (
@@ -311,8 +291,6 @@
 			children = (
 				B477CD64243BF7280027AE11 /* BusWatch */,
 				B477CD63243BF7280027AE11 /* Products */,
-				47DF610B74A122455A980AC7 /* Pods */,
-				9A7BE3061CC9E5FE5472D793 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -537,17 +515,18 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B477CD76243BF72F0027AE11 /* Build configuration list for PBXNativeTarget "BusWatch" */;
 			buildPhases = (
-				5F71FE31A6CE78384E349EBD /* [CP] Check Pods Manifest.lock */,
 				B477CD5E243BF7280027AE11 /* Sources */,
 				B477CD5F243BF7280027AE11 /* Frameworks */,
 				B477CD60243BF7280027AE11 /* Resources */,
-				0D1E97E68E6645BFFC1F2944 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = BusWatch;
+			packageProductDependencies = (
+				B470C82227239368007CEAF9 /* GRDB */,
+			);
 			productName = BusWatch;
 			productReference = B477CD62243BF7280027AE11 /* BusWatch.app */;
 			productType = "com.apple.product-type.application";
@@ -576,6 +555,9 @@
 				Base,
 			);
 			mainGroup = B477CD59243BF7280027AE11;
+			packageReferences = (
+				B470C82127239368007CEAF9 /* XCRemoteSwiftPackageReference "GRDB" */,
+			);
 			productRefGroup = B477CD63243BF7280027AE11 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -597,48 +579,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		0D1E97E68E6645BFFC1F2944 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BusWatch/Pods-BusWatch-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BusWatch/Pods-BusWatch-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BusWatch/Pods-BusWatch-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5F71FE31A6CE78384E349EBD /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-BusWatch-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B477CD5E243BF7280027AE11 /* Sources */ = {
@@ -828,7 +768,6 @@
 		};
 		B477CD77243BF72F0027AE11 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FFCA9C96BB05552989DD69BD /* Pods-BusWatch.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -848,7 +787,6 @@
 		};
 		B477CD78243BF72F0027AE11 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A8DD63A5CCFF92378F8EBD52 /* Pods-BusWatch.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -888,6 +826,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B470C82127239368007CEAF9 /* XCRemoteSwiftPackageReference "GRDB" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/groue/GRDB.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B470C82227239368007CEAF9 /* GRDB */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B470C82127239368007CEAF9 /* XCRemoteSwiftPackageReference "GRDB" */;
+			productName = GRDB;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B477CD5A243BF7280027AE11 /* Project object */;
 }

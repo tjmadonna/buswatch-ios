@@ -7,9 +7,8 @@
 //
 
 import Combine
-import GRDB
-import GRDBCombine
 import CoreLocation
+import GRDB
 
 private enum LocationLocalDataStoreError: Error {
     case lastLocationNotFound
@@ -66,7 +65,7 @@ final class LocationLocalDataStore {
                 locationBounds.west,
                 locationBounds.east
             ])
-        }
+        }.eraseToAnyPublisher()
     }
 
     // MARK: - Current Location

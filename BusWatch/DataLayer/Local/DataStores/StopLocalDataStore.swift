@@ -8,7 +8,6 @@
 
 import Combine
 import GRDB
-import GRDBCombine
 
 private enum StopLocalDataStoreError: Error {
     case stopNotFound
@@ -99,6 +98,6 @@ final class StopLocalDataStore {
     private func writePublisherForSQL(_ sql: String, arguments: StatementArguments) -> AnyPublisher<Void, Error> {
         return dbQueue.writePublisher { db in
             try db.execute(sql: sql, arguments: arguments)
-        }
+        }.eraseToAnyPublisher()
     }
 }
