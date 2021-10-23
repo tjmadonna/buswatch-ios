@@ -19,7 +19,7 @@
 		B430D477245E355E002EA8FB /* PredictionRemoteDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B430D476245E355E002EA8FB /* PredictionRemoteDataStore.swift */; };
 		B430D47A245E362B002EA8FB /* RemoteConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = B430D479245E362B002EA8FB /* RemoteConfig.swift */; };
 		B43E071B2453CEFE00393B76 /* StyleConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43E071A2453CEFE00393B76 /* StyleConfig.swift */; };
-		B43E071E2455157100393B76 /* PredictionsMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43E071D2455157100393B76 /* PredictionsMainViewController.swift */; };
+		B43E071E2455157100393B76 /* PredictionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43E071D2455157100393B76 /* PredictionsViewController.swift */; };
 		B43E07202455160D00393B76 /* PredictionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43E071F2455160D00393B76 /* PredictionsViewModel.swift */; };
 		B43E07232455164400393B76 /* PredictionsContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43E07222455164400393B76 /* PredictionsContract.swift */; };
 		B43E0726245516ED00393B76 /* PredictionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43E0725245516ED00393B76 /* PredictionCell.swift */; };
@@ -32,6 +32,8 @@
 		B45988D02442A88C006F9B32 /* LocationLocalDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45988CF2442A88C006F9B32 /* LocationLocalDataStore.swift */; };
 		B45988D32442AC2A006F9B32 /* LastLocationTableMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45988D22442AC2A006F9B32 /* LastLocationTableMapper.swift */; };
 		B463645F2471EBDF00C6EDBB /* TimedNetworkPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B463645E2471EBDF00C6EDBB /* TimedNetworkPublisher.swift */; };
+		B470C81E27235D69007CEAF9 /* PredictionsDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B470C81D27235D69007CEAF9 /* PredictionsDataViewController.swift */; };
+		B470C82027235D83007CEAF9 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B470C81F27235D83007CEAF9 /* LoadingViewController.swift */; };
 		B477CD66243BF7280027AE11 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B477CD65243BF7280027AE11 /* AppDelegate.swift */; };
 		B477CD68243BF7280027AE11 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B477CD67243BF7280027AE11 /* SceneDelegate.swift */; };
 		B477CD6A243BF7280027AE11 /* StopMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B477CD69243BF7280027AE11 /* StopMapViewController.swift */; };
@@ -72,7 +74,7 @@
 		B430D476245E355E002EA8FB /* PredictionRemoteDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionRemoteDataStore.swift; sourceTree = "<group>"; };
 		B430D479245E362B002EA8FB /* RemoteConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfig.swift; sourceTree = "<group>"; };
 		B43E071A2453CEFE00393B76 /* StyleConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleConfig.swift; sourceTree = "<group>"; };
-		B43E071D2455157100393B76 /* PredictionsMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsMainViewController.swift; sourceTree = "<group>"; };
+		B43E071D2455157100393B76 /* PredictionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsViewController.swift; sourceTree = "<group>"; };
 		B43E071F2455160D00393B76 /* PredictionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsViewModel.swift; sourceTree = "<group>"; };
 		B43E07222455164400393B76 /* PredictionsContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsContract.swift; sourceTree = "<group>"; };
 		B43E0725245516ED00393B76 /* PredictionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionCell.swift; sourceTree = "<group>"; };
@@ -85,6 +87,8 @@
 		B45988CF2442A88C006F9B32 /* LocationLocalDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationLocalDataStore.swift; sourceTree = "<group>"; };
 		B45988D22442AC2A006F9B32 /* LastLocationTableMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastLocationTableMapper.swift; sourceTree = "<group>"; };
 		B463645E2471EBDF00C6EDBB /* TimedNetworkPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimedNetworkPublisher.swift; sourceTree = "<group>"; };
+		B470C81D27235D69007CEAF9 /* PredictionsDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsDataViewController.swift; sourceTree = "<group>"; };
+		B470C81F27235D83007CEAF9 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		B477CD62243BF7280027AE11 /* BusWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BusWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B477CD65243BF7280027AE11 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B477CD67243BF7280027AE11 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -242,10 +246,11 @@
 			isa = PBXGroup;
 			children = (
 				B43E07212455163500393B76 /* Contract */,
-				B4FDBB0927222BAF00B59B9D /* ViewController */,
 				B43E0724245516CB00393B76 /* Cells */,
 				B43E071F2455160D00393B76 /* PredictionsViewModel.swift */,
-				B43E071D2455157100393B76 /* PredictionsMainViewController.swift */,
+				B43E071D2455157100393B76 /* PredictionsViewController.swift */,
+				B470C81D27235D69007CEAF9 /* PredictionsDataViewController.swift */,
+				B470C81F27235D83007CEAF9 /* LoadingViewController.swift */,
 			);
 			path = Predictions;
 			sourceTree = "<group>";
@@ -525,13 +530,6 @@
 			path = Overview;
 			sourceTree = "<group>";
 		};
-		B4FDBB0927222BAF00B59B9D /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -660,13 +658,14 @@
 				B45988D02442A88C006F9B32 /* LocationLocalDataStore.swift in Sources */,
 				B407630A245A2201008979C5 /* Prediction.swift in Sources */,
 				B4DCAD4D2452771C00A0E978 /* OverviewContract.swift in Sources */,
+				B470C81E27235D69007CEAF9 /* PredictionsDataViewController.swift in Sources */,
 				B4CC2AF82442350E0071A66D /* StopDecodable.swift in Sources */,
 				B430D477245E355E002EA8FB /* PredictionRemoteDataStore.swift in Sources */,
 				B43E071B2453CEFE00393B76 /* StyleConfig.swift in Sources */,
 				B4DCAD4A245272B900A0E978 /* OverviewViewModel.swift in Sources */,
 				B4981AFF24453A73003F161F /* StopMapContract.swift in Sources */,
 				B430D47A245E362B002EA8FB /* RemoteConfig.swift in Sources */,
-				B43E071E2455157100393B76 /* PredictionsMainViewController.swift in Sources */,
+				B43E071E2455157100393B76 /* PredictionsViewController.swift in Sources */,
 				B4155D32243C0B9400F933C1 /* AppDatabase.swift in Sources */,
 				B477CD68243BF7280027AE11 /* SceneDelegate.swift in Sources */,
 				B43E072824566C7E00393B76 /* Array.swift in Sources */,
@@ -681,6 +680,7 @@
 				B45988C624428389006F9B32 /* LocationBounds.swift in Sources */,
 				B4FA416F2446888B0066F81E /* OverviewViewController.swift in Sources */,
 				B45988CE2442A363006F9B32 /* MKMapView.swift in Sources */,
+				B470C82027235D83007CEAF9 /* LoadingViewController.swift in Sources */,
 				B48F2BCF245F906D001900BE /* LocalConfig.swift in Sources */,
 				B4155D35243C163500F933C1 /* DatabaseTables.swift in Sources */,
 				B4155D3A243C1E0500F933C1 /* StopLocalDataStore.swift in Sources */,

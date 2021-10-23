@@ -66,7 +66,8 @@ final class AppCoordinator {
             viewController.title = "Map"
             navigationController.pushViewController(viewController, animated: true)
         } catch {
-            navigationController.presentAlertViewControllerWithTitle("Application Failed", message: "An error occured while loading the application")
+            navigationController.presentAlertViewControllerWithTitle("Application Failed",
+                                                                     message: "An error occured while loading the application")
             print(error)
         }
     }
@@ -79,11 +80,12 @@ final class AppCoordinator {
                                                  stopLocalDataStore: stopDataStore,
                                                  predictionRemoteDataStore: predictionDataStore,
                                                  appCoordinator: self)
-            let viewController = PredictionsMainViewController(viewModel: viewModel)
+            let viewController = PredictionsViewController(viewModel: viewModel)
             viewController.title = stop.title
             navigationController.pushViewController(viewController, animated: true)
         } catch {
-            navigationController.presentAlertViewControllerWithTitle("Application Failed", message: "An error occured while loading the application")
+            navigationController.presentAlertViewControllerWithTitle("Application Failed",
+                                                                     message: "An error occured while loading the application")
             print(error)
         }
     }
