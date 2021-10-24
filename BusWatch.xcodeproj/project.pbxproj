@@ -17,6 +17,7 @@
 		B42C7F79244A8A5000A41037 /* UIlabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42C7F78244A8A5000A41037 /* UIlabel.swift */; };
 		B430D477245E355E002EA8FB /* PredictionRemoteDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B430D476245E355E002EA8FB /* PredictionRemoteDataStore.swift */; };
 		B430D47A245E362B002EA8FB /* RemoteConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = B430D479245E362B002EA8FB /* RemoteConfig.swift */; };
+		B438A6D82724E04800A7797F /* UserDefaultStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B438A6D72724E04800A7797F /* UserDefaultStore.swift */; };
 		B43E071B2453CEFE00393B76 /* StyleConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43E071A2453CEFE00393B76 /* StyleConfig.swift */; };
 		B43E071E2455157100393B76 /* PredictionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43E071D2455157100393B76 /* PredictionsViewController.swift */; };
 		B43E07202455160D00393B76 /* PredictionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43E071F2455160D00393B76 /* PredictionsViewModel.swift */; };
@@ -72,6 +73,7 @@
 		B42C7F78244A8A5000A41037 /* UIlabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIlabel.swift; sourceTree = "<group>"; };
 		B430D476245E355E002EA8FB /* PredictionRemoteDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionRemoteDataStore.swift; sourceTree = "<group>"; };
 		B430D479245E362B002EA8FB /* RemoteConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfig.swift; sourceTree = "<group>"; };
+		B438A6D72724E04800A7797F /* UserDefaultStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultStore.swift; sourceTree = "<group>"; };
 		B43E071A2453CEFE00393B76 /* StyleConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleConfig.swift; sourceTree = "<group>"; };
 		B43E071D2455157100393B76 /* PredictionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsViewController.swift; sourceTree = "<group>"; };
 		B43E071F2455160D00393B76 /* PredictionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsViewModel.swift; sourceTree = "<group>"; };
@@ -210,6 +212,14 @@
 				B430D476245E355E002EA8FB /* PredictionRemoteDataStore.swift */,
 			);
 			path = DataStores;
+			sourceTree = "<group>";
+		};
+		B438A6D62724E02C00A7797F /* UserDefault */ = {
+			isa = PBXGroup;
+			children = (
+				B438A6D72724E04800A7797F /* UserDefaultStore.swift */,
+			);
+			path = UserDefault;
 			sourceTree = "<group>";
 		};
 		B43E07192453CEE700393B76 /* Config */ = {
@@ -356,6 +366,7 @@
 		B477CD7D243BF7FD0027AE11 /* DataLayer */ = {
 			isa = PBXGroup;
 			children = (
+				B438A6D62724E02C00A7797F /* UserDefault */,
 				B4155D36243C16D700F933C1 /* Models */,
 				B4155D2F243C0B7E00F933C1 /* Local */,
 				B407630E245BA67C008979C5 /* Remote */,
@@ -622,6 +633,7 @@
 				B45988CE2442A363006F9B32 /* MKMapView.swift in Sources */,
 				B470C82027235D83007CEAF9 /* LoadingViewController.swift in Sources */,
 				B48F2BCF245F906D001900BE /* LocalConfig.swift in Sources */,
+				B438A6D82724E04800A7797F /* UserDefaultStore.swift in Sources */,
 				B4155D35243C163500F933C1 /* DatabaseTables.swift in Sources */,
 				B4155D3A243C1E0500F933C1 /* StopLocalDataStore.swift in Sources */,
 				B45033792718FE5B00B12B8E /* GetPredictionsForStopIdDecodables.swift in Sources */,
