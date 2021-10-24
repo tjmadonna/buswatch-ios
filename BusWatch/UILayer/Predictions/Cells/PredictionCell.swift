@@ -149,9 +149,9 @@ final class PredictionCell: UITableViewCell {
         capacityLabel.isHidden = prediction.capacity == .notAvailable
 
 
-        let seconds = prediction.arrivalTime.timeIntervalSinceNow
+        let seconds = prediction.arrivalTime
         switch seconds {
-        case 0...30:
+        case Int.min...30:
             arrivalTimeLabel.text = "Arriving Now"
         case 30..<120:
             arrivalTimeLabel.text = "Arriving In 1 minute"

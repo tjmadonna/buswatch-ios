@@ -12,7 +12,7 @@ struct Prediction {
     let vehicleId: String
     let routeId: String
     let routeTitle: String
-    let arrivalTime: Date
+    let arrivalTime: Int
     let capacity: CapacityType
 }
 

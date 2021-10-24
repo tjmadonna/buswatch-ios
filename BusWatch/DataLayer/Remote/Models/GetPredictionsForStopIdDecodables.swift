@@ -67,7 +67,7 @@ struct PredictionDecodable: Decodable {
         return Prediction(vehicleId: vehicleId,
                           routeId: routeId,
                           routeTitle: "\(destination) - \(routeDirection.capitalizingOnlyFirstLetter())",
-                          arrivalTime: arrivalTime,
+                          arrivalTime: Int(arrivalTime.timeIntervalSinceNow),
                           capacity: capacityType)
     }
 }
