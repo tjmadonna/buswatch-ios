@@ -35,6 +35,7 @@
 		B470C81E27235D69007CEAF9 /* PredictionsDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B470C81D27235D69007CEAF9 /* PredictionsDataViewController.swift */; };
 		B470C82027235D83007CEAF9 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B470C81F27235D83007CEAF9 /* LoadingViewController.swift */; };
 		B470C82327239368007CEAF9 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = B470C82227239368007CEAF9 /* GRDB */; };
+		B474B86E2725FB2900B5CBA2 /* DifferenceKit in Frameworks */ = {isa = PBXBuildFile; productRef = B474B86D2725FB2900B5CBA2 /* DifferenceKit */; };
 		B477CD66243BF7280027AE11 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B477CD65243BF7280027AE11 /* AppDelegate.swift */; };
 		B477CD68243BF7280027AE11 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B477CD67243BF7280027AE11 /* SceneDelegate.swift */; };
 		B477CD6A243BF7280027AE11 /* StopMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B477CD69243BF7280027AE11 /* StopMapViewController.swift */; };
@@ -124,6 +125,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B474B86E2725FB2900B5CBA2 /* DifferenceKit in Frameworks */,
 				B470C82327239368007CEAF9 /* GRDB in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -537,6 +539,7 @@
 			name = BusWatch;
 			packageProductDependencies = (
 				B470C82227239368007CEAF9 /* GRDB */,
+				B474B86D2725FB2900B5CBA2 /* DifferenceKit */,
 			);
 			productName = BusWatch;
 			productReference = B477CD62243BF7280027AE11 /* BusWatch.app */;
@@ -568,6 +571,7 @@
 			mainGroup = B477CD59243BF7280027AE11;
 			packageReferences = (
 				B470C82127239368007CEAF9 /* XCRemoteSwiftPackageReference "GRDB" */,
+				B474B86C2725FB2900B5CBA2 /* XCRemoteSwiftPackageReference "DifferenceKit" */,
 			);
 			productRefGroup = B477CD63243BF7280027AE11 /* Products */;
 			projectDirPath = "";
@@ -848,6 +852,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		B474B86C2725FB2900B5CBA2 /* XCRemoteSwiftPackageReference "DifferenceKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ra1028/DifferenceKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -855,6 +867,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B470C82127239368007CEAF9 /* XCRemoteSwiftPackageReference "GRDB" */;
 			productName = GRDB;
+		};
+		B474B86D2725FB2900B5CBA2 /* DifferenceKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B474B86C2725FB2900B5CBA2 /* XCRemoteSwiftPackageReference "DifferenceKit" */;
+			productName = DifferenceKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
