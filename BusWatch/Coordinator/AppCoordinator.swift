@@ -13,6 +13,19 @@ final class AppNavigationViewController: UINavigationController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = Colors.navBarColor
+        appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        navigationBar.standardAppearance = appearance
+        navigationBar.scrollEdgeAppearance = navigationBar.standardAppearance
+        navigationBar.isTranslucent = false
+        navigationBar.tintColor = .white
+    }
 }
 
 final class AppCoordinator {
@@ -24,12 +37,7 @@ final class AppCoordinator {
     private let appComponent = AppComponent()
 
     private let navigationController: UINavigationController = {
-        let navController = AppNavigationViewController()
-        navController.navigationBar.isTranslucent = false
-        navController.navigationBar.barTintColor = Colors.navBarColor
-        navController.navigationBar.tintColor = .white
-        navController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        return navController
+        return AppNavigationViewController()
     }()
 
     // MARK: - Initialization
