@@ -7,10 +7,14 @@
 //
 
 import Foundation
+import DifferenceKit
 
 // MARK: - Model
 
-enum PredictionItem: Hashable {
+enum PredictionItem: Differentiable {
+
+    typealias DifferenceIdentifier = String?
+
     case prediction(Prediction)
     case emptyPrediction
 
@@ -23,6 +27,19 @@ enum PredictionItem: Hashable {
         default:
             return false
         }
+    }
+
+    var differenceIdentifier: String? {
+        switch self {
+        case .prediction(let prediction):
+            return prediction.vehicleId
+        case .emptyPrediction:
+            return nil
+        }
+    }
+
+    func isContentEqual(to source: PredictionItem) -> Bool {
+        return self == source
     }
 }
 

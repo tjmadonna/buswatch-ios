@@ -7,40 +7,66 @@
 //
 
 import UIKit
+import DifferenceKit
 
 extension UITableView {
 
-    func update<T>(oldData: [T], newData: [T], setNewDataBlock: ([T]) -> Void) where T: Hashable {
-        let diff = newData.difference(from: oldData)
+    func update<D: Differentiable>(
+        oldData: [D],
+        newData: [D],
+        with animation: RowAnimation,
+        setData: ([D]) -> Void,
+        reloadRow: (IndexPath) -> Void
+    ) {
+        let stagedChangeset = StagedChangeset(source: oldData, target: newData)
 
-        var inserts: [IndexPath] = []
-        var deletes: [IndexPath] = []
-        var moves: [(from: IndexPath, to: IndexPath)] = []
+        if case .none = window, let data = stagedChangeset.last?.data {
+            setData(data)
+            return reloadData()
+        }
 
-        for update in diff.inferringMoves() {
-            switch update {
-            case .remove(let offset, _, let move):
-                if let move = move {
-                    moves.append((IndexPath(row: offset, section: 0), IndexPath(row: move, section: 0)))
-                } else {
-                    deletes.append(IndexPath(row: offset, section: 0))
+        for changeset in stagedChangeset {
+            performBatchUpdates {
+                setData(changeset.data)
+
+                if !changeset.sectionDeleted.isEmpty {
+                    deleteSections(IndexSet(changeset.sectionDeleted), with: animation)
                 }
-            case .insert(let offset, _, let move):
-                // If there's no move, it's a true insertion and not the result of a move.
-                if move == nil {
-                    inserts.append(IndexPath(row: offset, section: 0))
+
+                if !changeset.sectionInserted.isEmpty {
+                    insertSections(IndexSet(changeset.sectionInserted), with: animation)
+                }
+
+                if !changeset.sectionUpdated.isEmpty {
+                    reloadSections(IndexSet(changeset.sectionUpdated), with: animation)
+                }
+
+                for (source, target) in changeset.sectionMoved {
+                    moveSection(source, toSection: target)
+                }
+
+                if !changeset.elementDeleted.isEmpty {
+                    deleteRows(at: changeset.elementDeleted.map { IndexPath(row: $0.element, section: $0.section) },
+                               with: animation)
+                }
+
+                if !changeset.elementInserted.isEmpty {
+                    insertRows(at: changeset.elementInserted.map { IndexPath(row: $0.element, section: $0.section) },
+                               with: animation)
+                }
+
+                if !changeset.elementUpdated.isEmpty {
+                    changeset.elementUpdated.forEach {
+                        let indexPath = IndexPath(row: $0.element, section: $0.section)
+                        reloadRow(indexPath)
+                    }
+                }
+
+                for (source, target) in changeset.elementMoved {
+                    moveRow(at: IndexPath(row: source.element, section: source.section),
+                            to: IndexPath(row: target.element, section: target.section))
                 }
             }
         }
-
-        performBatchUpdates({
-            setNewDataBlock(newData)
-
-            deleteRows(at: deletes, with: .fade)
-            insertRows(at: inserts, with: .fade)
-            moves.forEach { move in
-                moveRow(at: move.from, to: move.to)
-            }
-        }, completion: nil)
     }
 }

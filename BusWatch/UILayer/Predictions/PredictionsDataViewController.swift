@@ -91,9 +91,13 @@ final class PredictionsDataViewController: UITableViewController {
 
     func updatePredictions(_ predictionItems: [PredictionItem], animate: Bool) {
         if animate {
-            tableView.update(oldData: self.predictionItems, newData: predictionItems) { newPredictionItems in
-                self.predictionItems = newPredictionItems
-            }
+            tableView.update(oldData: self.predictionItems, newData: predictionItems, with: .fade, setData: { newData in
+                self.predictionItems = newData
+            }, reloadRow: { indexPath in
+                if case .prediction(let prediction) = self.predictionItems[indexPath.row] {
+                    let _ = predictionCellForPrediction(prediction, indexPath: indexPath)
+                }
+            })
         } else {
             self.predictionItems = predictionItems
             tableView.reloadData()
