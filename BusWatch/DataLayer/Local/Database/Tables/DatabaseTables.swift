@@ -82,3 +82,27 @@ enum LastLocationTable {
         """
     }
 }
+
+enum RoutesTable {
+
+    static let TableName = "routes"
+
+    static let IDColumn = "id"
+    static let TitleColumn = "title"
+    static let ColorColumn = "color"
+
+    static let AllColumns = """
+    \(IDColumn), \(TitleColumn), \(ColorColumn)
+    """
+
+    enum Migration {
+
+        static let CreateTableForVersion2 = """
+        CREATE TABLE \(TableName) (
+        \(IDColumn) TEXT PRIMARY KEY,
+        \(TitleColumn) TEXT NOT NULL,
+        \(ColorColumn) TEXT NOT NULL
+        )
+        """
+    }
+}

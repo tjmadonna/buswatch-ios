@@ -29,4 +29,7 @@ final class UserDefaultStore {
     @UserDefault(key: "stop_version", defaultValue: 0)
     var stopVersion: Int
 
+    @UserDefault(key: "route_version", defaultValue: 0)
+    var routeVersion: Int
+
 }

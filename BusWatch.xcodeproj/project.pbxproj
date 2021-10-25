@@ -14,6 +14,7 @@
 		B4155D3A243C1E0500F933C1 /* StopLocalDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4155D39243C1E0500F933C1 /* StopLocalDataStore.swift */; };
 		B41AE572243FFBFD0024FFC1 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41AE571243FFBFD0024FFC1 /* URL.swift */; };
 		B41AE5772442021A0024FFC1 /* StopsTableMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41AE5762442021A0024FFC1 /* StopsTableMapper.swift */; };
+		B41E1345272711820031D79E /* routes.json in Resources */ = {isa = PBXBuildFile; fileRef = B41E1344272711820031D79E /* routes.json */; };
 		B42C7F79244A8A5000A41037 /* UIlabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42C7F78244A8A5000A41037 /* UIlabel.swift */; };
 		B430D477245E355E002EA8FB /* PredictionRemoteDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B430D476245E355E002EA8FB /* PredictionRemoteDataStore.swift */; };
 		B430D47A245E362B002EA8FB /* RemoteConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = B430D479245E362B002EA8FB /* RemoteConfig.swift */; };
@@ -52,6 +53,10 @@
 		B49700C4244BA337007AB5FC /* OverviewTitleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49700C3244BA337007AB5FC /* OverviewTitleHeaderView.swift */; };
 		B4981AFF24453A73003F161F /* StopMapContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4981AFE24453A73003F161F /* StopMapContract.swift */; };
 		B4981B0224454C94003F161F /* StopMapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4981B0124454C94003F161F /* StopMapAnnotation.swift */; };
+		B4A82B6F2727142E00A8B1F9 /* RouteDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A82B6E2727142E00A8B1F9 /* RouteDecodable.swift */; };
+		B4A82B712727163300A8B1F9 /* RouteLocalDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A82B702727163300A8B1F9 /* RouteLocalDataStore.swift */; };
+		B4A82B732727167500A8B1F9 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A82B722727167500A8B1F9 /* Route.swift */; };
+		B4A82B752727183500A8B1F9 /* RoutesTableMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A82B742727183500A8B1F9 /* RoutesTableMapper.swift */; };
 		B4B2084A24423CAF0099DE2A /* stops.json in Resources */ = {isa = PBXBuildFile; fileRef = B4B2084924423CAF0099DE2A /* stops.json */; };
 		B4CC2AF5244233ED0071A66D /* DatabasePopulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CC2AF4244233ED0071A66D /* DatabasePopulator.swift */; };
 		B4CC2AF82442350E0071A66D /* StopDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CC2AF72442350E0071A66D /* StopDecodable.swift */; };
@@ -71,6 +76,7 @@
 		B4155D39243C1E0500F933C1 /* StopLocalDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopLocalDataStore.swift; sourceTree = "<group>"; };
 		B41AE571243FFBFD0024FFC1 /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
 		B41AE5762442021A0024FFC1 /* StopsTableMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopsTableMapper.swift; sourceTree = "<group>"; };
+		B41E1344272711820031D79E /* routes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = routes.json; sourceTree = "<group>"; };
 		B42C7F78244A8A5000A41037 /* UIlabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIlabel.swift; sourceTree = "<group>"; };
 		B430D476245E355E002EA8FB /* PredictionRemoteDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionRemoteDataStore.swift; sourceTree = "<group>"; };
 		B430D479245E362B002EA8FB /* RemoteConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfig.swift; sourceTree = "<group>"; };
@@ -109,6 +115,10 @@
 		B49700C3244BA337007AB5FC /* OverviewTitleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewTitleHeaderView.swift; sourceTree = "<group>"; };
 		B4981AFE24453A73003F161F /* StopMapContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopMapContract.swift; sourceTree = "<group>"; };
 		B4981B0124454C94003F161F /* StopMapAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopMapAnnotation.swift; sourceTree = "<group>"; };
+		B4A82B6E2727142E00A8B1F9 /* RouteDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDecodable.swift; sourceTree = "<group>"; };
+		B4A82B702727163300A8B1F9 /* RouteLocalDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteLocalDataStore.swift; sourceTree = "<group>"; };
+		B4A82B722727167500A8B1F9 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
+		B4A82B742727183500A8B1F9 /* RoutesTableMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesTableMapper.swift; sourceTree = "<group>"; };
 		B4B2084924423CAF0099DE2A /* stops.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = stops.json; sourceTree = "<group>"; };
 		B4CC2AF4244233ED0071A66D /* DatabasePopulator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabasePopulator.swift; sourceTree = "<group>"; };
 		B4CC2AF72442350E0071A66D /* StopDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopDecodable.swift; sourceTree = "<group>"; };
@@ -175,6 +185,7 @@
 			children = (
 				B4155D39243C1E0500F933C1 /* StopLocalDataStore.swift */,
 				B45988CF2442A88C006F9B32 /* LocationLocalDataStore.swift */,
+				B4A82B702727163300A8B1F9 /* RouteLocalDataStore.swift */,
 			);
 			path = DataStores;
 			sourceTree = "<group>";
@@ -183,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				B4155D37243C16ED00F933C1 /* Stop.swift */,
+				B4A82B722727167500A8B1F9 /* Route.swift */,
 				B45988C524428389006F9B32 /* LocationBounds.swift */,
 				B4076309245A2201008979C5 /* Prediction.swift */,
 			);
@@ -204,6 +216,7 @@
 			children = (
 				B41AE5762442021A0024FFC1 /* StopsTableMapper.swift */,
 				B45988D22442AC2A006F9B32 /* LastLocationTableMapper.swift */,
+				B4A82B742727183500A8B1F9 /* RoutesTableMapper.swift */,
 			);
 			path = Mappers;
 			sourceTree = "<group>";
@@ -351,6 +364,7 @@
 			isa = PBXGroup;
 			children = (
 				B4B2084924423CAF0099DE2A /* stops.json */,
+				B41E1344272711820031D79E /* routes.json */,
 				B477CD6E243BF72F0027AE11 /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -496,6 +510,7 @@
 			isa = PBXGroup;
 			children = (
 				B4CC2AF72442350E0071A66D /* StopDecodable.swift */,
+				B4A82B6E2727142E00A8B1F9 /* RouteDecodable.swift */,
 				B4F885EB2464ED7600DF51A8 /* DefaultLocationBounds.swift */,
 			);
 			path = Model;
@@ -588,6 +603,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B477CD72243BF72F0027AE11 /* LaunchScreen.storyboard in Resources */,
+				B41E1345272711820031D79E /* routes.json in Resources */,
 				B477CD6F243BF72F0027AE11 /* Assets.xcassets in Resources */,
 				B4B2084A24423CAF0099DE2A /* stops.json in Resources */,
 			);
@@ -602,6 +618,7 @@
 			files = (
 				B43E07202455160D00393B76 /* PredictionsViewModel.swift in Sources */,
 				B41AE5772442021A0024FFC1 /* StopsTableMapper.swift in Sources */,
+				B4A82B712727163300A8B1F9 /* RouteLocalDataStore.swift in Sources */,
 				B4D000F12719035300491EBA /* String.swift in Sources */,
 				B48FE2472450F3AE002A5C6C /* NSLayoutConstraint.swift in Sources */,
 				B490A0082453B4FA000744EB /* AppCoordinator.swift in Sources */,
@@ -616,6 +633,7 @@
 				B470C81E27235D69007CEAF9 /* PredictionsDataViewController.swift in Sources */,
 				B4CC2AF82442350E0071A66D /* StopDecodable.swift in Sources */,
 				B430D477245E355E002EA8FB /* PredictionRemoteDataStore.swift in Sources */,
+				B4A82B732727167500A8B1F9 /* Route.swift in Sources */,
 				B43E071B2453CEFE00393B76 /* StyleConfig.swift in Sources */,
 				B4DCAD4A245272B900A0E978 /* OverviewViewModel.swift in Sources */,
 				B4981AFF24453A73003F161F /* StopMapContract.swift in Sources */,
@@ -631,6 +649,7 @@
 				B42C7F79244A8A5000A41037 /* UIlabel.swift in Sources */,
 				B45988CC24429C69006F9B32 /* StopMapViewModel.swift in Sources */,
 				B43E07232455164400393B76 /* PredictionsContract.swift in Sources */,
+				B4A82B6F2727142E00A8B1F9 /* RouteDecodable.swift in Sources */,
 				B48F2BCD245F6185001900BE /* UIColor.swift in Sources */,
 				B45988C624428389006F9B32 /* LocationBounds.swift in Sources */,
 				B4FA416F2446888B0066F81E /* OverviewViewController.swift in Sources */,
@@ -647,6 +666,7 @@
 				B4FDF66B244BB6A800539C92 /* MapCell.swift in Sources */,
 				B43E0726245516ED00393B76 /* PredictionCell.swift in Sources */,
 				B4981B0224454C94003F161F /* StopMapAnnotation.swift in Sources */,
+				B4A82B752727183500A8B1F9 /* RoutesTableMapper.swift in Sources */,
 				B45988D32442AC2A006F9B32 /* LastLocationTableMapper.swift in Sources */,
 				B41AE572243FFBFD0024FFC1 /* URL.swift in Sources */,
 			);

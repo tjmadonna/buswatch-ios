@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct PredictionDecodable: Decodable {
 
@@ -56,7 +57,7 @@ struct PredictionDecodable: Decodable {
         }
     }
 
-    func mapToPrediction() -> Prediction? {
+    func mapToPrediction(route: Route?) -> Prediction? {
         guard let vehicleId = vehicleId,
             let routeId = routeId,
             let destination = destination,
@@ -64,11 +65,25 @@ struct PredictionDecodable: Decodable {
             let arrivalTime = arriveTimeAsDate else {
                 return nil
         }
+
+        let title: String
+        if let routeTitle = route?.title {
+            title = "\(routeTitle) to \(destination) (\(routeDirection.capitalizingOnlyFirstLetter()))"
+        } else {
+            title = "**\(destination) (\(routeDirection.capitalizingOnlyFirstLetter()))"
+        }
+
+        var color: UIColor? = nil
+        if let routeColor = route?.color {
+            color = UIColor(hex: routeColor)
+        }
+
         return Prediction(vehicleId: vehicleId,
                           routeId: routeId,
-                          routeTitle: "\(destination) - \(routeDirection.capitalizingOnlyFirstLetter())",
+                          routeTitle: title,
                           arrivalTime: Int(arrivalTime.timeIntervalSinceNow),
-                          capacity: capacityType)
+                          capacity: capacityType,
+                          color: color)
     }
 }
 

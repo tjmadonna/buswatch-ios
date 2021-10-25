@@ -14,7 +14,11 @@ final class DatabasePopulator {
 
     private static let stopVersion = 1
 
+    private static let routeVersion = 1
+
     private static let stopFileUrl = Bundle.main.url(forResource: "stops", withExtension: "json")!
+
+    private static let routeFileUrl = Bundle.main.url(forResource: "routes", withExtension: "json")!
 
     private let userDefaultStore: UserDefaultStore
 
@@ -24,7 +28,9 @@ final class DatabasePopulator {
 
     func needsPopulated(_ db: Database) -> Bool {
         let id = try? String.fetchOne(db, sql: "SELECT \(LastLocationTable.IDColumn) FROM \(LastLocationTable.TableName)")
-        return id == nil || userDefaultStore.stopVersion < DatabasePopulator.stopVersion
+        return id == nil ||
+               userDefaultStore.stopVersion < DatabasePopulator.stopVersion ||
+               userDefaultStore.routeVersion < DatabasePopulator.routeVersion
     }
 
     func populateDatabase(_ db: Database) throws {
@@ -35,11 +41,16 @@ final class DatabasePopulator {
                 try updateStops(db)
             }
 
+            if userDefaultStore.routeVersion < DatabasePopulator.routeVersion {
+                try updateRoutes(db)
+            }
+
             if try String.fetchOne(db, sql: "SELECT \(LastLocationTable.IDColumn) FROM \(LastLocationTable.TableName)") == nil {
                 try updatedLastLocation(db)
             }
 
             userDefaultStore.stopVersion = DatabasePopulator.stopVersion
+            userDefaultStore.routeVersion = DatabasePopulator.routeVersion
 
             return .commit
         }
@@ -92,6 +103,28 @@ final class DatabasePopulator {
             for deleted in changeset.elementDeleted {
                 let deletedStop = oldStops[deleted.element]
                 try db.execute(sql: deleteSql, arguments: [deletedStop.id])
+            }
+        }
+    }
+
+    private func updateRoutes(_ db: Database) throws {
+        let newRouteData = try Data(contentsOf: DatabasePopulator.routeFileUrl)
+        let newRouteDecodables = try JSONDecoder().decode([RouteDecodable].self, from: newRouteData)
+
+        // Delete entries in table
+        try db.execute(sql: "DELETE FROM \(RoutesTable.TableName)")
+
+        let insertSql = """
+        INSERT INTO \(RoutesTable.TableName) (\(RoutesTable.AllColumns))
+        VALUES (
+        :\(RoutesTable.IDColumn),
+        :\(RoutesTable.TitleColumn),
+        :\(RoutesTable.ColorColumn)
+        )
+        """
+        for route in newRouteDecodables {
+            if let arguments = route.arguments {
+                try db.execute(sql: insertSql, arguments: arguments)
             }
         }
     }

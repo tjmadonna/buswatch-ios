@@ -21,4 +21,16 @@ extension UIColor {
 
         self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: alpha)
     }
+
+    convenience init(hex: String, alpha: CGFloat = 1) {
+        assert(hex[hex.startIndex] == "#", "Expected hex string of format #RRGGBB")
+
+        let scanner = Scanner(string: hex)
+        scanner.currentIndex = hex.index(after: hex.startIndex)  // skip #
+
+        var rgb: Int = 0
+        scanner.scanInt(&rgb)
+
+        self.init(hexValue: rgb, alpha: alpha)
+    }
 }

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct Prediction {
     let vehicleId: String
@@ -14,6 +15,7 @@ struct Prediction {
     let routeTitle: String
     let arrivalTime: Int
     let capacity: CapacityType
+    let color: UIColor?
 }
 
 extension Prediction: Hashable { }

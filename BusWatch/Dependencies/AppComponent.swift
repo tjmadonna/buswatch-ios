@@ -35,7 +35,13 @@ final class AppComponent {
         return LocationLocalDataStore(dbQueue: database.queue)
     }
 
-    func predictionRemoteDataStore() -> PredictionRemoteDataStore {
-        return PredictionRemoteDataStore()
+    func routeLocalDataStore() throws -> RouteLocalDataStore {
+        let database = try appDatabase()
+        return RouteLocalDataStore(dbQueue: database.queue)
+    }
+
+    func predictionRemoteDataStore() throws -> PredictionRemoteDataStore {
+        let routeDataStore = try routeLocalDataStore()
+        return PredictionRemoteDataStore(routesLocalDataStore: routeDataStore)
     }
 }

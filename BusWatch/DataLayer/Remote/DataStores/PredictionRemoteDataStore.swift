@@ -18,7 +18,10 @@ final class PredictionRemoteDataStore {
 
     private let urlSession: URLSession
 
-    init(urlSession: URLSession = URLSession.shared) {
+    private let routesLocalDataStore: RouteLocalDataStore
+
+    init(routesLocalDataStore: RouteLocalDataStore, urlSession: URLSession = URLSession.shared) {
+        self.routesLocalDataStore = routesLocalDataStore
         self.urlSession = urlSession
     }
 
@@ -26,7 +29,14 @@ final class PredictionRemoteDataStore {
         let url = NetworkConfig.authenticatedURLPredictionsForStopId(stopId)
         return TimedNetworkPublisher<GetPredictionsForStopIdResponseDecodable>(url: url, timeInterval: 30)
             .map { response in response.bustimeResponse?.predictions ?? [] }
-            .map { predictions in predictions.compactMap { prediction in prediction.mapToPrediction() } }
+            .tryMap { predictions in
+                let routeIds = predictions.compactMap { $0.routeId }
+                let routes = (try? self.routesLocalDataStore.getRoutesWithIds(routeIds)) ?? []
+                let routesDict = Dictionary(uniqueKeysWithValues: routes.map { ($0.id, $0) })
+                return predictions.compactMap { prediction in
+                    prediction.mapToPrediction(route: routesDict[prediction.routeId ?? ""])
+                }
+            }
             .eraseToAnyPublisher()
     }
 }

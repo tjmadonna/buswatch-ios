@@ -83,7 +83,7 @@ final class AppCoordinator {
     func presentPredictionsViewControllerForStop(_ stop: Stop) {
         do {
             let stopDataStore = try appComponent.stopLocalDataStore()
-            let predictionDataStore = appComponent.predictionRemoteDataStore()
+            let predictionDataStore = try appComponent.predictionRemoteDataStore()
             let viewModel = PredictionsViewModel(stop: stop,
                                                  stopLocalDataStore: stopDataStore,
                                                  predictionRemoteDataStore: predictionDataStore,

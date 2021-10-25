@@ -13,7 +13,7 @@ final class AppDatabase {
 
     // MARK: - Properties
 
-    private static let DatabaseVersion = "1"
+    private static let DatabaseVersion = "2"
 
     let queue: DatabaseQueue
 
@@ -46,9 +46,9 @@ final class AppDatabase {
             try db.execute(sql: LastLocationTable.Migration.CreateTableForVersion1)
         }
 
-        #if DEBUG
-        migrator.eraseDatabaseOnSchemaChange = true
-        #endif
+        migrator.registerMigration("2") {db in
+            try db.execute(sql: RoutesTable.Migration.CreateTableForVersion2)
+        }
 
         return migrator
     }()
