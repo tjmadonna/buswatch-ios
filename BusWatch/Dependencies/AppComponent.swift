@@ -10,14 +10,17 @@ import Foundation
 
 final class AppComponent {
 
+    let userDefaultsStore = UserDefaultStore()
+
     private var database: AppDatabase?
 
     private func appDatabase() throws -> AppDatabase {
         if let database = self.database {
             return database
         }
+        let populator = DatabasePopulator(userDefaultStore: userDefaultsStore)
         let databaseUrl = try DatabaseConfig.url()
-        let db = try AppDatabase(databasePath: databaseUrl)
+        let db = try AppDatabase(databasePath: databaseUrl, populator: populator)
         self.database = db
         return db
     }

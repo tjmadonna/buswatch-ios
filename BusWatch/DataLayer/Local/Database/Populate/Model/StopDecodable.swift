@@ -42,4 +42,15 @@ struct StopDecodable: Decodable {
             return nil
         }
     }
+
+    func mapToStop() -> Stop? {
+        guard let id = id,
+            let title = title,
+            let latitude = latitude,
+            let longitude = longitude,
+            let routes = routes else {
+                return nil
+        }
+        return Stop(id: id, title: title, favorite: false, latitude: latitude, longitude: longitude, routes: routes)
+    }
 }

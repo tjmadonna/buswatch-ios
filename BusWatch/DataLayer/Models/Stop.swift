@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import DifferenceKit
 
 struct Stop {
     let id: String
@@ -17,7 +18,21 @@ struct Stop {
     let routes: [String]
 }
 
-extension Stop: Hashable { }
+extension Stop: Differentiable {
+
+    typealias DifferenceIdentifier = String
+
+    var differenceIdentifier: String { id }
+
+    func isContentEqual(to source: Stop) -> Bool {
+        return self.id == source.id &&
+            self.title == source.title &&
+            self.favorite == source.favorite &&
+            self.latitude == source.latitude &&
+            self.longitude == source.longitude &&
+            self.routes == source.routes
+    }
+}
 
 extension Stop: CustomStringConvertible {
 

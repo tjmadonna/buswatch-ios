@@ -19,7 +19,7 @@ final class AppDatabase {
 
     // MARK: - Initialization
 
-    init(databasePath: URL, populator: DatabasePopulator = DatabasePopulator()) throws {
+    init(databasePath: URL, populator: DatabasePopulator) throws {
         self.queue = try DatabaseQueue(path: databasePath.absoluteString)
         try self.migrator.migrate(queue, upTo: AppDatabase.DatabaseVersion)
         try self.attemptToPopulateDatabase(self.queue, populator: populator)
@@ -29,8 +29,7 @@ final class AppDatabase {
 
     private func attemptToPopulateDatabase(_ databaseQueue: DatabaseQueue, populator: DatabasePopulator) throws {
         try databaseQueue.inDatabase { db in
-            // Populate database if no stops exist
-            if try String.fetchOne(db, sql: "SELECT \(StopsTable.IDColumn) FROM \(StopsTable.TableName)") == nil {
+            if populator.needsPopulated(db) {
                 try populator.populateDatabase(db)
             }
         }

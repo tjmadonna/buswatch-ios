@@ -43,4 +43,14 @@ enum StopsTableMapper {
             routes: routes
         )
     }
+
+    static func mapStopToArguments(_ stop: Stop) -> StatementArguments {
+        return StatementArguments([
+            StopsTable.IDColumn: stop.id,
+            StopsTable.TitleColumn: stop.title,
+            StopsTable.LatitudeColumn: stop.latitude,
+            StopsTable.LongitudeColumn: stop.longitude,
+            StopsTable.RoutesColumn: stop.routes.joined(separator: StopsTableMapper.RoutesDelimiter)
+        ])
+    }
 }
