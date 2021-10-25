@@ -22,15 +22,25 @@ extension UIColor {
         self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: alpha)
     }
 
-    convenience init(hex: String, alpha: CGFloat = 1) {
-        assert(hex[hex.startIndex] == "#", "Expected hex string of format #RRGGBB")
+    convenience init?(hex: String, alpha: CGFloat = 1) {
 
-        let scanner = Scanner(string: hex)
-        scanner.currentIndex = hex.index(after: hex.startIndex)  // skip #
+        var cString = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
 
-        var rgb: Int = 0
-        scanner.scanInt(&rgb)
+        if cString.hasPrefix("#") {
+            cString.remove(at: cString.startIndex)
+        }
 
-        self.init(hexValue: rgb, alpha: alpha)
+        if cString.count != 6 {
+            return nil
+        }
+
+        var rgb: UInt64 = 0
+        Scanner(string: cString).scanHexInt64(&rgb)
+
+        let red = (rgb >> 16) & 0xFF
+        let green = (rgb >> 8) & 0xFF
+        let blue = rgb & 0xFF
+
+        self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: alpha)
     }
 }

@@ -73,17 +73,12 @@ struct PredictionDecodable: Decodable {
             title = "**\(destination) (\(routeDirection.capitalizingOnlyFirstLetter()))"
         }
 
-        var color: UIColor? = nil
-        if let routeColor = route?.color {
-            color = UIColor(hex: routeColor)
-        }
-
         return Prediction(vehicleId: vehicleId,
                           routeId: routeId,
                           routeTitle: title,
                           arrivalTime: Int(arrivalTime.timeIntervalSinceNow),
                           capacity: capacityType,
-                          color: color)
+                          color: route?.color)
     }
 }
 
