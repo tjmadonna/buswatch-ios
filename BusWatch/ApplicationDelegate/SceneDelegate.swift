@@ -12,7 +12,7 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     // MARK: - Properties
 
-    var appCoordinator: AppCoordinator?
+    var appEventCoordinator: AppEventCoordinator?
 
     var window: UIWindow?
 
@@ -27,8 +27,8 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.makeKeyAndVisible()
         self.window = window
 
-        appCoordinator = AppCoordinator(window: window)
-        appCoordinator?.presentOverviewViewController()
+        appEventCoordinator = AppEventCoordinator(window: window)
+        appEventCoordinator?.presentOverviewViewController()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

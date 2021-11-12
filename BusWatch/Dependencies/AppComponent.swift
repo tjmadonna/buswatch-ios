@@ -7,41 +7,33 @@
 //
 
 import Foundation
+import UserDefaults
+import Database
+import Overview
 
 final class AppComponent {
 
-    let userDefaultsStore = UserDefaultStore()
+    private var database: DatabaseDataSourceRepresentable?
 
-    private var database: AppDatabase?
+    private var userDefaults: UserDefaultsDataSourceRepresentable?
 
-    private func appDatabase() throws -> AppDatabase {
-        if let database = self.database {
+    func provideDatabaseDataSource() -> DatabaseDataSourceRepresentable {
+        if let database = database {
             return database
         }
-        let populator = DatabasePopulator(userDefaultStore: userDefaultsStore)
-        let databaseUrl = try DatabaseConfig.url()
-        let db = try AppDatabase(databasePath: databaseUrl, populator: populator)
-        self.database = db
-        return db
+        let userDefaultsDataSource = provideUserDefaultsDataSource()
+        let populator = DatabasePopulator(userDefaultaDataSource: userDefaultsDataSource)
+        let database = DatabaseDataSource(databasePath: DatabaseConfig.url, databasePopulator: populator)
+        self.database = database
+        return database
     }
 
-    func stopLocalDataStore() throws -> StopLocalDataStore {
-        let database = try appDatabase()
-        return StopLocalDataStore(dbQueue: database.queue)
-    }
-
-    func locationLocalDataStore() throws -> LocationLocalDataStore {
-        let database = try appDatabase()
-        return LocationLocalDataStore(dbQueue: database.queue)
-    }
-
-    func routeLocalDataStore() throws -> RouteLocalDataStore {
-        let database = try appDatabase()
-        return RouteLocalDataStore(dbQueue: database.queue)
-    }
-
-    func predictionRemoteDataStore() throws -> PredictionRemoteDataStore {
-        let routeDataStore = try routeLocalDataStore()
-        return PredictionRemoteDataStore(routesLocalDataStore: routeDataStore)
+    func provideUserDefaultsDataSource() -> UserDefaultsDataSourceRepresentable {
+        if let userDefaults = userDefaults {
+            return userDefaults
+        }
+        let userDefaults = UserDefaultsDataSource()
+        self.userDefaults = userDefaults
+        return userDefaults
     }
 }
