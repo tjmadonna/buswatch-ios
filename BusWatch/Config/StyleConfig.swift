@@ -39,4 +39,10 @@ enum Colors {
     static var decoratorTextBackgroundColor: UIColor {
         UIColor(named: "DecoratorTextBackgroundColor")!
     }
+
+    // MARK: - Capacity Image Color
+
+    static var capacityImageColor: UIColor {
+        UIColor(named: "CapacityImageColor")!
+    }
 }

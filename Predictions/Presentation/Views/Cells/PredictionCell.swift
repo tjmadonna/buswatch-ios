@@ -41,7 +41,7 @@ final class PredictionCell: UITableViewCell {
     }()
 
     private lazy var textStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [titleLabel, capacityLabel, arrivalTimeLabel])
+        let stackView = UIStackView(arrangedSubviews: [titleLabel, arrivalTimeLabel])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.alignment = .fill
@@ -59,14 +59,11 @@ final class PredictionCell: UITableViewCell {
         return label
     }()
 
-    private let capacityLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 0
-        label.lineBreakMode = .byWordWrapping
-        label.font = UIFont.preferredFont(forTextStyle: .callout)
-        label.textColor = .secondaryLabel
-        return label
+    private let capacityImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        return imageView
     }()
 
     private let arrivalTimeLabel: UILabel = {
@@ -109,6 +106,7 @@ final class PredictionCell: UITableViewCell {
 
         contentView.addSubview(decoratorContainerView)
         contentView.addSubview(textStackView)
+        contentView.addSubview(capacityImageView)
         contentView.addSubview(dividerView)
 
         NSLayoutConstraint.activate([
@@ -123,8 +121,15 @@ final class PredictionCell: UITableViewCell {
         ])
 
         NSLayoutConstraint.activate([
+            capacityImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            capacityImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            capacityImageView.widthAnchor.constraint(equalToConstant: 25),
+            capacityImageView.heightAnchor.constraint(equalToConstant: 25)
+        ])
+
+        NSLayoutConstraint.activate([
             textStackView.leadingAnchor.constraint(equalTo: decoratorContainerView.trailingAnchor, constant: 10),
-            textStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            textStackView.trailingAnchor.constraint(equalTo: capacityImageView.leadingAnchor, constant: -5),
             textStackView.centerYAnchor.constraint(equalTo: decoratorContainerView.centerYAnchor),
             textStackView.topAnchor.constraint(greaterThanOrEqualTo: contentView.topAnchor, constant: 10)
                 .usingPriority(.defaultLow),
@@ -150,7 +155,8 @@ final class PredictionCell: UITableViewCell {
     }
 
     func configureWithPrediction(_ prediction: PresentationPrediction, animate: Bool) {
-        capacityLabel.isHidden = prediction.capacity == nil
+        capacityImageView.isHidden = prediction.capacity == nil
+        capacityImageView.tintColor = prediction.capacityColor
 
         if animate {
             if decoratorLabel.text != prediction.route {
@@ -161,8 +167,8 @@ final class PredictionCell: UITableViewCell {
                 animateTextChange(prediction.title, view: titleLabel)
             }
 
-            if capacityLabel.text != prediction.capacity {
-                animateTextChange(prediction.capacity, view: capacityLabel)
+            if capacityImageView.image != prediction.capacity {
+                animateImageChange(prediction.capacity, view: capacityImageView)
             }
 
             if arrivalTimeLabel.text != prediction.arrivalMessage {
@@ -172,7 +178,7 @@ final class PredictionCell: UITableViewCell {
         } else {
             decoratorLabel.text = prediction.route
             titleLabel.text = prediction.title
-            capacityLabel.text = prediction.capacity
+            capacityImageView.image = prediction.capacity
             arrivalTimeLabel.text = prediction.arrivalMessage
         }
     }
@@ -182,6 +188,17 @@ final class PredictionCell: UITableViewCell {
             view.alpha = 0
         } completion: { _ in
             view.text = newText
+            UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseIn) {
+                view.alpha = 1
+            }
+        }
+    }
+
+    private func animateImageChange(_ newImage: UIImage?, view: UIImageView) {
+        UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseIn) {
+            view.alpha = 0
+        } completion: { _ in
+            view.image = newImage
             UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseIn) {
                 view.alpha = 1
             }

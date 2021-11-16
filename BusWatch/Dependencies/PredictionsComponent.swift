@@ -9,6 +9,7 @@
 import Foundation
 import Predictions
 import Network
+import UIKit
 
 final class PredictionsComponent {
 
@@ -48,12 +49,14 @@ final class PredictionsComponent {
         let favoriteStop = FavoriteStop(stopRepository: stopRepository)
         let unfavoriteStop = UnfavoriteStop(stopRepository: stopRepository)
 
+        let predictionMapper = PresentationPredictionMapper(capacityColor: Colors.capacityImageColor)
         let viewModel = PredictionsViewModel(stopId: stopId,
                                              getStopById: getStopById,
                                              getPredictionsForStopId: getPredictionsForStopId,
                                              favoriteStop: favoriteStop,
                                              unfavoriteStop: unfavoriteStop,
-                                             eventCoordinator: eventCoordinator)
+                                             eventCoordinator: eventCoordinator,
+                                             predictionMapper: predictionMapper)
         let style = PredictionsStyle()
 
         return PredictionsViewController(viewModel: viewModel, style: style)

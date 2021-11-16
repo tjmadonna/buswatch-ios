@@ -11,7 +11,11 @@ import UIKit
 
 public final class PresentationPredictionMapper {
 
-    public init() { }
+    private let capacityColor: UIColor
+
+    public init(capacityColor: UIColor) {
+        self.capacityColor = capacityColor
+    }
 
     func mapPredictionArrayToPresentationPredictionArray(_ predictions: [Prediction]?) -> [PresentationPrediction]? {
         guard let predictions = predictions else { return nil }
@@ -37,14 +41,14 @@ public final class PresentationPredictionMapper {
             title = "\(prediction.destination) (\(prediction.direction))"
         }
 
-        let capacity: String?
+        let capacity: UIImage?
         switch prediction.capacity {
         case .empty:
-            capacity =  "Empty"
+            capacity =  UIImage(systemName: "person.fill")
         case .halfEmpty:
-            capacity =  "Half Empty"
+            capacity =  UIImage(systemName: "person.2.fill")
         case .full:
-            capacity =  "Full"
+            capacity =  UIImage(systemName: "person.3.fill")
         default:
             capacity = nil
         }
@@ -65,6 +69,7 @@ public final class PresentationPredictionMapper {
             title: title,
             route: prediction.routeId,
             capacity: capacity,
+            capacityColor: capacityColor,
             arrivalMessage: arrivalMessage,
             color: UIColor(hex: prediction.routeColor)
         )

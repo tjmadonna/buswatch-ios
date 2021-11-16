@@ -51,7 +51,7 @@ public final class PredictionsViewModel {
                 favoriteStop: FavoriteStop,
                 unfavoriteStop: UnfavoriteStop,
                 eventCoordinator: PredictionsEventCoordinator,
-                predictionMapper: PresentationPredictionMapper = PresentationPredictionMapper()) {
+                predictionMapper: PresentationPredictionMapper) {
         self.stopId = stopId
         self.getStopById = getStopById
         self.getPredictionsForStopId = getPredictionsForStopId

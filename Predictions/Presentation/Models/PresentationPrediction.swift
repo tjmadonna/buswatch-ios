@@ -14,7 +14,8 @@ struct PresentationPrediction {
     let vehicleId: String
     let title: String
     let route: String
-    let capacity: String?
+    let capacity: UIImage?
+    let capacityColor: UIColor?
     let arrivalMessage: String
     let color: UIColor?
 }
