@@ -13,6 +13,14 @@ public final class OverviewViewController: UITableViewController {
 
     // MARK: - Properties
 
+    private let titleView: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 18)
+        label.text = "Bus Watch"
+        label.textColor = .white
+        return label
+    }()
+
     private let viewModel: OverviewViewModel
 
     private let style: OverviewStyleRepresentable
@@ -49,7 +57,8 @@ public final class OverviewViewController: UITableViewController {
     // MARK: - Setup
 
     private func setupViewController() {
-        title = "Bus Watch"
+        title = ""
+        navigationItem.titleView = titleView
         view.backgroundColor = style.backgroundColor
     }
 

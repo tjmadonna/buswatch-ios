@@ -14,6 +14,14 @@ public final class StopMapViewController: UIViewController {
 
     // MARK: - Views
 
+    private let titleView: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 18)
+        label.text = "Map"
+        label.textColor = .white
+        return label
+    }()
+
     private let mapView: MKMapView = {
         let mapView = MKMapView()
         mapView.translatesAutoresizingMaskIntoConstraints = false
@@ -84,11 +92,17 @@ public final class StopMapViewController: UIViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
+        setupViewController()
         setupSubviews()
         setupObservers()
     }
 
     // MARK: - Setup
+
+    private func setupViewController() {
+        title = ""
+        navigationItem.titleView = titleView
+    }
 
     private func setupSubviews() {
         view.addSubview(mapView)
