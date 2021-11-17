@@ -13,6 +13,7 @@ import UIKit
 
 struct PredictionsNavBarState {
     let favorited: Bool
+    let title: String
 }
 
 enum PredictionsDataState {

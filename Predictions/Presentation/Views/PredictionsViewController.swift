@@ -11,6 +11,15 @@ import Combine
 
 public final class PredictionsViewController: UIViewController {
 
+    // MARK: - Views
+
+    private let titleView: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 18)
+        label.textColor = .white
+        return label
+    }()
+
     // MARK: - Child View Controllers
 
     private lazy var loadingViewController: LoadingViewController = {
@@ -79,7 +88,10 @@ public final class PredictionsViewController: UIViewController {
     // MARK: - Setup
 
     private func setupViewController() {
+        title = ""
+        navigationItem.titleView = titleView
         view.backgroundColor = style.backgroundColor
+
         loadingViewController.view.isHidden = true
         dataViewController.view.isHidden = true
         noDataViewController.view.isHidden = true
@@ -126,6 +138,7 @@ public final class PredictionsViewController: UIViewController {
     private func renderNavBarState(_ state: PredictionsNavBarState) {
         let image = state.favorited ? UIImage(systemName: "star.fill") :  UIImage(systemName: "star")
         self.favoritedBarButton.image = image
+        titleView.text = state.title
     }
 
     private func renderLoadingDataState() {

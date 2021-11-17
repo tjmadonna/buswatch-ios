@@ -13,7 +13,7 @@ public final class PredictionsViewModel {
 
     // MARK: - Publishers
 
-    private let navBarStateSubject = CurrentValueSubject<PredictionsNavBarState, Never>(PredictionsNavBarState(favorited: false))
+    private let navBarStateSubject = CurrentValueSubject<PredictionsNavBarState, Never>(PredictionsNavBarState(favorited: false, title: ""))
 
     var navBarState: AnyPublisher<PredictionsNavBarState, Never> {
         return navBarStateSubject.eraseToAnyPublisher()
@@ -71,8 +71,8 @@ public final class PredictionsViewModel {
 
     private func setupObserversForStop() {
         getStopById.execute(stopId: stopId)
-            .map { stop in PredictionsNavBarState(favorited: stop.favorite) } // map to navbar state
-            .replaceError(with: PredictionsNavBarState(favorited: false)) // set default navbar state if error occurs
+            .map { stop in PredictionsNavBarState(favorited: stop.favorite, title: stop.title) } // map to navbar state
+            .replaceError(with: PredictionsNavBarState(favorited: false, title: "")) // set default navbar state if error occurs
             .receive(on: RunLoop.main)
             .subscribe(self.navBarStateSubject)
             .store(in: &cancellables)
