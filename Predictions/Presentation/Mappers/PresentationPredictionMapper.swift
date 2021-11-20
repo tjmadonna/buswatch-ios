@@ -44,11 +44,11 @@ public final class PresentationPredictionMapper {
         let capacity: UIImage?
         switch prediction.capacity {
         case .empty:
-            capacity =  UIImage(systemName: "person.fill")
+            capacity =  UIImage(named: "EmptyCapacityIcon")?.withTintColor(capacityColor)
         case .halfEmpty:
-            capacity =  UIImage(systemName: "person.2.fill")
+            capacity =  UIImage(named: "HalfEmptyCapacityIcon")?.withTintColor(capacityColor)
         case .full:
-            capacity =  UIImage(systemName: "person.3.fill")
+            capacity =  UIImage(named: "FullCapacityIcon")?.withTintColor(capacityColor)
         default:
             capacity = nil
         }

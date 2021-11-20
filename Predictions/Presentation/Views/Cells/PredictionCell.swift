@@ -62,7 +62,6 @@ final class PredictionCell: UITableViewCell {
     private let capacityImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
 
@@ -122,9 +121,9 @@ final class PredictionCell: UITableViewCell {
 
         NSLayoutConstraint.activate([
             capacityImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            capacityImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-            capacityImageView.widthAnchor.constraint(equalToConstant: 25),
-            capacityImageView.heightAnchor.constraint(equalToConstant: 25)
+            capacityImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -13),
+            capacityImageView.widthAnchor.constraint(equalToConstant: 35),
+            capacityImageView.heightAnchor.constraint(equalTo: capacityImageView.widthAnchor, multiplier: 215/280.0)
         ])
 
         NSLayoutConstraint.activate([
@@ -156,7 +155,6 @@ final class PredictionCell: UITableViewCell {
 
     func configureWithPrediction(_ prediction: PresentationPrediction, animate: Bool) {
         capacityImageView.isHidden = prediction.capacity == nil
-        capacityImageView.tintColor = prediction.capacityColor
 
         if animate {
             if decoratorLabel.text != prediction.route {
