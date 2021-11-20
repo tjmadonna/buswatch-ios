@@ -335,7 +335,7 @@
 		B463645E2471EBDF00C6EDBB /* TimedNetworkPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimedNetworkPublisher.swift; sourceTree = "<group>"; };
 		B470C81D27235D69007CEAF9 /* PredictionsDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsDataViewController.swift; sourceTree = "<group>"; };
 		B470C81F27235D83007CEAF9 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
-		B477CD62243BF7280027AE11 /* BusWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BusWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B477CD62243BF7280027AE11 /* BusWatch - Debug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BusWatch - Debug.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B477CD65243BF7280027AE11 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B477CD67243BF7280027AE11 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B477CD69243BF7280027AE11 /* StopMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopMapViewController.swift; sourceTree = "<group>"; };
@@ -634,7 +634,7 @@
 		B477CD63243BF7280027AE11 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B477CD62243BF7280027AE11 /* BusWatch.app */,
+				B477CD62243BF7280027AE11 /* BusWatch - Debug.app */,
 				B4F056442729DAC100ED8E30 /* Database.framework */,
 				B4F0565D2729DBA900ED8E30 /* StopMap.framework */,
 				B4F0568B2729E8E900ED8E30 /* Overview.framework */,
@@ -1539,7 +1539,7 @@
 				B474B86D2725FB2900B5CBA2 /* DifferenceKit */,
 			);
 			productName = BusWatch;
-			productReference = B477CD62243BF7280027AE11 /* BusWatch.app */;
+			productReference = B477CD62243BF7280027AE11 /* BusWatch - Debug.app */;
 			productType = "com.apple.product-type.application";
 		};
 		B4DC660827375A480046F470 /* UserDefaults */ = {
@@ -2157,8 +2157,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.madonnaapps.BusWatch;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.madonnaapps.BusWatch.Debug;
+				PRODUCT_NAME = "$(TARGET_NAME) - Debug";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -2205,7 +2205,7 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.madonnaapps.BusWatch.UserDefaults;
+				PRODUCT_BUNDLE_IDENTIFIER = com.madonnaapps.BusWatch.Debug.UserDefaults;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -2269,7 +2269,7 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.madonnaapps.BusWatch.Database;
+				PRODUCT_BUNDLE_IDENTIFIER = com.madonnaapps.BusWatch.Debug.Database;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -2333,7 +2333,7 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.madonnaapps.BusWatch.StopMap;
+				PRODUCT_BUNDLE_IDENTIFIER = com.madonnaapps.BusWatch.Debug.StopMap;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -2398,7 +2398,7 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.madonnaapps.BusWatch.Overview;
+				PRODUCT_BUNDLE_IDENTIFIER = com.madonnaapps.BusWatch.Debug.Overview;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -2464,7 +2464,7 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.madonnaapps.BusWatch.Predictions;
+				PRODUCT_BUNDLE_IDENTIFIER = com.madonnaapps.BusWatch.Debug.Predictions;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -2529,7 +2529,7 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.madonnaapps.BusWatch.Network;
+				PRODUCT_BUNDLE_IDENTIFIER = com.madonnaapps.BusWatch.Debug.Network;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
