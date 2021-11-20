@@ -90,7 +90,7 @@ final class PredictionCell: UITableViewCell {
     }
 
     required init?(coder: NSCoder) {
-        fatalError("FavoriteStopCell Error: Table View Cell cannot be initialized with init(coder:)")
+        fatalError("PredictionCell Error: Table View Cell cannot be initialized with init(coder:)")
     }
 
     // MARK: - Setup
