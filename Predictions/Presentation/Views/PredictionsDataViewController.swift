@@ -62,6 +62,16 @@ final class PredictionsDataViewController: UITableViewController {
         return predictionCellForPrediction(item, indexPath: indexPath)
     }
 
+    // MARK: - UITableViewDelegate
+
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        return nil
+    }
+
+    override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+
     // MARK: - Table View Cells
 
     // Prediction Cell
