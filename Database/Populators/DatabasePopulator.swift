@@ -100,13 +100,13 @@ public final class DatabasePopulator {
 
         for changeset in stagedChangeset {
             for updated in changeset.elementUpdated {
-                let updatedStop = oldStops[updated.element]
+                let updatedStop = newStops[updated.element]
                 try db.execute(sql: updateSql, arguments: self.stopMapper.mapDatabaseStopToStatementArguments(updatedStop))
             }
 
             for inserted in changeset.elementInserted {
-                let updatedStop = newStops[inserted.element]
-                try db.execute(sql: insertSql, arguments: stopMapper.mapDatabaseStopToStatementArguments(updatedStop))
+                let insertedStop = newStops[inserted.element]
+                try db.execute(sql: insertSql, arguments: stopMapper.mapDatabaseStopToStatementArguments(insertedStop))
             }
 
             for deleted in changeset.elementDeleted {
