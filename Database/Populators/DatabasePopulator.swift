@@ -13,7 +13,7 @@ import UserDefaults
 
 public final class DatabasePopulator {
 
-    private static let stopVersion = 1
+    private static let stopVersion = 2
 
     private static let routeVersion = 1
 
