@@ -31,7 +31,7 @@ public final class StopMapViewController: UIViewController {
     private lazy var fabButton: UIButton = {
         let button = UIButton(type: .custom)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .black
+        button.backgroundColor = style.locationButtonColor
         button.layer.cornerRadius = 35
         button.tintColor = .white
         button.setImage(UIImage(systemName: "location"), for: .normal)

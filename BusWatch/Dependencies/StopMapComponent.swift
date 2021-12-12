@@ -16,6 +16,7 @@ final class StopMapComponent {
 
         let mapAnnotationTintColor = Colors.navBarColor
 
+        var locationButtonColor = Colors.darkRaisedBackgroundColor
     }
 
     func provideStopMapViewController(_ appComponent: AppComponent,

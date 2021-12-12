@@ -39,4 +39,6 @@ public protocol StopMapStyleRepresentable {
 
     var mapAnnotationTintColor: UIColor { get }
 
+    var locationButtonColor: UIColor { get }
+
 }

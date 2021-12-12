@@ -28,6 +28,12 @@ enum Colors {
         UIColor(named: "RaisedBackgroundColor")!
     }
 
+    // MARK: - Dark Raised Background
+
+    static var darkRaisedBackgroundColor: UIColor {
+        UIColor(named: "DarkRaisedBackgroundColor")!
+    }
+
     // MARK: - Decorator Background
 
     static var decoratorBackgroundColor: UIColor {
