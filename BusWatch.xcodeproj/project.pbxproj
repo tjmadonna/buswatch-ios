@@ -655,7 +655,6 @@
 				B41AE570243FFBEB0024FFC1 /* Extensions */,
 				B477CD7A243BF74B0027AE11 /* Storyboards */,
 				B477CD7B243BF7590027AE11 /* Resources */,
-				B4F055B42727619100ED8E30 /* Features */,
 				B477CD79243BF73F0027AE11 /* SupportingFiles */,
 			);
 			path = BusWatch;
@@ -767,13 +766,6 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		B4DC65F02734C1E30046F470 /* Migrators */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Migrators;
-			sourceTree = "<group>";
-		};
 		B4DC65F12734C1F40046F470 /* Populators */ = {
 			isa = PBXGroup;
 			children = (
@@ -833,22 +825,6 @@
 				B4DCAD4C2452771C00A0E978 /* OverviewContract.swift */,
 			);
 			path = Contracts;
-			sourceTree = "<group>";
-		};
-		B4F055B42727619100ED8E30 /* Features */ = {
-			isa = PBXGroup;
-			children = (
-				B4F0563C2729D91B00ED8E30 /* Overview */,
-				B4F055B52727619100ED8E30 /* StopMap */,
-			);
-			path = Features;
-			sourceTree = "<group>";
-		};
-		B4F055B52727619100ED8E30 /* StopMap */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = StopMap;
 			sourceTree = "<group>";
 		};
 		B4F055B62727619100ED8E30 /* Data */ = {
@@ -1016,35 +992,11 @@
 			path = Publishers;
 			sourceTree = "<group>";
 		};
-		B4F0563C2729D91B00ED8E30 /* Overview */ = {
-			isa = PBXGroup;
-			children = (
-				B4F0563D2729D93500ED8E30 /* Domain */,
-			);
-			path = Overview;
-			sourceTree = "<group>";
-		};
-		B4F0563D2729D93500ED8E30 /* Domain */ = {
-			isa = PBXGroup;
-			children = (
-				B4F0563E2729D93F00ED8E30 /* Models */,
-			);
-			path = Domain;
-			sourceTree = "<group>";
-		};
-		B4F0563E2729D93F00ED8E30 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		B4F056452729DAC100ED8E30 /* Database */ = {
 			isa = PBXGroup;
 			children = (
 				B4F056502729DAD700ED8E30 /* DataSources */,
 				B4F055CE2727639700ED8E30 /* Tables */,
-				B4DC65F02734C1E30046F470 /* Migrators */,
 				B4DC65F12734C1F40046F470 /* Populators */,
 				B4DC65F32734C4800046F470 /* Models */,
 				B4DC65FA273715E40046F470 /* Mappers */,
