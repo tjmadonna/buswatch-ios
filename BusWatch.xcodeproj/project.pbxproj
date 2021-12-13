@@ -403,7 +403,7 @@
 		B4F056382729CF7C00ED8E30 /* LocationDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDataSource.swift; sourceTree = "<group>"; };
 		B4F0563A2729CFDE00ED8E30 /* LocationBoundsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationBoundsMapper.swift; sourceTree = "<group>"; };
 		B4F056442729DAC100ED8E30 /* Database.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Database.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B4F056462729DAC100ED8E30 /* Database.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Database.h; path = ../Database.h; sourceTree = "<group>"; };
+		B4F056462729DAC100ED8E30 /* Database.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Database.h; sourceTree = "<group>"; };
 		B4F0565D2729DBA900ED8E30 /* StopMap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StopMap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4F0565F2729DBA900ED8E30 /* StopMap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StopMap.h; sourceTree = "<group>"; };
 		B4F0568B2729E8E900ED8E30 /* Overview.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Overview.framework; sourceTree = BUILT_PRODUCTS_DIR; };
