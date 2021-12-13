@@ -49,7 +49,6 @@
 		B4DC65E72734BBB00046F470 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DC65E62734BBB00046F470 /* Array.swift */; };
 		B4DC65E92734BC0F0046F470 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DC65E82734BC0F0046F470 /* UITableView.swift */; };
 		B4DC65EA2734C14E0046F470 /* Database.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4F056442729DAC100ED8E30 /* Database.framework */; };
-		B4DC65EB2734C14E0046F470 /* Database.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B4F056442729DAC100ED8E30 /* Database.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B4DC65F22734C23F0046F470 /* DatabasePopulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CC2AF4244233ED0071A66D /* DatabasePopulator.swift */; };
 		B4DC65F52734C4D30046F470 /* DecodableStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DC65F42734C4D30046F470 /* DecodableStop.swift */; };
 		B4DC65F72734C4FC0046F470 /* DatabaseStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DC65F62734C4FC0046F470 /* DatabaseStop.swift */; };
@@ -63,7 +62,6 @@
 		B4DC661027375A480046F470 /* UserDefaults.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B4DC660927375A480046F470 /* UserDefaults.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B4DC661827375AA90046F470 /* UserDefaultsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B438A6D72724E04800A7797F /* UserDefaultsDataSource.swift */; };
 		B4DC661927375B850046F470 /* UserDefaults.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4DC660927375A480046F470 /* UserDefaults.framework */; };
-		B4DC661A27375B850046F470 /* UserDefaults.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B4DC660927375A480046F470 /* UserDefaults.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B4DC662027375F3F0046F470 /* OverviewComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DC661F27375F3F0046F470 /* OverviewComponent.swift */; };
 		B4DC6622273836D20046F470 /* StopMapComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DC6621273836D20046F470 /* StopMapComponent.swift */; };
 		B4DC662427383C580046F470 /* PredictionsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DC662327383C580046F470 /* PredictionsComponent.swift */; };
@@ -114,7 +112,6 @@
 		B4F0569F2729EC1100ED8E30 /* LocationBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F0569E2729EC1100ED8E30 /* LocationBounds.swift */; };
 		B4F056A22729EE0500ED8E30 /* FavoriteStopDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F056A12729EE0500ED8E30 /* FavoriteStopDataSource.swift */; };
 		B4F21661272E0CDD006A5748 /* Database.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4F056442729DAC100ED8E30 /* Database.framework */; };
-		B4F21662272E0CDD006A5748 /* Database.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B4F056442729DAC100ED8E30 /* Database.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B4F21669272E29F5006A5748 /* MKMapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F21668272E29F5006A5748 /* MKMapKit.swift */; };
 		B4F2166B272E2A39006A5748 /* NSLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48FE2462450F3AE002A5C6C /* NSLayoutConstraint.swift */; };
 		B4F2166D272F3A7B006A5748 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43E072724566C7E00393B76 /* Array.swift */; };
@@ -123,7 +120,6 @@
 		B4F2167B272F4CCA006A5748 /* Predictions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4F21675272F4CCA006A5748 /* Predictions.framework */; };
 		B4F2167C272F4CCA006A5748 /* Predictions.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B4F21675272F4CCA006A5748 /* Predictions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B4F21683272F4CFB006A5748 /* Database.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4F056442729DAC100ED8E30 /* Database.framework */; };
-		B4F21684272F4CFB006A5748 /* Database.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B4F056442729DAC100ED8E30 /* Database.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B4F2168C272F4D60006A5748 /* DataRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A82B722727167500A8B1F9 /* DataRoute.swift */; };
 		B4F2168D272F4D64006A5748 /* Prediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4076309245A2201008979C5 /* Prediction.swift */; };
 		B4F2168F272F4FCB006A5748 /* GetStopById.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F2168E272F4FCB006A5748 /* GetStopById.swift */; };
@@ -150,7 +146,6 @@
 		B4F216CC2730C922006A5748 /* Network.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B4F216C52730C922006A5748 /* Network.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B4F216D32730C980006A5748 /* UrlSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F216D22730C980006A5748 /* UrlSource.swift */; };
 		B4F216D42730CA99006A5748 /* Network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4F216C52730C922006A5748 /* Network.framework */; };
-		B4F216D52730CA99006A5748 /* Network.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B4F216C52730C922006A5748 /* Network.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B4F216D92730CAA3006A5748 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = B4F216D82730CAA3006A5748 /* GRDB */; };
 		B4F216DC2730CE15006A5748 /* PredictionMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F216DB2730CE15006A5748 /* PredictionMapper.swift */; };
 		B4F216E127334C3B006A5748 /* PredictionsContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43E07222455164400393B76 /* PredictionsContract.swift */; };
@@ -244,28 +239,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		B4DC65EE2734C14E0046F470 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				B4DC65EB2734C14E0046F470 /* Database.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B4DC661D27375B850046F470 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				B4DC661A27375B850046F470 /* UserDefaults.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		B4F055EA27278BEF00ED8E30 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -278,29 +251,6 @@
 				B4F0564B2729DAC200ED8E30 /* Database.framework in Embed Frameworks */,
 				B4F056642729DBA900ED8E30 /* StopMap.framework in Embed Frameworks */,
 				B4F216CC2730C922006A5748 /* Network.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B4F21665272E0CDD006A5748 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				B4F21662272E0CDD006A5748 /* Database.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B4F21687272F4CFB006A5748 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				B4F21684272F4CFB006A5748 /* Database.framework in Embed Frameworks */,
-				B4F216D52730CA99006A5748 /* Network.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1474,6 +1424,7 @@
 				B477CD5F243BF7280027AE11 /* Frameworks */,
 				B477CD60243BF7280027AE11 /* Resources */,
 				B4F055EA27278BEF00ED8E30 /* Embed Frameworks */,
+				B43C0DDB2767E5B900E0F5EC /* Remove Swift Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1520,7 +1471,6 @@
 				B4F056402729DAC100ED8E30 /* Sources */,
 				B4F056412729DAC100ED8E30 /* Frameworks */,
 				B4F056422729DAC100ED8E30 /* Resources */,
-				B4DC661D27375B850046F470 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1544,7 +1494,6 @@
 				B4F056592729DBA900ED8E30 /* Sources */,
 				B4F0565A2729DBA900ED8E30 /* Frameworks */,
 				B4F0565B2729DBA900ED8E30 /* Resources */,
-				B4F21665272E0CDD006A5748 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1567,7 +1516,6 @@
 				B4F056872729E8E900ED8E30 /* Sources */,
 				B4F056882729E8E900ED8E30 /* Frameworks */,
 				B4F056892729E8E900ED8E30 /* Resources */,
-				B4DC65EE2734C14E0046F470 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1590,7 +1538,6 @@
 				B4F21671272F4CCA006A5748 /* Sources */,
 				B4F21672272F4CCA006A5748 /* Frameworks */,
 				B4F21673272F4CCA006A5748 /* Resources */,
-				B4F21687272F4CFB006A5748 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1743,6 +1690,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B43C0DDB2767E5B900E0F5EC /* Remove Swift Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Remove Swift Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "BUILD_APP_DIR=\"${BUILT_PRODUCTS_DIR}/${FULL_PRODUCT_NAME}\"\nFRAMEWORK_DIR=\"${BUILD_APP_DIR}/Frameworks\"\n\necho \"Changing directory to ${FRAMEWORK_DIR}\"\ncd ${FRAMEWORK_DIR}\n\nfor d in */ ; do\n  if [ -d \"${d}/Frameworks\" ]; then\n    echo \"Removing frameworks from ${d}\"\n    rm -rf \"${d}/Frameworks\"\n  fi\ndone\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B477CD5E243BF7280027AE11 /* Sources */ = {
