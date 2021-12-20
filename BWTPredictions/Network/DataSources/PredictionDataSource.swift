@@ -8,7 +8,7 @@
 
 import Foundation
 import Combine
-import Network
+import BWTNetwork
 
 public final class PredictionDataSource : PredictionDataSourceRepresentable {
 

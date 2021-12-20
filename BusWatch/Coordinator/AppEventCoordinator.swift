@@ -7,9 +7,9 @@
 //
 
 import UIKit
-import Overview
-import StopMap
-import Predictions
+import BWTOverview
+import BWTStopMap
+import BWTPredictions
 
 final class AppNavigationViewController: UINavigationController {
 

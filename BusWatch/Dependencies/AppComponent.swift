@@ -7,9 +7,9 @@
 //
 
 import Foundation
-import UserDefaults
-import Database
-import Overview
+import BWTUserDefaults
+import BWTDatabase
+import BWTOverview
 
 final class AppComponent {
 

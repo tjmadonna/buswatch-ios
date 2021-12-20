@@ -48,7 +48,7 @@
 		B4DC65E52734B9B80046F470 /* PredictionsNoDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DC65E42734B9B80046F470 /* PredictionsNoDataViewController.swift */; };
 		B4DC65E72734BBB00046F470 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DC65E62734BBB00046F470 /* Array.swift */; };
 		B4DC65E92734BC0F0046F470 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DC65E82734BC0F0046F470 /* UITableView.swift */; };
-		B4DC65EA2734C14E0046F470 /* Database.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4F056442729DAC100ED8E30 /* Database.framework */; };
+		B4DC65EA2734C14E0046F470 /* BWTDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4F056442729DAC100ED8E30 /* BWTDatabase.framework */; };
 		B4DC65F22734C23F0046F470 /* DatabasePopulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CC2AF4244233ED0071A66D /* DatabasePopulator.swift */; };
 		B4DC65F52734C4D30046F470 /* DecodableStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DC65F42734C4D30046F470 /* DecodableStop.swift */; };
 		B4DC65F72734C4FC0046F470 /* DatabaseStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DC65F62734C4FC0046F470 /* DatabaseStop.swift */; };
@@ -58,18 +58,18 @@
 		B4DC6601273757450046F470 /* DecodableRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DC65FD273757110046F470 /* DecodableRoute.swift */; };
 		B4DC6603273757EB0046F470 /* DatabaseRouteMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DC6602273757EB0046F470 /* DatabaseRouteMapper.swift */; };
 		B4DC660C27375A480046F470 /* UserDefaults.h in Headers */ = {isa = PBXBuildFile; fileRef = B4DC660B27375A480046F470 /* UserDefaults.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B4DC660F27375A480046F470 /* UserDefaults.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4DC660927375A480046F470 /* UserDefaults.framework */; };
-		B4DC661027375A480046F470 /* UserDefaults.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B4DC660927375A480046F470 /* UserDefaults.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B4DC660F27375A480046F470 /* BWTUserDefaults.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4DC660927375A480046F470 /* BWTUserDefaults.framework */; };
+		B4DC661027375A480046F470 /* BWTUserDefaults.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B4DC660927375A480046F470 /* BWTUserDefaults.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B4DC661827375AA90046F470 /* UserDefaultsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B438A6D72724E04800A7797F /* UserDefaultsDataSource.swift */; };
-		B4DC661927375B850046F470 /* UserDefaults.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4DC660927375A480046F470 /* UserDefaults.framework */; };
+		B4DC661927375B850046F470 /* BWTUserDefaults.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4DC660927375A480046F470 /* BWTUserDefaults.framework */; };
 		B4DC662027375F3F0046F470 /* OverviewComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DC661F27375F3F0046F470 /* OverviewComponent.swift */; };
 		B4DC6622273836D20046F470 /* StopMapComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DC6621273836D20046F470 /* StopMapComponent.swift */; };
 		B4DC662427383C580046F470 /* PredictionsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DC662327383C580046F470 /* PredictionsComponent.swift */; };
 		B4DC662627387D870046F470 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DC662527387D870046F470 /* String.swift */; };
 		B4DC662827387E920046F470 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DC662727387E920046F470 /* URL.swift */; };
 		B4F056472729DAC100ED8E30 /* Database.h in Headers */ = {isa = PBXBuildFile; fileRef = B4F056462729DAC100ED8E30 /* Database.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B4F0564A2729DAC200ED8E30 /* Database.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4F056442729DAC100ED8E30 /* Database.framework */; };
-		B4F0564B2729DAC200ED8E30 /* Database.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B4F056442729DAC100ED8E30 /* Database.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B4F0564A2729DAC200ED8E30 /* BWTDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4F056442729DAC100ED8E30 /* BWTDatabase.framework */; };
+		B4F0564B2729DAC200ED8E30 /* BWTDatabase.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B4F056442729DAC100ED8E30 /* BWTDatabase.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B4F056512729DAFA00ED8E30 /* DatabaseDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F055C9272761A600ED8E30 /* DatabaseDataSource.swift */; };
 		B4F056522729DAFF00ED8E30 /* StopsTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F055CF272763E500ED8E30 /* StopsTable.swift */; };
 		B4F056532729DB0700ED8E30 /* FavoriteStopsTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F055D12727641E00ED8E30 /* FavoriteStopsTable.swift */; };
@@ -77,8 +77,8 @@
 		B4F056552729DB0D00ED8E30 /* RoutesTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F055D52727645E00ED8E30 /* RoutesTable.swift */; };
 		B4F056572729DB4800ED8E30 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = B4F056562729DB4800ED8E30 /* GRDB */; };
 		B4F056602729DBA900ED8E30 /* StopMap.h in Headers */ = {isa = PBXBuildFile; fileRef = B4F0565F2729DBA900ED8E30 /* StopMap.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B4F056632729DBA900ED8E30 /* StopMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4F0565D2729DBA900ED8E30 /* StopMap.framework */; };
-		B4F056642729DBA900ED8E30 /* StopMap.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B4F0565D2729DBA900ED8E30 /* StopMap.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B4F056632729DBA900ED8E30 /* BWTStopMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4F0565D2729DBA900ED8E30 /* BWTStopMap.framework */; };
+		B4F056642729DBA900ED8E30 /* BWTStopMap.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B4F0565D2729DBA900ED8E30 /* BWTStopMap.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B4F056692729DBC000ED8E30 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = B4F056682729DBC000ED8E30 /* GRDB */; };
 		B4F0566B2729DCD000ED8E30 /* StopMapContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4981AFE24453A73003F161F /* StopMapContract.swift */; };
 		B4F0566C2729DCD800ED8E30 /* StopMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B477CD69243BF7280027AE11 /* StopMapViewController.swift */; };
@@ -106,20 +106,20 @@
 		B4F056822729DD5400ED8E30 /* LocationPermissionPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F056362729CA3700ED8E30 /* LocationPermissionPublisher.swift */; };
 		B4F056852729E1CA00ED8E30 /* MKMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45988CD2442A363006F9B32 /* MKMapView.swift */; };
 		B4F0568E2729E8E900ED8E30 /* Overview.h in Headers */ = {isa = PBXBuildFile; fileRef = B4F0568D2729E8E900ED8E30 /* Overview.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B4F056912729E8E900ED8E30 /* Overview.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4F0568B2729E8E900ED8E30 /* Overview.framework */; };
-		B4F056922729E8E900ED8E30 /* Overview.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B4F0568B2729E8E900ED8E30 /* Overview.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B4F056912729E8E900ED8E30 /* BWTOverview.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4F0568B2729E8E900ED8E30 /* BWTOverview.framework */; };
+		B4F056922729E8E900ED8E30 /* BWTOverview.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B4F0568B2729E8E900ED8E30 /* BWTOverview.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B4F0569D2729E9CC00ED8E30 /* FavoriteStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F0569C2729E9CC00ED8E30 /* FavoriteStop.swift */; };
 		B4F0569F2729EC1100ED8E30 /* LocationBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F0569E2729EC1100ED8E30 /* LocationBounds.swift */; };
 		B4F056A22729EE0500ED8E30 /* FavoriteStopDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F056A12729EE0500ED8E30 /* FavoriteStopDataSource.swift */; };
-		B4F21661272E0CDD006A5748 /* Database.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4F056442729DAC100ED8E30 /* Database.framework */; };
+		B4F21661272E0CDD006A5748 /* BWTDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4F056442729DAC100ED8E30 /* BWTDatabase.framework */; };
 		B4F21669272E29F5006A5748 /* MKMapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F21668272E29F5006A5748 /* MKMapKit.swift */; };
 		B4F2166B272E2A39006A5748 /* NSLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48FE2462450F3AE002A5C6C /* NSLayoutConstraint.swift */; };
 		B4F2166D272F3A7B006A5748 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43E072724566C7E00393B76 /* Array.swift */; };
 		B4F2166F272F3AB3006A5748 /* SimpleMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48F2BC4245F1DFC001900BE /* SimpleMessageCell.swift */; };
 		B4F21678272F4CCA006A5748 /* Predictions.h in Headers */ = {isa = PBXBuildFile; fileRef = B4F21677272F4CCA006A5748 /* Predictions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B4F2167B272F4CCA006A5748 /* Predictions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4F21675272F4CCA006A5748 /* Predictions.framework */; };
-		B4F2167C272F4CCA006A5748 /* Predictions.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B4F21675272F4CCA006A5748 /* Predictions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B4F21683272F4CFB006A5748 /* Database.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4F056442729DAC100ED8E30 /* Database.framework */; };
+		B4F2167B272F4CCA006A5748 /* BWTPredictions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4F21675272F4CCA006A5748 /* BWTPredictions.framework */; };
+		B4F2167C272F4CCA006A5748 /* BWTPredictions.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B4F21675272F4CCA006A5748 /* BWTPredictions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B4F21683272F4CFB006A5748 /* BWTDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4F056442729DAC100ED8E30 /* BWTDatabase.framework */; };
 		B4F2168C272F4D60006A5748 /* DataRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A82B722727167500A8B1F9 /* DataRoute.swift */; };
 		B4F2168D272F4D64006A5748 /* Prediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4076309245A2201008979C5 /* Prediction.swift */; };
 		B4F2168F272F4FCB006A5748 /* GetStopById.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F2168E272F4FCB006A5748 /* GetStopById.swift */; };
@@ -142,10 +142,10 @@
 		B4F216BD2730B70A006A5748 /* DataPredictionMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F216BC2730B70A006A5748 /* DataPredictionMapper.swift */; };
 		B4F216BF2730BBE8006A5748 /* TimedNetworkPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B463645E2471EBDF00C6EDBB /* TimedNetworkPublisher.swift */; };
 		B4F216C82730C922006A5748 /* Network.h in Headers */ = {isa = PBXBuildFile; fileRef = B4F216C72730C922006A5748 /* Network.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B4F216CB2730C922006A5748 /* Network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4F216C52730C922006A5748 /* Network.framework */; };
-		B4F216CC2730C922006A5748 /* Network.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B4F216C52730C922006A5748 /* Network.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B4F216CB2730C922006A5748 /* BWTNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4F216C52730C922006A5748 /* BWTNetwork.framework */; };
+		B4F216CC2730C922006A5748 /* BWTNetwork.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B4F216C52730C922006A5748 /* BWTNetwork.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B4F216D32730C980006A5748 /* UrlSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F216D22730C980006A5748 /* UrlSource.swift */; };
-		B4F216D42730CA99006A5748 /* Network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4F216C52730C922006A5748 /* Network.framework */; };
+		B4F216D42730CA99006A5748 /* BWTNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4F216C52730C922006A5748 /* BWTNetwork.framework */; };
 		B4F216D92730CAA3006A5748 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = B4F216D82730CAA3006A5748 /* GRDB */; };
 		B4F216DC2730CE15006A5748 /* PredictionMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F216DB2730CE15006A5748 /* PredictionMapper.swift */; };
 		B4F216E127334C3B006A5748 /* PredictionsContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43E07222455164400393B76 /* PredictionsContract.swift */; };
@@ -245,12 +245,12 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				B4F056922729E8E900ED8E30 /* Overview.framework in Embed Frameworks */,
-				B4DC661027375A480046F470 /* UserDefaults.framework in Embed Frameworks */,
-				B4F2167C272F4CCA006A5748 /* Predictions.framework in Embed Frameworks */,
-				B4F0564B2729DAC200ED8E30 /* Database.framework in Embed Frameworks */,
-				B4F056642729DBA900ED8E30 /* StopMap.framework in Embed Frameworks */,
-				B4F216CC2730C922006A5748 /* Network.framework in Embed Frameworks */,
+				B4F056922729E8E900ED8E30 /* BWTOverview.framework in Embed Frameworks */,
+				B4DC661027375A480046F470 /* BWTUserDefaults.framework in Embed Frameworks */,
+				B4F2167C272F4CCA006A5748 /* BWTPredictions.framework in Embed Frameworks */,
+				B4F0564B2729DAC200ED8E30 /* BWTDatabase.framework in Embed Frameworks */,
+				B4F056642729DBA900ED8E30 /* BWTStopMap.framework in Embed Frameworks */,
+				B4F216CC2730C922006A5748 /* BWTNetwork.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -318,7 +318,7 @@
 		B4DC65FD273757110046F470 /* DecodableRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodableRoute.swift; sourceTree = "<group>"; };
 		B4DC65FF2737571A0046F470 /* DatabaseRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseRoute.swift; sourceTree = "<group>"; };
 		B4DC6602273757EB0046F470 /* DatabaseRouteMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseRouteMapper.swift; sourceTree = "<group>"; };
-		B4DC660927375A480046F470 /* UserDefaults.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UserDefaults.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4DC660927375A480046F470 /* BWTUserDefaults.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BWTUserDefaults.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4DC660B27375A480046F470 /* UserDefaults.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserDefaults.h; sourceTree = "<group>"; };
 		B4DC661F27375F3F0046F470 /* OverviewComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewComponent.swift; sourceTree = "<group>"; };
 		B4DC6621273836D20046F470 /* StopMapComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopMapComponent.swift; sourceTree = "<group>"; };
@@ -352,17 +352,17 @@
 		B4F056362729CA3700ED8E30 /* LocationPermissionPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPermissionPublisher.swift; sourceTree = "<group>"; };
 		B4F056382729CF7C00ED8E30 /* LocationDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDataSource.swift; sourceTree = "<group>"; };
 		B4F0563A2729CFDE00ED8E30 /* LocationBoundsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationBoundsMapper.swift; sourceTree = "<group>"; };
-		B4F056442729DAC100ED8E30 /* Database.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Database.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4F056442729DAC100ED8E30 /* BWTDatabase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BWTDatabase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4F056462729DAC100ED8E30 /* Database.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Database.h; sourceTree = "<group>"; };
-		B4F0565D2729DBA900ED8E30 /* StopMap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StopMap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4F0565D2729DBA900ED8E30 /* BWTStopMap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BWTStopMap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4F0565F2729DBA900ED8E30 /* StopMap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StopMap.h; sourceTree = "<group>"; };
-		B4F0568B2729E8E900ED8E30 /* Overview.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Overview.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4F0568B2729E8E900ED8E30 /* BWTOverview.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BWTOverview.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4F0568D2729E8E900ED8E30 /* Overview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Overview.h; sourceTree = "<group>"; };
 		B4F0569C2729E9CC00ED8E30 /* FavoriteStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteStop.swift; sourceTree = "<group>"; };
 		B4F0569E2729EC1100ED8E30 /* LocationBounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationBounds.swift; sourceTree = "<group>"; };
 		B4F056A12729EE0500ED8E30 /* FavoriteStopDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteStopDataSource.swift; sourceTree = "<group>"; };
 		B4F21668272E29F5006A5748 /* MKMapKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKMapKit.swift; sourceTree = "<group>"; };
-		B4F21675272F4CCA006A5748 /* Predictions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Predictions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4F21675272F4CCA006A5748 /* BWTPredictions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BWTPredictions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4F21677272F4CCA006A5748 /* Predictions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Predictions.h; sourceTree = "<group>"; };
 		B4F2168E272F4FCB006A5748 /* GetStopById.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStopById.swift; sourceTree = "<group>"; };
 		B4F21690272F5010006A5748 /* StopRepositoryRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopRepositoryRepresentable.swift; sourceTree = "<group>"; };
@@ -382,7 +382,7 @@
 		B4F216B52730B4F3006A5748 /* DataRouteMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRouteMapper.swift; sourceTree = "<group>"; };
 		B4F216B92730B630006A5748 /* NetworkPrediction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkPrediction.swift; sourceTree = "<group>"; };
 		B4F216BC2730B70A006A5748 /* DataPredictionMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPredictionMapper.swift; sourceTree = "<group>"; };
-		B4F216C52730C922006A5748 /* Network.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Network.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4F216C52730C922006A5748 /* BWTNetwork.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BWTNetwork.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4F216C72730C922006A5748 /* Network.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Network.h; sourceTree = "<group>"; };
 		B4F216D22730C980006A5748 /* UrlSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlSource.swift; sourceTree = "<group>"; };
 		B4F216DB2730CE15006A5748 /* PredictionMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionMapper.swift; sourceTree = "<group>"; };
@@ -397,12 +397,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4F0564A2729DAC200ED8E30 /* Database.framework in Frameworks */,
-				B4DC660F27375A480046F470 /* UserDefaults.framework in Frameworks */,
-				B4F2167B272F4CCA006A5748 /* Predictions.framework in Frameworks */,
-				B4F056912729E8E900ED8E30 /* Overview.framework in Frameworks */,
-				B4F056632729DBA900ED8E30 /* StopMap.framework in Frameworks */,
-				B4F216CB2730C922006A5748 /* Network.framework in Frameworks */,
+				B4F0564A2729DAC200ED8E30 /* BWTDatabase.framework in Frameworks */,
+				B4DC660F27375A480046F470 /* BWTUserDefaults.framework in Frameworks */,
+				B4F2167B272F4CCA006A5748 /* BWTPredictions.framework in Frameworks */,
+				B4F056912729E8E900ED8E30 /* BWTOverview.framework in Frameworks */,
+				B4F056632729DBA900ED8E30 /* BWTStopMap.framework in Frameworks */,
+				B4F216CB2730C922006A5748 /* BWTNetwork.framework in Frameworks */,
 				B474B86E2725FB2900B5CBA2 /* DifferenceKit in Frameworks */,
 				B470C82327239368007CEAF9 /* GRDB in Frameworks */,
 			);
@@ -420,7 +420,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4DC65F92734C5210046F470 /* DifferenceKit in Frameworks */,
-				B4DC661927375B850046F470 /* UserDefaults.framework in Frameworks */,
+				B4DC661927375B850046F470 /* BWTUserDefaults.framework in Frameworks */,
 				B4F056572729DB4800ED8E30 /* GRDB in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -430,7 +430,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4F056692729DBC000ED8E30 /* GRDB in Frameworks */,
-				B4F21661272E0CDD006A5748 /* Database.framework in Frameworks */,
+				B4F21661272E0CDD006A5748 /* BWTDatabase.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,7 +439,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B40AF446272CDB25003A35D6 /* GRDB in Frameworks */,
-				B4DC65EA2734C14E0046F470 /* Database.framework in Frameworks */,
+				B4DC65EA2734C14E0046F470 /* BWTDatabase.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,8 +449,8 @@
 			files = (
 				B4DC65D9273354670046F470 /* DifferenceKit in Frameworks */,
 				B4F216D92730CAA3006A5748 /* GRDB in Frameworks */,
-				B4F21683272F4CFB006A5748 /* Database.framework in Frameworks */,
-				B4F216D42730CA99006A5748 /* Network.framework in Frameworks */,
+				B4F21683272F4CFB006A5748 /* BWTDatabase.framework in Frameworks */,
+				B4F216D42730CA99006A5748 /* BWTNetwork.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -570,12 +570,12 @@
 			isa = PBXGroup;
 			children = (
 				B477CD64243BF7280027AE11 /* BusWatch */,
-				B4F0568C2729E8E900ED8E30 /* Overview */,
-				B4F0565E2729DBA900ED8E30 /* StopMap */,
-				B4F21676272F4CCA006A5748 /* Predictions */,
-				B4F056452729DAC100ED8E30 /* Database */,
-				B4F216C62730C922006A5748 /* Network */,
-				B4DC660A27375A480046F470 /* UserDefaults */,
+				B4F0568C2729E8E900ED8E30 /* BWTOverview */,
+				B4F0565E2729DBA900ED8E30 /* BWTStopMap */,
+				B4F21676272F4CCA006A5748 /* BWTPredictions */,
+				B4F056452729DAC100ED8E30 /* BWTDatabase */,
+				B4F216C62730C922006A5748 /* BWTNetwork */,
+				B4DC660A27375A480046F470 /* BWTUserDefaults */,
 				B477CD63243BF7280027AE11 /* Products */,
 				B4F055EE27278EB800ED8E30 /* Frameworks */,
 			);
@@ -585,12 +585,12 @@
 			isa = PBXGroup;
 			children = (
 				B477CD62243BF7280027AE11 /* BusWatch.app */,
-				B4F056442729DAC100ED8E30 /* Database.framework */,
-				B4F0565D2729DBA900ED8E30 /* StopMap.framework */,
-				B4F0568B2729E8E900ED8E30 /* Overview.framework */,
-				B4F21675272F4CCA006A5748 /* Predictions.framework */,
-				B4F216C52730C922006A5748 /* Network.framework */,
-				B4DC660927375A480046F470 /* UserDefaults.framework */,
+				B4F056442729DAC100ED8E30 /* BWTDatabase.framework */,
+				B4F0565D2729DBA900ED8E30 /* BWTStopMap.framework */,
+				B4F0568B2729E8E900ED8E30 /* BWTOverview.framework */,
+				B4F21675272F4CCA006A5748 /* BWTPredictions.framework */,
+				B4F216C52730C922006A5748 /* BWTNetwork.framework */,
+				B4DC660927375A480046F470 /* BWTUserDefaults.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -744,13 +744,13 @@
 			path = Mappers;
 			sourceTree = "<group>";
 		};
-		B4DC660A27375A480046F470 /* UserDefaults */ = {
+		B4DC660A27375A480046F470 /* BWTUserDefaults */ = {
 			isa = PBXGroup;
 			children = (
 				B4DC661527375A840046F470 /* DataSources */,
 				B4DC661427375A560046F470 /* SupportingFiles */,
 			);
-			path = UserDefaults;
+			path = BWTUserDefaults;
 			sourceTree = "<group>";
 		};
 		B4DC661427375A560046F470 /* SupportingFiles */ = {
@@ -942,7 +942,7 @@
 			path = Publishers;
 			sourceTree = "<group>";
 		};
-		B4F056452729DAC100ED8E30 /* Database */ = {
+		B4F056452729DAC100ED8E30 /* BWTDatabase */ = {
 			isa = PBXGroup;
 			children = (
 				B4F056502729DAD700ED8E30 /* DataSources */,
@@ -952,7 +952,7 @@
 				B4DC65FA273715E40046F470 /* Mappers */,
 				B4F0564F2729DAC700ED8E30 /* SupportingFiles */,
 			);
-			path = Database;
+			path = BWTDatabase;
 			sourceTree = "<group>";
 		};
 		B4F0564F2729DAC700ED8E30 /* SupportingFiles */ = {
@@ -971,7 +971,7 @@
 			path = DataSources;
 			sourceTree = "<group>";
 		};
-		B4F0565E2729DBA900ED8E30 /* StopMap */ = {
+		B4F0565E2729DBA900ED8E30 /* BWTStopMap */ = {
 			isa = PBXGroup;
 			children = (
 				B4F055F12727925C00ED8E30 /* Presentation */,
@@ -982,7 +982,7 @@
 				B4F056832729E1A400ED8E30 /* Common */,
 				B4F0566A2729DBCB00ED8E30 /* SupportingFiles */,
 			);
-			path = StopMap;
+			path = BWTStopMap;
 			sourceTree = "<group>";
 		};
 		B4F0566A2729DBCB00ED8E30 /* SupportingFiles */ = {
@@ -1009,7 +1009,7 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		B4F0568C2729E8E900ED8E30 /* Overview */ = {
+		B4F0568C2729E8E900ED8E30 /* BWTOverview */ = {
 			isa = PBXGroup;
 			children = (
 				B40AF45E272CE050003A35D6 /* Presentation */,
@@ -1019,7 +1019,7 @@
 				B4F21666272E29CC006A5748 /* Common */,
 				B4F056972729E90300ED8E30 /* SupportingFiles */,
 			);
-			path = Overview;
+			path = BWTOverview;
 			sourceTree = "<group>";
 		};
 		B4F056972729E90300ED8E30 /* SupportingFiles */ = {
@@ -1103,7 +1103,7 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		B4F21676272F4CCA006A5748 /* Predictions */ = {
+		B4F21676272F4CCA006A5748 /* BWTPredictions */ = {
 			isa = PBXGroup;
 			children = (
 				B4F216DD27334BC9006A5748 /* Presentation */,
@@ -1114,7 +1114,7 @@
 				B4DC65D4273351980046F470 /* Common */,
 				B4F21680272F4CD5006A5748 /* SupportingFiles */,
 			);
-			path = Predictions;
+			path = BWTPredictions;
 			sourceTree = "<group>";
 		};
 		B4F21680272F4CD5006A5748 /* SupportingFiles */ = {
@@ -1273,13 +1273,13 @@
 			path = Publishers;
 			sourceTree = "<group>";
 		};
-		B4F216C62730C922006A5748 /* Network */ = {
+		B4F216C62730C922006A5748 /* BWTNetwork */ = {
 			isa = PBXGroup;
 			children = (
 				B4F216D12730C962006A5748 /* Urls */,
 				B4F216D02730C951006A5748 /* SupportingFiles */,
 			);
-			path = Network;
+			path = BWTNetwork;
 			sourceTree = "<group>";
 		};
 		B4F216D02730C951006A5748 /* SupportingFiles */ = {
@@ -1445,9 +1445,9 @@
 			productReference = B477CD62243BF7280027AE11 /* BusWatch.app */;
 			productType = "com.apple.product-type.application";
 		};
-		B4DC660827375A480046F470 /* UserDefaults */ = {
+		B4DC660827375A480046F470 /* BWTUserDefaults */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B4DC661127375A480046F470 /* Build configuration list for PBXNativeTarget "UserDefaults" */;
+			buildConfigurationList = B4DC661127375A480046F470 /* Build configuration list for PBXNativeTarget "BWTUserDefaults" */;
 			buildPhases = (
 				B4DC660427375A480046F470 /* Headers */,
 				B4DC660527375A480046F470 /* Sources */,
@@ -1458,14 +1458,14 @@
 			);
 			dependencies = (
 			);
-			name = UserDefaults;
+			name = BWTUserDefaults;
 			productName = UserDefaults;
-			productReference = B4DC660927375A480046F470 /* UserDefaults.framework */;
+			productReference = B4DC660927375A480046F470 /* BWTUserDefaults.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		B4F056432729DAC100ED8E30 /* Database */ = {
+		B4F056432729DAC100ED8E30 /* BWTDatabase */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B4F0564C2729DAC200ED8E30 /* Build configuration list for PBXNativeTarget "Database" */;
+			buildConfigurationList = B4F0564C2729DAC200ED8E30 /* Build configuration list for PBXNativeTarget "BWTDatabase" */;
 			buildPhases = (
 				B4F0563F2729DAC100ED8E30 /* Headers */,
 				B4F056402729DAC100ED8E30 /* Sources */,
@@ -1477,18 +1477,18 @@
 			dependencies = (
 				B4DC661C27375B850046F470 /* PBXTargetDependency */,
 			);
-			name = Database;
+			name = BWTDatabase;
 			packageProductDependencies = (
 				B4F056562729DB4800ED8E30 /* GRDB */,
 				B4DC65F82734C5210046F470 /* DifferenceKit */,
 			);
 			productName = Database;
-			productReference = B4F056442729DAC100ED8E30 /* Database.framework */;
+			productReference = B4F056442729DAC100ED8E30 /* BWTDatabase.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		B4F0565C2729DBA900ED8E30 /* StopMap */ = {
+		B4F0565C2729DBA900ED8E30 /* BWTStopMap */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B4F056652729DBA900ED8E30 /* Build configuration list for PBXNativeTarget "StopMap" */;
+			buildConfigurationList = B4F056652729DBA900ED8E30 /* Build configuration list for PBXNativeTarget "BWTStopMap" */;
 			buildPhases = (
 				B4F056582729DBA900ED8E30 /* Headers */,
 				B4F056592729DBA900ED8E30 /* Sources */,
@@ -1500,17 +1500,17 @@
 			dependencies = (
 				B4F21664272E0CDD006A5748 /* PBXTargetDependency */,
 			);
-			name = StopMap;
+			name = BWTStopMap;
 			packageProductDependencies = (
 				B4F056682729DBC000ED8E30 /* GRDB */,
 			);
 			productName = StopMap;
-			productReference = B4F0565D2729DBA900ED8E30 /* StopMap.framework */;
+			productReference = B4F0565D2729DBA900ED8E30 /* BWTStopMap.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		B4F0568A2729E8E900ED8E30 /* Overview */ = {
+		B4F0568A2729E8E900ED8E30 /* BWTOverview */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B4F056932729E8E900ED8E30 /* Build configuration list for PBXNativeTarget "Overview" */;
+			buildConfigurationList = B4F056932729E8E900ED8E30 /* Build configuration list for PBXNativeTarget "BWTOverview" */;
 			buildPhases = (
 				B4F056862729E8E900ED8E30 /* Headers */,
 				B4F056872729E8E900ED8E30 /* Sources */,
@@ -1522,17 +1522,17 @@
 			dependencies = (
 				B4DC65ED2734C14E0046F470 /* PBXTargetDependency */,
 			);
-			name = Overview;
+			name = BWTOverview;
 			packageProductDependencies = (
 				B40AF445272CDB25003A35D6 /* GRDB */,
 			);
 			productName = Overview;
-			productReference = B4F0568B2729E8E900ED8E30 /* Overview.framework */;
+			productReference = B4F0568B2729E8E900ED8E30 /* BWTOverview.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		B4F21674272F4CCA006A5748 /* Predictions */ = {
+		B4F21674272F4CCA006A5748 /* BWTPredictions */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B4F2167D272F4CCA006A5748 /* Build configuration list for PBXNativeTarget "Predictions" */;
+			buildConfigurationList = B4F2167D272F4CCA006A5748 /* Build configuration list for PBXNativeTarget "BWTPredictions" */;
 			buildPhases = (
 				B4F21670272F4CCA006A5748 /* Headers */,
 				B4F21671272F4CCA006A5748 /* Sources */,
@@ -1545,18 +1545,18 @@
 				B4F21686272F4CFB006A5748 /* PBXTargetDependency */,
 				B4F216D72730CA99006A5748 /* PBXTargetDependency */,
 			);
-			name = Predictions;
+			name = BWTPredictions;
 			packageProductDependencies = (
 				B4F216D82730CAA3006A5748 /* GRDB */,
 				B4DC65D8273354670046F470 /* DifferenceKit */,
 			);
 			productName = Predictions;
-			productReference = B4F21675272F4CCA006A5748 /* Predictions.framework */;
+			productReference = B4F21675272F4CCA006A5748 /* BWTPredictions.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		B4F216C42730C922006A5748 /* Network */ = {
+		B4F216C42730C922006A5748 /* BWTNetwork */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B4F216CD2730C922006A5748 /* Build configuration list for PBXNativeTarget "Network" */;
+			buildConfigurationList = B4F216CD2730C922006A5748 /* Build configuration list for PBXNativeTarget "BWTNetwork" */;
 			buildPhases = (
 				B4F216C02730C922006A5748 /* Headers */,
 				B4F216C12730C922006A5748 /* Sources */,
@@ -1567,9 +1567,9 @@
 			);
 			dependencies = (
 			);
-			name = Network;
+			name = BWTNetwork;
 			productName = Network;
-			productReference = B4F216C52730C922006A5748 /* Network.framework */;
+			productReference = B4F216C52730C922006A5748 /* BWTNetwork.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -1625,12 +1625,12 @@
 			projectRoot = "";
 			targets = (
 				B477CD61243BF7280027AE11 /* BusWatch */,
-				B4F0568A2729E8E900ED8E30 /* Overview */,
-				B4F0565C2729DBA900ED8E30 /* StopMap */,
-				B4F21674272F4CCA006A5748 /* Predictions */,
-				B4F056432729DAC100ED8E30 /* Database */,
-				B4F216C42730C922006A5748 /* Network */,
-				B4DC660827375A480046F470 /* UserDefaults */,
+				B4F0568A2729E8E900ED8E30 /* BWTOverview */,
+				B4F0565C2729DBA900ED8E30 /* BWTStopMap */,
+				B4F21674272F4CCA006A5748 /* BWTPredictions */,
+				B4F056432729DAC100ED8E30 /* BWTDatabase */,
+				B4F216C42730C922006A5748 /* BWTNetwork */,
+				B4DC660827375A480046F470 /* BWTUserDefaults */,
 			);
 		};
 /* End PBXProject section */
@@ -1881,57 +1881,57 @@
 /* Begin PBXTargetDependency section */
 		B4DC65ED2734C14E0046F470 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B4F056432729DAC100ED8E30 /* Database */;
+			target = B4F056432729DAC100ED8E30 /* BWTDatabase */;
 			targetProxy = B4DC65EC2734C14E0046F470 /* PBXContainerItemProxy */;
 		};
 		B4DC660E27375A480046F470 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B4DC660827375A480046F470 /* UserDefaults */;
+			target = B4DC660827375A480046F470 /* BWTUserDefaults */;
 			targetProxy = B4DC660D27375A480046F470 /* PBXContainerItemProxy */;
 		};
 		B4DC661C27375B850046F470 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B4DC660827375A480046F470 /* UserDefaults */;
+			target = B4DC660827375A480046F470 /* BWTUserDefaults */;
 			targetProxy = B4DC661B27375B850046F470 /* PBXContainerItemProxy */;
 		};
 		B4F056492729DAC200ED8E30 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B4F056432729DAC100ED8E30 /* Database */;
+			target = B4F056432729DAC100ED8E30 /* BWTDatabase */;
 			targetProxy = B4F056482729DAC200ED8E30 /* PBXContainerItemProxy */;
 		};
 		B4F056622729DBA900ED8E30 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B4F0565C2729DBA900ED8E30 /* StopMap */;
+			target = B4F0565C2729DBA900ED8E30 /* BWTStopMap */;
 			targetProxy = B4F056612729DBA900ED8E30 /* PBXContainerItemProxy */;
 		};
 		B4F056902729E8E900ED8E30 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B4F0568A2729E8E900ED8E30 /* Overview */;
+			target = B4F0568A2729E8E900ED8E30 /* BWTOverview */;
 			targetProxy = B4F0568F2729E8E900ED8E30 /* PBXContainerItemProxy */;
 		};
 		B4F21664272E0CDD006A5748 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B4F056432729DAC100ED8E30 /* Database */;
+			target = B4F056432729DAC100ED8E30 /* BWTDatabase */;
 			targetProxy = B4F21663272E0CDD006A5748 /* PBXContainerItemProxy */;
 		};
 		B4F2167A272F4CCA006A5748 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B4F21674272F4CCA006A5748 /* Predictions */;
+			target = B4F21674272F4CCA006A5748 /* BWTPredictions */;
 			targetProxy = B4F21679272F4CCA006A5748 /* PBXContainerItemProxy */;
 		};
 		B4F21686272F4CFB006A5748 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B4F056432729DAC100ED8E30 /* Database */;
+			target = B4F056432729DAC100ED8E30 /* BWTDatabase */;
 			targetProxy = B4F21685272F4CFB006A5748 /* PBXContainerItemProxy */;
 		};
 		B4F216CA2730C922006A5748 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B4F216C42730C922006A5748 /* Network */;
+			target = B4F216C42730C922006A5748 /* BWTNetwork */;
 			targetProxy = B4F216C92730C922006A5748 /* PBXContainerItemProxy */;
 		};
 		B4F216D72730CA99006A5748 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B4F216C42730C922006A5748 /* Network */;
+			target = B4F216C42730C922006A5748 /* BWTNetwork */;
 			targetProxy = B4F216D62730CA99006A5748 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -2517,7 +2517,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B4DC661127375A480046F470 /* Build configuration list for PBXNativeTarget "UserDefaults" */ = {
+		B4DC661127375A480046F470 /* Build configuration list for PBXNativeTarget "BWTUserDefaults" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B4DC661227375A480046F470 /* Debug */,
@@ -2526,7 +2526,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B4F0564C2729DAC200ED8E30 /* Build configuration list for PBXNativeTarget "Database" */ = {
+		B4F0564C2729DAC200ED8E30 /* Build configuration list for PBXNativeTarget "BWTDatabase" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B4F0564D2729DAC200ED8E30 /* Debug */,
@@ -2535,7 +2535,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B4F056652729DBA900ED8E30 /* Build configuration list for PBXNativeTarget "StopMap" */ = {
+		B4F056652729DBA900ED8E30 /* Build configuration list for PBXNativeTarget "BWTStopMap" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B4F056662729DBA900ED8E30 /* Debug */,
@@ -2544,7 +2544,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B4F056932729E8E900ED8E30 /* Build configuration list for PBXNativeTarget "Overview" */ = {
+		B4F056932729E8E900ED8E30 /* Build configuration list for PBXNativeTarget "BWTOverview" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B4F056942729E8E900ED8E30 /* Debug */,
@@ -2553,7 +2553,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B4F2167D272F4CCA006A5748 /* Build configuration list for PBXNativeTarget "Predictions" */ = {
+		B4F2167D272F4CCA006A5748 /* Build configuration list for PBXNativeTarget "BWTPredictions" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B4F2167E272F4CCA006A5748 /* Debug */,
@@ -2562,7 +2562,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B4F216CD2730C922006A5748 /* Build configuration list for PBXNativeTarget "Network" */ = {
+		B4F216CD2730C922006A5748 /* Build configuration list for PBXNativeTarget "BWTNetwork" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B4F216CE2730C922006A5748 /* Debug */,

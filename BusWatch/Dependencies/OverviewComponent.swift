@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Overview
+import BWTOverview
 
 final class OverviewComponent {
 

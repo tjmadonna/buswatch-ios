@@ -9,7 +9,7 @@
 import Foundation
 import Combine
 import GRDB
-import Database
+import BWTDatabase
 
 public final class FavoriteStopDataSource: FavoriteStopDataSourceRepresentable {
 

@@ -8,7 +8,7 @@
 
 import Foundation
 import MapKit
-import StopMap
+import BWTStopMap
 
 final class StopMapComponent {
 

@@ -9,7 +9,7 @@
 import Foundation
 import GRDB
 import DifferenceKit
-import UserDefaults
+import BWTUserDefaults
 
 public final class DatabasePopulator {
 

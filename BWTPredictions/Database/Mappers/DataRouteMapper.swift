@@ -8,7 +8,7 @@
 
 import Foundation
 import GRDB
-import Database
+import BWTDatabase
 
 public final class DataRouteMapper {
 

@@ -7,9 +7,9 @@
 //
 
 import Foundation
-import Predictions
-import Network
 import UIKit
+import BWTPredictions
+import BWTNetwork
 
 final class PredictionsComponent {
 

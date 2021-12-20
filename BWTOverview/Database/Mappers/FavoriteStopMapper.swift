@@ -8,8 +8,7 @@
 
 import Foundation
 import GRDB
-import Database
-import CloudKit
+import BWTDatabase
 
 public final class FavoriteStopMapper {
 
