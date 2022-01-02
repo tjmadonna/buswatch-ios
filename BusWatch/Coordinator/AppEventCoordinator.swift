@@ -10,6 +10,7 @@ import UIKit
 import BWTOverview
 import BWTStopMap
 import BWTPredictions
+import BWTFilterRoutes
 
 final class AppNavigationViewController: UINavigationController {
 
@@ -69,6 +70,15 @@ final class AppEventCoordinator {
                                                                                     stopId: stopId)
         navigationController.pushViewController(viewControlller, animated: true)
     }
+
+    func presentFilterRoutesViewControllerForStop(_ stopId: String) {
+        let filterRoutesComponent = FilterRoutesComponent()
+        let viewControlller = filterRoutesComponent.provideFilterRoutesViewController(appComponent,
+                                                                                      eventCoordinator: self,
+                                                                                      stopId: stopId)
+        let navController = AppNavigationViewController(rootViewController: viewControlller)
+        navigationController.present(navController, animated: true, completion: nil)
+    }
 }
 
 extension AppEventCoordinator: OverviewEventCoordinator {
@@ -91,4 +101,18 @@ extension AppEventCoordinator: StopMapEventCoordinator {
 
 extension AppEventCoordinator: PredictionsEventCoordinator {
 
+    func filterRoutesSelectedInFilterRoutes(_ stopId: String) {
+        presentFilterRoutesViewControllerForStop(stopId)
+    }
+}
+
+extension AppEventCoordinator: FilterRoutesEventCoordinator {
+
+    func saveSelectedInFilterRoutes() {
+        navigationController.topViewController?.dismiss(animated: true, completion: nil)
+    }
+
+    func cancelSelectedInFilterRoutes() {
+        navigationController.topViewController?.dismiss(animated: true, completion: nil)
+    }
 }

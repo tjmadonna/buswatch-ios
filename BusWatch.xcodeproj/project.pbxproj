@@ -27,6 +27,29 @@
 		B40AF466272CE0DF003A35D6 /* OverviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DCAD49245272B900A0E978 /* OverviewViewModel.swift */; };
 		B41E1345272711820031D79E /* routes.json in Resources */ = {isa = PBXBuildFile; fileRef = B41E1344272711820031D79E /* routes.json */; };
 		B430D47A245E362B002EA8FB /* NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = B430D479245E362B002EA8FB /* NetworkConfig.swift */; };
+		B43835B727712F1200C49537 /* FilterRoutes.h in Headers */ = {isa = PBXBuildFile; fileRef = B43835B627712F1200C49537 /* FilterRoutes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B43835BA27712F1200C49537 /* BWTFilterRoutes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B43835B427712F1200C49537 /* BWTFilterRoutes.framework */; };
+		B43835BB27712F1200C49537 /* BWTFilterRoutes.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B43835B427712F1200C49537 /* BWTFilterRoutes.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B43835C027712F3B00C49537 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = B43835BF27712F3B00C49537 /* GRDB */; };
+		B43835C227712F3B00C49537 /* DifferenceKit in Frameworks */ = {isa = PBXBuildFile; productRef = B43835C127712F3B00C49537 /* DifferenceKit */; };
+		B43835C327712F3B00C49537 /* BWTDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4F056442729DAC100ED8E30 /* BWTDatabase.framework */; };
+		B43835E927712FD800C49537 /* RouteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43835CB27712FD700C49537 /* RouteDataSource.swift */; };
+		B43835EA27712FD800C49537 /* RouteMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43835CD27712FD700C49537 /* RouteMapper.swift */; };
+		B43835EB27712FD800C49537 /* RouteDataSourceRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43835D027712FD800C49537 /* RouteDataSourceRepresentable.swift */; };
+		B43835EC27712FD800C49537 /* RouteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43835D227712FD800C49537 /* RouteRepository.swift */; };
+		B43835ED27712FD800C49537 /* RouteRepositoryRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43835D527712FD800C49537 /* RouteRepositoryRepresentable.swift */; };
+		B43835EE27712FD800C49537 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43835D727712FD800C49537 /* Route.swift */; };
+		B43835EF27712FD800C49537 /* UpdateExcludedRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43835D927712FD800C49537 /* UpdateExcludedRoutes.swift */; };
+		B43835F027712FD800C49537 /* GetRoutesForStopId.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43835DA27712FD800C49537 /* GetRoutesForStopId.swift */; };
+		B43835F127712FD800C49537 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43835DD27712FD800C49537 /* UITableView.swift */; };
+		B43835F227712FD800C49537 /* FilterRoutesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43835E027712FD800C49537 /* FilterRoutesViewModel.swift */; };
+		B43835F327712FD800C49537 /* FilterRoutesContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43835E227712FD800C49537 /* FilterRoutesContract.swift */; };
+		B43835F427712FD800C49537 /* PresentationRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43835E427712FD800C49537 /* PresentationRoute.swift */; };
+		B43835F527712FD800C49537 /* PresentationRouteMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43835E627712FD800C49537 /* PresentationRouteMapper.swift */; };
+		B43835F627712FD800C49537 /* FilterRoutesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43835E827712FD800C49537 /* FilterRoutesViewController.swift */; };
+		B43835F8277130C900C49537 /* ExcludedRoutesTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43835F7277130C900C49537 /* ExcludedRoutesTable.swift */; };
+		B43835FA2771395C00C49537 /* FilterRoutesComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43835F92771395C00C49537 /* FilterRoutesComponent.swift */; };
+		B43835FC27713E3900C49537 /* ExcludedRouteMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43835FB27713E3900C49537 /* ExcludedRouteMapper.swift */; };
 		B43E071B2453CEFE00393B76 /* StyleConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43E071A2453CEFE00393B76 /* StyleConfig.swift */; };
 		B45988CA24429720006F9B32 /* AppComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45988C924429720006F9B32 /* AppComponent.swift */; };
 		B470C82327239368007CEAF9 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = B470C82227239368007CEAF9 /* GRDB */; };
@@ -37,6 +60,7 @@
 		B477CD72243BF72F0027AE11 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B477CD70243BF72F0027AE11 /* LaunchScreen.storyboard */; };
 		B48F2BCF245F906D001900BE /* DatabaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48F2BCE245F906D001900BE /* DatabaseConfig.swift */; };
 		B490A0082453B4FA000744EB /* AppEventCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B490A0072453B4FA000744EB /* AppEventCoordinator.swift */; };
+		B4A10AD627756EE800E6B632 /* PredictionsBarItemHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A10AD527756EE800E6B632 /* PredictionsBarItemHandler.swift */; };
 		B4B2084A24423CAF0099DE2A /* stops.json in Resources */ = {isa = PBXBuildFile; fileRef = B4B2084924423CAF0099DE2A /* stops.json */; };
 		B4DC65D7273351B20046F470 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DC65D6273351B20046F470 /* UIColor.swift */; };
 		B4DC65D9273354670046F470 /* DifferenceKit in Frameworks */ = {isa = PBXBuildFile; productRef = B4DC65D8273354670046F470 /* DifferenceKit */; };
@@ -159,6 +183,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		B43835B827712F1200C49537 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B477CD5A243BF7280027AE11 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B43835B327712F1200C49537;
+			remoteInfo = FilterRoutes;
+		};
+		B43835C527712F3B00C49537 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B477CD5A243BF7280027AE11 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B4F056432729DAC100ED8E30;
+			remoteInfo = BWTDatabase;
+		};
 		B4DC65EC2734C14E0046F470 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B477CD5A243BF7280027AE11 /* Project object */;
@@ -250,6 +288,7 @@
 				B4F2167C272F4CCA006A5748 /* BWTPredictions.framework in Embed Frameworks */,
 				B4F0564B2729DAC200ED8E30 /* BWTDatabase.framework in Embed Frameworks */,
 				B4F056642729DBA900ED8E30 /* BWTStopMap.framework in Embed Frameworks */,
+				B43835BB27712F1200C49537 /* BWTFilterRoutes.framework in Embed Frameworks */,
 				B4F216CC2730C922006A5748 /* BWTNetwork.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -272,6 +311,25 @@
 		B40AF45C272CE029003A35D6 /* GetLastLocationBounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetLastLocationBounds.swift; sourceTree = "<group>"; };
 		B41E1344272711820031D79E /* routes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = routes.json; sourceTree = "<group>"; };
 		B430D479245E362B002EA8FB /* NetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfig.swift; sourceTree = "<group>"; };
+		B43835B427712F1200C49537 /* BWTFilterRoutes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BWTFilterRoutes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B43835B627712F1200C49537 /* FilterRoutes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilterRoutes.h; sourceTree = "<group>"; };
+		B43835CB27712FD700C49537 /* RouteDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteDataSource.swift; sourceTree = "<group>"; };
+		B43835CD27712FD700C49537 /* RouteMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteMapper.swift; sourceTree = "<group>"; };
+		B43835D027712FD800C49537 /* RouteDataSourceRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteDataSourceRepresentable.swift; sourceTree = "<group>"; };
+		B43835D227712FD800C49537 /* RouteRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteRepository.swift; sourceTree = "<group>"; };
+		B43835D527712FD800C49537 /* RouteRepositoryRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteRepositoryRepresentable.swift; sourceTree = "<group>"; };
+		B43835D727712FD800C49537 /* Route.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
+		B43835D927712FD800C49537 /* UpdateExcludedRoutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateExcludedRoutes.swift; sourceTree = "<group>"; };
+		B43835DA27712FD800C49537 /* GetRoutesForStopId.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetRoutesForStopId.swift; sourceTree = "<group>"; };
+		B43835DD27712FD800C49537 /* UITableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
+		B43835E027712FD800C49537 /* FilterRoutesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterRoutesViewModel.swift; sourceTree = "<group>"; };
+		B43835E227712FD800C49537 /* FilterRoutesContract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterRoutesContract.swift; sourceTree = "<group>"; };
+		B43835E427712FD800C49537 /* PresentationRoute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationRoute.swift; sourceTree = "<group>"; };
+		B43835E627712FD800C49537 /* PresentationRouteMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationRouteMapper.swift; sourceTree = "<group>"; };
+		B43835E827712FD800C49537 /* FilterRoutesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterRoutesViewController.swift; sourceTree = "<group>"; };
+		B43835F7277130C900C49537 /* ExcludedRoutesTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExcludedRoutesTable.swift; sourceTree = "<group>"; };
+		B43835F92771395C00C49537 /* FilterRoutesComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilterRoutesComponent.swift; path = "../../../buswatch-ios-merged/BusWatch/Dependencies/FilterRoutesComponent.swift"; sourceTree = "<group>"; };
+		B43835FB27713E3900C49537 /* ExcludedRouteMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExcludedRouteMapper.swift; sourceTree = "<group>"; };
 		B438A6D72724E04800A7797F /* UserDefaultsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsDataSource.swift; sourceTree = "<group>"; };
 		B43E071A2453CEFE00393B76 /* StyleConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleConfig.swift; sourceTree = "<group>"; };
 		B43E071D2455157100393B76 /* PredictionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsViewController.swift; sourceTree = "<group>"; };
@@ -300,6 +358,7 @@
 		B49700C3244BA337007AB5FC /* OverviewTitleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewTitleHeaderView.swift; sourceTree = "<group>"; };
 		B4981AFE24453A73003F161F /* StopMapContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopMapContract.swift; sourceTree = "<group>"; };
 		B4981B0124454C94003F161F /* StopMapAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopMapAnnotation.swift; sourceTree = "<group>"; };
+		B4A10AD527756EE800E6B632 /* PredictionsBarItemHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsBarItemHandler.swift; sourceTree = "<group>"; };
 		B4A82B722727167500A8B1F9 /* DataRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRoute.swift; sourceTree = "<group>"; };
 		B4B2084924423CAF0099DE2A /* stops.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = stops.json; sourceTree = "<group>"; };
 		B4CC2AF4244233ED0071A66D /* DatabasePopulator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabasePopulator.swift; sourceTree = "<group>"; };
@@ -393,6 +452,16 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		B43835B127712F1200C49537 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B43835C227712F3B00C49537 /* DifferenceKit in Frameworks */,
+				B43835C327712F3B00C49537 /* BWTDatabase.framework in Frameworks */,
+				B43835C027712F3B00C49537 /* GRDB in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B477CD5F243BF7280027AE11 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -401,6 +470,7 @@
 				B4DC660F27375A480046F470 /* BWTUserDefaults.framework in Frameworks */,
 				B4F2167B272F4CCA006A5748 /* BWTPredictions.framework in Frameworks */,
 				B4F056912729E8E900ED8E30 /* BWTOverview.framework in Frameworks */,
+				B43835BA27712F1200C49537 /* BWTFilterRoutes.framework in Frameworks */,
 				B4F056632729DBA900ED8E30 /* BWTStopMap.framework in Frameworks */,
 				B4F216CB2730C922006A5748 /* BWTNetwork.framework in Frameworks */,
 				B474B86E2725FB2900B5CBA2 /* DifferenceKit in Frameworks */,
@@ -536,6 +606,180 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		B43835B527712F1200C49537 /* BWTFilterRoutes */ = {
+			isa = PBXGroup;
+			children = (
+				B43835DE27712FD800C49537 /* Presentation */,
+				B43835D327712FD800C49537 /* Domain */,
+				B43835CE27712FD800C49537 /* Data */,
+				B43835C927712FD700C49537 /* Database */,
+				B43835DB27712FD800C49537 /* Common */,
+				B43835C827712F4B00C49537 /* SupportingFiles */,
+			);
+			path = BWTFilterRoutes;
+			sourceTree = "<group>";
+		};
+		B43835C827712F4B00C49537 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				B43835B627712F1200C49537 /* FilterRoutes.h */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		B43835C927712FD700C49537 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				B43835CA27712FD700C49537 /* DataSources */,
+				B43835CC27712FD700C49537 /* Mappers */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		B43835CA27712FD700C49537 /* DataSources */ = {
+			isa = PBXGroup;
+			children = (
+				B43835CB27712FD700C49537 /* RouteDataSource.swift */,
+			);
+			path = DataSources;
+			sourceTree = "<group>";
+		};
+		B43835CC27712FD700C49537 /* Mappers */ = {
+			isa = PBXGroup;
+			children = (
+				B43835CD27712FD700C49537 /* RouteMapper.swift */,
+			);
+			path = Mappers;
+			sourceTree = "<group>";
+		};
+		B43835CE27712FD800C49537 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				B43835D127712FD800C49537 /* Repositories */,
+				B43835CF27712FD800C49537 /* DataSources */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		B43835CF27712FD800C49537 /* DataSources */ = {
+			isa = PBXGroup;
+			children = (
+				B43835D027712FD800C49537 /* RouteDataSourceRepresentable.swift */,
+			);
+			path = DataSources;
+			sourceTree = "<group>";
+		};
+		B43835D127712FD800C49537 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				B43835D227712FD800C49537 /* RouteRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		B43835D327712FD800C49537 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				B43835D627712FD800C49537 /* Models */,
+				B43835D827712FD800C49537 /* UseCases */,
+				B43835D427712FD800C49537 /* Repositories */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		B43835D427712FD800C49537 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				B43835D527712FD800C49537 /* RouteRepositoryRepresentable.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		B43835D627712FD800C49537 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B43835D727712FD800C49537 /* Route.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B43835D827712FD800C49537 /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				B43835D927712FD800C49537 /* UpdateExcludedRoutes.swift */,
+				B43835DA27712FD800C49537 /* GetRoutesForStopId.swift */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		B43835DB27712FD800C49537 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				B43835DC27712FD800C49537 /* Extensions */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		B43835DC27712FD800C49537 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B43835DD27712FD800C49537 /* UITableView.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		B43835DE27712FD800C49537 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				B43835E127712FD800C49537 /* Contracts */,
+				B43835E727712FD800C49537 /* Views */,
+				B43835DF27712FD800C49537 /* ViewModels */,
+				B43835E327712FD800C49537 /* Models */,
+				B43835E527712FD800C49537 /* Mappers */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		B43835DF27712FD800C49537 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				B43835E027712FD800C49537 /* FilterRoutesViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		B43835E127712FD800C49537 /* Contracts */ = {
+			isa = PBXGroup;
+			children = (
+				B43835E227712FD800C49537 /* FilterRoutesContract.swift */,
+			);
+			path = Contracts;
+			sourceTree = "<group>";
+		};
+		B43835E327712FD800C49537 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B43835E427712FD800C49537 /* PresentationRoute.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B43835E527712FD800C49537 /* Mappers */ = {
+			isa = PBXGroup;
+			children = (
+				B43835E627712FD800C49537 /* PresentationRouteMapper.swift */,
+			);
+			path = Mappers;
+			sourceTree = "<group>";
+		};
+		B43835E727712FD800C49537 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B43835E827712FD800C49537 /* FilterRoutesViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		B43E07192453CEE700393B76 /* Config */ = {
 			isa = PBXGroup;
 			children = (
@@ -562,6 +806,7 @@
 				B4DC661F27375F3F0046F470 /* OverviewComponent.swift */,
 				B4DC6621273836D20046F470 /* StopMapComponent.swift */,
 				B4DC662327383C580046F470 /* PredictionsComponent.swift */,
+				B43835F92771395C00C49537 /* FilterRoutesComponent.swift */,
 			);
 			path = Dependencies;
 			sourceTree = "<group>";
@@ -573,6 +818,7 @@
 				B4F0568C2729E8E900ED8E30 /* BWTOverview */,
 				B4F0565E2729DBA900ED8E30 /* BWTStopMap */,
 				B4F21676272F4CCA006A5748 /* BWTPredictions */,
+				B43835B527712F1200C49537 /* BWTFilterRoutes */,
 				B4F056452729DAC100ED8E30 /* BWTDatabase */,
 				B4F216C62730C922006A5748 /* BWTNetwork */,
 				B4DC660A27375A480046F470 /* BWTUserDefaults */,
@@ -591,6 +837,7 @@
 				B4F21675272F4CCA006A5748 /* BWTPredictions.framework */,
 				B4F216C52730C922006A5748 /* BWTNetwork.framework */,
 				B4DC660927375A480046F470 /* BWTUserDefaults.framework */,
+				B43835B427712F1200C49537 /* BWTFilterRoutes.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -677,6 +924,14 @@
 				B4981B0124454C94003F161F /* StopMapAnnotation.swift */,
 			);
 			path = Annotations;
+			sourceTree = "<group>";
+		};
+		B4A10AD727756EF000E6B632 /* Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				B4A10AD527756EE800E6B632 /* PredictionsBarItemHandler.swift */,
+			);
+			path = Handlers;
 			sourceTree = "<group>";
 		};
 		B4AE872E244BA57600A7ACBE /* Views */ = {
@@ -824,6 +1079,7 @@
 				B4F055D12727641E00ED8E30 /* FavoriteStopsTable.swift */,
 				B4F055D32727643900ED8E30 /* LastLocationTable.swift */,
 				B4F055D52727645E00ED8E30 /* RoutesTable.swift */,
+				B43835F7277130C900C49537 /* ExcludedRoutesTable.swift */,
 			);
 			path = Tables;
 			sourceTree = "<group>";
@@ -1226,6 +1482,7 @@
 			children = (
 				B4F216AF2730B13A006A5748 /* StopMapper.swift */,
 				B4F216B52730B4F3006A5748 /* DataRouteMapper.swift */,
+				B43835FB27713E3900C49537 /* ExcludedRouteMapper.swift */,
 			);
 			path = Mappers;
 			sourceTree = "<group>";
@@ -1326,6 +1583,7 @@
 				B4DC65E42734B9B80046F470 /* PredictionsNoDataViewController.swift */,
 				B470C81F27235D83007CEAF9 /* LoadingViewController.swift */,
 				B43E0724245516CB00393B76 /* Cells */,
+				B4A10AD727756EF000E6B632 /* Handlers */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1365,6 +1623,14 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		B43835AF27712F1200C49537 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B43835B727712F1200C49537 /* FilterRoutes.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B4DC660427375A480046F470 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -1416,6 +1682,29 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		B43835B327712F1200C49537 /* BWTFilterRoutes */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B43835BE27712F1200C49537 /* Build configuration list for PBXNativeTarget "BWTFilterRoutes" */;
+			buildPhases = (
+				B43835AF27712F1200C49537 /* Headers */,
+				B43835B027712F1200C49537 /* Sources */,
+				B43835B127712F1200C49537 /* Frameworks */,
+				B43835B227712F1200C49537 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B43835C627712F3B00C49537 /* PBXTargetDependency */,
+			);
+			name = BWTFilterRoutes;
+			packageProductDependencies = (
+				B43835BF27712F3B00C49537 /* GRDB */,
+				B43835C127712F3B00C49537 /* DifferenceKit */,
+			);
+			productName = FilterRoutes;
+			productReference = B43835B427712F1200C49537 /* BWTFilterRoutes.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		B477CD61243BF7280027AE11 /* BusWatch */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B477CD76243BF72F0027AE11 /* Build configuration list for PBXNativeTarget "BusWatch" */;
@@ -1435,6 +1724,7 @@
 				B4F2167A272F4CCA006A5748 /* PBXTargetDependency */,
 				B4F216CA2730C922006A5748 /* PBXTargetDependency */,
 				B4DC660E27375A480046F470 /* PBXTargetDependency */,
+				B43835B927712F1200C49537 /* PBXTargetDependency */,
 			);
 			name = BusWatch;
 			packageProductDependencies = (
@@ -1582,6 +1872,9 @@
 				LastUpgradeCheck = 1300;
 				ORGANIZATIONNAME = "Tyler Madonna";
 				TargetAttributes = {
+					B43835B327712F1200C49537 = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
 					B477CD61243BF7280027AE11 = {
 						CreatedOnToolsVersion = 11.4;
 					};
@@ -1628,6 +1921,7 @@
 				B4F0568A2729E8E900ED8E30 /* BWTOverview */,
 				B4F0565C2729DBA900ED8E30 /* BWTStopMap */,
 				B4F21674272F4CCA006A5748 /* BWTPredictions */,
+				B43835B327712F1200C49537 /* BWTFilterRoutes */,
 				B4F056432729DAC100ED8E30 /* BWTDatabase */,
 				B4F216C42730C922006A5748 /* BWTNetwork */,
 				B4DC660827375A480046F470 /* BWTUserDefaults */,
@@ -1636,6 +1930,13 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		B43835B227712F1200C49537 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B477CD60243BF7280027AE11 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1713,11 +2014,33 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		B43835B027712F1200C49537 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B43835EB27712FD800C49537 /* RouteDataSourceRepresentable.swift in Sources */,
+				B43835EA27712FD800C49537 /* RouteMapper.swift in Sources */,
+				B43835F327712FD800C49537 /* FilterRoutesContract.swift in Sources */,
+				B43835F227712FD800C49537 /* FilterRoutesViewModel.swift in Sources */,
+				B43835E927712FD800C49537 /* RouteDataSource.swift in Sources */,
+				B43835EE27712FD800C49537 /* Route.swift in Sources */,
+				B43835F627712FD800C49537 /* FilterRoutesViewController.swift in Sources */,
+				B43835F527712FD800C49537 /* PresentationRouteMapper.swift in Sources */,
+				B43835EF27712FD800C49537 /* UpdateExcludedRoutes.swift in Sources */,
+				B43835F127712FD800C49537 /* UITableView.swift in Sources */,
+				B43835ED27712FD800C49537 /* RouteRepositoryRepresentable.swift in Sources */,
+				B43835F427712FD800C49537 /* PresentationRoute.swift in Sources */,
+				B43835EC27712FD800C49537 /* RouteRepository.swift in Sources */,
+				B43835F027712FD800C49537 /* GetRoutesForStopId.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B477CD5E243BF7280027AE11 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				B490A0082453B4FA000744EB /* AppEventCoordinator.swift in Sources */,
+				B43835FA2771395C00C49537 /* FilterRoutesComponent.swift in Sources */,
 				B45988CA24429720006F9B32 /* AppComponent.swift in Sources */,
 				B477CD66243BF7280027AE11 /* AppDelegate.swift in Sources */,
 				B43E071B2453CEFE00393B76 /* StyleConfig.swift in Sources */,
@@ -1744,6 +2067,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4DC65F72734C4FC0046F470 /* DatabaseStop.swift in Sources */,
+				B43835F8277130C900C49537 /* ExcludedRoutesTable.swift in Sources */,
 				B4DC65FC273715FB0046F470 /* DatabaseStopMapper.swift in Sources */,
 				B4F056552729DB0D00ED8E30 /* RoutesTable.swift in Sources */,
 				B4F056522729DAFF00ED8E30 /* StopsTable.swift in Sources */,
@@ -1827,6 +2151,7 @@
 			files = (
 				B4F216E327334C43006A5748 /* PredictionsDataViewController.swift in Sources */,
 				B4F2168D272F4D64006A5748 /* Prediction.swift in Sources */,
+				B4A10AD627756EE800E6B632 /* PredictionsBarItemHandler.swift in Sources */,
 				B4F216A0272F5280006A5748 /* StopRepository.swift in Sources */,
 				B4F2168C272F4D60006A5748 /* DataRoute.swift in Sources */,
 				B4F2169D272F515F006A5748 /* Stop.swift in Sources */,
@@ -1842,6 +2167,7 @@
 				B4F216B62730B4F3006A5748 /* DataRouteMapper.swift in Sources */,
 				B4F21699272F5087006A5748 /* PredictionDataSourceRepresentable.swift in Sources */,
 				B4DC65DB273363900046F470 /* UIViewController.swift in Sources */,
+				B43835FC27713E3900C49537 /* ExcludedRouteMapper.swift in Sources */,
 				B4F216E527334C4C006A5748 /* PredictionCell.swift in Sources */,
 				B4F216EC27334D9A006A5748 /* PresentationPredictionMapper.swift in Sources */,
 				B4F216BA2730B630006A5748 /* NetworkPrediction.swift in Sources */,
@@ -1879,6 +2205,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		B43835B927712F1200C49537 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B43835B327712F1200C49537 /* BWTFilterRoutes */;
+			targetProxy = B43835B827712F1200C49537 /* PBXContainerItemProxy */;
+		};
+		B43835C627712F3B00C49537 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B4F056432729DAC100ED8E30 /* BWTDatabase */;
+			targetProxy = B43835C527712F3B00C49537 /* PBXContainerItemProxy */;
+		};
 		B4DC65ED2734C14E0046F470 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B4F056432729DAC100ED8E30 /* BWTDatabase */;
@@ -1948,6 +2284,70 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		B43835BC27712F1200C49537 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 3Z4DAK43ND;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021 Tyler Madonna. All rights reserved.";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tylermadonna.BusWatch.FilterRoutes;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		B43835BD27712F1200C49537 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 3Z4DAK43ND;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021 Tyler Madonna. All rights reserved.";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tylermadonna.BusWatch.FilterRoutes;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		B477CD74243BF72F0027AE11 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2499,6 +2899,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		B43835BE27712F1200C49537 /* Build configuration list for PBXNativeTarget "BWTFilterRoutes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B43835BC27712F1200C49537 /* Debug */,
+				B43835BD27712F1200C49537 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		B477CD5D243BF7280027AE11 /* Build configuration list for PBXProject "BusWatch" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -2597,6 +3006,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B470C82127239368007CEAF9 /* XCRemoteSwiftPackageReference "GRDB" */;
 			productName = GRDB;
+		};
+		B43835BF27712F3B00C49537 /* GRDB */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B470C82127239368007CEAF9 /* XCRemoteSwiftPackageReference "GRDB" */;
+			productName = GRDB;
+		};
+		B43835C127712F3B00C49537 /* DifferenceKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B474B86C2725FB2900B5CBA2 /* XCRemoteSwiftPackageReference "DifferenceKit" */;
+			productName = DifferenceKit;
 		};
 		B470C82227239368007CEAF9 /* GRDB */ = {
 			isa = XCSwiftPackageProductDependency;

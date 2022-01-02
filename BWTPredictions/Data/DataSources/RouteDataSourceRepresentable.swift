@@ -13,4 +13,5 @@ public protocol RouteDataSourceRepresentable {
 
     func getRoutesWithIds(_ routeIds: [String]) -> AnyPublisher<[DataRoute], Error>
 
+    func getExcludedRouteIdsForStopId(_ stopId: String) -> AnyPublisher<[String], Error>
 }

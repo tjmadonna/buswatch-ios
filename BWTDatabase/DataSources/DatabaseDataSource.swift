@@ -20,7 +20,7 @@ public final class DatabaseDataSource: DatabaseDataSourceRepresentable {
 
     // MARK: - Properties
 
-    private static let databaseVersion = "2"
+    private static let databaseVersion = "3"
 
     private let queueSubject = CurrentValueSubject<DatabaseQueue?, Error>(nil)
 
@@ -50,6 +50,10 @@ public final class DatabaseDataSource: DatabaseDataSourceRepresentable {
 
         migrator.registerMigration("2") {db in
             try db.execute(sql: RoutesTable.Migration.createTableForVersion2)
+        }
+
+        migrator.registerMigration("3") { db in
+            try db.execute(sql: ExcludedRoutesTable.Migration.createTableForVersion3)
         }
 
         return migrator

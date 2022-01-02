@@ -15,11 +15,16 @@ public final class RouteDataSource: RouteDataSourceRepresentable {
 
     private let database: DatabaseDataSourceRepresentable
 
-    private let mapper: DataRouteMapper
+    private let dataRouteMapper: DataRouteMapper
 
-    public init(database: DatabaseDataSourceRepresentable, mapper: DataRouteMapper = DataRouteMapper()) {
+    private let excludedRouteMapper: ExcludedRouteMapper
+
+    public init(database: DatabaseDataSourceRepresentable,
+                dataRouteMapper: DataRouteMapper = DataRouteMapper(),
+                excludedRouteMapper: ExcludedRouteMapper = ExcludedRouteMapper()) {
         self.database = database
-        self.mapper = mapper
+        self.dataRouteMapper = dataRouteMapper
+        self.excludedRouteMapper = excludedRouteMapper
     }
 
     // MARK: - RouteDataSourceRepresentable
@@ -37,8 +42,25 @@ public final class RouteDataSource: RouteDataSourceRepresentable {
             .tryMap { dbQueue in
                 return try dbQueue.read { db in
                     let cursor = try Row.fetchCursor(db, sql: sql, arguments: arguments)
-                    return self.mapper.mapDatabaseCursorToDataRouteArray(cursor)
+                    return self.dataRouteMapper.mapDatabaseCursorToDataRouteArray(cursor)
                 }
+            }
+            .eraseToAnyPublisher()
+    }
+
+    public func getExcludedRouteIdsForStopId(_ stopId: String) -> AnyPublisher<[String], Error> {
+        let sql = """
+        SELECT \(ExcludedRoutesTable.routesColumn) FROM \(ExcludedRoutesTable.tableName)
+        WHERE \(ExcludedRoutesTable.stopIdColumn) = ?
+        """
+        let arguments = StatementArguments([stopId])
+        return database.queue
+            .flatMap { dbQueue in
+                return ValueObservation.tracking { db in
+                    let row = try Row.fetchOne(db, sql: sql, arguments: arguments)
+                    return self.excludedRouteMapper.mapDatabaseRowToRouteIdArray(row)
+                }
+                .publisher(in: dbQueue)
             }
             .eraseToAnyPublisher()
     }

@@ -27,6 +27,11 @@ public final class PredictionRepository : PredictionRepositoryRepresentable {
 
     public func getPredictionsForStopId(_ stopId: String)  -> AnyPublisher<[Prediction], Error> {
         return predictionDataSource.getPredictionsForStopId(stopId)
+            .combineLatest(routeDataSource.getExcludedRouteIdsForStopId(stopId))
+            .map { (predictions, excludedRoutes) in
+                let excludedRoutesSet = Set(excludedRoutes)
+                return predictions.filter { prediction in !excludedRoutesSet.contains(prediction.routeId) }
+            }
             .flatMap { self.getRoutesForDataPredictions($0) }
             .map { self.mapper.mapDataPredictionArrayToDomainPredictionArray($0, routes: $1) ?? [] }
             .eraseToAnyPublisher()

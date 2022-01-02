@@ -11,15 +11,6 @@ import Combine
 
 public final class PredictionsViewController: UIViewController {
 
-    // MARK: - Views
-
-    private let titleView: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 18)
-        label.textColor = .white
-        return label
-    }()
-
     // MARK: - Child View Controllers
 
     private lazy var loadingViewController: LoadingViewController = {
@@ -48,17 +39,9 @@ public final class PredictionsViewController: UIViewController {
 
     private let style: PredictionsStyleRepresentable
 
+    private var barItemHandler: PredictionsNavBarHandler?
+
     private var cancellables: [AnyCancellable] = []
-
-    // MARK: - Views
-
-    private lazy var favoritedBarButton: UIBarButtonItem = {
-        let starImage = UIImage(systemName: "star")
-        return UIBarButtonItem(image: starImage,
-                               style: .plain,
-                               target: self,
-                               action: #selector(handleFavoriteToggleTouch(sender:)))
-    }()
 
     // MARK: - Initialization
 
@@ -89,7 +72,6 @@ public final class PredictionsViewController: UIViewController {
 
     private func setupViewController() {
         title = ""
-        navigationItem.titleView = titleView
         view.backgroundColor = style.backgroundColor
 
         loadingViewController.view.isHidden = true
@@ -102,7 +84,8 @@ public final class PredictionsViewController: UIViewController {
     }
 
     private func setupBarItems() {
-        navigationItem.rightBarButtonItem = favoritedBarButton
+        barItemHandler = PredictionsNavBarHandler(navigationItem: navigationItem)
+        barItemHandler?.delegate = self
     }
 
     private func setupObservers() {
@@ -127,18 +110,11 @@ public final class PredictionsViewController: UIViewController {
         .store(in: &cancellables)
     }
 
-    // MARK: - Button handling
-
-    @objc private func handleFavoriteToggleTouch(sender: Any) {
-        viewModel.handleIntent(.toggleFavorited)
-    }
-
     // MARK: - State Rendering
 
     private func renderNavBarState(_ state: PredictionsNavBarState) {
-        let image = state.favorited ? UIImage(systemName: "star.fill") :  UIImage(systemName: "star")
-        self.favoritedBarButton.image = image
-        titleView.text = state.title
+        barItemHandler?.setTitleForNavBarState(state)
+        barItemHandler?.setBarItemsForNavBarState(state)
     }
 
     private func renderLoadingDataState() {
@@ -192,5 +168,21 @@ public final class PredictionsViewController: UIViewController {
         dataViewController.view.isHidden = true
         currentViewController = nil
         presentAlertViewControllerWithTitle("An Error Occured", message: message)
+    }
+}
+
+extension PredictionsViewController: PredictionsNavBarHandlerDelegate {
+
+    func predictionsNavBarHandlerDidSelectFavoriteStop(_ predictionsNavBarHandler: PredictionsNavBarHandler) {
+        viewModel.handleIntent(.toggleFavorited)
+    }
+
+    func predictionsNavBarHandlerDidSelectFilterRoutes(_ predictionsNavBarHandler: PredictionsNavBarHandler) {
+        viewModel.handleIntent(.filterRoutesSelected)
+    }
+
+    func predictionsNavBarHandler(_ predictionsNavBarHandler: PredictionsNavBarHandler,
+                                  wantsToPresentAlertController alertController: UIAlertController) {
+        present(alertController, animated: true, completion: nil)
     }
 }

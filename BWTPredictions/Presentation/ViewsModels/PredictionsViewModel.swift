@@ -98,10 +98,12 @@ public final class PredictionsViewModel {
         switch intent {
         case .toggleFavorited:
             self.handleToggleFavoritedIntent()
+        case .filterRoutesSelected:
+            self.handleFilterRoutesSelectedIntent()
         }
     }
 
-    func handleToggleFavoritedIntent() {
+    private func handleToggleFavoritedIntent() {
         // If stop is favorited, unfavorite it and if stop if unfavorited, favorite it
         let publisher = navBarStateSubject.value.favorited
             ? unfavoriteStop.execute(stopId: stopId)
@@ -115,5 +117,9 @@ public final class PredictionsViewModel {
                 }
             }) { _ in
         }.store(in: &cancellables)
+    }
+
+    private func handleFilterRoutesSelectedIntent() {
+        eventCoordinator?.filterRoutesSelectedInFilterRoutes(stopId)
     }
 }

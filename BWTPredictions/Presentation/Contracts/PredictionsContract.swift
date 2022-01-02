@@ -27,12 +27,13 @@ enum PredictionsDataState {
 
 enum PredictionsIntent {
     case toggleFavorited
+    case filterRoutesSelected
 }
 
 // MARK: - Coordinator
 
 public protocol PredictionsEventCoordinator : AnyObject {
-
+    func filterRoutesSelectedInFilterRoutes(_ stopId: String)
 }
 
 // MARK: - Resources
