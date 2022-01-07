@@ -53,7 +53,7 @@ final class PredictionsNavBarHandler {
                          image: UIImage(systemName: "star"),
                          handler: handleFavoriteToggleTouch),
                 UIAction(title: "Filter Routes",
-                         image: UIImage(systemName: "line.3.horizontal.decrease.circle"),
+                         image: UIImage(systemName: "line.horizontal.3.decrease.circle"),
                          handler: handleFilterRoutesTouch)
             ])
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "",
