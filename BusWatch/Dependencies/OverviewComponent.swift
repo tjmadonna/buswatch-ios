@@ -7,11 +7,10 @@
 //
 
 import Foundation
-import BWTOverview
 
 final class OverviewComponent {
 
-    private struct OverviewStyle : OverviewStyleRepresentable {
+    private struct OverviewStyleImpl: OverviewStyle {
 
         let backgroundColor = Colors.backgroundColor
 
@@ -27,19 +26,19 @@ final class OverviewComponent {
 
         let database = appComponent.provideDatabaseDataSource()
 
-        let favoriteStopDataSource = FavoriteStopDataSource(database: database)
-        let favoriteStopRepository = FavoriteStopRepository(favoriteStopDataSource: favoriteStopDataSource)
+        let favoriteStopDataSource = OverviewFavoriteStopDataSourceImpl(database: database)
+        let favoriteStopRepository = OverviewFavoriteStopRepositoryImpl(favoriteStopDataSource: favoriteStopDataSource)
 
-        let locationDataSource = LocationDataSource(database: database)
-        let locationRepository = LocationRepository(locationDataSource: locationDataSource)
+        let locationDataSource = OverviewLocationDataSourceImpl(database: database)
+        let locationRepository = OverviewLocationRepositoryImpl(locationDataSource: locationDataSource)
 
-        let getFavoriteStops = GetFavoriteStops(favoriteStopRepository: favoriteStopRepository)
-        let getLastLocationBounds = GetLastLocationBounds(locationRepository: locationRepository)
+        let getFavoriteStops = OverviewGetFavoriteStops(favoriteStopRepository: favoriteStopRepository)
+        let getLastLocationBounds = OverviewGetLastLocationBounds(locationRepository: locationRepository)
 
         let viewModel = OverviewViewModel(getFavoriteStops: getFavoriteStops,
                                           getLastLocationBounds: getLastLocationBounds,
                                           eventCoordinator: eventCoordinator)
-        let style = OverviewStyle()
+        let style = OverviewStyleImpl()
 
         return OverviewViewController(viewModel: viewModel, style: style)
     }

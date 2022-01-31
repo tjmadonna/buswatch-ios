@@ -11,9 +11,13 @@ import Foundation
 enum DatabaseConfig {
 
     static var url: URL {
-        return try! FileManager.default
-            .url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-            .appendingDirectoryPathComponent("Data", create: true)
-            .appendingPathComponent("buswatch.sqlite")
+        do {
+            return try FileManager.default
+                .url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+                .appendingDirectoryPathComponent("Data", create: true)
+                .appendingPathComponent("buswatch.sqlite")
+        } catch {
+            fatalError("Unable to create database: \(error)")
+        }
     }
 }

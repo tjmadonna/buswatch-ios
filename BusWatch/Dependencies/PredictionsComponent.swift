@@ -8,13 +8,11 @@
 
 import Foundation
 import UIKit
-import BWTPredictions
-import BWTNetwork
 
 final class PredictionsComponent {
 
-    private struct PredictionsStyle : PredictionsStyleRepresentable {
-        
+    private struct PredictionsStyleImpl: PredictionsStyle {
+
         let backgroundColor = Colors.backgroundColor
 
         let cellBackground = Colors.raisedBackgroundColor
@@ -34,22 +32,22 @@ final class PredictionsComponent {
                                   host: NetworkConfig.host,
                                   apiKey: NetworkConfig.apiKey,
                                   basePath: NetworkConfig.basePath)
-        let urlSource = UrlSource(urlConfig: urlConfig)
+        let urlSource = UrlSourceImpl(urlConfig: urlConfig)
 
-        let stopDataSource = StopDataSource(database: database)
-        let stopRepository = StopRepository(stopDataSource: stopDataSource)
+        let stopDataSource = PredictionsStopDataSourceImpl(database: database)
+        let stopRepository = PredictionsStopRepositoryImpl(stopDataSource: stopDataSource)
 
-        let predictionDataSource = PredictionDataSource(urlSource: urlSource)
-        let routeDataSource = RouteDataSource(database: database)
-        let predictionRepository = PredictionRepository(predictionDataSource: predictionDataSource,
-                                                        routeDataSource: routeDataSource)
+        let predictionDataSource = PredictionsPredictionDataSourceImpl(urlSource: urlSource)
+        let routeDataSource = PredictionsRouteDataSourceImpl(database: database)
+        let predictionRepository = PredictionsPredictionRepositoryImpl(predictionDataSource: predictionDataSource,
+                                                                       routeDataSource: routeDataSource)
 
-        let getStopById = GetStopById(stopRepository: stopRepository)
-        let getPredictionsForStopId = GetPredictionsForStopId(predictionRepository: predictionRepository)
-        let favoriteStop = FavoriteStop(stopRepository: stopRepository)
-        let unfavoriteStop = UnfavoriteStop(stopRepository: stopRepository)
+        let getStopById = PredictionsGetStopById(stopRepository: stopRepository)
+        let getPredictionsForStopId = PredictionsGetPredictionsForStopId(predictionRepository: predictionRepository)
+        let favoriteStop = PredictionsFavoriteStop(stopRepository: stopRepository)
+        let unfavoriteStop = PredictionsUnfavoriteStop(stopRepository: stopRepository)
 
-        let predictionMapper = PresentationPredictionMapper(capacityColor: Colors.capacityImageColor)
+        let predictionMapper = PredictionsPresentationPredictionMapper(capacityColor: Colors.capacityImageColor)
         let viewModel = PredictionsViewModel(stopId: stopId,
                                              getStopById: getStopById,
                                              getPredictionsForStopId: getPredictionsForStopId,
@@ -57,7 +55,7 @@ final class PredictionsComponent {
                                              unfavoriteStop: unfavoriteStop,
                                              eventCoordinator: eventCoordinator,
                                              predictionMapper: predictionMapper)
-        let style = PredictionsStyle()
+        let style = PredictionsStyleImpl()
 
         return PredictionsViewController(viewModel: viewModel, style: style)
     }

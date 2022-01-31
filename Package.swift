@@ -14,5 +14,4 @@ let package = Package(
       name: packageName,
       path: packageName
     )
-  ]
-)
+  ])

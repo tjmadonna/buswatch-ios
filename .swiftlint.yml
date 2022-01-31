@@ -1,0 +1,9 @@
+disabled_rules:
+  - redundant_string_enum_value
+  - nesting
+identifier_name:
+  min_length: 2
+  max_length: 50
+type_name:
+  min_length: 2
+  max_length: 50

@@ -7,27 +7,24 @@
 //
 
 import Foundation
-import BWTUserDefaults
-import BWTDatabase
-import BWTOverview
 
 final class AppComponent {
 
-    private lazy var database: DatabaseDataSourceRepresentable = {
+    private lazy var database: DatabaseDataSource = {
         let userDefaultsDataSource = self.userDefaults
         let populator = DatabasePopulator(userDefaultaDataSource: userDefaultsDataSource)
-        return DatabaseDataSource(databasePath: DatabaseConfig.url, databasePopulator: populator)
+        return DatabaseDataSourceImpl(databasePath: DatabaseConfig.url, databasePopulator: populator)
     }()
 
-    private lazy var userDefaults: UserDefaultsDataSourceRepresentable = {
-        return UserDefaultsDataSource()
+    private lazy var userDefaults: UserDefaultsDataSource = {
+        return UserDefaultsDataSourceImpl()
     }()
 
-    func provideDatabaseDataSource() -> DatabaseDataSourceRepresentable {
+    func provideDatabaseDataSource() -> DatabaseDataSource {
         return database
     }
 
-    func provideUserDefaultsDataSource() -> UserDefaultsDataSourceRepresentable {
+    func provideUserDefaultsDataSource() -> UserDefaultsDataSource {
         return userDefaults
     }
 }

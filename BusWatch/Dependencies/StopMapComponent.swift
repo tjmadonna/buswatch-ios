@@ -8,11 +8,10 @@
 
 import Foundation
 import MapKit
-import BWTStopMap
 
 final class StopMapComponent {
 
-    private struct StopMapStyle : StopMapStyleRepresentable {
+    private struct StopMapStyleImpl: StopMapStyle {
 
         let mapAnnotationTintColor = Colors.navBarColor
 
@@ -25,25 +24,25 @@ final class StopMapComponent {
         let database = appComponent.provideDatabaseDataSource()
         let locationManager = CLLocationManager()
 
-        let stopDataSource = StopDataSource(database: database)
-        let stopRepository = StopRepository(stopDataSource: stopDataSource)
+        let stopDataSource = StopMapStopDataSourceImpl(database: database)
+        let stopRepository = StopMapStopRepositoryImpl(stopDataSource: stopDataSource)
 
-        let locationDataSource = LocationDataSource(database: database)
-        let locationPermissionDataSource = LocationPermissionDataSource(locationManager: locationManager)
-        let locationRepository = LocationRepository(locationDataSource: locationDataSource,
-                                                    locationPermissionDataSource: locationPermissionDataSource)
+        let locationDataSource = StopMapLocationDataSourceImpl(database: database)
+        let locationPermissionDataSource = StopMapLocationPermissionDataSourceImpl(locationManager: locationManager)
+        let locationRepository = StopMapLocationRepositoryImpl(locationDataSource: locationDataSource,
+                                                        locationPermissionDataSource: locationPermissionDataSource)
 
-        let getStopsInLocationBounds = GetStopsInLocationBounds(stopRepository: stopRepository)
-        let getLastLocationBounds = GetLastLocationBounds(locationRepository: locationRepository)
-        let saveLastLocationBounds = SaveLastLocationBounds(locationRepository: locationRepository)
-        let getCurrentLocationPermissionStatus = GetCurrentLocationPermissionStatus(locationRepository: locationRepository)
+        let getStopsInLocationBounds = StopMapGetStopsInLocationBounds(stopRepository: stopRepository)
+        let getLastLocationBounds = StopMapGetLastLocationBounds(locationRepository: locationRepository)
+        let saveLastLocationBounds = StopMapSaveLastLocationBounds(locationRepository: locationRepository)
+        let getPermissionStatus = StopMapGetCurrentLocationPermissionStatus(locationRepository: locationRepository)
 
         let viewModel = StopMapViewModel(getStopsInLocationBounds: getStopsInLocationBounds,
                                           getLastLocationBounds: getLastLocationBounds,
                                           saveLastLocationBounds: saveLastLocationBounds,
-                                          getCurrentLocationPermissionStatus: getCurrentLocationPermissionStatus,
+                                          getCurrentLocationPermissionStatus: getPermissionStatus,
                                           eventCoordinator: eventCoordinator)
-        let style = StopMapStyle()
+        let style = StopMapStyleImpl()
 
         return StopMapViewController(viewModel: viewModel, style: style)
     }
