@@ -26,8 +26,12 @@ final class OverviewFavoriteStopMapper {
         guard let id = row[StopsTable.idColumn] as? String else { return nil }
         guard let title = row[StopsTable.titleColumn] as? String else { return nil }
 
+        let excludedRoutesString = row["e.\(ExcludedRoutesTable.routesColumn)"] as? String ?? ""
+        let excludedRoutes = Set(excludedRoutesString.components(separatedBy: ExcludedRoutesTable.routesDelimiter))
+
         let routesString = row[StopsTable.routesColumn] as? String ?? ""
         let routes = routesString.components(separatedBy: StopsTable.routesDelimiter)
+            .filter { route in !excludedRoutes.contains(route) }
 
         return OverviewFavoriteStop(id: id, title: title, routes: routes)
     }

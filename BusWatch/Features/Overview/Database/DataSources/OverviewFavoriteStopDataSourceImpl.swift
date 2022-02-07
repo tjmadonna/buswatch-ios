@@ -26,11 +26,13 @@ final class OverviewFavoriteStopDataSourceImpl: OverviewFavoriteStopDataSource {
 
     func getFavoriteStops() -> AnyPublisher<[OverviewFavoriteStop], Error> {
         let sql = """
-        SELECT \(StopsTable.idColumn), \(StopsTable.titleColumn), \(StopsTable.routesColumn)
-        FROM \(StopsTable.tableName)
-        INNER JOIN \(FavoriteStopsTable.tableName)
-        ON \(StopsTable.tableName).\(StopsTable.idColumn) =
-        \(FavoriteStopsTable.tableName).\(FavoriteStopsTable.stopIdColumn)
+        SELECT s.\(StopsTable.idColumn), s.\(StopsTable.titleColumn), s.\(StopsTable.routesColumn),
+        e.\(ExcludedRoutesTable.routesColumn) as "e.\(ExcludedRoutesTable.routesColumn)"
+        FROM \(StopsTable.tableName) AS s
+        INNER JOIN \(FavoriteStopsTable.tableName) AS f
+        ON s.\(StopsTable.idColumn) = f.\(FavoriteStopsTable.stopIdColumn)
+        LEFT JOIN \(ExcludedRoutesTable.tableName) as e
+        ON s.\(StopsTable.idColumn) = e.\(ExcludedRoutesTable.stopIdColumn)
         """
         return valueObservationPublisherForSQL(sql)
     }
