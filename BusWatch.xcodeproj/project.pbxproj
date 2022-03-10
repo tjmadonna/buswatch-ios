@@ -91,8 +91,6 @@
 		B46DBEB327A71C360041E8DF /* FilterRoutesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43835E827712FD800C49537 /* FilterRoutesViewController.swift */; };
 		B46DBEB427A71C360041E8DF /* FilterRoutesPresentationRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43835E427712FD800C49537 /* FilterRoutesPresentationRoute.swift */; };
 		B46DBEB527A71C420041E8DF /* FilterRoutesRouteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43835D527712FD800C49537 /* FilterRoutesRouteRepository.swift */; };
-		B46DBEB627A71C440041E8DF /* FilterRoutesGetRoutesForStopId.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43835DA27712FD800C49537 /* FilterRoutesGetRoutesForStopId.swift */; };
-		B46DBEB727A71C460041E8DF /* FilterRoutesUpdateExcludedRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43835D927712FD800C49537 /* FilterRoutesUpdateExcludedRoutes.swift */; };
 		B46DBEB827A71C490041E8DF /* FilterRoutesRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43835D727712FD800C49537 /* FilterRoutesRoute.swift */; };
 		B46DBEB927A71C6F0041E8DF /* FilterRoutesRouteRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43835D227712FD800C49537 /* FilterRoutesRouteRepositoryImpl.swift */; };
 		B46DBEBA27A71C6F0041E8DF /* FilterRoutesRouteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43835D027712FD800C49537 /* FilterRoutesRouteDataSource.swift */; };
@@ -168,8 +166,6 @@
 		B43835D227712FD800C49537 /* FilterRoutesRouteRepositoryImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterRoutesRouteRepositoryImpl.swift; sourceTree = "<group>"; };
 		B43835D527712FD800C49537 /* FilterRoutesRouteRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterRoutesRouteRepository.swift; sourceTree = "<group>"; };
 		B43835D727712FD800C49537 /* FilterRoutesRoute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterRoutesRoute.swift; sourceTree = "<group>"; };
-		B43835D927712FD800C49537 /* FilterRoutesUpdateExcludedRoutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterRoutesUpdateExcludedRoutes.swift; sourceTree = "<group>"; };
-		B43835DA27712FD800C49537 /* FilterRoutesGetRoutesForStopId.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterRoutesGetRoutesForStopId.swift; sourceTree = "<group>"; };
 		B43835E027712FD800C49537 /* FilterRoutesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterRoutesViewModel.swift; sourceTree = "<group>"; };
 		B43835E227712FD800C49537 /* FilterRoutesContract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterRoutesContract.swift; sourceTree = "<group>"; };
 		B43835E427712FD800C49537 /* FilterRoutesPresentationRoute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterRoutesPresentationRoute.swift; sourceTree = "<group>"; };
@@ -424,7 +420,6 @@
 			isa = PBXGroup;
 			children = (
 				B43835D627712FD800C49537 /* Models */,
-				B43835D827712FD800C49537 /* UseCases */,
 				B43835D427712FD800C49537 /* Repositories */,
 			);
 			path = Domain;
@@ -444,15 +439,6 @@
 				B43835D727712FD800C49537 /* FilterRoutesRoute.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		B43835D827712FD800C49537 /* UseCases */ = {
-			isa = PBXGroup;
-			children = (
-				B43835D927712FD800C49537 /* FilterRoutesUpdateExcludedRoutes.swift */,
-				B43835DA27712FD800C49537 /* FilterRoutesGetRoutesForStopId.swift */,
-			);
-			path = UseCases;
 			sourceTree = "<group>";
 		};
 		B43835DE27712FD800C49537 /* Presentation */ = {
@@ -1331,7 +1317,6 @@
 				B46DBECD27A754C00041E8DF /* OverviewFavoriteStop.swift in Sources */,
 				B46DBE9027A719D80041E8DF /* PredictionsPredictionCell.swift in Sources */,
 				B46DBE9727A71A050041E8DF /* PredictionsPredictionRepository.swift in Sources */,
-				B46DBEB627A71C440041E8DF /* FilterRoutesGetRoutesForStopId.swift in Sources */,
 				B46DBE8927A719BE0041E8DF /* String.swift in Sources */,
 				B46DBE6427A718B10041E8DF /* StopMapViewModel.swift in Sources */,
 				B46DBE8C27A719D30041E8DF /* PredictionsNoDataViewController.swift in Sources */,
@@ -1386,7 +1371,6 @@
 				B46DBEAE27A71A3F0041E8DF /* PredictionsNetworkPrediction.swift in Sources */,
 				B477CD66243BF7280027AE11 /* AppDelegate.swift in Sources */,
 				B46DBE8B27A719CE0041E8DF /* PredictionsContract.swift in Sources */,
-				B46DBEB727A71C460041E8DF /* FilterRoutesUpdateExcludedRoutes.swift in Sources */,
 				B46DBE5427A70F400041E8DF /* DatabasePopulator.swift in Sources */,
 				B46DBEA627A71A2A0041E8DF /* PredictionsDataRouteMapper.swift in Sources */,
 				B46DBE8A27A719BE0041E8DF /* Array.swift in Sources */,
