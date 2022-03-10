@@ -1,5 +1,5 @@
 //
-//  OverviewFavoriteStopMapper.swift
+//  OverviewStopMapper.swift
 //  BusWatch
 //
 //  Created by Tyler Madonna on 10/29/21.
@@ -9,7 +9,7 @@
 import Foundation
 import GRDB
 
-final class OverviewFavoriteStopMapper {
+final class OverviewStopMapper {
 
     func mapDatabaseCursorToDomainFavoriteStopArray(_ cursor: RowCursor) -> [OverviewFavoriteStop] {
         var favoriteStops = [OverviewFavoriteStop]()

@@ -18,10 +18,10 @@ final class OverviewLocationDataSourceImpl: OverviewLocationDataSource {
 
     private let database: DatabaseDataSource
 
-    private let mapper: OverviewLocationBoundsMapper
+    private let mapper: OverviewLocationMapper
 
     init(database: DatabaseDataSource,
-         mapper: OverviewLocationBoundsMapper = OverviewLocationBoundsMapper()) {
+         mapper: OverviewLocationMapper = OverviewLocationMapper()) {
         self.database = database
         self.mapper = mapper
     }

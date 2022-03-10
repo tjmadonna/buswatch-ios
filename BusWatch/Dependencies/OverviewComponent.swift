@@ -26,17 +26,14 @@ final class OverviewComponent {
 
         let database = appComponent.provideDatabaseDataSource()
 
-        let favoriteStopDataSource = OverviewFavoriteStopDataSourceImpl(database: database)
-        let favoriteStopRepository = OverviewFavoriteStopRepositoryImpl(favoriteStopDataSource: favoriteStopDataSource)
+        let stopDataSource = OverviewStopDataSourceImpl(database: database)
+        let stopRepository = OverviewStopRepositoryImpl(stopDataSource: stopDataSource)
 
         let locationDataSource = OverviewLocationDataSourceImpl(database: database)
         let locationRepository = OverviewLocationRepositoryImpl(locationDataSource: locationDataSource)
 
-        let getFavoriteStops = OverviewGetFavoriteStops(favoriteStopRepository: favoriteStopRepository)
-        let getLastLocationBounds = OverviewGetLastLocationBounds(locationRepository: locationRepository)
-
-        let viewModel = OverviewViewModel(getFavoriteStops: getFavoriteStops,
-                                          getLastLocationBounds: getLastLocationBounds,
+        let viewModel = OverviewViewModel(stopRepository: stopRepository,
+                                          locationRepository: locationRepository,
                                           eventCoordinator: eventCoordinator)
         let style = OverviewStyleImpl()
 

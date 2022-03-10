@@ -115,18 +115,16 @@
 		B46DBECB27A754B90041E8DF /* OverviewMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48F2BC4245F1DFC001900BE /* OverviewMessageCell.swift */; };
 		B46DBECC27A754B90041E8DF /* OverviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DCAD49245272B900A0E978 /* OverviewViewModel.swift */; };
 		B46DBECD27A754C00041E8DF /* OverviewFavoriteStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F0569C2729E9CC00ED8E30 /* OverviewFavoriteStop.swift */; };
-		B46DBECE27A754C60041E8DF /* OverviewGetLastLocationBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40AF45C272CE029003A35D6 /* OverviewGetLastLocationBounds.swift */; };
-		B46DBECF27A754C60041E8DF /* OverviewGetFavoriteStops.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40AF45A272CDFC7003A35D6 /* OverviewGetFavoriteStops.swift */; };
 		B46DBED027A754CD0041E8DF /* OverviewLocationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40AF458272CDF66003A35D6 /* OverviewLocationRepository.swift */; };
-		B46DBED127A754CD0041E8DF /* OverviewFavoriteStopRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40AF456272CDF42003A35D6 /* OverviewFavoriteStopRepository.swift */; };
+		B46DBED127A754CD0041E8DF /* OverviewStopRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40AF456272CDF42003A35D6 /* OverviewStopRepository.swift */; };
 		B46DBED227A754D30041E8DF /* FavoriteStopRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40AF452272CDEBD003A35D6 /* FavoriteStopRepository.swift */; };
-		B46DBED327A754D30041E8DF /* LocationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40AF454272CDECC003A35D6 /* LocationRepository.swift */; };
+		B46DBED327A754D30041E8DF /* OverviewLocationRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40AF454272CDECC003A35D6 /* OverviewLocationRepositoryImpl.swift */; };
 		B46DBED427A754D80041E8DF /* OverviewLocationDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40AF44D272CDC24003A35D6 /* OverviewLocationDataSource.swift */; };
-		B46DBED527A754D80041E8DF /* OverviewFavoriteStopDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40AF44F272CDC5D003A35D6 /* OverviewFavoriteStopDataSource.swift */; };
+		B46DBED527A754D80041E8DF /* OverviewStopDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40AF44F272CDC5D003A35D6 /* OverviewStopDataSource.swift */; };
 		B46DBED627A754DF0041E8DF /* OverviewLocationDataSourceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40AF447272CDBC6003A35D6 /* OverviewLocationDataSourceImpl.swift */; };
-		B46DBED727A754DF0041E8DF /* OverviewFavoriteStopDataSourceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F056A12729EE0500ED8E30 /* OverviewFavoriteStopDataSourceImpl.swift */; };
-		B46DBED827A754E30041E8DF /* LocationBoundsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40AF449272CDBEA003A35D6 /* LocationBoundsMapper.swift */; };
-		B46DBED927A754E30041E8DF /* FavoriteStopMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40AF443272CDA71003A35D6 /* FavoriteStopMapper.swift */; };
+		B46DBED727A754DF0041E8DF /* OverviewStopDataSourceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F056A12729EE0500ED8E30 /* OverviewStopDataSourceImpl.swift */; };
+		B46DBED827A754E30041E8DF /* OverviewLocationMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40AF449272CDBEA003A35D6 /* OverviewLocationMapper.swift */; };
+		B46DBED927A754E30041E8DF /* OverviewStopMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40AF443272CDA71003A35D6 /* OverviewStopMapper.swift */; };
 		B46DBEDA27A7610B0041E8DF /* OverviewTitleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49700C3244BA337007AB5FC /* OverviewTitleHeaderView.swift */; };
 		B46DBEE527A7746F0041E8DF /* OverviewLocationBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46DBEE427A7746F0041E8DF /* OverviewLocationBounds.swift */; };
 		B46DBEE927A7753E0041E8DF /* StopMapLocationBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46DBEE827A7753E0041E8DF /* StopMapLocationBounds.swift */; };
@@ -161,17 +159,15 @@
 
 /* Begin PBXFileReference section */
 		B4076309245A2201008979C5 /* PredictionsPrediction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsPrediction.swift; sourceTree = "<group>"; };
-		B40AF443272CDA71003A35D6 /* FavoriteStopMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteStopMapper.swift; sourceTree = "<group>"; };
+		B40AF443272CDA71003A35D6 /* OverviewStopMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewStopMapper.swift; sourceTree = "<group>"; };
 		B40AF447272CDBC6003A35D6 /* OverviewLocationDataSourceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewLocationDataSourceImpl.swift; sourceTree = "<group>"; };
-		B40AF449272CDBEA003A35D6 /* LocationBoundsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationBoundsMapper.swift; sourceTree = "<group>"; };
+		B40AF449272CDBEA003A35D6 /* OverviewLocationMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewLocationMapper.swift; sourceTree = "<group>"; };
 		B40AF44D272CDC24003A35D6 /* OverviewLocationDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewLocationDataSource.swift; sourceTree = "<group>"; };
-		B40AF44F272CDC5D003A35D6 /* OverviewFavoriteStopDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewFavoriteStopDataSource.swift; sourceTree = "<group>"; };
+		B40AF44F272CDC5D003A35D6 /* OverviewStopDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewStopDataSource.swift; sourceTree = "<group>"; };
 		B40AF452272CDEBD003A35D6 /* FavoriteStopRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteStopRepository.swift; sourceTree = "<group>"; };
-		B40AF454272CDECC003A35D6 /* LocationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationRepository.swift; sourceTree = "<group>"; };
-		B40AF456272CDF42003A35D6 /* OverviewFavoriteStopRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewFavoriteStopRepository.swift; sourceTree = "<group>"; };
+		B40AF454272CDECC003A35D6 /* OverviewLocationRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewLocationRepositoryImpl.swift; sourceTree = "<group>"; };
+		B40AF456272CDF42003A35D6 /* OverviewStopRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewStopRepository.swift; sourceTree = "<group>"; };
 		B40AF458272CDF66003A35D6 /* OverviewLocationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewLocationRepository.swift; sourceTree = "<group>"; };
-		B40AF45A272CDFC7003A35D6 /* OverviewGetFavoriteStops.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewGetFavoriteStops.swift; sourceTree = "<group>"; };
-		B40AF45C272CE029003A35D6 /* OverviewGetLastLocationBounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewGetLastLocationBounds.swift; sourceTree = "<group>"; };
 		B41E1344272711820031D79E /* routes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = routes.json; sourceTree = "<group>"; };
 		B430D479245E362B002EA8FB /* NetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfig.swift; sourceTree = "<group>"; };
 		B43835CB27712FD700C49537 /* FilterRoutesRouteDataSourceImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterRoutesRouteDataSourceImpl.swift; sourceTree = "<group>"; };
@@ -272,7 +268,7 @@
 		B4F056382729CF7C00ED8E30 /* StopMapLocationDataSourceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopMapLocationDataSourceImpl.swift; sourceTree = "<group>"; };
 		B4F0563A2729CFDE00ED8E30 /* StopMapLocationBoundsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopMapLocationBoundsMapper.swift; sourceTree = "<group>"; };
 		B4F0569C2729E9CC00ED8E30 /* OverviewFavoriteStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewFavoriteStop.swift; sourceTree = "<group>"; };
-		B4F056A12729EE0500ED8E30 /* OverviewFavoriteStopDataSourceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewFavoriteStopDataSourceImpl.swift; sourceTree = "<group>"; };
+		B4F056A12729EE0500ED8E30 /* OverviewStopDataSourceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewStopDataSourceImpl.swift; sourceTree = "<group>"; };
 		B4F2168E272F4FCB006A5748 /* PredictionsGetStopById.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsGetStopById.swift; sourceTree = "<group>"; };
 		B4F21690272F5010006A5748 /* PredictionsStopRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsStopRepository.swift; sourceTree = "<group>"; };
 		B4F21692272F502C006A5748 /* PredictionsPredictionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsPredictionRepository.swift; sourceTree = "<group>"; };
@@ -315,8 +311,8 @@
 		B40AF442272CDA5B003A35D6 /* Mappers */ = {
 			isa = PBXGroup;
 			children = (
-				B40AF443272CDA71003A35D6 /* FavoriteStopMapper.swift */,
-				B40AF449272CDBEA003A35D6 /* LocationBoundsMapper.swift */,
+				B40AF443272CDA71003A35D6 /* OverviewStopMapper.swift */,
+				B40AF449272CDBEA003A35D6 /* OverviewLocationMapper.swift */,
 			);
 			path = Mappers;
 			sourceTree = "<group>";
@@ -333,8 +329,8 @@
 		B40AF44C272CDC16003A35D6 /* DataSources */ = {
 			isa = PBXGroup;
 			children = (
+				B40AF44F272CDC5D003A35D6 /* OverviewStopDataSource.swift */,
 				B40AF44D272CDC24003A35D6 /* OverviewLocationDataSource.swift */,
-				B40AF44F272CDC5D003A35D6 /* OverviewFavoriteStopDataSource.swift */,
 			);
 			path = DataSources;
 			sourceTree = "<group>";
@@ -343,7 +339,7 @@
 			isa = PBXGroup;
 			children = (
 				B40AF452272CDEBD003A35D6 /* FavoriteStopRepository.swift */,
-				B40AF454272CDECC003A35D6 /* LocationRepository.swift */,
+				B40AF454272CDECC003A35D6 /* OverviewLocationRepositoryImpl.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1014,7 +1010,6 @@
 			isa = PBXGroup;
 			children = (
 				B4F056992729E9A800ED8E30 /* Models */,
-				B4F0569A2729E9AE00ED8E30 /* UseCases */,
 				B4F0569B2729E9B700ED8E30 /* Repositories */,
 			);
 			path = Domain;
@@ -1029,19 +1024,10 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		B4F0569A2729E9AE00ED8E30 /* UseCases */ = {
-			isa = PBXGroup;
-			children = (
-				B40AF45A272CDFC7003A35D6 /* OverviewGetFavoriteStops.swift */,
-				B40AF45C272CE029003A35D6 /* OverviewGetLastLocationBounds.swift */,
-			);
-			path = UseCases;
-			sourceTree = "<group>";
-		};
 		B4F0569B2729E9B700ED8E30 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
-				B40AF456272CDF42003A35D6 /* OverviewFavoriteStopRepository.swift */,
+				B40AF456272CDF42003A35D6 /* OverviewStopRepository.swift */,
 				B40AF458272CDF66003A35D6 /* OverviewLocationRepository.swift */,
 			);
 			path = Repositories;
@@ -1059,7 +1045,7 @@
 		B4F056A32729EE1900ED8E30 /* DataSources */ = {
 			isa = PBXGroup;
 			children = (
-				B4F056A12729EE0500ED8E30 /* OverviewFavoriteStopDataSourceImpl.swift */,
+				B4F056A12729EE0500ED8E30 /* OverviewStopDataSourceImpl.swift */,
 				B40AF447272CDBC6003A35D6 /* OverviewLocationDataSourceImpl.swift */,
 			);
 			path = DataSources;
@@ -1396,7 +1382,6 @@
 				B46DBECC27A754B90041E8DF /* OverviewViewModel.swift in Sources */,
 				B46DBE9327A719EA0041E8DF /* PredictionsViewModel.swift in Sources */,
 				B46DBEB527A71C420041E8DF /* FilterRoutesRouteRepository.swift in Sources */,
-				B46DBECE27A754C60041E8DF /* OverviewGetLastLocationBounds.swift in Sources */,
 				B46DBE9D27A71A0C0041E8DF /* PredictionsStop.swift in Sources */,
 				B46DBE8627A719BD0041E8DF /* UIViewController.swift in Sources */,
 				B46DBEB127A71C360041E8DF /* FilterRoutesViewModel.swift in Sources */,
@@ -1419,7 +1404,7 @@
 				B46DBE8527A719BD0041E8DF /* UITableView.swift in Sources */,
 				B46DBED227A754D30041E8DF /* FavoriteStopRepository.swift in Sources */,
 				B490A0082453B4FA000744EB /* AppEventCoordinator.swift in Sources */,
-				B46DBED527A754D80041E8DF /* OverviewFavoriteStopDataSource.swift in Sources */,
+				B46DBED527A754D80041E8DF /* OverviewStopDataSource.swift in Sources */,
 				B46DBE5727A70F470041E8DF /* DecodableRoute.swift in Sources */,
 				B43835FA2771395C00C49537 /* FilterRoutesComponent.swift in Sources */,
 				B46DBE9527A719F60041E8DF /* PredictionsPresentationPredictionMapper.swift in Sources */,
@@ -1429,7 +1414,7 @@
 				B46DBE9827A71A090041E8DF /* PredictionsGetStopById.swift in Sources */,
 				B46DBEBC27A71C7B0041E8DF /* FilterRoutesRouteDataSourceImpl.swift in Sources */,
 				B46DBE7727A718E60041E8DF /* StopMapStopMapper.swift in Sources */,
-				B46DBED927A754E30041E8DF /* FavoriteStopMapper.swift in Sources */,
+				B46DBED927A754E30041E8DF /* OverviewStopMapper.swift in Sources */,
 				B45988CA24429720006F9B32 /* AppComponent.swift in Sources */,
 				B46DBE5E27A70FEB0041E8DF /* UserDefaultsDataSource.swift in Sources */,
 				B46DBE7227A718D20041E8DF /* StopMapStopDataSource.swift in Sources */,
@@ -1437,7 +1422,7 @@
 				B46DBE6727A718B10041E8DF /* StopMapContract.swift in Sources */,
 				B46DBEAD27A71A3F0041E8DF /* TimedNetworkPublisher.swift in Sources */,
 				B46DBE8E27A719D30041E8DF /* PredictionsLoadingViewController.swift in Sources */,
-				B46DBED327A754D30041E8DF /* LocationRepository.swift in Sources */,
+				B46DBED327A754D30041E8DF /* OverviewLocationRepositoryImpl.swift in Sources */,
 				B46DBEB027A71C290041E8DF /* FilterRoutesContract.swift in Sources */,
 				B46DBE8D27A719D30041E8DF /* PredictionsDataViewController.swift in Sources */,
 				B46DBEAE27A71A3F0041E8DF /* PredictionsNetworkPrediction.swift in Sources */,
@@ -1491,17 +1476,16 @@
 				B46DBE8327A719BD0041E8DF /* URL.swift in Sources */,
 				B46DBEB427A71C360041E8DF /* FilterRoutesPresentationRoute.swift in Sources */,
 				B46DBE6E27A718BF0041E8DF /* StopMapGetStopsInLocationBounds.swift in Sources */,
-				B46DBECF27A754C60041E8DF /* OverviewGetFavoriteStops.swift in Sources */,
 				B46DBEC927A754B90041E8DF /* OverviewMapCell.swift in Sources */,
 				B48F2BCF245F906D001900BE /* DatabaseConfig.swift in Sources */,
 				B46DBE6527A718B10041E8DF /* StopMapViewController.swift in Sources */,
-				B46DBED127A754CD0041E8DF /* OverviewFavoriteStopRepository.swift in Sources */,
+				B46DBED127A754CD0041E8DF /* OverviewStopRepository.swift in Sources */,
 				B46DBE7A27A718EF0041E8DF /* StopMapLocationPermissionPublisher.swift in Sources */,
 				B46DBE5227A70F240041E8DF /* RoutesTable.swift in Sources */,
 				B46DBE8F27A719D30041E8DF /* PredictionsViewController.swift in Sources */,
 				B4DC6622273836D20046F470 /* StopMapComponent.swift in Sources */,
 				B46DBEB227A71C360041E8DF /* FilterRoutesPresentationRouteMapper.swift in Sources */,
-				B46DBED727A754DF0041E8DF /* OverviewFavoriteStopDataSourceImpl.swift in Sources */,
+				B46DBED727A754DF0041E8DF /* OverviewStopDataSourceImpl.swift in Sources */,
 				B46DBECB27A754B90041E8DF /* OverviewMessageCell.swift in Sources */,
 				B46DBEA427A71A210041E8DF /* PredictionsDataPrediction.swift in Sources */,
 				B46DBE5827A70F470041E8DF /* DecodableStop.swift in Sources */,
@@ -1510,7 +1494,7 @@
 				B46DBED427A754D80041E8DF /* OverviewLocationDataSource.swift in Sources */,
 				B46DBE8727A719BD0041E8DF /* NSLayoutConstraint.swift in Sources */,
 				B46DBEA227A71A1D0041E8DF /* PredictionsStopRepositoryImpl.swift in Sources */,
-				B46DBED827A754E30041E8DF /* LocationBoundsMapper.swift in Sources */,
+				B46DBED827A754E30041E8DF /* OverviewLocationMapper.swift in Sources */,
 				B46DBEE527A7746F0041E8DF /* OverviewLocationBounds.swift in Sources */,
 				B46DBEC727A754B90041E8DF /* OverviewFavoriteStopCell.swift in Sources */,
 			);

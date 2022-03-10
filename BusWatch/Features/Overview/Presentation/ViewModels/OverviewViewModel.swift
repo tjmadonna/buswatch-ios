@@ -21,9 +21,9 @@ final class OverviewViewModel {
 
     // MARK: - Properties
 
-    private let getFavoriteStops: OverviewGetFavoriteStops
+    private let stopRepository: OverviewStopRepository
 
-    private let getLastLocationBounds: OverviewGetLastLocationBounds
+    private let locationRepository: OverviewLocationRepository
 
     private weak var eventCoordinator: OverviewEventCoordinator?
 
@@ -31,11 +31,11 @@ final class OverviewViewModel {
 
     // MARK: - Initialization
 
-    init(getFavoriteStops: OverviewGetFavoriteStops,
-         getLastLocationBounds: OverviewGetLastLocationBounds,
+    init(stopRepository: OverviewStopRepository,
+         locationRepository: OverviewLocationRepository,
          eventCoordinator: OverviewEventCoordinator) {
-        self.getFavoriteStops = getFavoriteStops
-        self.getLastLocationBounds = getLastLocationBounds
+        self.stopRepository = stopRepository
+        self.locationRepository = locationRepository
         self.eventCoordinator = eventCoordinator
         setupObservers()
     }
@@ -47,7 +47,7 @@ final class OverviewViewModel {
     // MARK: - Setup
 
     private func setupObservers() {
-        Publishers.CombineLatest(getFavoriteStops.execute(), getLastLocationBounds.execute())
+        Publishers.CombineLatest(stopRepository.getFavoriteStops(), locationRepository.getLastLocationBounds())
             .map { [unowned self] (stops, locationBounds) in
                 self.mapToOverviewSections(stops: stops, locationBounds: locationBounds)
             }

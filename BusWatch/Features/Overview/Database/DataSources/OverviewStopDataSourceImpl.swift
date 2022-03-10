@@ -1,5 +1,5 @@
 //
-//  OverviewFavoriteStopDataSourceImpl.swift
+//  OverviewStopDataSourceImpl.swift
 //  BusWatch
 //
 //  Created by Tyler Madonna on 10/27/21.
@@ -10,14 +10,14 @@ import Foundation
 import Combine
 import GRDB
 
-final class OverviewFavoriteStopDataSourceImpl: OverviewFavoriteStopDataSource {
+final class OverviewStopDataSourceImpl: OverviewStopDataSource {
 
     private let database: DatabaseDataSource
 
-    private let mapper: OverviewFavoriteStopMapper
+    private let mapper: OverviewStopMapper
 
     init(database: DatabaseDataSource,
-         mapper: OverviewFavoriteStopMapper = OverviewFavoriteStopMapper()) {
+         mapper: OverviewStopMapper = OverviewStopMapper()) {
         self.database = database
         self.mapper = mapper
     }

@@ -9,17 +9,17 @@
 import Foundation
 import Combine
 
-final class OverviewFavoriteStopRepositoryImpl: OverviewFavoriteStopRepository {
+final class OverviewStopRepositoryImpl: OverviewStopRepository {
 
-    private let favoriteStopDataSource: OverviewFavoriteStopDataSource
+    private let stopDataSource: OverviewStopDataSource
 
-    init(favoriteStopDataSource: OverviewFavoriteStopDataSource) {
-        self.favoriteStopDataSource = favoriteStopDataSource
+    init(stopDataSource: OverviewStopDataSource) {
+        self.stopDataSource = stopDataSource
     }
 
     // MARK: - OverviewFavoriteStopRepository
 
     func getFavoriteStops() -> AnyPublisher<[OverviewFavoriteStop], Error> {
-        return favoriteStopDataSource.getFavoriteStops()
+        return stopDataSource.getFavoriteStops()
     }
 }

@@ -1,5 +1,5 @@
 //
-//  OverviewFavoriteStopRepository.swift
+//  OverviewStopRepository.swift
 //  BusWatch
 //
 //  Created by Tyler Madonna on 10/29/21.
@@ -9,7 +9,7 @@
 import Foundation
 import Combine
 
-protocol OverviewFavoriteStopRepository {
+protocol OverviewStopRepository {
 
     func getFavoriteStops() -> AnyPublisher<[OverviewFavoriteStop], Error>
 
