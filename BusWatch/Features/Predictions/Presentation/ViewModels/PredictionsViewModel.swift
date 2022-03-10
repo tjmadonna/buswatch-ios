@@ -31,13 +31,9 @@ final class PredictionsViewModel {
 
     private let stopId: String
 
-    private let getStopById: PredictionsGetStopById
+    private let stopRepository: PredictionsStopRepository
 
-    private let getPredictionsForStopId: PredictionsGetPredictionsForStopId
-
-    private let favoriteStop: PredictionsFavoriteStop
-
-    private let unfavoriteStop: PredictionsUnfavoriteStop
+    private let predictionRepository: PredictionsPredictionRepository
 
     private weak var eventCoordinator: PredictionsEventCoordinator?
 
@@ -48,17 +44,13 @@ final class PredictionsViewModel {
     // MARK: - Initialization
 
     init(stopId: String,
-         getStopById: PredictionsGetStopById,
-         getPredictionsForStopId: PredictionsGetPredictionsForStopId,
-         favoriteStop: PredictionsFavoriteStop,
-         unfavoriteStop: PredictionsUnfavoriteStop,
+         stopRepository: PredictionsStopRepository,
+         predictionRepository: PredictionsPredictionRepository,
          eventCoordinator: PredictionsEventCoordinator,
          predictionMapper: PredictionsPresentationPredictionMapper) {
         self.stopId = stopId
-        self.getStopById = getStopById
-        self.getPredictionsForStopId = getPredictionsForStopId
-        self.favoriteStop = favoriteStop
-        self.unfavoriteStop = unfavoriteStop
+        self.stopRepository = stopRepository
+        self.predictionRepository = predictionRepository
         self.eventCoordinator = eventCoordinator
         self.predictionMapper = predictionMapper
         setupObserversForStop()
@@ -72,7 +64,7 @@ final class PredictionsViewModel {
     // MARK: - Setup
 
     private func setupObserversForStop() {
-        getStopById.execute(stopId: stopId)
+        stopRepository.getStopById(stopId)
             .map { stop in PredictionsNavBarState(favorited: stop.favorite, title: stop.title) } // map to navbar state
             // set default navbar state if error occurs
             .replaceError(with: PredictionsNavBarState(favorited: false, title: ""))
@@ -80,7 +72,7 @@ final class PredictionsViewModel {
             .subscribe(self.navBarStateSubject)
             .store(in: &cancellables)
 
-        getPredictionsForStopId.execute(stopId: stopId)
+        predictionRepository.getPredictionsForStopId(stopId)
             .map { [weak self] in self?.predictionMapper.mapPredictionArrayToPresentationPredictionArray($0) }
             .map { predictions -> PredictionsDataState in
                 if let predictions = predictions {
@@ -109,8 +101,8 @@ final class PredictionsViewModel {
     private func handleToggleFavoritedIntent() {
         // If stop is favorited, unfavorite it and if stop if unfavorited, favorite it
         let publisher = navBarStateSubject.value.favorited
-            ? unfavoriteStop.execute(stopId: stopId)
-            : favoriteStop.execute(stopId: stopId)
+            ? stopRepository.unfavoriteStop(stopId)
+            : stopRepository.favoriteStop(stopId)
 
         publisher.sink(
             receiveCompletion: { completion in

@@ -35,7 +35,7 @@ final class PredictionsPredictionRepositoryImpl: PredictionsPredictionRepository
                 return predictions.filter { prediction in !excludedRoutesSet.contains(prediction.routeId) }
             }
             .flatMap { self.getRoutesForDataPredictions($0) }
-            .map { self.mapper.mapDataPredictionArrayToDomainPredictionArray($0, routes: $1) ?? [] }
+            .map { self.mapper.mapDataPredictionArrayToDomainPredictionArray($0, routes: $1)}
             .eraseToAnyPublisher()
     }
 

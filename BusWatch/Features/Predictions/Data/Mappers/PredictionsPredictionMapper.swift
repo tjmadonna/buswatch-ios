@@ -10,29 +10,19 @@ import Foundation
 
 final class PredictionsPredictionMapper {
 
-    func mapDataPredictionArrayToDomainPredictionArray(_ dataPredictions: [PredictionsDataPrediction]?,
-                                                       routes: [PredictionsDataRoute]?)
-        -> [PredictionsPrediction]? {
+    func mapDataPredictionArrayToDomainPredictionArray(_ dataPredictions: [PredictionsDataPrediction],
+                                                       routes: [PredictionsDataRoute])
+        -> [PredictionsPrediction] {
 
-        guard let dataPredictions = dataPredictions else { return nil }
-        let routes = routes ?? []
         let routesDict = Dictionary(uniqueKeysWithValues: routes.map { ($0.id, $0) })
         let predictions = dataPredictions.compactMap { prediction -> PredictionsPrediction? in
             self.mapDataPredictionToDomainPrediction(prediction, route: routesDict[prediction.routeId])
         }
-
-        if predictions.isEmpty {
-            return nil
-        } else {
-            return predictions
-        }
+        return predictions
     }
 
-    func mapDataPredictionToDomainPrediction(_ dataPrediction: PredictionsDataPrediction?,
+    func mapDataPredictionToDomainPrediction(_ dataPrediction: PredictionsDataPrediction,
                                              route: PredictionsDataRoute?) -> PredictionsPrediction? {
-
-        guard let dataPrediction = dataPrediction else { return nil }
-
         return PredictionsPrediction(
             vehicleId: dataPrediction.vehicleId,
             arrivalTime: dataPrediction.arrivalTime,

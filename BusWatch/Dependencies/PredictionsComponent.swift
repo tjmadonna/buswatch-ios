@@ -42,17 +42,10 @@ final class PredictionsComponent {
         let predictionRepository = PredictionsPredictionRepositoryImpl(predictionDataSource: predictionDataSource,
                                                                        routeDataSource: routeDataSource)
 
-        let getStopById = PredictionsGetStopById(stopRepository: stopRepository)
-        let getPredictionsForStopId = PredictionsGetPredictionsForStopId(predictionRepository: predictionRepository)
-        let favoriteStop = PredictionsFavoriteStop(stopRepository: stopRepository)
-        let unfavoriteStop = PredictionsUnfavoriteStop(stopRepository: stopRepository)
-
         let predictionMapper = PredictionsPresentationPredictionMapper(capacityColor: Colors.capacityImageColor)
         let viewModel = PredictionsViewModel(stopId: stopId,
-                                             getStopById: getStopById,
-                                             getPredictionsForStopId: getPredictionsForStopId,
-                                             favoriteStop: favoriteStop,
-                                             unfavoriteStop: unfavoriteStop,
+                                             stopRepository: stopRepository,
+                                             predictionRepository: predictionRepository,
                                              eventCoordinator: eventCoordinator,
                                              predictionMapper: predictionMapper)
         let style = PredictionsStyleImpl()
