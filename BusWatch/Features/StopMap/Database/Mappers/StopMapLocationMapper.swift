@@ -1,5 +1,5 @@
 //
-//  StopMapLocationBoundsMapper.swift
+//  StopMapLocationMapper.swift
 //  BusWatch
 //
 //  Created by Tyler Madonna on 10/27/21.
@@ -9,7 +9,7 @@
 import Foundation
 import GRDB
 
-final class StopMapLocationBoundsMapper {
+final class StopMapLocationMapper {
 
     func mapDatabaseRowToDomainLocationBounds(_ row: Row?) -> StopMapLocationBounds? {
         guard let row = row else { return nil }

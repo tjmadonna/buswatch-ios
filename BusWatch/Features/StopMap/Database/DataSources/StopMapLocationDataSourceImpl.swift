@@ -18,9 +18,9 @@ final class StopMapLocationDataSourceImpl: StopMapLocationDataSource {
 
     private let database: DatabaseDataSource
 
-    private let mapper: StopMapLocationBoundsMapper
+    private let mapper: StopMapLocationMapper
 
-    init(database: DatabaseDataSource, mapper: StopMapLocationBoundsMapper = StopMapLocationBoundsMapper()) {
+    init(database: DatabaseDataSource, mapper: StopMapLocationMapper = StopMapLocationMapper()) {
         self.database = database
         self.mapper = mapper
     }

@@ -27,21 +27,14 @@ final class StopMapComponent {
         let stopDataSource = StopMapStopDataSourceImpl(database: database)
         let stopRepository = StopMapStopRepositoryImpl(stopDataSource: stopDataSource)
 
-        let locationDataSource = StopMapLocationDataSourceImpl(database: database)
-        let locationPermissionDataSource = StopMapLocationPermissionDataSourceImpl(locationManager: locationManager)
-        let locationRepository = StopMapLocationRepositoryImpl(locationDataSource: locationDataSource,
-                                                        locationPermissionDataSource: locationPermissionDataSource)
+        let locDataSource = StopMapLocationDataSourceImpl(database: database)
+        let locPermissionDataSource = StopMapLocationPermissionDataSourceImpl(locationManager: locationManager)
+        let locRepository = StopMapLocationRepositoryImpl(locationDataSource: locDataSource,
+                                                          locationPermissionDataSource: locPermissionDataSource)
 
-        let getStopsInLocationBounds = StopMapGetStopsInLocationBounds(stopRepository: stopRepository)
-        let getLastLocationBounds = StopMapGetLastLocationBounds(locationRepository: locationRepository)
-        let saveLastLocationBounds = StopMapSaveLastLocationBounds(locationRepository: locationRepository)
-        let getPermissionStatus = StopMapGetCurrentLocationPermissionStatus(locationRepository: locationRepository)
-
-        let viewModel = StopMapViewModel(getStopsInLocationBounds: getStopsInLocationBounds,
-                                          getLastLocationBounds: getLastLocationBounds,
-                                          saveLastLocationBounds: saveLastLocationBounds,
-                                          getCurrentLocationPermissionStatus: getPermissionStatus,
-                                          eventCoordinator: eventCoordinator)
+        let viewModel = StopMapViewModel(stopRepository: stopRepository,
+                                         locationRepository: locRepository,
+                                         eventCoordinator: eventCoordinator)
         let style = StopMapStyleImpl()
 
         return StopMapViewController(viewModel: viewModel, style: style)

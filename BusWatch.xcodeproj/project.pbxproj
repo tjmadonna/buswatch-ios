@@ -32,12 +32,8 @@
 		B46DBE6627A718B10041E8DF /* StopMapStopAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4981B0124454C94003F161F /* StopMapStopAnnotation.swift */; };
 		B46DBE6727A718B10041E8DF /* StopMapContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4981AFE24453A73003F161F /* StopMapContract.swift */; };
 		B46DBE6827A718BF0041E8DF /* StopMapLocationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F056252728DF7C00ED8E30 /* StopMapLocationRepository.swift */; };
-		B46DBE6927A718BF0041E8DF /* StopMapSaveLastLocationBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F056222728DDE400ED8E30 /* StopMapSaveLastLocationBounds.swift */; };
-		B46DBE6A27A718BF0041E8DF /* StopMapGetCurrentLocationPermissionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F055F627279F6400ED8E30 /* StopMapGetCurrentLocationPermissionStatus.swift */; };
 		B46DBE6C27A718BF0041E8DF /* StopMapCurrentLocationPermissionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F056272728E0C600ED8E30 /* StopMapCurrentLocationPermissionStatus.swift */; };
 		B46DBE6D27A718BF0041E8DF /* StopMapStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F055BD2727619100ED8E30 /* StopMapStop.swift */; };
-		B46DBE6E27A718BF0041E8DF /* StopMapGetStopsInLocationBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F055BF2727619100ED8E30 /* StopMapGetStopsInLocationBounds.swift */; };
-		B46DBE6F27A718BF0041E8DF /* StopMapGetLastLocationBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F055F427279F4E00ED8E30 /* StopMapGetLastLocationBounds.swift */; };
 		B46DBE7027A718BF0041E8DF /* StopMapStopRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F0561A2728DC5200ED8E30 /* StopMapStopRepository.swift */; };
 		B46DBE7127A718D20041E8DF /* StopMapStopRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F0561D2728DC9800ED8E30 /* StopMapStopRepositoryImpl.swift */; };
 		B46DBE7227A718D20041E8DF /* StopMapStopDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F055BA2727619100ED8E30 /* StopMapStopDataSource.swift */; };
@@ -47,7 +43,7 @@
 		B46DBE7627A718E60041E8DF /* StopMapLocationDataSourceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F056382729CF7C00ED8E30 /* StopMapLocationDataSourceImpl.swift */; };
 		B46DBE7727A718E60041E8DF /* StopMapStopMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F055D8272766CF00ED8E30 /* StopMapStopMapper.swift */; };
 		B46DBE7827A718E60041E8DF /* StopMapStopDataSourceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F055B72727619100ED8E30 /* StopMapStopDataSourceImpl.swift */; };
-		B46DBE7927A718E60041E8DF /* StopMapLocationBoundsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F0563A2729CFDE00ED8E30 /* StopMapLocationBoundsMapper.swift */; };
+		B46DBE7927A718E60041E8DF /* StopMapLocationMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F0563A2729CFDE00ED8E30 /* StopMapLocationMapper.swift */; };
 		B46DBE7A27A718EF0041E8DF /* StopMapLocationPermissionPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F056362729CA3700ED8E30 /* StopMapLocationPermissionPublisher.swift */; };
 		B46DBE7B27A718EF0041E8DF /* StopMapLocationPermissionDataSourceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F056332729C96400ED8E30 /* StopMapLocationPermissionDataSourceImpl.swift */; };
 		B46DBE8327A719BD0041E8DF /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DC662727387E920046F470 /* URL.swift */; };
@@ -246,18 +242,14 @@
 		B4F055B72727619100ED8E30 /* StopMapStopDataSourceImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopMapStopDataSourceImpl.swift; sourceTree = "<group>"; };
 		B4F055BA2727619100ED8E30 /* StopMapStopDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopMapStopDataSource.swift; sourceTree = "<group>"; };
 		B4F055BD2727619100ED8E30 /* StopMapStop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopMapStop.swift; sourceTree = "<group>"; };
-		B4F055BF2727619100ED8E30 /* StopMapGetStopsInLocationBounds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopMapGetStopsInLocationBounds.swift; sourceTree = "<group>"; };
 		B4F055C9272761A600ED8E30 /* DatabaseDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseDataSource.swift; sourceTree = "<group>"; };
 		B4F055CF272763E500ED8E30 /* StopsTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopsTable.swift; sourceTree = "<group>"; };
 		B4F055D12727641E00ED8E30 /* FavoriteStopsTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteStopsTable.swift; sourceTree = "<group>"; };
 		B4F055D32727643900ED8E30 /* LastLocationTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastLocationTable.swift; sourceTree = "<group>"; };
 		B4F055D52727645E00ED8E30 /* RoutesTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesTable.swift; sourceTree = "<group>"; };
 		B4F055D8272766CF00ED8E30 /* StopMapStopMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopMapStopMapper.swift; sourceTree = "<group>"; };
-		B4F055F427279F4E00ED8E30 /* StopMapGetLastLocationBounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopMapGetLastLocationBounds.swift; sourceTree = "<group>"; };
-		B4F055F627279F6400ED8E30 /* StopMapGetCurrentLocationPermissionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopMapGetCurrentLocationPermissionStatus.swift; sourceTree = "<group>"; };
 		B4F0561A2728DC5200ED8E30 /* StopMapStopRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopMapStopRepository.swift; sourceTree = "<group>"; };
 		B4F0561D2728DC9800ED8E30 /* StopMapStopRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopMapStopRepositoryImpl.swift; sourceTree = "<group>"; };
-		B4F056222728DDE400ED8E30 /* StopMapSaveLastLocationBounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopMapSaveLastLocationBounds.swift; sourceTree = "<group>"; };
 		B4F056252728DF7C00ED8E30 /* StopMapLocationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopMapLocationRepository.swift; sourceTree = "<group>"; };
 		B4F056272728E0C600ED8E30 /* StopMapCurrentLocationPermissionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopMapCurrentLocationPermissionStatus.swift; sourceTree = "<group>"; };
 		B4F056292729C80400ED8E30 /* StopMapLocationRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopMapLocationRepositoryImpl.swift; sourceTree = "<group>"; };
@@ -266,7 +258,7 @@
 		B4F056332729C96400ED8E30 /* StopMapLocationPermissionDataSourceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopMapLocationPermissionDataSourceImpl.swift; sourceTree = "<group>"; };
 		B4F056362729CA3700ED8E30 /* StopMapLocationPermissionPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopMapLocationPermissionPublisher.swift; sourceTree = "<group>"; };
 		B4F056382729CF7C00ED8E30 /* StopMapLocationDataSourceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopMapLocationDataSourceImpl.swift; sourceTree = "<group>"; };
-		B4F0563A2729CFDE00ED8E30 /* StopMapLocationBoundsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopMapLocationBoundsMapper.swift; sourceTree = "<group>"; };
+		B4F0563A2729CFDE00ED8E30 /* StopMapLocationMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopMapLocationMapper.swift; sourceTree = "<group>"; };
 		B4F0569C2729E9CC00ED8E30 /* OverviewFavoriteStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewFavoriteStop.swift; sourceTree = "<group>"; };
 		B4F056A12729EE0500ED8E30 /* OverviewStopDataSourceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewStopDataSourceImpl.swift; sourceTree = "<group>"; };
 		B4F2168E272F4FCB006A5748 /* PredictionsGetStopById.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsGetStopById.swift; sourceTree = "<group>"; };
@@ -844,7 +836,6 @@
 			isa = PBXGroup;
 			children = (
 				B4F055BB2727619100ED8E30 /* Models */,
-				B4F055BE2727619100ED8E30 /* UseCases */,
 				B4F056192728DC3200ED8E30 /* Repositories */,
 			);
 			path = Domain;
@@ -858,17 +849,6 @@
 				B46DBEE827A7753E0041E8DF /* StopMapLocationBounds.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		B4F055BE2727619100ED8E30 /* UseCases */ = {
-			isa = PBXGroup;
-			children = (
-				B4F055BF2727619100ED8E30 /* StopMapGetStopsInLocationBounds.swift */,
-				B4F055F427279F4E00ED8E30 /* StopMapGetLastLocationBounds.swift */,
-				B4F056222728DDE400ED8E30 /* StopMapSaveLastLocationBounds.swift */,
-				B4F055F627279F6400ED8E30 /* StopMapGetCurrentLocationPermissionStatus.swift */,
-			);
-			path = UseCases;
 			sourceTree = "<group>";
 		};
 		B4F055CE2727639700ED8E30 /* Tables */ = {
@@ -887,7 +867,7 @@
 			isa = PBXGroup;
 			children = (
 				B4F055D8272766CF00ED8E30 /* StopMapStopMapper.swift */,
-				B4F0563A2729CFDE00ED8E30 /* StopMapLocationBoundsMapper.swift */,
+				B4F0563A2729CFDE00ED8E30 /* StopMapLocationMapper.swift */,
 			);
 			path = Mappers;
 			sourceTree = "<group>";
@@ -1395,12 +1375,11 @@
 				B46DBECA27A754B90041E8DF /* OverviewContract.swift in Sources */,
 				B46DBE7B27A718EF0041E8DF /* StopMapLocationPermissionDataSourceImpl.swift in Sources */,
 				B46DBE5627A70F470041E8DF /* DatabaseStop.swift in Sources */,
-				B46DBE6A27A718BF0041E8DF /* StopMapGetCurrentLocationPermissionStatus.swift in Sources */,
 				B46DBE7027A718BF0041E8DF /* StopMapStopRepository.swift in Sources */,
 				B46DBE8427A719BD0041E8DF /* UIColor.swift in Sources */,
 				B46DBEAC27A71A3F0041E8DF /* PredictionsDataPredictionMapper.swift in Sources */,
 				B46DBE5527A70F470041E8DF /* DatabaseRoute.swift in Sources */,
-				B46DBE7927A718E60041E8DF /* StopMapLocationBoundsMapper.swift in Sources */,
+				B46DBE7927A718E60041E8DF /* StopMapLocationMapper.swift in Sources */,
 				B46DBE8527A719BD0041E8DF /* UITableView.swift in Sources */,
 				B46DBED227A754D30041E8DF /* FavoriteStopRepository.swift in Sources */,
 				B490A0082453B4FA000744EB /* AppEventCoordinator.swift in Sources */,
@@ -1436,8 +1415,6 @@
 				B46DBE9E27A71A170041E8DF /* PredictionsPredictionMapper.swift in Sources */,
 				B46DBE9927A71A090041E8DF /* PredictionsFavoriteStop.swift in Sources */,
 				B46DBE5927A70F500041E8DF /* DatabaseStopMapper.swift in Sources */,
-				B46DBE6F27A718BF0041E8DF /* StopMapGetLastLocationBounds.swift in Sources */,
-				B46DBE6927A718BF0041E8DF /* StopMapSaveLastLocationBounds.swift in Sources */,
 				B46DBE6C27A718BF0041E8DF /* StopMapCurrentLocationPermissionStatus.swift in Sources */,
 				B46DBE9B27A71A090041E8DF /* PredictionsGetPredictionsForStopId.swift in Sources */,
 				B46DBEA327A71A1D0041E8DF /* PredictionsPredictionRepositoryImpl.swift in Sources */,
@@ -1475,7 +1452,6 @@
 				B46DBEAB27A71A3F0041E8DF /* PredictionsPredictionDataSourceImpl.swift in Sources */,
 				B46DBE8327A719BD0041E8DF /* URL.swift in Sources */,
 				B46DBEB427A71C360041E8DF /* FilterRoutesPresentationRoute.swift in Sources */,
-				B46DBE6E27A718BF0041E8DF /* StopMapGetStopsInLocationBounds.swift in Sources */,
 				B46DBEC927A754B90041E8DF /* OverviewMapCell.swift in Sources */,
 				B48F2BCF245F906D001900BE /* DatabaseConfig.swift in Sources */,
 				B46DBE6527A718B10041E8DF /* StopMapViewController.swift in Sources */,

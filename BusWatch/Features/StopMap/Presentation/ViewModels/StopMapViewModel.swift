@@ -30,13 +30,9 @@ final class StopMapViewModel {
 
     // MARK: - Properties
 
-    private let getStopsInLocationBounds: StopMapGetStopsInLocationBounds
+    private let stopRepository: StopMapStopRepository
 
-    private let getLastLocationBounds: StopMapGetLastLocationBounds
-
-    private let saveLastLocationBounds: StopMapSaveLastLocationBounds
-
-    private let getCurrentLocationPermissionStatus: StopMapGetCurrentLocationPermissionStatus
+    private let locationRepository: StopMapLocationRepository
 
     private weak var eventCoordinator: StopMapEventCoordinator?
 
@@ -46,15 +42,11 @@ final class StopMapViewModel {
 
     // MARK: - Initialization
 
-    init(getStopsInLocationBounds: StopMapGetStopsInLocationBounds,
-         getLastLocationBounds: StopMapGetLastLocationBounds,
-         saveLastLocationBounds: StopMapSaveLastLocationBounds,
-         getCurrentLocationPermissionStatus: StopMapGetCurrentLocationPermissionStatus,
+    init(stopRepository: StopMapStopRepository,
+         locationRepository: StopMapLocationRepository,
          eventCoordinator: StopMapEventCoordinator) {
-        self.getStopsInLocationBounds = getStopsInLocationBounds
-        self.getLastLocationBounds = getLastLocationBounds
-        self.saveLastLocationBounds = saveLastLocationBounds
-        self.getCurrentLocationPermissionStatus = getCurrentLocationPermissionStatus
+        self.stopRepository = stopRepository
+        self.locationRepository = locationRepository
         self.eventCoordinator = eventCoordinator
         setupObservers()
     }
@@ -62,14 +54,14 @@ final class StopMapViewModel {
     // MARK: - Setup
 
     private func setupObservers() {
-        getLastLocationBounds.execute()
+        locationRepository.getLastLocationBounds()
             .map { locationBounds in StopMapState.setLocationBounds(locationBounds) }
             .replaceError(with: .error("Can't find last location"))
             .receive(on: RunLoop.main)
             .subscribe(stateSubject)
             .store(in: &cancellables)
 
-        locationStatusCancellable = getCurrentLocationPermissionStatus.execute()
+        locationStatusCancellable = locationRepository.getCurrentLocationPermissionStatus()
             .receive(on: RunLoop.main)
             .sink { [unowned self] status in
                 switch status {
@@ -96,7 +88,7 @@ final class StopMapViewModel {
         cancellables.removeAll()
 
         // Save the location, so we can restore it
-        saveLastLocationBounds.execute(locationBounds: locationBounds)
+        locationRepository.saveLastLocationBounds(locationBounds)
             .sink(receiveCompletion: { completion in
                 if case .failure(let error) = completion {
                     // TODO: handle error
@@ -111,7 +103,7 @@ final class StopMapViewModel {
             // If the map is too far zoomed out, we don't display any stops
             stateSubject.value = .setLocationBoundsWithStops(locationBounds, [])
         } else {
-            getStopsInLocationBounds.execute(locationBounds: locationBounds)
+            stopRepository.getStopsInLocationBounds(locationBounds)
                 .map { stops in StopMapState.setLocationBoundsWithStops(locationBounds, stops) }
                 .catch { error in Just(StopMapState.error(error.localizedDescription)) }
                 .subscribe(stateSubject)
