@@ -91,7 +91,6 @@ final class StopMapViewModel {
         locationRepository.saveLastLocationBounds(locationBounds)
             .sink(receiveCompletion: { completion in
                 if case .failure(let error) = completion {
-                    // TODO: handle error
                     print(error)
                 }
             }, receiveValue: { _ in

@@ -95,7 +95,7 @@ final class OverviewViewController: UITableViewController {
     }
 
     private func renderErrorStateWithMessage(_ message: String) {
-        // TODO: Handle error
+        presentAlertViewControllerWithTitle("An Error Occurred", message: message)
     }
 
     // MARK: - UITableViewDelegate

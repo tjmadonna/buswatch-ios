@@ -107,7 +107,6 @@ final class PredictionsViewModel {
         publisher.sink(
             receiveCompletion: { completion in
                 if case .failure(let error) = completion {
-                    // TODO: handle error
                     print(error)
                 }
             }, receiveValue: { _ in
