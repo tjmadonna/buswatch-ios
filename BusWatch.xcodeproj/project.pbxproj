@@ -324,7 +324,6 @@
 		B40AF44B272CDC08003A35D6 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				B47B9AFF27B0BC330094A764 /* Models */,
 				B40AF451272CDE92003A35D6 /* Repositories */,
 				B40AF44C272CDC16003A35D6 /* DataSources */,
 			);
@@ -748,13 +747,6 @@
 				B477CD67243BF7280027AE11 /* SceneDelegate.swift */,
 			);
 			path = ApplicationDelegate;
-			sourceTree = "<group>";
-		};
-		B47B9AFF27B0BC330094A764 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		B490A0062453B4E8000744EB /* Coordinator */ = {
