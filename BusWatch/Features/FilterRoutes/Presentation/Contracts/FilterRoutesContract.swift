@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 // MARK: - States
 
@@ -31,4 +32,10 @@ protocol FilterRoutesEventCoordinator: AnyObject {
     func saveSelectedInFilterRoutes()
 
     func cancelSelectedInFilterRoutes()
+}
+
+// MARK: - Resources
+
+protocol FilterRoutesStyle {
+    var checkColor: UIColor { get }
 }

@@ -29,16 +29,19 @@ final class FilterRoutesViewController: UITableViewController {
 
     // MARK: - Properties
 
-    private var routes = [FilterRoutesPresentationRoute]()
-
     private let viewModel: FilterRoutesViewModel
+
+    private let style: FilterRoutesStyle
+
+    private var routes = [FilterRoutesPresentationRoute]()
 
     private var cancellables: [AnyCancellable] = []
 
     // MARK: - Initialization
 
-    init(viewModel: FilterRoutesViewModel) {
+    init(viewModel: FilterRoutesViewModel, style: FilterRoutesStyle) {
         self.viewModel = viewModel
+        self.style = style
         super.init(style: .grouped)
     }
 
@@ -112,6 +115,7 @@ final class FilterRoutesViewController: UITableViewController {
     private func configureCell(_ cell: UITableViewCell?, forRoute route: FilterRoutesPresentationRoute) {
         cell?.textLabel?.text = route.routeId
         cell?.selectionStyle = .none
+        cell?.tintColor = style.checkColor
         if route.selected {
             cell?.accessoryType = .checkmark
         } else {
