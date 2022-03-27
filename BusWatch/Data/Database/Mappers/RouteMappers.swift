@@ -26,19 +26,6 @@ extension GRDB.Row {
         return routeIdString.components(separatedBy: StopsTable.routesDelimiter)
     }
 
-    func toFilterableRoute() -> [FilterableRoute] {
-        guard let stopRoutes = self["\(StopsTable.tableName)_\(StopsTable.routesColumn)"] as? String else { return [] }
-        let exRoutes = self["\(ExcludedRoutesTable.tableName)_\(ExcludedRoutesTable.routesColumn)"] as? String ?? ""
-
-        let routesArray = stopRoutes.components(separatedBy: StopsTable.routesDelimiter)
-        let excludedRoutesSet = Set(exRoutes.components(separatedBy: ExcludedRoutesTable.routesDelimiter))
-
-        return routesArray.map { route in
-            FilterableRoute(id: route,
-                            filtered: excludedRoutesSet.contains(route))
-        }
-    }
-
     func toDatabaseRoutesWithExclusions() -> DatabaseRoutesWithExclusions? {
         let routesString = self[StopsTable.routesColumn] as? String ?? ""
         let routes = routesString.components(separatedBy: StopsTable.routesDelimiter)
