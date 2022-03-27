@@ -18,11 +18,13 @@ enum StopsTable {
     static let latitudeColumn = "latitude"
     static let longitudeColumn = "longitude"
     static let routesColumn = "routes"
+    static let excludedRoutesColumn = "excluded_routes"
 
     static let routesDelimiter = ","
 
     static let allColumns = """
-    \(idColumn), \(titleColumn), \(favoriteColumn), \(latitudeColumn), \(longitudeColumn), \(routesColumn)
+    \(idColumn), \(titleColumn), \(favoriteColumn), \(latitudeColumn), \(longitudeColumn),
+    \(routesColumn), \(excludedRoutesColumn)
     """
 
     enum Migration {
@@ -34,13 +36,17 @@ enum StopsTable {
         \(favoriteColumn) INTEGER NOT NULL DEFAULT 0,
         \(latitudeColumn) DOUBLE NOT NULL,
         \(longitudeColumn) DOUBLE NOT NULL,
-        \(routesColumn) TEXT
+        \(routesColumn) TEXT,
+        \(excludedRoutesColumn) TEXT
         )
         """
 
         static let alterTableForVersion4 = [
         """
         ALTER TABLE \(tableName) ADD \(favoriteColumn) INTEGER NOT NULL DEFAULT 0;
+        """,
+        """
+        ALTER TABLE \(tableName) ADD \(excludedRoutesColumn) TEXT;
         """
         ]
     }

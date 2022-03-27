@@ -12,28 +12,33 @@ import GRDB
 
 final class RouteDatabaseDataSourceImpl: RouteDatabaseDataSource {
 
+    private enum Error: Swift.Error {
+        case stopNotFound(String)
+    }
+
     private let database: Database
 
     init(database: Database) {
         self.database = database
     }
 
-    func getFilterableRoutesForStopId(_ stopId: String) -> AnyPublisher<[FilterableRoute], Swift.Error> {
+    func getDatabaseRoutesWithExclusionsForStopId(_ stopId: String)
+        -> AnyPublisher<DatabaseRoutesWithExclusions, Swift.Error> {
+
         let sql = """
-        SELECT
-        s.\(StopsTable.routesColumn) AS \(StopsTable.tableName)_\(StopsTable.routesColumn),
-        e.\(ExcludedRoutesTable.routesColumn) AS \(ExcludedRoutesTable.tableName)_\(ExcludedRoutesTable.routesColumn)
-        FROM \(StopsTable.tableName) AS s
-        LEFT JOIN \(ExcludedRoutesTable.tableName) AS e
-        ON s.\(StopsTable.idColumn) = e.\(ExcludedRoutesTable.stopIdColumn)
-        WHERE s.\(StopsTable.idColumn) = ?
+        SELECT \(StopsTable.routesColumn), \(StopsTable.excludedRoutesColumn)
+        FROM \(StopsTable.tableName)
+        WHERE \(StopsTable.idColumn) = ?
         """
         let arguments = StatementArguments([stopId])
         return database.queue
             .flatMap { dbQueue in
                 return ValueObservation.tracking { db in
                     let row = try Row.fetchOne(db, sql: sql, arguments: arguments)
-                    return row?.toFilterableRoute() ?? []
+                    guard let routes = row?.toDatabaseRoutesWithExclusions() else {
+                        throw RouteDatabaseDataSourceImpl.Error.stopNotFound("")
+                    }
+                    return routes
                 }
                 .publisher(in: dbQueue)
             }
@@ -61,17 +66,17 @@ final class RouteDatabaseDataSourceImpl: RouteDatabaseDataSource {
             .eraseToAnyPublisher()
     }
 
-    func getFilteredRouteIdsForStopId(_ stopId: String) -> AnyPublisher<[String], Swift.Error> {
+    func getExcludedRouteIdsForStopId(_ stopId: String) -> AnyPublisher<[String], Swift.Error> {
         let sql = """
-        SELECT \(ExcludedRoutesTable.routesColumn) FROM \(ExcludedRoutesTable.tableName)
-        WHERE \(ExcludedRoutesTable.stopIdColumn) = ?
+        SELECT \(StopsTable.excludedRoutesColumn) FROM \(StopsTable.tableName)
+        WHERE \(StopsTable.idColumn) = ?
         """
         let arguments = StatementArguments([stopId])
         return database.queue
             .flatMap { dbQueue in
                 return ValueObservation.tracking { db in
                     let row = try Row.fetchOne(db, sql: sql, arguments: arguments)
-                    return row?.toFilteredRouteIds() ?? []
+                    return row?.toExcludedRouteIds() ?? []
                 }
                 .publisher(in: dbQueue)
             }
@@ -80,20 +85,12 @@ final class RouteDatabaseDataSourceImpl: RouteDatabaseDataSource {
 
     func updateExcludedRouteIdsForStopId(_ stopId: String, routeIds: [String]) -> AnyPublisher<Void, Swift.Error> {
         let sql = """
-        INSERT INTO \(ExcludedRoutesTable.tableName) (\(ExcludedRoutesTable.allColumns))
-        VALUES (?, ?) ON CONFLICT (\(ExcludedRoutesTable.stopIdColumn))
-        DO UPDATE SET
-        \(ExcludedRoutesTable.stopIdColumn) = ?,
-        \(ExcludedRoutesTable.routesColumn) = ?
+        UPDATE \(StopsTable.tableName)
+        SET \(StopsTable.excludedRoutesColumn) = ?
+        WHERE \(StopsTable.idColumn) = ?
         """
-
-        let routeIdString = routeIds.joined(separator: ExcludedRoutesTable.routesDelimiter)
-        let arguments = StatementArguments([
-            stopId,
-            routeIdString,
-            stopId,
-            routeIdString
-        ])
+        let routeIdString = routeIds.joined(separator: StopsTable.routesDelimiter)
+        let arguments = StatementArguments([routeIdString, stopId])
 
         return database.queue
             .flatMap { dbQueue in

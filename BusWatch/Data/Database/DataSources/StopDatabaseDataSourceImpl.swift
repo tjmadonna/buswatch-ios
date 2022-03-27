@@ -61,9 +61,13 @@ final class StopDatabaseDataSourceImpl: StopDatabaseDataSource {
         return writePublisherForSql(sql, arguments: [stopId])
     }
 
-    func getStopsInLocationBounds(_ locationBounds: LocationBounds) -> AnyPublisher<[DetailedStop], Swift.Error> {
+    func getStopsInLocationBounds(_ locationBounds: LocationBounds)
+        -> AnyPublisher<[DatabaseDetailedStop], Swift.Error> {
+
         let sql = """
-        SELECT *
+        SELECT \(StopsTable.idColumn), \(StopsTable.titleColumn),
+        \(StopsTable.latitudeColumn), \(StopsTable.longitudeColumn),
+        \(StopsTable.routesColumn), \(StopsTable.excludedRoutesColumn)
         FROM \(StopsTable.tableName)
         WHERE \(StopsTable.latitudeColumn) <= ?
         AND \(StopsTable.latitudeColumn) >= ?
@@ -75,18 +79,19 @@ final class StopDatabaseDataSourceImpl: StopDatabaseDataSource {
                                             locationBounds.west,
                                             locationBounds.east])
         return valueObservationPublisherForSql(sql, arguments: arguments) { row in
-            row.toDetailedStop()
+            row.toDatabaseDetailedStop()
         }
     }
 
-    func getFavoriteStops() -> AnyPublisher<[FavoriteStop], Swift.Error> {
+    func getFavoriteStops() -> AnyPublisher<[DatabaseFavoriteStop], Swift.Error> {
         let sql = """
-        SELECT \(StopsTable.idColumn), \(StopsTable.titleColumn), \(StopsTable.routesColumn)
+        SELECT \(StopsTable.idColumn), \(StopsTable.titleColumn),
+        \(StopsTable.routesColumn), \(StopsTable.excludedRoutesColumn)
         FROM \(StopsTable.tableName)
         WHERE \(StopsTable.favoriteColumn) = 1
         """
         return valueObservationPublisherForSql(sql) { row in
-            row.toFavoriteStop()
+            row.toDatabaseFavoriteStop()
         }
     }
 

@@ -31,9 +31,13 @@ final class StopRepositoryImpl: StopRepository {
 
     func getStopsInLocationBounds(_ locationBounds: LocationBounds) -> AnyPublisher<[DetailedStop], Error> {
         return database.getStopsInLocationBounds(locationBounds)
+            .map { $0.map { dbDetailedStop in dbDetailedStop.toDetailedStop() } }
+            .eraseToAnyPublisher()
     }
 
     func getFavoriteStops() -> AnyPublisher<[FavoriteStop], Error> {
         return database.getFavoriteStops()
+            .map { $0.map { dbFavoriteStop in dbFavoriteStop.toFavoriteStop() } }
+            .eraseToAnyPublisher()
     }
 }

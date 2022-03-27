@@ -29,7 +29,7 @@ final class PredictionRepositoryImpl: PredictionRepository {
 
     func getPredictionsForStopId(_ stopId: String) -> AnyPublisher<[Prediction], Error> {
         return predictionApi.getPredictionsForStopId(stopId)
-            .combineLatest(routeDatabase.getFilteredRouteIdsForStopId(stopId))
+            .combineLatest(routeDatabase.getExcludedRouteIdsForStopId(stopId))
             .map { (predictions, excludedRouteIds) in
                 let excludedRouteIdSet = Set(excludedRouteIds)
                 return predictions.filter { prediction in

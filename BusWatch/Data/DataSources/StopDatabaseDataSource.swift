@@ -17,7 +17,7 @@ protocol StopDatabaseDataSource {
 
     func unfavoriteStop(_ stopId: String) -> AnyPublisher<Void, Error>
 
-    func getStopsInLocationBounds(_ locationBounds: LocationBounds) -> AnyPublisher<[DetailedStop], Error>
+    func getStopsInLocationBounds(_ locationBounds: LocationBounds) -> AnyPublisher<[DatabaseDetailedStop], Error>
 
-    func getFavoriteStops() -> AnyPublisher<[FavoriteStop], Error>
+    func getFavoriteStops() -> AnyPublisher<[DatabaseFavoriteStop], Error>
 }

@@ -14,7 +14,7 @@ final class DatabaseImpl: Database {
 
     // MARK: - Properties
 
-    private static let databaseVersion = "3"
+    private static let databaseVersion = "4"
 
     private let queueSubject = CurrentValueSubject<DatabaseQueue?, Error>(nil)
 
@@ -61,6 +61,7 @@ final class DatabaseImpl: Database {
                 try db.execute(sql: sql)
             }
             try db.execute(sql: FavoriteStopsTable.Migration.dropTableForVersion4)
+            try db.execute(sql: ExcludedRoutesTable.Migration.dropTableForVersion4)
         }
 
         return migrator

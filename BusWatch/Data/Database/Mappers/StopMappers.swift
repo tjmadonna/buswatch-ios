@@ -23,7 +23,7 @@ extension GRDB.Row {
         )
     }
 
-    func toDetailedStop() -> DetailedStop? {
+    func toDatabaseDetailedStop() -> DatabaseDetailedStop? {
         guard let id = self[StopsTable.idColumn] as? String else { return nil }
         guard let title = self[StopsTable.titleColumn] as? String else { return nil }
         guard let latitude = self[StopsTable.latitudeColumn] as? Double else { return nil }
@@ -32,26 +32,34 @@ extension GRDB.Row {
         let routesString = self[StopsTable.routesColumn] as? String ?? ""
         let routes = routesString.components(separatedBy: StopsTable.routesDelimiter)
 
-        return DetailedStop(
+        let excludedRoutesString = self[StopsTable.excludedRoutesColumn] as? String ?? ""
+        let excludedRoutes = excludedRoutesString.components(separatedBy: StopsTable.routesDelimiter)
+
+        return DatabaseDetailedStop(
             id: id,
             title: title,
             latitude: latitude,
             longitude: longitude,
-            filteredRoutes: routes
+            routes: routes,
+            excludedRoutes: excludedRoutes
         )
     }
 
-    func toFavoriteStop() -> FavoriteStop? {
+    func toDatabaseFavoriteStop() -> DatabaseFavoriteStop? {
         guard let id = self[StopsTable.idColumn] as? String else { return nil }
         guard let title = self[StopsTable.titleColumn] as? String else { return nil }
 
         let routesString = self[StopsTable.routesColumn] as? String ?? ""
         let routes = routesString.components(separatedBy: StopsTable.routesDelimiter)
 
-        return FavoriteStop(
+        let excludedRoutesString = self[StopsTable.excludedRoutesColumn] as? String ?? ""
+        let excludedRoutes = excludedRoutesString.components(separatedBy: StopsTable.routesDelimiter)
+
+        return DatabaseFavoriteStop(
             id: id,
             title: title,
-            filteredRoutes: routes
+            routes: routes,
+            excludedRoutes: excludedRoutes
         )
     }
 }

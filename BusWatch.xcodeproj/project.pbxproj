@@ -44,6 +44,12 @@
 		B41E352627EFDC5800142750 /* NetworkPredictionMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E352527EFDC5800142750 /* NetworkPredictionMapper.swift */; };
 		B41E352A27EFF3A100142750 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E352927EFF3A100142750 /* Resources.swift */; };
 		B41E352C27F0BB2600142750 /* buswatch.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = B41E352B27F0BB2500142750 /* buswatch.sqlite */; };
+		B41E353827F110A400142750 /* DatabaseDetailedStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E353727F110A400142750 /* DatabaseDetailedStop.swift */; };
+		B41E353A27F110CD00142750 /* DatabaseFavoriteStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E353927F110CD00142750 /* DatabaseFavoriteStop.swift */; };
+		B41E353C27F1144D00142750 /* DatabaseRoutesWithExclusions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E353B27F1144D00142750 /* DatabaseRoutesWithExclusions.swift */; };
+		B41E353E27F1235000142750 /* DatabaseFavoriteStopMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E353D27F1235000142750 /* DatabaseFavoriteStopMapper.swift */; };
+		B41E354027F1248600142750 /* DatabaseDetailedStopMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E353F27F1248600142750 /* DatabaseDetailedStopMapper.swift */; };
+		B41E354227F1259E00142750 /* DatabaseRoutesWithExclusionsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E354127F1259E00142750 /* DatabaseRoutesWithExclusionsMapper.swift */; };
 		B430D47A245E362B002EA8FB /* NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = B430D479245E362B002EA8FB /* NetworkConfig.swift */; };
 		B43835FA2771395C00C49537 /* FilterRoutesComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43835F92771395C00C49537 /* FilterRoutesComponent.swift */; };
 		B43E071B2453CEFE00393B76 /* StyleConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43E071A2453CEFE00393B76 /* StyleConfig.swift */; };
@@ -154,6 +160,12 @@
 		B41E352527EFDC5800142750 /* NetworkPredictionMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkPredictionMapper.swift; sourceTree = "<group>"; };
 		B41E352927EFF3A100142750 /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		B41E352B27F0BB2500142750 /* buswatch.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = buswatch.sqlite; sourceTree = "<group>"; };
+		B41E353727F110A400142750 /* DatabaseDetailedStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseDetailedStop.swift; sourceTree = "<group>"; };
+		B41E353927F110CD00142750 /* DatabaseFavoriteStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseFavoriteStop.swift; sourceTree = "<group>"; };
+		B41E353B27F1144D00142750 /* DatabaseRoutesWithExclusions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseRoutesWithExclusions.swift; sourceTree = "<group>"; };
+		B41E353D27F1235000142750 /* DatabaseFavoriteStopMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseFavoriteStopMapper.swift; sourceTree = "<group>"; };
+		B41E353F27F1248600142750 /* DatabaseDetailedStopMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseDetailedStopMapper.swift; sourceTree = "<group>"; };
+		B41E354127F1259E00142750 /* DatabaseRoutesWithExclusionsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseRoutesWithExclusionsMapper.swift; sourceTree = "<group>"; };
 		B430D479245E362B002EA8FB /* NetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfig.swift; sourceTree = "<group>"; };
 		B43835E027712FD800C49537 /* FilterRoutesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterRoutesViewModel.swift; sourceTree = "<group>"; };
 		B43835E227712FD800C49537 /* FilterRoutesContract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterRoutesContract.swift; sourceTree = "<group>"; };
@@ -317,6 +329,9 @@
 			isa = PBXGroup;
 			children = (
 				B41E34FD27EF9D0100142750 /* DatabaseRoute.swift */,
+				B41E353727F110A400142750 /* DatabaseDetailedStop.swift */,
+				B41E353927F110CD00142750 /* DatabaseFavoriteStop.swift */,
+				B41E353B27F1144D00142750 /* DatabaseRoutesWithExclusions.swift */,
 				B41E351127EFB50400142750 /* NetworkPrediction.swift */,
 			);
 			path = Models;
@@ -399,6 +414,9 @@
 		B41E352427EFDC3000142750 /* Mappers */ = {
 			isa = PBXGroup;
 			children = (
+				B41E353D27F1235000142750 /* DatabaseFavoriteStopMapper.swift */,
+				B41E353F27F1248600142750 /* DatabaseDetailedStopMapper.swift */,
+				B41E354127F1259E00142750 /* DatabaseRoutesWithExclusionsMapper.swift */,
 				B41E352527EFDC5800142750 /* NetworkPredictionMapper.swift */,
 			);
 			path = Mappers;
@@ -408,6 +426,7 @@
 			isa = PBXGroup;
 			children = (
 				B4F055D12727641E00ED8E30 /* FavoriteStopsTable.swift */,
+				B43835F7277130C900C49537 /* ExcludedRoutesTable.swift */,
 			);
 			path = Legacy;
 			sourceTree = "<group>";
@@ -716,7 +735,6 @@
 				B4F055CF272763E500ED8E30 /* StopsTable.swift */,
 				B4F055D32727643900ED8E30 /* LastLocationTable.swift */,
 				B4F055D52727645E00ED8E30 /* RoutesTable.swift */,
-				B43835F7277130C900C49537 /* ExcludedRoutesTable.swift */,
 				B41E353327F1084500142750 /* Legacy */,
 			);
 			path = Tables;
@@ -904,20 +922,25 @@
 				B41E34EA27EF948400142750 /* LocationRepositoryImpl.swift in Sources */,
 				B41E34CE27EF8BC600142750 /* StopDatabaseDataSourceImpl.swift in Sources */,
 				B46DBE6427A718B10041E8DF /* StopMapViewModel.swift in Sources */,
+				B41E353827F110A400142750 /* DatabaseDetailedStop.swift in Sources */,
 				B46DBE8C27A719D30041E8DF /* PredictionsNoDataViewController.swift in Sources */,
 				B41E34EE27EF949900142750 /* RouteRepositoryImpl.swift in Sources */,
 				B41E350427EFA21A00142750 /* StopMappers.swift in Sources */,
 				B46DBECC27A754B90041E8DF /* OverviewViewModel.swift in Sources */,
 				B46DBE9327A719EA0041E8DF /* PredictionsViewModel.swift in Sources */,
 				B46DBE8627A719BD0041E8DF /* UIViewController.swift in Sources */,
+				B41E354027F1248600142750 /* DatabaseDetailedStopMapper.swift in Sources */,
 				B46DBEB127A71C360041E8DF /* FilterRoutesViewModel.swift in Sources */,
+				B41E354227F1259E00142750 /* DatabaseRoutesWithExclusionsMapper.swift in Sources */,
 				B46DBE4E27A70F150041E8DF /* Database.swift in Sources */,
 				B41E351427EFB5A100142750 /* UrlConfig.swift in Sources */,
 				B41E34DF27EF907400142750 /* FilterableRoute.swift in Sources */,
 				B46DBEDA27A7610B0041E8DF /* OverviewTitleHeaderView.swift in Sources */,
+				B41E353C27F1144D00142750 /* DatabaseRoutesWithExclusions.swift in Sources */,
 				B41E34FE27EF9D0100142750 /* DatabaseRoute.swift in Sources */,
 				B41E34F727EF958F00142750 /* RouteDatabaseDataSource.swift in Sources */,
 				B46DBE5027A70F1D0041E8DF /* FavoriteStopsTable.swift in Sources */,
+				B41E353A27F110CD00142750 /* DatabaseFavoriteStop.swift in Sources */,
 				B46DBECA27A754B90041E8DF /* OverviewContract.swift in Sources */,
 				B46DBE8427A719BD0041E8DF /* UIColor.swift in Sources */,
 				B41E34F127EF955000142750 /* StopDatabaseDataSource.swift in Sources */,
@@ -980,6 +1003,7 @@
 				B41E34F927EF96D300142750 /* LocationPermissionDataSource.swift in Sources */,
 				B46DBE4F27A70F1A0041E8DF /* StopsTable.swift in Sources */,
 				B46DBE5C27A70FB50041E8DF /* UrlSource.swift in Sources */,
+				B41E353E27F1235000142750 /* DatabaseFavoriteStopMapper.swift in Sources */,
 				B41E351627EFB5E000142750 /* UrlSourceImpl.swift in Sources */,
 				B46DBE8727A719BD0041E8DF /* NSLayoutConstraint.swift in Sources */,
 				B41E34E127EF91FC00142750 /* LocationRepository.swift in Sources */,
