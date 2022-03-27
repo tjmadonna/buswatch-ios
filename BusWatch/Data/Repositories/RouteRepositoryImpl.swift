@@ -20,7 +20,7 @@ final class RouteRepositoryImpl: RouteRepository {
     func getFilterableRoutesForStopId(_ stopId: String) -> AnyPublisher<[FilterableRoute], Error> {
         return database.getDatabaseRoutesWithExclusionsForStopId(stopId)
             .map { exRoutes in exRoutes.toFilterableRoutes() }
-            .map { routes in routes.sorted { $0.id > $1.id } }
+            .map { routes in routes.sorted { $0.id < $1.id } }
             .eraseToAnyPublisher()
     }
 
