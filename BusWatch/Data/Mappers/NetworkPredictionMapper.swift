@@ -14,7 +14,7 @@ extension NetworkPrediction {
         guard let vehicleId = self.vehicleId else { return nil }
         guard let routeId = self.routeId else { return nil }
         guard let destination = self.destination else { return nil }
-        guard let routeDirection = self.routeDirection else { return nil }
+        guard let routeDirection = self.routeDirection?.capitalizingOnlyFirstLetter() else { return nil }
 
         guard let arrivalTime = arrivalTime else { return nil }
         guard let arrivalTimeDate = dateFormatter.date(from: arrivalTime) else { return nil }

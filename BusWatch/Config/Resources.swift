@@ -30,7 +30,7 @@ enum Resources {
         static func predictionTitleWithRoute(_ routeTitle: String,
                                              _ destination: String,
                                              _ routeDirection: String) -> String {
-            return String(format: "%@ to %@ (%@))", routeTitle, destination, routeDirection)
+            return String(format: "%@ to %@ (%@)", routeTitle, destination, routeDirection)
         }
     }
 
