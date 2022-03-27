@@ -27,27 +27,10 @@ final class PredictionsComponent {
                                           eventCoordinator: PredictionsEventCoordinator,
                                           stopId: String) -> PredictionsViewController {
 
-        let database = appComponent.provideDatabaseDataSource()
-        let urlConfig = UrlConfig(scheme: NetworkConfig.scheme,
-                                  host: NetworkConfig.host,
-                                  apiKey: NetworkConfig.apiKey,
-                                  basePath: NetworkConfig.basePath)
-        let urlSource = UrlSourceImpl(urlConfig: urlConfig)
-
-        let stopDataSource = PredictionsStopDataSourceImpl(database: database)
-        let stopRepository = PredictionsStopRepositoryImpl(stopDataSource: stopDataSource)
-
-        let predictionDataSource = PredictionsPredictionDataSourceImpl(urlSource: urlSource)
-        let routeDataSource = PredictionsRouteDataSourceImpl(database: database)
-        let predictionRepository = PredictionsPredictionRepositoryImpl(predictionDataSource: predictionDataSource,
-                                                                       routeDataSource: routeDataSource)
-
-        let predictionMapper = PredictionsPresentationPredictionMapper(capacityColor: Colors.capacityImageColor)
         let viewModel = PredictionsViewModel(stopId: stopId,
-                                             stopRepository: stopRepository,
-                                             predictionRepository: predictionRepository,
-                                             eventCoordinator: eventCoordinator,
-                                             predictionMapper: predictionMapper)
+                                             stopRepository: appComponent.stopRepository,
+                                             predictionRepository: appComponent.predictionRepository,
+                                             eventCoordinator: eventCoordinator)
         let style = PredictionsStyleImpl()
 
         return PredictionsViewController(viewModel: viewModel, style: style)

@@ -10,9 +10,9 @@ import Foundation
 import Combine
 
 /// Publisher that periodically makes a network request and decodes response into a specified decodable type
-struct TimedNetworkPublisher<T>: Publisher where T: Decodable {
+struct TimedNetworkPublisher: Publisher {
 
-    typealias Output = T
+    typealias Output = Data
 
     typealias Failure = Swift.Error
 
@@ -99,13 +99,12 @@ struct TimedNetworkPublisher<T>: Publisher where T: Decodable {
                     }
                     return data
                 }
-                .decode(type: T.self, decoder: JSONDecoder())
                 .sink(
                     receiveCompletion: { [weak self] _ in
                         self?.requestInProgess = false
                     },
-                    receiveValue: { [weak self] decodable in
-                        _ = self?.downstream?.receive(decodable)
+                    receiveValue: { [weak self] data in
+                        _ = self?.downstream?.receive(data)
                     })
         }
 

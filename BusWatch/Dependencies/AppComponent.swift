@@ -10,21 +10,59 @@ import Foundation
 
 final class AppComponent {
 
-    private lazy var database: DatabaseDataSource = {
+    lazy var database: Database = {
         let userDefaultsDataSource = self.userDefaults
-        let populator = DatabasePopulator(userDefaultaDataSource: userDefaultsDataSource)
-        return DatabaseDataSourceImpl(databasePath: DatabaseConfig.url, databasePopulator: populator)
+        return DatabaseImpl(databasePath: DatabaseConfig.url)
     }()
 
-    private lazy var userDefaults: UserDefaultsDataSource = {
+    lazy var userDefaults: UserDefaultsDataSource = {
         return UserDefaultsDataSourceImpl()
     }()
 
-    func provideDatabaseDataSource() -> DatabaseDataSource {
-        return database
-    }
+    // MARK: - Data Sources
 
-    func provideUserDefaultsDataSource() -> UserDefaultsDataSource {
-        return userDefaults
-    }
+    lazy var stopDatabaseDataSource: StopDatabaseDataSource = {
+        return StopDatabaseDataSourceImpl(database: database)
+    }()
+
+    lazy var locationDatabaseDataSource: LocationDatabaseDataSource = {
+        return LocationDatabaseDataSourceImpl(database: database)
+    }()
+
+    lazy var locationPermissionDataSource: LocationPermissionDataSource = {
+        return LocationPermissionDataSourceImpl()
+    }()
+
+    lazy var predictionNetworkDataSource: PredictionNetworkDataSource = {
+        let config = UrlConfig(scheme: NetworkConfig.scheme,
+                               host: NetworkConfig.host,
+                               apiKey: NetworkConfig.apiKey,
+                               basePath: NetworkConfig.basePath)
+        let urlSource = UrlSourceImpl(urlConfig: config)
+        return PredictionNetworkDataSourceImpl(urlSource: urlSource)
+    }()
+
+    lazy var routeDatabaseDataSource: RouteDatabaseDataSource = {
+        return RouteDatabaseDataSourceImpl(database: database)
+    }()
+
+    // MARK: - Repositories
+
+    lazy var stopRepository: StopRepository = {
+        return StopRepositoryImpl(database: stopDatabaseDataSource)
+    }()
+
+    lazy var locationRepository: LocationRepository = {
+        return LocationRepositoryImpl(database: locationDatabaseDataSource,
+                                      permissions: locationPermissionDataSource)
+    }()
+
+    lazy var predictionRepository: PredictionRepository = {
+        return PredictionRepositoryImpl(predictionApi: predictionNetworkDataSource,
+                                        routeDatabase: routeDatabaseDataSource)
+    }()
+
+    lazy var routeRepository: RouteRepository = {
+        return RouteRepositoryImpl(database: routeDatabaseDataSource)
+    }()
 }

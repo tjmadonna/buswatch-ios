@@ -21,19 +21,8 @@ final class StopMapComponent {
     func provideStopMapViewController(_ appComponent: AppComponent,
                                       eventCoordinator: StopMapEventCoordinator) -> StopMapViewController {
 
-        let database = appComponent.provideDatabaseDataSource()
-        let locationManager = CLLocationManager()
-
-        let stopDataSource = StopMapStopDataSourceImpl(database: database)
-        let stopRepository = StopMapStopRepositoryImpl(stopDataSource: stopDataSource)
-
-        let locDataSource = StopMapLocationDataSourceImpl(database: database)
-        let locPermissionDataSource = StopMapLocationPermissionDataSourceImpl(locationManager: locationManager)
-        let locRepository = StopMapLocationRepositoryImpl(locationDataSource: locDataSource,
-                                                          locationPermissionDataSource: locPermissionDataSource)
-
-        let viewModel = StopMapViewModel(stopRepository: stopRepository,
-                                         locationRepository: locRepository,
+        let viewModel = StopMapViewModel(stopRepository: appComponent.stopRepository,
+                                         locationRepository: appComponent.locationRepository,
                                          eventCoordinator: eventCoordinator)
         let style = StopMapStyleImpl()
 

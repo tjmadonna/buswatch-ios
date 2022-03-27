@@ -24,16 +24,8 @@ final class OverviewComponent {
     func provideOverviewViewController(_ appComponent: AppComponent,
                                        eventCoordinator: OverviewEventCoordinator) -> OverviewViewController {
 
-        let database = appComponent.provideDatabaseDataSource()
-
-        let stopDataSource = OverviewStopDataSourceImpl(database: database)
-        let stopRepository = OverviewStopRepositoryImpl(stopDataSource: stopDataSource)
-
-        let locationDataSource = OverviewLocationDataSourceImpl(database: database)
-        let locationRepository = OverviewLocationRepositoryImpl(locationDataSource: locationDataSource)
-
-        let viewModel = OverviewViewModel(stopRepository: stopRepository,
-                                          locationRepository: locationRepository,
+        let viewModel = OverviewViewModel(stopRepository: appComponent.stopRepository,
+                                          locationRepository: appComponent.locationRepository,
                                           eventCoordinator: eventCoordinator)
         let style = OverviewStyleImpl()
 
