@@ -82,7 +82,6 @@
 		B46DBEB127A71C360041E8DF /* FilterRoutesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43835E027712FD800C49537 /* FilterRoutesViewModel.swift */; };
 		B46DBEB327A71C360041E8DF /* FilterRoutesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43835E827712FD800C49537 /* FilterRoutesViewController.swift */; };
 		B46DBEBE27A726190041E8DF /* DatabaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46DBEBD27A726190041E8DF /* DatabaseImpl.swift */; };
-		B46DBEC527A746F30041E8DF /* CapacityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46DBEC427A746F30041E8DF /* CapacityType.swift */; };
 		B46DBEC727A754B90041E8DF /* OverviewFavoriteStopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B490E4F724492E34006CA233 /* OverviewFavoriteStopCell.swift */; };
 		B46DBEC827A754B90041E8DF /* OverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FA416E2446888B0066F81E /* OverviewViewController.swift */; };
 		B46DBEC927A754B90041E8DF /* OverviewMapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FDF66A244BB6A800539C92 /* OverviewMapCell.swift */; };
@@ -172,7 +171,6 @@
 		B45988CB24429C69006F9B32 /* StopMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopMapViewModel.swift; sourceTree = "<group>"; };
 		B463645E2471EBDF00C6EDBB /* TimedNetworkPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimedNetworkPublisher.swift; sourceTree = "<group>"; };
 		B46DBEBD27A726190041E8DF /* DatabaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseImpl.swift; sourceTree = "<group>"; };
-		B46DBEC427A746F30041E8DF /* CapacityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapacityType.swift; sourceTree = "<group>"; };
 		B470C81D27235D69007CEAF9 /* PredictionsDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsDataViewController.swift; sourceTree = "<group>"; };
 		B470C81F27235D83007CEAF9 /* PredictionsLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsLoadingViewController.swift; sourceTree = "<group>"; };
 		B477CD62243BF7280027AE11 /* BusWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BusWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -271,7 +269,6 @@
 			isa = PBXGroup;
 			children = (
 				B4076309245A2201008979C5 /* Prediction.swift */,
-				B46DBEC427A746F30041E8DF /* CapacityType.swift */,
 				B41E34D427EF8E7C00142750 /* MinimalStop.swift */,
 				B41E34D627EF8EE100142750 /* DetailedStop.swift */,
 				B41E34DC27EF900F00142750 /* FavoriteStop.swift */,
@@ -902,7 +899,6 @@
 				B46DBE8C27A719D30041E8DF /* PredictionsNoDataViewController.swift in Sources */,
 				B41E34EE27EF949900142750 /* RouteRepositoryImpl.swift in Sources */,
 				B41E350427EFA21A00142750 /* StopMappers.swift in Sources */,
-				B46DBEC527A746F30041E8DF /* CapacityType.swift in Sources */,
 				B46DBECC27A754B90041E8DF /* OverviewViewModel.swift in Sources */,
 				B46DBE9327A719EA0041E8DF /* PredictionsViewModel.swift in Sources */,
 				B46DBE8627A719BD0041E8DF /* UIViewController.swift in Sources */,

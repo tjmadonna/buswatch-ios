@@ -36,7 +36,7 @@ extension GRDB.Row {
             title: title,
             latitude: latitude,
             longitude: longitude,
-            routes: routes
+            filteredRoutes: routes
         )
     }
 
@@ -50,7 +50,7 @@ extension GRDB.Row {
         return FavoriteStop(
             id: id,
             title: title,
-            routes: routes
+            filteredRoutes: routes
         )
     }
 }

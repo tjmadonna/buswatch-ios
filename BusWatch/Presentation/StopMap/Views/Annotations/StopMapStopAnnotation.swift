@@ -19,7 +19,7 @@ final class StopMapStopAnnotation: NSObject, MKAnnotation {
     }
 
     var subtitle: String? {
-        return stop.routes.joined(separator: ", ")
+        return stop.filteredRoutes.joined(separator: ", ")
     }
 
     let stop: DetailedStop

@@ -33,6 +33,6 @@ extension FilterableRoute: Differentiable {
 extension FilterableRoute: CustomStringConvertible {
 
     var description: String {
-        return "id: \(id), excluded: \(filtered)"
+        return "id: \(id), filtered: \(filtered)"
     }
 }

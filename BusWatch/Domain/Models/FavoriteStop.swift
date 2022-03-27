@@ -11,7 +11,7 @@ import Foundation
 struct FavoriteStop {
     let id: String
     let title: String
-    let routes: [String]
+    let filteredRoutes: [String]
 }
 
 extension FavoriteStop: Hashable { }

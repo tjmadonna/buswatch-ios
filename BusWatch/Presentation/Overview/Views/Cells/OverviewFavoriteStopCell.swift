@@ -143,6 +143,6 @@ final class OverviewFavoriteStopCell: UITableViewCell {
 
         decoratorLabel.text = favoriteStop.title.first?.description
         titleLabel.text = favoriteStop.title
-        routesLabel.text = favoriteStop.routes.joined(separator: ", ")
+        routesLabel.text = favoriteStop.filteredRoutes.joined(separator: ", ")
     }
 }

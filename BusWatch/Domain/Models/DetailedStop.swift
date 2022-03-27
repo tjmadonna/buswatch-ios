@@ -13,7 +13,7 @@ struct DetailedStop {
     let title: String
     let latitude: Double
     let longitude: Double
-    let routes: [String]
+    let filteredRoutes: [String]
 }
 
 extension DetailedStop: Hashable { }
