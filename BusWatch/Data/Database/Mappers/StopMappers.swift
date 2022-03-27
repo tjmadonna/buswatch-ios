@@ -14,7 +14,7 @@ extension GRDB.Row {
     func toMinimalStop() -> MinimalStop? {
         guard let id = self[StopsTable.idColumn] as? String else { return nil }
         guard let title = self[StopsTable.titleColumn] as? String else { return nil }
-        guard let favorite = self[StopsTable.favoriteColumn] as? Int else { return nil }
+        guard let favorite = self[StopsTable.favoriteColumn] as? Int64 else { return nil }
 
         return MinimalStop(
             id: id,
