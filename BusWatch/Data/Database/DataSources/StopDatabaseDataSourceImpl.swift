@@ -24,11 +24,9 @@ final class StopDatabaseDataSourceImpl: StopDatabaseDataSource {
 
     func getStopById(_ stopId: String) -> AnyPublisher<MinimalStop, Swift.Error> {
         let sql = """
-        SELECT s.\(StopsTable.idColumn), s.\(StopsTable.titleColumn), \(FavoriteStopsTable.stopIdColumn)
-        FROM \(StopsTable.tableName) AS s
-        LEFT JOIN \(FavoriteStopsTable.tableName) AS f
-        ON s.\(StopsTable.idColumn) = f.\(FavoriteStopsTable.stopIdColumn)
-        WHERE s.\(StopsTable.idColumn) = ?
+        SELECT \(StopsTable.idColumn), \(StopsTable.titleColumn), \(StopsTable.favoriteColumn)
+        FROM \(StopsTable.tableName)
+        WHERE \(StopsTable.idColumn) = ?
         """
         let arguments = StatementArguments([stopId])
         return database.queue
@@ -46,12 +44,20 @@ final class StopDatabaseDataSourceImpl: StopDatabaseDataSource {
     }
 
     func favoriteStop(_ stopId: String) -> AnyPublisher<Void, Swift.Error> {
-        let sql = "INSERT INTO \(FavoriteStopsTable.tableName) ( \(FavoriteStopsTable.stopIdColumn) ) VALUES ( ? )"
+        let sql = """
+        UPDATE \(StopsTable.tableName)
+        SET \(StopsTable.favoriteColumn) = 1
+        WHERE \(StopsTable.idColumn) = ?;
+        """
         return writePublisherForSql(sql, arguments: [stopId])
     }
 
     func unfavoriteStop(_ stopId: String) -> AnyPublisher<Void, Swift.Error> {
-        let sql = "DELETE FROM \(FavoriteStopsTable.tableName) WHERE \(FavoriteStopsTable.stopIdColumn) = ?"
+        let sql = """
+        UPDATE \(StopsTable.tableName)
+        SET \(StopsTable.favoriteColumn) = 0
+        WHERE \(StopsTable.idColumn) = ?;
+        """
         return writePublisherForSql(sql, arguments: [stopId])
     }
 
@@ -75,13 +81,9 @@ final class StopDatabaseDataSourceImpl: StopDatabaseDataSource {
 
     func getFavoriteStops() -> AnyPublisher<[FavoriteStop], Swift.Error> {
         let sql = """
-        SELECT s.\(StopsTable.idColumn), s.\(StopsTable.titleColumn), s.\(StopsTable.routesColumn),
-        e.\(ExcludedRoutesTable.routesColumn) as "e.\(ExcludedRoutesTable.routesColumn)"
-        FROM \(StopsTable.tableName) AS s
-        INNER JOIN \(FavoriteStopsTable.tableName) AS f
-        ON s.\(StopsTable.idColumn) = f.\(FavoriteStopsTable.stopIdColumn)
-        LEFT JOIN \(ExcludedRoutesTable.tableName) as e
-        ON s.\(StopsTable.idColumn) = e.\(ExcludedRoutesTable.stopIdColumn)
+        SELECT \(StopsTable.idColumn), \(StopsTable.titleColumn), \(StopsTable.routesColumn)
+        FROM \(StopsTable.tableName)
+        WHERE \(StopsTable.favoriteColumn) = 1
         """
         return valueObservationPublisherForSql(sql) { row in
             row.toFavoriteStop()

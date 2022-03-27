@@ -24,5 +24,9 @@ enum FavoriteStopsTable {
         ON DELETE CASCADE
         )
         """
+
+        static let dropTableForVersion4 = """
+        DROP TABLE IF EXISTS \(tableName)
+        """
     }
 }

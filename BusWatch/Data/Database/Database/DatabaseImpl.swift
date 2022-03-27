@@ -56,6 +56,13 @@ final class DatabaseImpl: Database {
             try db.execute(sql: ExcludedRoutesTable.Migration.createTableForVersion3)
         }
 
+        migrator.registerMigration("4") { db in
+            try StopsTable.Migration.alterTableForVersion4.forEach { sql in
+                try db.execute(sql: sql)
+            }
+            try db.execute(sql: FavoriteStopsTable.Migration.dropTableForVersion4)
+        }
+
         return migrator
     }()
 

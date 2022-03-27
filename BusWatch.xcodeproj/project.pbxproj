@@ -404,6 +404,14 @@
 			path = Mappers;
 			sourceTree = "<group>";
 		};
+		B41E353327F1084500142750 /* Legacy */ = {
+			isa = PBXGroup;
+			children = (
+				B4F055D12727641E00ED8E30 /* FavoriteStopsTable.swift */,
+			);
+			path = Legacy;
+			sourceTree = "<group>";
+		};
 		B43835DF27712FD800C49537 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -706,10 +714,10 @@
 			isa = PBXGroup;
 			children = (
 				B4F055CF272763E500ED8E30 /* StopsTable.swift */,
-				B4F055D12727641E00ED8E30 /* FavoriteStopsTable.swift */,
 				B4F055D32727643900ED8E30 /* LastLocationTable.swift */,
 				B4F055D52727645E00ED8E30 /* RoutesTable.swift */,
 				B43835F7277130C900C49537 /* ExcludedRoutesTable.swift */,
+				B41E353327F1084500142750 /* Legacy */,
 			);
 			path = Tables;
 			sourceTree = "<group>";
