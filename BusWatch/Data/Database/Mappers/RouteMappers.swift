@@ -21,12 +21,12 @@ extension GRDB.Row {
         )
     }
 
-    func toExcludedRouteIds() -> [String] {
+    func toFilteredRouteIds() -> [String] {
         guard let routeIdString = self[ExcludedRoutesTable.routesColumn] as? String else { return [] }
         return routeIdString.components(separatedBy: ExcludedRoutesTable.routesDelimiter)
     }
 
-    func toExclusionRoute() -> [ExclusionRoute] {
+    func toFilterableRoute() -> [FilterableRoute] {
         guard let stopRoutes = self["\(StopsTable.tableName)_\(StopsTable.routesColumn)"] as? String else { return [] }
         let exRoutes = self["\(ExcludedRoutesTable.tableName)_\(ExcludedRoutesTable.routesColumn)"] as? String ?? ""
 
@@ -34,8 +34,8 @@ extension GRDB.Row {
         let excludedRoutesSet = Set(exRoutes.components(separatedBy: ExcludedRoutesTable.routesDelimiter))
 
         return routesArray.map { route in
-            ExclusionRoute(id: route,
-                           excluded: excludedRoutesSet.contains(route))
+            FilterableRoute(id: route,
+                            filtered: excludedRoutesSet.contains(route))
         }
     }
 }

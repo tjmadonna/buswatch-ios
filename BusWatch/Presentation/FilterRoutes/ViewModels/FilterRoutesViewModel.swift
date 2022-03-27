@@ -47,7 +47,7 @@ final class FilterRoutesViewModel {
     // MARK: - Setup
 
     private func setupObservers() {
-        routeRepository.getRoutesForStopId(stopId)
+        routeRepository.getFilterableRoutesForStopId(stopId)
             .map { routes in FilterRoutesState.data(routes) }
             .replaceError(with: .error("Couldn't get routes"))
             .receive(on: RunLoop.main)
@@ -71,8 +71,8 @@ final class FilterRoutesViewModel {
     private func handleRouteSelectedIntent(_ index: Int) {
         if case .data(var routes) = stateSubject.value {
             let currentRoute = routes[index]
-            let newRoute = ExclusionRoute(id: currentRoute.id,
-                                          excluded: !currentRoute.excluded)
+            let newRoute = FilterableRoute(id: currentRoute.id,
+                                           filtered: !currentRoute.filtered)
             routes[index] = newRoute
             stateSubject.value = .data(routes)
         }
@@ -85,7 +85,7 @@ final class FilterRoutesViewModel {
     private func handleSaveSelectedIntent() {
         if case .data(let routes) = stateSubject.value {
 
-            let excludedRouteIds = routes.filter { route in route.excluded }
+            let excludedRouteIds = routes.filter { route in route.filtered }
                 .map { route in route.id }
 
             routeRepository.updateExcludedRouteIdsForStopId(stopId, routeIds: excludedRouteIds)

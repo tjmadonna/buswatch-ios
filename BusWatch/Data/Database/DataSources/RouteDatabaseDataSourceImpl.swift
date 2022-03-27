@@ -18,7 +18,7 @@ final class RouteDatabaseDataSourceImpl: RouteDatabaseDataSource {
         self.database = database
     }
 
-    func getRoutesForStopId(_ stopId: String) -> AnyPublisher<[ExclusionRoute], Swift.Error> {
+    func getFilterableRoutesForStopId(_ stopId: String) -> AnyPublisher<[FilterableRoute], Swift.Error> {
         let sql = """
         SELECT
         s.\(StopsTable.routesColumn) AS \(StopsTable.tableName)_\(StopsTable.routesColumn),
@@ -33,7 +33,7 @@ final class RouteDatabaseDataSourceImpl: RouteDatabaseDataSource {
             .flatMap { dbQueue in
                 return ValueObservation.tracking { db in
                     let row = try Row.fetchOne(db, sql: sql, arguments: arguments)
-                    return row?.toExclusionRoute() ?? []
+                    return row?.toFilterableRoute() ?? []
                 }
                 .publisher(in: dbQueue)
             }
@@ -61,7 +61,7 @@ final class RouteDatabaseDataSourceImpl: RouteDatabaseDataSource {
             .eraseToAnyPublisher()
     }
 
-    func getExcludedRouteIdsForStopId(_ stopId: String) -> AnyPublisher<[String], Swift.Error> {
+    func getFilteredRouteIdsForStopId(_ stopId: String) -> AnyPublisher<[String], Swift.Error> {
         let sql = """
         SELECT \(ExcludedRoutesTable.routesColumn) FROM \(ExcludedRoutesTable.tableName)
         WHERE \(ExcludedRoutesTable.stopIdColumn) = ?
@@ -71,7 +71,7 @@ final class RouteDatabaseDataSourceImpl: RouteDatabaseDataSource {
             .flatMap { dbQueue in
                 return ValueObservation.tracking { db in
                     let row = try Row.fetchOne(db, sql: sql, arguments: arguments)
-                    return row?.toExcludedRouteIds() ?? []
+                    return row?.toFilteredRouteIds() ?? []
                 }
                 .publisher(in: dbQueue)
             }

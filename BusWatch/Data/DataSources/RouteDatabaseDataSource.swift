@@ -11,11 +11,11 @@ import Combine
 
 protocol RouteDatabaseDataSource {
 
-    func getRoutesForStopId(_ stopId: String) -> AnyPublisher<[ExclusionRoute], Error>
+    func getFilterableRoutesForStopId(_ stopId: String) -> AnyPublisher<[FilterableRoute], Error>
 
     func getRoutesWithIds(_ routeIds: [String]) -> AnyPublisher<[DatabaseRoute], Error>
 
-    func getExcludedRouteIdsForStopId(_ stopId: String) -> AnyPublisher<[String], Error>
+    func getFilteredRouteIdsForStopId(_ stopId: String) -> AnyPublisher<[String], Error>
 
     func updateExcludedRouteIdsForStopId(_ stopId: String, routeIds: [String]) -> AnyPublisher<Void, Error>
 

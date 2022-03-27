@@ -11,7 +11,7 @@ import Combine
 
 protocol RouteRepository {
 
-    func getRoutesForStopId(_ stopId: String) -> AnyPublisher<[ExclusionRoute], Error>
+    func getFilterableRoutesForStopId(_ stopId: String) -> AnyPublisher<[FilterableRoute], Error>
 
     func updateExcludedRouteIdsForStopId(_ stopId: String, routeIds: [String]) -> AnyPublisher<Void, Error>
 

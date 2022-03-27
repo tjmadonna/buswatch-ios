@@ -1,5 +1,5 @@
 //
-//  ExclusionRoute.swift
+//  FilterableRoute.swift
 //  BusWatch
 //
 //  Created by Tyler Madonna on 3/26/22.
@@ -9,14 +9,14 @@
 import Foundation
 import DifferenceKit
 
-struct ExclusionRoute {
+struct FilterableRoute {
     let id: String
-    let excluded: Bool
+    let filtered: Bool
 }
 
-extension ExclusionRoute: Hashable { }
+extension FilterableRoute: Hashable { }
 
-extension ExclusionRoute: Differentiable {
+extension FilterableRoute: Differentiable {
 
     typealias DifferenceIdentifier = String
 
@@ -24,15 +24,15 @@ extension ExclusionRoute: Differentiable {
         id
     }
 
-    func isContentEqual(to source: ExclusionRoute) -> Bool {
+    func isContentEqual(to source: FilterableRoute) -> Bool {
         return id == source.id &&
-            excluded == source.excluded
+            filtered == source.filtered
     }
 }
 
-extension ExclusionRoute: CustomStringConvertible {
+extension FilterableRoute: CustomStringConvertible {
 
     var description: String {
-        return "id: \(id), excluded: \(excluded)"
+        return "id: \(id), excluded: \(filtered)"
     }
 }

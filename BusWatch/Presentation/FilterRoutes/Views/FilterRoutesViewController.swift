@@ -33,7 +33,7 @@ final class FilterRoutesViewController: UITableViewController {
 
     private let style: FilterRoutesStyle
 
-    private var routes = [ExclusionRoute]()
+    private var routes = [FilterableRoute]()
 
     private var cancellables: [AnyCancellable] = []
 
@@ -112,11 +112,11 @@ final class FilterRoutesViewController: UITableViewController {
 
     // MARK: - Table View Cells
 
-    private func configureCell(_ cell: UITableViewCell?, forRoute route: ExclusionRoute) {
+    private func configureCell(_ cell: UITableViewCell?, forRoute route: FilterableRoute) {
         cell?.textLabel?.text = route.id
         cell?.selectionStyle = .none
         cell?.tintColor = style.checkColor
-        if route.excluded {
+        if route.filtered {
             cell?.accessoryType = .none
         } else {
             cell?.accessoryType = .checkmark
@@ -125,7 +125,7 @@ final class FilterRoutesViewController: UITableViewController {
 
     // MARK: - Render
 
-    private func renderDataStateForRoutes(_ routes: [ExclusionRoute]) {
+    private func renderDataStateForRoutes(_ routes: [FilterableRoute]) {
         if self.routes.isEmpty {
             self.routes = routes
             tableView.reloadData()

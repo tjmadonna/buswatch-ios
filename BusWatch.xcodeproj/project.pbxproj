@@ -15,7 +15,7 @@
 		B41E34D927EF8FBC00142750 /* CurrentLocationPermissionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E34D827EF8FBC00142750 /* CurrentLocationPermissionStatus.swift */; };
 		B41E34DB27EF8FD500142750 /* LocationBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E34DA27EF8FD500142750 /* LocationBounds.swift */; };
 		B41E34DD27EF900F00142750 /* FavoriteStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E34DC27EF900F00142750 /* FavoriteStop.swift */; };
-		B41E34DF27EF907400142750 /* ExclusionRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E34DE27EF907400142750 /* ExclusionRoute.swift */; };
+		B41E34DF27EF907400142750 /* FilterableRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E34DE27EF907400142750 /* FilterableRoute.swift */; };
 		B41E34E127EF91FC00142750 /* LocationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E34E027EF91FC00142750 /* LocationRepository.swift */; };
 		B41E34E327EF921A00142750 /* StopRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E34E227EF921A00142750 /* StopRepository.swift */; };
 		B41E34E527EF935500142750 /* RouteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E34E427EF935500142750 /* RouteRepository.swift */; };
@@ -126,7 +126,7 @@
 		B41E34D827EF8FBC00142750 /* CurrentLocationPermissionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocationPermissionStatus.swift; sourceTree = "<group>"; };
 		B41E34DA27EF8FD500142750 /* LocationBounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationBounds.swift; sourceTree = "<group>"; };
 		B41E34DC27EF900F00142750 /* FavoriteStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteStop.swift; sourceTree = "<group>"; };
-		B41E34DE27EF907400142750 /* ExclusionRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExclusionRoute.swift; sourceTree = "<group>"; };
+		B41E34DE27EF907400142750 /* FilterableRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterableRoute.swift; sourceTree = "<group>"; };
 		B41E34E027EF91FC00142750 /* LocationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationRepository.swift; sourceTree = "<group>"; };
 		B41E34E227EF921A00142750 /* StopRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopRepository.swift; sourceTree = "<group>"; };
 		B41E34E427EF935500142750 /* RouteRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteRepository.swift; sourceTree = "<group>"; };
@@ -277,7 +277,7 @@
 				B41E34DC27EF900F00142750 /* FavoriteStop.swift */,
 				B41E34D827EF8FBC00142750 /* CurrentLocationPermissionStatus.swift */,
 				B41E34DA27EF8FD500142750 /* LocationBounds.swift */,
-				B41E34DE27EF907400142750 /* ExclusionRoute.swift */,
+				B41E34DE27EF907400142750 /* FilterableRoute.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -909,7 +909,7 @@
 				B46DBEB127A71C360041E8DF /* FilterRoutesViewModel.swift in Sources */,
 				B46DBE4E27A70F150041E8DF /* Database.swift in Sources */,
 				B41E351427EFB5A100142750 /* UrlConfig.swift in Sources */,
-				B41E34DF27EF907400142750 /* ExclusionRoute.swift in Sources */,
+				B41E34DF27EF907400142750 /* FilterableRoute.swift in Sources */,
 				B46DBEDA27A7610B0041E8DF /* OverviewTitleHeaderView.swift in Sources */,
 				B41E34FE27EF9D0100142750 /* DatabaseRoute.swift in Sources */,
 				B41E34F727EF958F00142750 /* RouteDatabaseDataSource.swift in Sources */,
