@@ -178,10 +178,12 @@ final class PredictionsPredictionCell: UITableViewCell {
         } else {
             decoratorLabel.text = prediction.route
             titleLabel.text = prediction.title
-            capacityImageView.image = UIImage(named: prediction.capacityImageName ?? "")
-            capacityImageViewName = prediction.capacityImageName
+            capacityImageView.image = UIImage(named: prediction.capacityImageName ?? "")?
+                .withTintColor(Resources.Colors.capacityImageColor)
             arrivalTimeLabel.text = prediction.arrivalMessage
         }
+
+        capacityImageViewName = prediction.capacityImageName
     }
 
     private func animateTextChange(_ newText: String?, view: UILabel) {
@@ -199,7 +201,8 @@ final class PredictionsPredictionCell: UITableViewCell {
         UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseIn) {
             view.alpha = 0
         } completion: { _ in
-            view.image = UIImage(named: newImageName ?? "")
+            view.image = UIImage(named: newImageName ?? "")?
+                .withTintColor(Resources.Colors.capacityImageColor)
             UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseIn) {
                 view.alpha = 1
             }
