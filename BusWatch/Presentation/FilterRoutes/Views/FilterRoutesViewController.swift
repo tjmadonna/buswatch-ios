@@ -11,8 +11,6 @@ import Combine
 
 final class FilterRoutesViewController: UITableViewController {
 
-    private static let cellReuseId = "UITableViewCell"
-
     // MARK: - Views
 
     private lazy var cancelBarButton: UIBarButtonItem = {
@@ -68,8 +66,9 @@ final class FilterRoutesViewController: UITableViewController {
     }
 
     private func setupTableView() {
-        tableView.separatorStyle = .singleLine
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: FilterRoutesViewController.cellReuseId)
+        tableView.separatorStyle = .none
+        tableView.rowHeight = 50
+        tableView.register(FilterRouteCell.self, forCellReuseIdentifier: FilterRouteCell.reuseId)
     }
 
     private func setupObservers() {
@@ -97,9 +96,8 @@ final class FilterRoutesViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: FilterRoutesViewController.cellReuseId, for: indexPath)
-        let route = routes[indexPath.row]
-        configureCell(cell, forRoute: route)
+        let cell = tableView.dequeueReusableCell(withIdentifier: FilterRouteCell.reuseId, for: indexPath)
+        configureCell(cell, forIndexPath: indexPath)
         return cell
     }
 
@@ -112,15 +110,15 @@ final class FilterRoutesViewController: UITableViewController {
 
     // MARK: - Table View Cells
 
-    private func configureCell(_ cell: UITableViewCell?, forRoute route: FilterableRoute) {
-        cell?.textLabel?.text = route.id
-        cell?.selectionStyle = .none
-        cell?.tintColor = style.checkColor
-        if route.filtered {
-            cell?.accessoryType = .none
-        } else {
-            cell?.accessoryType = .checkmark
+    private func configureCell(_ cell: UITableViewCell?, forIndexPath indexPath: IndexPath) {
+        guard let cell = cell as? FilterRouteCell else {
+            fatalError("""
+                       FilterRoutesViewController Error: Unable to dequeue FilterRouteCell at index path \(indexPath))
+                       """)
         }
+        let route = routes[indexPath.row]
+        cell.selectionStyle = .none
+        cell.configureWithFilterableRoute(route, dividerVisible: indexPath.row == routes.lastIndex)
     }
 
     // MARK: - Render
@@ -134,8 +132,7 @@ final class FilterRoutesViewController: UITableViewController {
                 self.routes = newData
             }, reloadRow: { indexPath in
                 let cell = self.tableView.cellForRow(at: indexPath)
-                let route = self.routes[indexPath.row]
-                self.configureCell(cell, forRoute: route)
+                self.configureCell(cell, forIndexPath: indexPath)
             })
         }
     }

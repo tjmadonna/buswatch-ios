@@ -96,6 +96,7 @@
 		B46DBECC27A754B90041E8DF /* OverviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DCAD49245272B900A0E978 /* OverviewViewModel.swift */; };
 		B46DBEDA27A7610B0041E8DF /* OverviewTitleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49700C3244BA337007AB5FC /* OverviewTitleHeaderView.swift */; };
 		B470C82327239368007CEAF9 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = B470C82227239368007CEAF9 /* GRDB */; };
+		B4721AD327F26DCE00D9E04C /* FilterRouteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4721AD227F26DCE00D9E04C /* FilterRouteCell.swift */; };
 		B474B86E2725FB2900B5CBA2 /* DifferenceKit in Frameworks */ = {isa = PBXBuildFile; productRef = B474B86D2725FB2900B5CBA2 /* DifferenceKit */; };
 		B477CD66243BF7280027AE11 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B477CD65243BF7280027AE11 /* AppDelegate.swift */; };
 		B477CD68243BF7280027AE11 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B477CD67243BF7280027AE11 /* SceneDelegate.swift */; };
@@ -185,6 +186,7 @@
 		B46DBEBD27A726190041E8DF /* DatabaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseImpl.swift; sourceTree = "<group>"; };
 		B470C81D27235D69007CEAF9 /* PredictionsDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsDataViewController.swift; sourceTree = "<group>"; };
 		B470C81F27235D83007CEAF9 /* PredictionsLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsLoadingViewController.swift; sourceTree = "<group>"; };
+		B4721AD227F26DCE00D9E04C /* FilterRouteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterRouteCell.swift; sourceTree = "<group>"; };
 		B477CD62243BF7280027AE11 /* BusWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BusWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B477CD65243BF7280027AE11 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B477CD67243BF7280027AE11 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -451,6 +453,7 @@
 			isa = PBXGroup;
 			children = (
 				B43835E827712FD800C49537 /* FilterRoutesViewController.swift */,
+				B4721AD127F26DBB00D9E04C /* Cells */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -590,6 +593,14 @@
 				B463645E2471EBDF00C6EDBB /* TimedNetworkPublisher.swift */,
 			);
 			path = Publishers;
+			sourceTree = "<group>";
+		};
+		B4721AD127F26DBB00D9E04C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				B4721AD227F26DCE00D9E04C /* FilterRouteCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		B477CD59243BF7280027AE11 = {
@@ -933,6 +944,7 @@
 				B46DBEB127A71C360041E8DF /* FilterRoutesViewModel.swift in Sources */,
 				B41E354227F1259E00142750 /* DatabaseRoutesWithExclusionsMapper.swift in Sources */,
 				B46DBE4E27A70F150041E8DF /* Database.swift in Sources */,
+				B4721AD327F26DCE00D9E04C /* FilterRouteCell.swift in Sources */,
 				B41E351427EFB5A100142750 /* UrlConfig.swift in Sources */,
 				B41E34DF27EF907400142750 /* FilterableRoute.swift in Sources */,
 				B46DBEDA27A7610B0041E8DF /* OverviewTitleHeaderView.swift in Sources */,
