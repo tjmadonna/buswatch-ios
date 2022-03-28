@@ -1,0 +1,6 @@
+.vscode/
+env/
+
+*.sqlite
+*.db
+*.json
