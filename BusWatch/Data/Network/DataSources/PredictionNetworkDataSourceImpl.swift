@@ -32,7 +32,12 @@ final class PredictionNetworkDataSourceImpl: PredictionNetworkDataSource {
                                      urlSession: self.urlSession)
             .decode(type: NetworkGetPredictionsResponse.self, decoder: JSONDecoder())
             .tryMap { response in
-                if response.bustimeResponse?.errors != nil {
+
+                if let errors = response.bustimeResponse?.errors {
+                    if errors.first?.message == "No service scheduled" {
+                        // Api returns an error json response if there's no predictions
+                        return []
+                    }
                     throw Error.endpoint
                 }
                 return response.bustimeResponse?.predictions ?? []
