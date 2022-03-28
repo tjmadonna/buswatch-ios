@@ -1224,8 +1224,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/groue/GRDB.swift";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
+				kind = upToNextMinorVersion;
+				minimumVersion = 5.22.0;
 			};
 		};
 		B474B86C2725FB2900B5CBA2 /* XCRemoteSwiftPackageReference "DifferenceKit" */ = {
