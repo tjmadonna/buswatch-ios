@@ -33,9 +33,3 @@ protocol FilterRoutesEventCoordinator: AnyObject {
 
     func cancelSelectedInFilterRoutes()
 }
-
-// MARK: - Resources
-
-protocol FilterRoutesStyle {
-    var checkColor: UIColor { get }
-}

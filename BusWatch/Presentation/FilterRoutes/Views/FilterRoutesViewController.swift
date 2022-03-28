@@ -29,17 +29,14 @@ final class FilterRoutesViewController: UITableViewController {
 
     private let viewModel: FilterRoutesViewModel
 
-    private let style: FilterRoutesStyle
-
     private var routes = [FilterableRoute]()
 
     private var cancellables: [AnyCancellable] = []
 
     // MARK: - Initialization
 
-    init(viewModel: FilterRoutesViewModel, style: FilterRoutesStyle) {
+    init(viewModel: FilterRoutesViewModel) {
         self.viewModel = viewModel
-        self.style = style
         super.init(style: .grouped)
     }
 
