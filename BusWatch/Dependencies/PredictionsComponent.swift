@@ -11,18 +11,6 @@ import UIKit
 
 final class PredictionsComponent {
 
-    private struct PredictionsStyleImpl: PredictionsStyle {
-
-        let backgroundColor = Colors.backgroundColor
-
-        let cellBackground = Colors.raisedBackgroundColor
-
-        let cellDecoratorColor = Colors.decoratorBackgroundColor
-
-        let cellDecoratorTextColor = Colors.decoratorTextBackgroundColor
-
-    }
-
     func providePredictionsViewController(_ appComponent: AppComponent,
                                           eventCoordinator: PredictionsEventCoordinator,
                                           stopId: String) -> PredictionsViewController {
@@ -31,8 +19,7 @@ final class PredictionsComponent {
                                              stopRepository: appComponent.stopRepository,
                                              predictionRepository: appComponent.predictionRepository,
                                              eventCoordinator: eventCoordinator)
-        let style = PredictionsStyleImpl()
 
-        return PredictionsViewController(viewModel: viewModel, style: style)
+        return PredictionsViewController(viewModel: viewModel)
     }
 }

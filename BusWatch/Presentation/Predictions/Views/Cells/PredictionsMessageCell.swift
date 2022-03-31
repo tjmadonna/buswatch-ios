@@ -8,12 +8,6 @@
 
 import UIKit
 
-struct PredictionsMessageCellStyle {
-
-    let backgroundColor: UIColor
-
-}
-
 final class PredictionsMessageCell: UITableViewCell {
 
     static let reuseId = "PredictionsMessageCell"
@@ -45,6 +39,8 @@ final class PredictionsMessageCell: UITableViewCell {
     // MARK: - Setup
 
     private func setupSubviews() {
+        backgroundColor = Resources.Colors.raisedBackgroundColor
+
         contentView.addSubview(messageLabel)
 
         NSLayoutConstraint.activate([
@@ -57,8 +53,7 @@ final class PredictionsMessageCell: UITableViewCell {
 
     // MARK: - properties/functions
 
-    func configureWithMessage(_ message: String, style: PredictionsMessageCellStyle) {
-        backgroundColor = style.backgroundColor
+    func configureWithMessage(_ message: String) {
         messageLabel.text = message
     }
 }

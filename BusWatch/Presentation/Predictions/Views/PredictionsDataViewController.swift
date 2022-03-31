@@ -14,12 +14,9 @@ final class PredictionsDataViewController: UITableViewController {
 
     private var predictions = [Prediction]()
 
-    private let style: PredictionsStyle
-
     // MARK: - Initialization
 
-    init(style: PredictionsStyle) {
-        self.style = style
+    init() {
         super.init(style: .grouped)
     }
 
@@ -38,12 +35,12 @@ final class PredictionsDataViewController: UITableViewController {
     // MARK: - Setup
 
     private func setupViewController() {
-        view.backgroundColor = style.backgroundColor
+        view.backgroundColor = Resources.Colors.backgroundColor
     }
 
     private func setupTableView() {
         tableView.separatorStyle = .none
-        tableView.register(PredictionsPredictionCell.self, forCellReuseIdentifier: PredictionsPredictionCell.reuseId)
+        tableView.register(PredictionsCell.self, forCellReuseIdentifier: PredictionsCell.reuseId)
         tableView.register(PredictionsMessageCell.self, forCellReuseIdentifier: PredictionsMessageCell.reuseId)
     }
 
@@ -58,8 +55,9 @@ final class PredictionsDataViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let item = predictions[indexPath.row]
-        return predictionCellForPrediction(item, indexPath: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: PredictionsCell.reuseId, for: indexPath)
+        configureCell(cell, forIndexPath: indexPath)
+        return cell
     }
 
     // MARK: - UITableViewDelegate
@@ -74,37 +72,27 @@ final class PredictionsDataViewController: UITableViewController {
 
     // MARK: - Table View Cells
 
-    // Prediction Cell
-    private func predictionCellForPrediction(_ prediction: Prediction,
-                                             indexPath: IndexPath) -> PredictionsPredictionCell {
-
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: PredictionsPredictionCell.reuseId,
-                                                       for: indexPath) as? PredictionsPredictionCell else {
+    private func configureCell(_ cell: UITableViewCell?, forIndexPath indexPath: IndexPath) {
+        guard let cell = cell as? PredictionsCell else {
             fatalError("""
                        PredictionsViewController Error: Unable to dequeue PredictionsPredictionCell at index
                        path \(indexPath))
                        """)
         }
-        let cellStyle = PredictionsPredictionCellStyle(dividerVisible: predictions.lastIndex != indexPath.row,
-                                                       backgroundColor: style.cellBackground,
-                                                       decoratorColor: style.cellDecoratorColor,
-                                                       decoratorTextColor: style.cellDecoratorTextColor)
-        cell.configureWithStyle(cellStyle)
-        cell.configureWithPrediction(prediction, animate: false)
-        return cell
+        let prediction = predictions[indexPath.row]
+        cell.selectionStyle = .none
+        cell.configureWithPrediction(prediction, dividerVisible: indexPath.row != predictions.lastIndex, animate: false)
     }
 
-    // MARK: - methods
+    // MARK: - Helper methods
 
     func updatePredictions(_ predictions: [Prediction], animate: Bool) {
         if animate {
             tableView.update(oldData: self.predictions, newData: predictions, with: .fade, setData: { newData in
                 self.predictions = newData
             }, reloadRow: { indexPath in
-                if let cell = self.tableView.cellForRow(at: indexPath) as? PredictionsPredictionCell {
-                    let prediction = self.predictions[indexPath.row]
-                    cell.configureWithPrediction(prediction, animate: true)
-                }
+                let cell = self.tableView.cellForRow(at: indexPath)
+                configureCell(cell, forIndexPath: indexPath)
             })
         } else {
             self.predictions = predictions
