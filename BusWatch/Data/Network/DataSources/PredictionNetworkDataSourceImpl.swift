@@ -34,7 +34,8 @@ final class PredictionNetworkDataSourceImpl: PredictionNetworkDataSource {
             .tryMap { response in
 
                 if let errors = response.bustimeResponse?.errors {
-                    if errors.first?.message == "No service scheduled" {
+                    if errors.first?.message == "No service scheduled" ||
+                        errors.first?.message == "No arrival times" {
                         // Api returns an error json response if there's no predictions
                         return []
                     }
