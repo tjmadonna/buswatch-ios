@@ -13,20 +13,20 @@ final class PredictionsViewController: UIViewController {
 
     // MARK: - Child View Controllers
 
-    private lazy var loadingViewController: PredictionsLoadingViewController = {
-        let viewController = PredictionsLoadingViewController(style: self.style)
+    private let loadingViewController: PredictionsLoadingViewController = {
+        let viewController = PredictionsLoadingViewController()
         viewController.view.translatesAutoresizingMaskIntoConstraints = false
         return viewController
     }()
 
-    private lazy var dataViewController: PredictionsDataViewController = {
-        let viewController = PredictionsDataViewController(style: self.style)
+    private let dataViewController: PredictionsDataViewController = {
+        let viewController = PredictionsDataViewController()
         viewController.view.translatesAutoresizingMaskIntoConstraints = false
         return viewController
     }()
 
-    private lazy var noDataViewController: PredictionsNoDataViewController = {
-        let viewController = PredictionsNoDataViewController(style: self.style)
+    private let noDataViewController: PredictionsNoDataViewController = {
+        let viewController = PredictionsNoDataViewController()
         viewController.view.translatesAutoresizingMaskIntoConstraints = false
         return viewController
     }()
@@ -37,17 +37,14 @@ final class PredictionsViewController: UIViewController {
 
     private let viewModel: PredictionsViewModel
 
-    private let style: PredictionsStyle
-
     private var barItemHandler: PredictionsNavBarHandler?
 
     private var cancellables: [AnyCancellable] = []
 
     // MARK: - Initialization
 
-    init(viewModel: PredictionsViewModel, style: PredictionsStyle) {
+    init(viewModel: PredictionsViewModel) {
         self.viewModel = viewModel
-        self.style = style
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -72,7 +69,7 @@ final class PredictionsViewController: UIViewController {
 
     private func setupViewController() {
         title = ""
-        view.backgroundColor = style.backgroundColor
+        view.backgroundColor = Resources.Colors.backgroundColor
 
         loadingViewController.view.isHidden = true
         dataViewController.view.isHidden = true

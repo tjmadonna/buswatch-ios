@@ -1,5 +1,5 @@
 //
-//  PredictionsPredictionCell.swift
+//  PredictionsCell.swift
 //  BusWatch
 //
 //  Created by Tyler Madonna on 4/25/20.
@@ -8,21 +8,9 @@
 
 import UIKit
 
-struct PredictionsPredictionCellStyle {
+final class PredictionsCell: UITableViewCell {
 
-    let dividerVisible: Bool
-
-    let backgroundColor: UIColor
-
-    let decoratorColor: UIColor
-
-    let decoratorTextColor: UIColor
-
-}
-
-final class PredictionsPredictionCell: UITableViewCell {
-
-    static let reuseId = "PredictionsPredictionCell"
+    static let reuseId = "PredictionsCell"
 
     // MARK: - Subviews
 
@@ -30,6 +18,7 @@ final class PredictionsPredictionCell: UITableViewCell {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.cornerRadius = 10
+        view.backgroundColor = Resources.Colors.decoratorBackgroundColor
         return view
     }()
 
@@ -37,6 +26,7 @@ final class PredictionsPredictionCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 35)
+        label.textColor = Resources.Colors.decoratorTextBackgroundColor
         return label
     }()
 
@@ -98,6 +88,8 @@ final class PredictionsPredictionCell: UITableViewCell {
     // MARK: - Setup
 
     private func setupSubviews() {
+        backgroundColor = Resources.Colors.raisedBackgroundColor
+
         decoratorContainerView.addSubview(decoratorLabel)
 
         NSLayoutConstraint.activate([
@@ -148,15 +140,9 @@ final class PredictionsPredictionCell: UITableViewCell {
 
     // MARK: - properties/functions
 
-    func configureWithStyle(_ style: PredictionsPredictionCellStyle) {
-        backgroundColor = style.backgroundColor
-        decoratorContainerView.backgroundColor = style.decoratorColor
-        decoratorLabel.textColor = style.decoratorTextColor
-        dividerView.isHidden = !style.dividerVisible
-    }
-
-    func configureWithPrediction(_ prediction: Prediction, animate: Bool) {
+    func configureWithPrediction(_ prediction: Prediction, dividerVisible: Bool, animate: Bool) {
         capacityImageView.isHidden = prediction.capacityImageName == nil
+        dividerView.isHidden = !dividerVisible
 
         if animate {
             if decoratorLabel.text != prediction.route {

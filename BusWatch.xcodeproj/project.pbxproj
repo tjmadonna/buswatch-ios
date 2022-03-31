@@ -78,7 +78,7 @@
 		B46DBE8D27A719D30041E8DF /* PredictionsDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B470C81D27235D69007CEAF9 /* PredictionsDataViewController.swift */; };
 		B46DBE8E27A719D30041E8DF /* PredictionsLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B470C81F27235D83007CEAF9 /* PredictionsLoadingViewController.swift */; };
 		B46DBE8F27A719D30041E8DF /* PredictionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43E071D2455157100393B76 /* PredictionsViewController.swift */; };
-		B46DBE9027A719D80041E8DF /* PredictionsPredictionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43E0725245516ED00393B76 /* PredictionsPredictionCell.swift */; };
+		B46DBE9027A719D80041E8DF /* PredictionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43E0725245516ED00393B76 /* PredictionsCell.swift */; };
 		B46DBE9127A719D80041E8DF /* PredictionsMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DC65DC273364030046F470 /* PredictionsMessageCell.swift */; };
 		B46DBE9227A719DC0041E8DF /* PredictionsBarItemHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A10AD527756EE800E6B632 /* PredictionsBarItemHandler.swift */; };
 		B46DBE9327A719EA0041E8DF /* PredictionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43E071F2455160D00393B76 /* PredictionsViewModel.swift */; };
@@ -178,7 +178,7 @@
 		B43E071D2455157100393B76 /* PredictionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsViewController.swift; sourceTree = "<group>"; };
 		B43E071F2455160D00393B76 /* PredictionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsViewModel.swift; sourceTree = "<group>"; };
 		B43E07222455164400393B76 /* PredictionsContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsContract.swift; sourceTree = "<group>"; };
-		B43E0725245516ED00393B76 /* PredictionsPredictionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsPredictionCell.swift; sourceTree = "<group>"; };
+		B43E0725245516ED00393B76 /* PredictionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsCell.swift; sourceTree = "<group>"; };
 		B43E072724566C7E00393B76 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		B45988C924429720006F9B32 /* AppComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppComponent.swift; sourceTree = "<group>"; };
 		B45988CB24429C69006F9B32 /* StopMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopMapViewModel.swift; sourceTree = "<group>"; };
@@ -472,7 +472,7 @@
 		B43E0724245516CB00393B76 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				B43E0725245516ED00393B76 /* PredictionsPredictionCell.swift */,
+				B43E0725245516ED00393B76 /* PredictionsCell.swift */,
 				B4DC65DC273364030046F470 /* PredictionsMessageCell.swift */,
 			);
 			path = Cells;
@@ -926,7 +926,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B46DBE9027A719D80041E8DF /* PredictionsPredictionCell.swift in Sources */,
+				B46DBE9027A719D80041E8DF /* PredictionsCell.swift in Sources */,
 				B46DBE8927A719BE0041E8DF /* String.swift in Sources */,
 				B41E351227EFB50400142750 /* NetworkPrediction.swift in Sources */,
 				B41E350D27EFB0FC00142750 /* RouteMappers.swift in Sources */,

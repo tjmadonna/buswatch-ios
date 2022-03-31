@@ -19,12 +19,9 @@ final class PredictionsLoadingViewController: UIViewController {
         return loadingView
     }()
 
-    private let style: PredictionsStyle
-
     // MARK: - Initialization
 
-    init(style: PredictionsStyle) {
-        self.style = style
+    init() {
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -43,7 +40,7 @@ final class PredictionsLoadingViewController: UIViewController {
     // MARK: - Setup
 
     private func setupViewController() {
-        view.backgroundColor = style.backgroundColor
+        view.backgroundColor = Resources.Colors.backgroundColor
         loadingIndicatorView.startAnimating()
     }
 

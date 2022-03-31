@@ -14,12 +14,9 @@ final class PredictionsNoDataViewController: UITableViewController {
 
     private var predictions: [Prediction]?
 
-    private let style: PredictionsStyle
-
     // MARK: - Initialization
 
-    init(style: PredictionsStyle) {
-        self.style = style
+    init() {
         super.init(style: .grouped)
     }
 
@@ -38,7 +35,7 @@ final class PredictionsNoDataViewController: UITableViewController {
     // MARK: - Setup
 
     private func setupViewController() {
-        view.backgroundColor = style.backgroundColor
+        view.backgroundColor = Resources.Colors.backgroundColor
     }
 
     private func setupTableView() {
@@ -65,8 +62,7 @@ final class PredictionsNoDataViewController: UITableViewController {
                        """)
         }
 
-        let cellStyle = PredictionsMessageCellStyle(backgroundColor: style.cellBackground)
-        cell.configureWithMessage("No upcoming arrival times", style: cellStyle)
+        cell.configureWithMessage("No upcoming arrival times")
         return cell
     }
 }

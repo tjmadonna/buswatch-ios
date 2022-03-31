@@ -35,16 +35,3 @@ enum PredictionsIntent {
 protocol PredictionsEventCoordinator: AnyObject {
     func filterRoutesSelectedInFilterRoutes(_ stopId: String)
 }
-
-// MARK: - Resources
-
-protocol PredictionsStyle {
-
-    var backgroundColor: UIColor { get }
-
-    var cellBackground: UIColor { get }
-
-    var cellDecoratorColor: UIColor { get }
-
-    var cellDecoratorTextColor: UIColor { get }
-}
