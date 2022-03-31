@@ -80,6 +80,6 @@ final class FilterRouteCell: UITableViewCell {
         titleLabel.text = filterableRoute.id
         checkMarkImageView.isHidden = filterableRoute.filtered
 
-        dividerView.isHidden = dividerVisible
+        dividerView.isHidden = !dividerVisible
     }
 }

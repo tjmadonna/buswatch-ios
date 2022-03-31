@@ -115,7 +115,7 @@ final class FilterRoutesViewController: UITableViewController {
         }
         let route = routes[indexPath.row]
         cell.selectionStyle = .none
-        cell.configureWithFilterableRoute(route, dividerVisible: indexPath.row == routes.lastIndex)
+        cell.configureWithFilterableRoute(route, dividerVisible: indexPath.row != routes.lastIndex)
     }
 
     // MARK: - Render
