@@ -78,7 +78,7 @@ final class OverviewViewModel {
     func handleIntent(_ intent: OverviewIntent) {
         switch intent {
         case .favoriteStopSelected(let favoriteStop):
-            self.eventCoordinator?.favoriteStopSelectedInOverview(favoriteStop.id)
+            self.eventCoordinator?.favoriteStopSelectedInOverview(favoriteStop)
         case .stopMapSelected:
             self.eventCoordinator?.stopMapSelectedInOverview()
         }

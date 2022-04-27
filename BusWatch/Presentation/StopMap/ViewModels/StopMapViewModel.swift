@@ -80,7 +80,7 @@ final class StopMapViewModel {
         case .mapLocationMoved(let locationBounds):
             self.handleMoveMapLocationBoundsIntent(locationBounds: locationBounds)
         case .stopSelected(let stop):
-            self.eventCoordinator?.stopSelectedInStopMap(stop.id)
+            self.eventCoordinator?.stopSelectedInStopMap(stop)
         }
     }
 

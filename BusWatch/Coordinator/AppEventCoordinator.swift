@@ -59,11 +59,12 @@ final class AppEventCoordinator {
         navigationController.pushViewController(viewControlller, animated: true)
     }
 
-    func presentPredictionsViewControllerForStop(_ stopId: String) {
+    func presentPredictionsViewControllerForStop(_ stopId: String, serviceType: ServiceType) {
         let predictionsComponent = PredictionsComponent()
         let viewControlller = predictionsComponent.providePredictionsViewController(appComponent,
                                                                                     eventCoordinator: self,
-                                                                                    stopId: stopId)
+                                                                                    stopId: stopId,
+                                                                                    serviceType: serviceType)
         navigationController.pushViewController(viewControlller, animated: true)
     }
 
@@ -79,8 +80,8 @@ final class AppEventCoordinator {
 
 extension AppEventCoordinator: OverviewEventCoordinator {
 
-    func favoriteStopSelectedInOverview(_ stopId: String) {
-        presentPredictionsViewControllerForStop(stopId)
+    func favoriteStopSelectedInOverview(_ stop: FavoriteStop) {
+        presentPredictionsViewControllerForStop(stop.id, serviceType: stop.serviceType)
     }
 
     func stopMapSelectedInOverview() {
@@ -90,8 +91,8 @@ extension AppEventCoordinator: OverviewEventCoordinator {
 
 extension AppEventCoordinator: StopMapEventCoordinator {
 
-    func stopSelectedInStopMap(_ stopId: String) {
-        presentPredictionsViewControllerForStop(stopId)
+    func stopSelectedInStopMap(_ stop: DetailedStop) {
+        presentPredictionsViewControllerForStop(stop.id, serviceType: stop.serviceType)
     }
 }
 

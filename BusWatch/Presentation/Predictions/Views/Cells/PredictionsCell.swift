@@ -27,6 +27,8 @@ final class PredictionsCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 35)
         label.textColor = Resources.Colors.decoratorTextBackgroundColor
+        label.adjustsFontSizeToFitWidth = true
+        label.textAlignment = .center
         return label
     }()
 
@@ -93,8 +95,9 @@ final class PredictionsCell: UITableViewCell {
         decoratorContainerView.addSubview(decoratorLabel)
 
         NSLayoutConstraint.activate([
-            decoratorLabel.centerXAnchor.constraint(equalTo: decoratorContainerView.centerXAnchor),
-            decoratorLabel.centerYAnchor.constraint(equalTo: decoratorContainerView.centerYAnchor)
+            decoratorLabel.centerYAnchor.constraint(equalTo: decoratorContainerView.centerYAnchor),
+            decoratorLabel.leadingAnchor.constraint(equalTo: decoratorContainerView.leadingAnchor, constant: 5),
+            decoratorLabel.trailingAnchor.constraint(equalTo: decoratorContainerView.trailingAnchor, constant: -5)
         ])
 
         contentView.addSubview(decoratorContainerView)

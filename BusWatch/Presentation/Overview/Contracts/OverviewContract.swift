@@ -41,7 +41,7 @@ enum OverviewIntent {
 
 protocol OverviewEventCoordinator: AnyObject {
 
-    func favoriteStopSelectedInOverview(_ stopId: String)
+    func favoriteStopSelectedInOverview(_ stop: FavoriteStop)
 
     func stopMapSelectedInOverview()
 

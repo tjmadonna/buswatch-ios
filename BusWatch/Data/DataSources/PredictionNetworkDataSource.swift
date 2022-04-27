@@ -11,6 +11,6 @@ import Combine
 
 protocol PredictionNetworkDataSource {
 
-    func getPredictionsForStopId(_ stopId: String) -> AnyPublisher<[NetworkPrediction], Error>
+    func getPredictionsForStopId(_ stopId: String, serviceType: ServiceType) -> AnyPublisher<[NetworkPrediction], Error>
 
 }

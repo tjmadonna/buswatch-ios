@@ -104,6 +104,7 @@
 		B477CD72243BF72F0027AE11 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B477CD70243BF72F0027AE11 /* LaunchScreen.storyboard */; };
 		B48F2BCF245F906D001900BE /* DatabaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48F2BCE245F906D001900BE /* DatabaseConfig.swift */; };
 		B490A0082453B4FA000744EB /* AppEventCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B490A0072453B4FA000744EB /* AppEventCoordinator.swift */; };
+		B4D6F9DB27F5327900892F99 /* ServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D6F9DA27F5327900892F99 /* ServiceType.swift */; };
 		B4DC662027375F3F0046F470 /* OverviewComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DC661F27375F3F0046F470 /* OverviewComponent.swift */; };
 		B4DC6622273836D20046F470 /* StopMapComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DC6621273836D20046F470 /* StopMapComponent.swift */; };
 		B4DC662427383C580046F470 /* PredictionsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DC662327383C580046F470 /* PredictionsComponent.swift */; };
@@ -203,6 +204,7 @@
 		B4981AFE24453A73003F161F /* StopMapContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopMapContract.swift; sourceTree = "<group>"; };
 		B4981B0124454C94003F161F /* StopMapStopAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopMapStopAnnotation.swift; sourceTree = "<group>"; };
 		B4A10AD527756EE800E6B632 /* PredictionsBarItemHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsBarItemHandler.swift; sourceTree = "<group>"; };
+		B4D6F9DA27F5327900892F99 /* ServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceType.swift; sourceTree = "<group>"; };
 		B4DC65D6273351B20046F470 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		B4DC65DA273363900046F470 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		B4DC65DC273364030046F470 /* PredictionsMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsMessageCell.swift; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 				B4076309245A2201008979C5 /* Prediction.swift */,
 				B41E34D427EF8E7C00142750 /* MinimalStop.swift */,
 				B41E34D627EF8EE100142750 /* DetailedStop.swift */,
+				B4D6F9DA27F5327900892F99 /* ServiceType.swift */,
 				B41E34DC27EF900F00142750 /* FavoriteStop.swift */,
 				B41E34D827EF8FBC00142750 /* CurrentLocationPermissionStatus.swift */,
 				B41E34DA27EF8FD500142750 /* LocationBounds.swift */,
@@ -1017,6 +1020,7 @@
 				B46DBE5C27A70FB50041E8DF /* UrlSource.swift in Sources */,
 				B41E353E27F1235000142750 /* DatabaseFavoriteStopMapper.swift in Sources */,
 				B41E351627EFB5E000142750 /* UrlSourceImpl.swift in Sources */,
+				B4D6F9DB27F5327900892F99 /* ServiceType.swift in Sources */,
 				B46DBE8727A719BD0041E8DF /* NSLayoutConstraint.swift in Sources */,
 				B41E34E127EF91FC00142750 /* LocationRepository.swift in Sources */,
 				B46DBEC727A754B90041E8DF /* OverviewFavoriteStopCell.swift in Sources */,

@@ -18,7 +18,10 @@ final class UrlSourceImpl: UrlSource {
 
     // MARK: - Predictions
 
-    func authenticatedPredictionsURLForStopId(_ stopId: String) -> URL {
+    func authenticatedPredictionsURLForStopId(_ stopId: String, serviceType: ServiceType) -> URL {
+
+        let rtpiDataFeedParam = serviceType == .lightRail ? "Light Rail" : "Port Authority Bus"
+
         var components = URLComponents()
         components.scheme = urlConfig.scheme
         components.host = urlConfig.host
@@ -27,7 +30,7 @@ final class UrlSourceImpl: UrlSource {
             URLQueryItem(name: "key", value: urlConfig.apiKey),
             URLQueryItem(name: "stpid", value: stopId),
             URLQueryItem(name: "format", value: "json"),
-            URLQueryItem(name: "rtpidatafeed", value: "Port Authority Bus".removingPercentEncoding!)
+            URLQueryItem(name: "rtpidatafeed", value: rtpiDataFeedParam.removingPercentEncoding!)
         ]
         guard let url = components.url else {
             fatalError("Cannot create a valid authenticatedURLPredictionsForStopId")

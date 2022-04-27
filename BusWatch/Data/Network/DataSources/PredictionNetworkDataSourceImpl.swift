@@ -25,8 +25,9 @@ final class PredictionNetworkDataSourceImpl: PredictionNetworkDataSource {
         self.urlSession = urlSession
     }
 
-    func getPredictionsForStopId(_ stopId: String) -> AnyPublisher<[NetworkPrediction], Swift.Error> {
-        let url = urlSource.authenticatedPredictionsURLForStopId(stopId)
+    func getPredictionsForStopId(_ stopId: String,
+                                 serviceType: ServiceType) -> AnyPublisher<[NetworkPrediction], Swift.Error> {
+        let url = urlSource.authenticatedPredictionsURLForStopId(stopId, serviceType: serviceType)
         return TimedNetworkPublisher(url: url,
                                      timeInterval: 30,
                                      urlSession: self.urlSession)

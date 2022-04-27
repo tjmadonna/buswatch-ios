@@ -10,6 +10,6 @@ import Foundation
 
 protocol UrlSource {
 
-    func authenticatedPredictionsURLForStopId(_ stopId: String) -> URL
+    func authenticatedPredictionsURLForStopId(_ stopId: String, serviceType: ServiceType) -> URL
 
 }

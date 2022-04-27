@@ -11,6 +11,7 @@ import Foundation
 struct DatabaseFavoriteStop {
     let id: String
     let title: String
+    let serviceType: ServiceType
     let routes: [String]
     let excludedRoutes: [String]
 }

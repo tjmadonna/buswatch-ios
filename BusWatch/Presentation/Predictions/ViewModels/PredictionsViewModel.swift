@@ -31,6 +31,8 @@ final class PredictionsViewModel {
 
     private let stopId: String
 
+    private let serviceType: ServiceType
+
     private let stopRepository: StopRepository
 
     private let predictionRepository: PredictionRepository
@@ -42,10 +44,12 @@ final class PredictionsViewModel {
     // MARK: - Initialization
 
     init(stopId: String,
+         serviceType: ServiceType,
          stopRepository: StopRepository,
          predictionRepository: PredictionRepository,
          eventCoordinator: PredictionsEventCoordinator) {
         self.stopId = stopId
+        self.serviceType = serviceType
         self.stopRepository = stopRepository
         self.predictionRepository = predictionRepository
         self.eventCoordinator = eventCoordinator
@@ -68,7 +72,7 @@ final class PredictionsViewModel {
             .subscribe(self.navBarStateSubject)
             .store(in: &cancellables)
 
-        predictionRepository.getPredictionsForStopId(stopId)
+        predictionRepository.getPredictionsForStopId(stopId, serviceType: serviceType)
             .map { predictions -> PredictionsDataState in
                 if predictions.isEmpty {
                     return .noData

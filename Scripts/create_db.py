@@ -2,11 +2,11 @@ import argparse
 from dataclasses import dataclass
 import sqlite3
 import json
-from typing import Optional
+from typing import List, Optional
 
 from export_stops import Stop
 
-DB_VERSION = 4
+DB_VERSION = 5
 
 
 @dataclass
@@ -44,20 +44,21 @@ def create_table(conn: sqlite3.Connection, create_table_sql: str):
         print(e)
 
 
-def create_stops(conn, stops):
+def create_stops(conn: sqlite3.Connection, stops: List[Stop]):
     try:
         stop_tuples = [
-            (s.id, s.title, s.latitude, s.longitude, ",".join(s.routes)) for s in stops
+            (s.id, s.title, s.latitude, s.longitude, ",".join(s.routes), s.service_type)
+            for s in stops
         ]
         conn.executemany(
-            "INSERT INTO stops (id, title, latitude, longitude, routes) values (?, ?, ?, ?, ?);",
+            "INSERT INTO stops (id, title, latitude, longitude, routes, service_type) values (?, ?, ?, ?, ?, ?);",
             stop_tuples,
         )
     except sqlite3.Error as e:
         print(e)
 
 
-def create_routes(conn, routes):
+def create_routes(conn: sqlite3.Connection, routes: List[Route]):
     try:
         routes_tuples = [(r.id, r.title, r.color) for r in routes]
         conn.executemany(
@@ -68,7 +69,7 @@ def create_routes(conn, routes):
         print(e)
 
 
-def create_last_location(conn):
+def create_last_location(conn: sqlite3.Connection):
     try:
         loc_tuples = (
             1,
@@ -85,7 +86,7 @@ def create_last_location(conn):
         print(e)
 
 
-def create_migrations(conn):
+def create_migrations(conn: sqlite3.Connection):
     try:
         mig_tuples = [(i,) for i in range(1, DB_VERSION + 1)]
         conn.executemany(
@@ -99,6 +100,7 @@ def create_migrations(conn):
 def run(stopsfile: str, routesfile: str, outputfile: str):
     with open(stopsfile) as stops_file:
         stops = [Stop(**s) for s in json.load(stops_file)]
+        filtered = [s for s in stops if s.service_type == 1]
 
     with open(routesfile) as routes_file:
         routes = [Route(**r) for r in json.load(routes_file)]
@@ -136,7 +138,8 @@ def run(stopsfile: str, routesfile: str, outputfile: str):
                 latitude REAL NOT NULL,
                 longitude REAL NOT NULL,
                 routes TEXT,
-                excluded_routes TEXT
+                excluded_routes TEXT,
+                service_type INTEGER NOT NULL DEFAULT 0
             );
             """,
         )
@@ -180,7 +183,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "-o",
         "--outputfile",
-        default="./database.db",
+        default=f"./databasev{DB_VERSION}.db",
         help="path of the output sqlite file",
     )
     args = parser.parse_args()

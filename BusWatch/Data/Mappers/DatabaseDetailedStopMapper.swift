@@ -16,6 +16,7 @@ extension DatabaseDetailedStop {
         return DetailedStop(
             id: self.id,
             title: self.title,
+            serviceType: serviceType,
             latitude: self.latitude,
             longitude: self.longitude,
             filteredRoutes: self.routes.filter { !excludedRouteIds.contains($0) }
