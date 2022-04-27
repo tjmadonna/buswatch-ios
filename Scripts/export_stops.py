@@ -4,6 +4,7 @@ import os
 import csv
 from itertools import groupby
 from dataclasses import dataclass
+from typing import List
 
 from normalize import normalized_routes, normalized_str
 
@@ -14,7 +15,8 @@ class Stop:
     title: str
     latitude: float
     longitude: float
-    routes: list
+    routes: List[str]
+    service_type: int = 0
 
 
 def load_trips(datapath: str) -> dict:
@@ -44,8 +46,8 @@ def load_stop_time(datapath: str) -> dict:
 def load_stops(datapath: str, trips: dict, stop_times: dict):
     stops_path = os.path.join(datapath, "stops.txt")
     with open(stops_path) as stops_file:
-        stops = csv.DictReader(stops_file)
-        return [
+        stops_dicts = csv.DictReader(stops_file)
+        stops = [
             Stop(
                 id=s["stop_code"],
                 title=normalized_str(s["stop_name"]),
@@ -55,9 +57,14 @@ def load_stops(datapath: str, trips: dict, stop_times: dict):
                     [trips[trip_id] for trip_id in stop_times.get(s["stop_id"])]
                 ),
             )
-            for s in stops
+            for s in stops_dicts
             if s.get("stop_id") in stop_times
         ]
+        for stop in stops:
+            if "RED" in stop.routes or "BLUE" in stop.routes or "SLVR" in stop.routes:
+                stop.service_type = 1
+
+        return stops
 
 
 def save_stops(stops: list, savepath: str):

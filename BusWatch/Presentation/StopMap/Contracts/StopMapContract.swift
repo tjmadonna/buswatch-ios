@@ -29,7 +29,7 @@ enum StopMapIntent {
 
 protocol StopMapEventCoordinator: AnyObject {
 
-    func stopSelectedInStopMap(_ stopId: String)
+    func stopSelectedInStopMap(_ stop: DetailedStop)
 
 }
 

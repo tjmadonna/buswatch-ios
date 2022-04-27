@@ -11,6 +11,7 @@ import Foundation
 struct FavoriteStop {
     let id: String
     let title: String
+    let serviceType: ServiceType
     let filteredRoutes: [String]
 }
 

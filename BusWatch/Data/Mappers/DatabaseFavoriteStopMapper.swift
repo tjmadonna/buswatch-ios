@@ -16,6 +16,7 @@ extension DatabaseFavoriteStop {
         return FavoriteStop(
             id: self.id,
             title: self.title,
+            serviceType: self.serviceType,
             filteredRoutes: self.routes.filter { !excludedRouteIds.contains($0) }
         )
     }

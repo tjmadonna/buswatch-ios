@@ -13,9 +13,11 @@ final class PredictionsComponent {
 
     func providePredictionsViewController(_ appComponent: AppComponent,
                                           eventCoordinator: PredictionsEventCoordinator,
-                                          stopId: String) -> PredictionsViewController {
+                                          stopId: String,
+                                          serviceType: ServiceType) -> PredictionsViewController {
 
         let viewModel = PredictionsViewModel(stopId: stopId,
+                                             serviceType: serviceType,
                                              stopRepository: appComponent.stopRepository,
                                              predictionRepository: appComponent.predictionRepository,
                                              eventCoordinator: eventCoordinator)

@@ -8,17 +8,22 @@ from normalize import normalized_str
 
 
 def load_routes():
-    url = "https://truetime.portauthority.org/bustime/api/v3/getroutes?key=h75M7sFVMwxgdeTEaRWQk8eES&format=json&rtpidatafeed=Port%20Authority%20Bus"
-    res = requests.get(url)
-    bt_res = res.json()["bustime-response"]
-    return [
-        {
-            "id": route["rt"],
-            "title": normalized_str(route["rtnm"]),
-            "color": route["rtclr"],
-        }
-        for route in bt_res["routes"]
-    ]
+    returnList = []
+    for t in ["Port%20Authority%20Bus", "Light%20Rail"]:
+        url = f"https://truetime.portauthority.org/bustime/api/v3/getroutes?key=h75M7sFVMwxgdeTEaRWQk8eES&format=json&rtpidatafeed={t}"
+        res = requests.get(url)
+        bt_res = res.json()["bustime-response"]
+        returnList.extend(
+            [
+                {
+                    "id": route["rt"],
+                    "title": normalized_str(route["rtnm"]),
+                    "color": route["rtclr"],
+                }
+                for route in bt_res["routes"]
+            ]
+        )
+    return returnList
 
 
 def save_routes(routes: list, savepath: str):

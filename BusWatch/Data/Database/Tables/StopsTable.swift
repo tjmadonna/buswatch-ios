@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import GRDB
 
 enum StopsTable {
 
@@ -19,13 +20,11 @@ enum StopsTable {
     static let longitudeColumn = "longitude"
     static let routesColumn = "routes"
     static let excludedRoutesColumn = "excluded_routes"
+    static let serviceType = "service_type"
 
     static let routesDelimiter = ","
-
-    static let allColumns = """
-    \(idColumn), \(titleColumn), \(favoriteColumn), \(latitudeColumn), \(longitudeColumn),
-    \(routesColumn), \(excludedRoutesColumn)
-    """
+    static let busServiceType = 0
+    static let lightRailServiceType = 1
 
     enum Migration {
 
@@ -49,5 +48,19 @@ enum StopsTable {
         ALTER TABLE \(tableName) ADD \(excludedRoutesColumn) TEXT;
         """
         ]
+
+        static func alterTableForVersion5(db: GRDB.Database) throws {
+            let sql = "ALTER TABLE \(tableName) ADD \(serviceType) INTEGER NOT NULL DEFAULT \(busServiceType);"
+            try db.execute(sql: sql)
+
+            let updateSql = """
+            UPDATE \(tableName)
+            SET \(serviceType) = \(lightRailServiceType)
+            WHERE \(routesColumn) LIKE '%RED%'
+            OR \(routesColumn) LIKE '%BLUE%'
+            OR \(routesColumn) LIKE '%SLVR%';
+            """
+            try db.execute(sql: updateSql)
+        }
     }
 }

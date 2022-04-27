@@ -11,6 +11,7 @@ import Foundation
 struct DetailedStop {
     let id: String
     let title: String
+    let serviceType: ServiceType
     let latitude: Double
     let longitude: Double
     let filteredRoutes: [String]

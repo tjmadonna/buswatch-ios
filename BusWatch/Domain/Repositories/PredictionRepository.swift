@@ -11,6 +11,6 @@ import Combine
 
 protocol PredictionRepository {
 
-    func getPredictionsForStopId(_ stopId: String) -> AnyPublisher<[Prediction], Error>
+    func getPredictionsForStopId(_ stopId: String, serviceType: ServiceType) -> AnyPublisher<[Prediction], Error>
 
 }
