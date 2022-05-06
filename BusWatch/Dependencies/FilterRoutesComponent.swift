@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import FilterRoutes
 
 final class FilterRoutesComponent {
 
@@ -16,17 +15,8 @@ final class FilterRoutesComponent {
                                            eventCoordinator: FilterRoutesEventCoordinator,
                                            stopId: String) -> FilterRoutesViewController {
 
-        let database = appComponent.provideDatabaseDataSource()
-
-        let dataSource = RouteDataSource(database: database)
-        let repository = RouteRepository(routeDataSource: dataSource)
-
-        let getRoutesForStopId = GetRoutesForStopId(routeRepository: repository)
-        let updateExcludedRoutes = UpdateExcludedRoutes(routeRepository: repository)
-
         let viewModel = FilterRoutesViewModel(stopId: stopId,
-                                              getRoutesForStopId: getRoutesForStopId,
-                                              updateExcludedRoutes: updateExcludedRoutes,
+                                              routeRepository: appComponent.routeRepository,
                                               eventCoordinator: eventCoordinator)
 
         return FilterRoutesViewController(viewModel: viewModel)
