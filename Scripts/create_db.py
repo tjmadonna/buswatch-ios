@@ -8,6 +8,8 @@ from export_stops import Stop
 
 DB_VERSION = 5
 
+RESOURCE_VERSION = 1
+
 
 @dataclass
 class Route:
@@ -97,6 +99,17 @@ def create_migrations(conn: sqlite3.Connection):
         print(e)
 
 
+def create_resource_version(conn: sqlite3.Connection):
+    try:
+        res_tuples = [(i,) for i in range(1, RESOURCE_VERSION + 1)]
+        conn.executemany(
+            "INSERT INTO resource_versions (version) values (?);",
+            res_tuples,
+        )
+    except sqlite3.Error as e:
+        print(e)
+
+
 def run(stopsfile: str, routesfile: str, outputfile: str):
     with open(stopsfile) as stops_file:
         stops = [Stop(**s) for s in json.load(stops_file)]
@@ -157,10 +170,20 @@ def run(stopsfile: str, routesfile: str, outputfile: str):
             """,
         )
 
+        # Resource version
+        create_table(
+            conn,
+            """ CREATE TABLE resource_versions (
+                version INTEGER PRIMARY KEY
+            );
+            """,
+        )
+
         create_stops(conn, stops)
         create_routes(conn, routes)
         create_last_location(conn)
         create_migrations(conn)
+        create_resource_version(conn)
 
         conn.commit()
         conn.close()
