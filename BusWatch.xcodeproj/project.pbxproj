@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B41174A12821729700C279FF /* GRDBDatabaseQueueExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41174A02821729700C279FF /* GRDBDatabaseQueueExtensions.swift */; };
+		B41174A328217C9C00C279FF /* DatabaseMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41174A228217C9C00C279FF /* DatabaseMigration.swift */; };
+		B41174A5282197AF00C279FF /* DatabasePopulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41174A4282197AF00C279FF /* DatabasePopulator.swift */; };
+		B41174A728219B7D00C279FF /* ResourceVersionsTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41174A628219B7D00C279FF /* ResourceVersionsTable.swift */; };
 		B41E34CC27EF8BB800142750 /* LocationDatabaseDataSourceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E34CB27EF8BB800142750 /* LocationDatabaseDataSourceImpl.swift */; };
 		B41E34CE27EF8BC600142750 /* StopDatabaseDataSourceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E34CD27EF8BC600142750 /* StopDatabaseDataSourceImpl.swift */; };
 		B41E34D327EF8C9800142750 /* PredictionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E34D227EF8C9800142750 /* PredictionRepository.swift */; };
@@ -125,6 +129,10 @@
 
 /* Begin PBXFileReference section */
 		B4076309245A2201008979C5 /* Prediction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prediction.swift; sourceTree = "<group>"; };
+		B41174A02821729700C279FF /* GRDBDatabaseQueueExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GRDBDatabaseQueueExtensions.swift; sourceTree = "<group>"; };
+		B41174A228217C9C00C279FF /* DatabaseMigration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseMigration.swift; sourceTree = "<group>"; };
+		B41174A4282197AF00C279FF /* DatabasePopulator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabasePopulator.swift; sourceTree = "<group>"; };
+		B41174A628219B7D00C279FF /* ResourceVersionsTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceVersionsTable.swift; sourceTree = "<group>"; };
 		B41E34CB27EF8BB800142750 /* LocationDatabaseDataSourceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDatabaseDataSourceImpl.swift; sourceTree = "<group>"; };
 		B41E34CD27EF8BC600142750 /* StopDatabaseDataSourceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopDatabaseDataSourceImpl.swift; sourceTree = "<group>"; };
 		B41E34D227EF8C9800142750 /* PredictionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionRepository.swift; sourceTree = "<group>"; };
@@ -173,7 +181,7 @@
 		B43835E227712FD800C49537 /* FilterRoutesContract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterRoutesContract.swift; sourceTree = "<group>"; };
 		B43835E827712FD800C49537 /* FilterRoutesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterRoutesViewController.swift; sourceTree = "<group>"; };
 		B43835F7277130C900C49537 /* ExcludedRoutesTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExcludedRoutesTable.swift; sourceTree = "<group>"; };
-		B43835F92771395C00C49537 /* FilterRoutesComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilterRoutesComponent.swift; path = "../../../buswatch-ios-merged/BusWatch/Dependencies/FilterRoutesComponent.swift"; sourceTree = "<group>"; };
+		B43835F92771395C00C49537 /* FilterRoutesComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterRoutesComponent.swift; sourceTree = "<group>"; };
 		B438A6D72724E04800A7797F /* UserDefaultsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsDataSource.swift; sourceTree = "<group>"; };
 		B43E071A2453CEFE00393B76 /* StyleConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleConfig.swift; sourceTree = "<group>"; };
 		B43E071D2455157100393B76 /* PredictionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsViewController.swift; sourceTree = "<group>"; };
@@ -356,6 +364,8 @@
 			children = (
 				B4F055C9272761A600ED8E30 /* Database.swift */,
 				B46DBEBD27A726190041E8DF /* DatabaseImpl.swift */,
+				B41174A228217C9C00C279FF /* DatabaseMigration.swift */,
+				B41174A4282197AF00C279FF /* DatabasePopulator.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -363,6 +373,7 @@
 		B41E350527EFA47F00142750 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				B41174A02821729700C279FF /* GRDBDatabaseQueueExtensions.swift */,
 				B41E350627EFA49600142750 /* GRDBExtensions.swift */,
 			);
 			path = Extensions;
@@ -749,6 +760,7 @@
 				B4F055CF272763E500ED8E30 /* StopsTable.swift */,
 				B4F055D32727643900ED8E30 /* LastLocationTable.swift */,
 				B4F055D52727645E00ED8E30 /* RoutesTable.swift */,
+				B41174A628219B7D00C279FF /* ResourceVersionsTable.swift */,
 				B41E353327F1084500142750 /* Legacy */,
 			);
 			path = Tables;
@@ -930,8 +942,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B46DBE9027A719D80041E8DF /* PredictionsCell.swift in Sources */,
+				B41174A728219B7D00C279FF /* ResourceVersionsTable.swift in Sources */,
 				B46DBE8927A719BE0041E8DF /* String.swift in Sources */,
 				B41E351227EFB50400142750 /* NetworkPrediction.swift in Sources */,
+				B41174A328217C9C00C279FF /* DatabaseMigration.swift in Sources */,
 				B41E350D27EFB0FC00142750 /* RouteMappers.swift in Sources */,
 				B41E34EA27EF948400142750 /* LocationRepositoryImpl.swift in Sources */,
 				B41E34CE27EF8BC600142750 /* StopDatabaseDataSourceImpl.swift in Sources */,
@@ -1011,6 +1025,7 @@
 				B41E34D727EF8EE100142750 /* DetailedStop.swift in Sources */,
 				B46DBE6527A718B10041E8DF /* StopMapViewController.swift in Sources */,
 				B46DBE5227A70F240041E8DF /* RoutesTable.swift in Sources */,
+				B41174A5282197AF00C279FF /* DatabasePopulator.swift in Sources */,
 				B46DBE8F27A719D30041E8DF /* PredictionsViewController.swift in Sources */,
 				B4DC6622273836D20046F470 /* StopMapComponent.swift in Sources */,
 				B41E34F527EF957900142750 /* PredictionNetworkDataSource.swift in Sources */,
@@ -1022,6 +1037,7 @@
 				B41E351627EFB5E000142750 /* UrlSourceImpl.swift in Sources */,
 				B4D6F9DB27F5327900892F99 /* ServiceType.swift in Sources */,
 				B46DBE8727A719BD0041E8DF /* NSLayoutConstraint.swift in Sources */,
+				B41174A12821729700C279FF /* GRDBDatabaseQueueExtensions.swift in Sources */,
 				B41E34E127EF91FC00142750 /* LocationRepository.swift in Sources */,
 				B46DBEC727A754B90041E8DF /* OverviewFavoriteStopCell.swift in Sources */,
 				B41E34E327EF921A00142750 /* StopRepository.swift in Sources */,
