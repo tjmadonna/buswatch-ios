@@ -7,12 +7,25 @@
 //
 
 import Foundation
+import GRDB
 
 final class AppComponent {
 
+    private var databaseBuilder: GRDB.DatabaseQueue.Builder {
+        return GRDB.DatabaseQueue.Builder(databasePath: DatabaseConfig.url, version: DatabaseImpl.databaseVersion)
+            .createFromFile(DatabaseConfig.prePackagedDbUrl)
+            .addMigration("1", migration: DatabaseMigration.migrateToVersion1)
+            .addMigration("2", migration: DatabaseMigration.migrateToVersion2)
+            .addMigration("3", migration: DatabaseMigration.migrateToVersion3)
+            .addMigration("4", migration: DatabaseMigration.migrateToVersion4)
+            .addMigration("5", migration: DatabaseMigration.migrateToVersion5)
+            .addPopulator { queue in
+                try DatabasePopulator.populateFromPrepackagedDbURL(DatabaseConfig.prePackagedDbUrl, queue: queue)
+            }
+    }
+
     lazy var database: Database = {
-        let userDefaultsDataSource = self.userDefaults
-        return DatabaseImpl(databasePath: DatabaseConfig.url)
+        return DatabaseImpl(databaseBuilder: databaseBuilder)
     }()
 
     lazy var userDefaults: UserDefaultsDataSource = {

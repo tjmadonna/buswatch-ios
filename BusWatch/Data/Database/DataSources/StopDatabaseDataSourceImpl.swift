@@ -65,7 +65,7 @@ final class StopDatabaseDataSourceImpl: StopDatabaseDataSource {
         -> AnyPublisher<[DatabaseDetailedStop], Swift.Error> {
 
         let sql = """
-        SELECT \(StopsTable.idColumn), \(StopsTable.titleColumn), \(StopsTable.serviceType),
+        SELECT \(StopsTable.idColumn), \(StopsTable.titleColumn), \(StopsTable.serviceTypeColumn),
         \(StopsTable.latitudeColumn), \(StopsTable.longitudeColumn),
         \(StopsTable.routesColumn), \(StopsTable.excludedRoutesColumn)
         FROM \(StopsTable.tableName)
@@ -85,7 +85,7 @@ final class StopDatabaseDataSourceImpl: StopDatabaseDataSource {
 
     func getFavoriteStops() -> AnyPublisher<[DatabaseFavoriteStop], Swift.Error> {
         let sql = """
-        SELECT \(StopsTable.idColumn), \(StopsTable.titleColumn), \(StopsTable.serviceType),
+        SELECT \(StopsTable.idColumn), \(StopsTable.titleColumn), \(StopsTable.serviceTypeColumn),
         \(StopsTable.routesColumn), \(StopsTable.excludedRoutesColumn)
         FROM \(StopsTable.tableName)
         WHERE \(StopsTable.favoriteColumn) = 1

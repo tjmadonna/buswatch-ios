@@ -20,4 +20,11 @@ enum DatabaseConfig {
             fatalError("Unable to create database: \(error)")
         }
     }
+
+    static var prePackagedDbUrl: URL {
+        guard let url = Bundle.main.url(forResource: "buswatch", withExtension: "sqlite") else {
+            fatalError("Unable to find pre packaged database")
+        }
+        return url
+    }
 }
