@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import GRDB
 
 enum FavoriteStopsTable {
 
@@ -28,5 +29,9 @@ enum FavoriteStopsTable {
         static let dropTableForVersion4 = """
         DROP TABLE IF EXISTS \(tableName)
         """
+
+        static func createTableForVersion5(db: GRDB.Database) throws {
+            try db.execute(sql: createTableForVersion1)
+        }
     }
 }

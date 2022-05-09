@@ -6,8 +6,8 @@
 //  Copyright © 2022 Tyler Madonna. All rights reserved.
 //
 
-import Foundation
 import Combine
+import Foundation
 import GRDB
 
 final class RouteDatabaseDataSourceImpl: RouteDatabaseDataSource {
@@ -26,9 +26,12 @@ final class RouteDatabaseDataSourceImpl: RouteDatabaseDataSource {
         -> AnyPublisher<DatabaseRoutesWithExclusions, Swift.Error> {
 
         let sql = """
-        SELECT \(StopsTable.routesColumn), \(StopsTable.excludedRoutesColumn)
-        FROM \(StopsTable.tableName)
-        WHERE \(StopsTable.idColumn) = ?
+        SELECT s.\(StopsTable.routesColumn), e.\(ExcludedRoutesTable.routesColumn)
+        AS \(ExcludedRoutesTable.routesColumnAlt)
+        FROM \(StopsTable.tableName) AS s
+        LEFT JOIN \(ExcludedRoutesTable.tableName) AS e
+        ON s.\(StopsTable.idColumn) = e.\(ExcludedRoutesTable.stopIdColumn)
+        WHERE s.\(StopsTable.idColumn) = ?
         """
         let arguments = StatementArguments([stopId])
         return database.queue
@@ -68,8 +71,8 @@ final class RouteDatabaseDataSourceImpl: RouteDatabaseDataSource {
 
     func getExcludedRouteIdsForStopId(_ stopId: String) -> AnyPublisher<[String], Swift.Error> {
         let sql = """
-        SELECT \(StopsTable.excludedRoutesColumn) FROM \(StopsTable.tableName)
-        WHERE \(StopsTable.idColumn) = ?
+        SELECT \(ExcludedRoutesTable.routesColumn) FROM \(ExcludedRoutesTable.tableName)
+        WHERE \(ExcludedRoutesTable.stopIdColumn) = ?
         """
         let arguments = StatementArguments([stopId])
         return database.queue
@@ -84,13 +87,22 @@ final class RouteDatabaseDataSourceImpl: RouteDatabaseDataSource {
     }
 
     func updateExcludedRouteIdsForStopId(_ stopId: String, routeIds: [String]) -> AnyPublisher<Void, Swift.Error> {
-        let sql = """
-        UPDATE \(StopsTable.tableName)
-        SET \(StopsTable.excludedRoutesColumn) = ?
-        WHERE \(StopsTable.idColumn) = ?
-        """
-        let routeIdString = routeIds.joined(separator: StopsTable.routesDelimiter)
-        let arguments = StatementArguments([routeIdString, stopId])
+        let sql: String
+        let arguments: StatementArguments
+
+        if routeIds.isEmpty {
+            sql = "DELETE FROM \(ExcludedRoutesTable.tableName) WHERE \(ExcludedRoutesTable.stopIdColumn) = ?"
+            arguments = StatementArguments([stopId])
+        } else {
+            sql = """
+                  INSERT INTO \(ExcludedRoutesTable.tableName)
+                  (\(ExcludedRoutesTable.stopIdColumn), \(ExcludedRoutesTable.routesColumn))
+                  VALUES (?, ?) ON CONFLICT (\(ExcludedRoutesTable.stopIdColumn))
+                  DO UPDATE SET \(ExcludedRoutesTable.routesColumn) = ?
+                  """
+            let routeIdString = routeIds.joined(separator: ExcludedRoutesTable.routesDelimiter)
+            arguments = StatementArguments([stopId, routeIdString, routeIdString])
+        }
 
         return database.queue
             .flatMap { dbQueue in

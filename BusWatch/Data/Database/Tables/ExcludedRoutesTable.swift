@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import GRDB
 
 enum ExcludedRoutesTable {
 
@@ -14,6 +15,8 @@ enum ExcludedRoutesTable {
 
     static let stopIdColumn = "stop_id"
     static let routesColumn = "routes"
+
+    static let routesColumnAlt = "excluded_routes"
 
     static let routesDelimiter = StopsTable.routesDelimiter
 
@@ -36,5 +39,9 @@ enum ExcludedRoutesTable {
         static let dropTableForVersion4 = """
         DROP TABLE IF EXISTS \(tableName)
         """
+
+        static func createTableForVersion5(db: GRDB.Database) throws {
+            try db.execute(sql: createTableForVersion3)
+        }
     }
 }

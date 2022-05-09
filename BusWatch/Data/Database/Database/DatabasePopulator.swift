@@ -29,6 +29,8 @@ enum DatabasePopulator {
             case serviceType = "service_type"
         }
 
+        static var databaseTableName = StopsTable.tableName
+
         var differenceIdentifier: String {
             return id
         }
@@ -51,6 +53,8 @@ enum DatabasePopulator {
         var differenceIdentifier: String {
             return id
         }
+
+        static var databaseTableName = RoutesTable.tableName
 
         func isContentEqual(to source: DatabasePopulator.PopulatorRoute) -> Bool {
             return self.id == source.id &&
@@ -76,29 +80,32 @@ enum DatabasePopulator {
             let routesStagedChangeset = StagedChangeset(source: currentRoutes, target: newRoutes)
 
             try queue.write { db in
+                do {
+                    // Update stops if changes aren't empty
+                    if !stopsStagedChangeset.isEmpty {
+                        try updateStops(db,
+                                        stagedChangeset: stopsStagedChangeset,
+                                        currentStops: currentStops,
+                                        newStops: newStops)
+                    }
 
-                // Update stops if changes aren't empty
-                if !stopsStagedChangeset.isEmpty {
-                    try updateStops(db,
-                                    stagedChangeset: stopsStagedChangeset,
-                                    currentStops: currentStops,
-                                    newStops: newStops)
-                }
+                    // Update routes if changes aren't empty
+                    if !routesStagedChangeset.isEmpty {
+                        try updateRoutes(db,
+                                         stagedChangeset: routesStagedChangeset,
+                                         currentRoutes: currentRoutes,
+                                         newRoutes: newRoutes)
+                    }
 
-                // Update routes if changes aren't empty
-                if !routesStagedChangeset.isEmpty {
-                    try updateRoutes(db,
-                                     stagedChangeset: routesStagedChangeset,
-                                     currentRoutes: currentRoutes,
-                                     newRoutes: newRoutes)
-                }
-
-                // Update stop and route version
-                try db.execute(sql: """
+                    // Update stop and route version
+                    try db.execute(sql: """
                                     INSERT INTO \(ResourceVersionsTable.tableName)
                                     (\(ResourceVersionsTable.versionColumn))
                                     VALUES (?)
                                     """, arguments: [newResourceVersion])
+                } catch {
+                    print(error)
+                }
             }
         }
     }

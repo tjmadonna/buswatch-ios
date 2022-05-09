@@ -41,7 +41,7 @@ final class LocationDatabaseDataSourceImpl: LocationDatabaseDataSource {
     func saveLastLocationBounds(_ locationBounds: LocationBounds) -> AnyPublisher<Void, Swift.Error> {
         let sql = """
         INSERT INTO \(LastLocationTable.tableName) (\(LastLocationTable.allColumns))
-        VALUES (?, ?, ?, ?, ?) ON CONFLICT(\(LastLocationTable.idColumn))
+        VALUES (1, ?, ?, ?, ?) ON CONFLICT (\(LastLocationTable.idColumn))
         DO UPDATE SET
         \(LastLocationTable.northBoundColumn) = ?,
         \(LastLocationTable.southBoundColumn) = ?,
@@ -50,7 +50,6 @@ final class LocationDatabaseDataSourceImpl: LocationDatabaseDataSource {
         """
 
         let arguments = StatementArguments([
-            1.description,
             locationBounds.north.description,
             locationBounds.south.description,
             locationBounds.west.description,
