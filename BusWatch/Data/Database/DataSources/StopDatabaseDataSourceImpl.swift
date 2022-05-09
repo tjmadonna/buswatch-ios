@@ -6,8 +6,8 @@
 //  Copyright © 2022 Tyler Madonna. All rights reserved.
 //
 
-import Foundation
 import Combine
+import Foundation
 import GRDB
 
 final class StopDatabaseDataSourceImpl: StopDatabaseDataSource {
@@ -24,9 +24,11 @@ final class StopDatabaseDataSourceImpl: StopDatabaseDataSource {
 
     func getStopById(_ stopId: String) -> AnyPublisher<MinimalStop, Swift.Error> {
         let sql = """
-        SELECT \(StopsTable.idColumn), \(StopsTable.titleColumn), \(StopsTable.favoriteColumn)
-        FROM \(StopsTable.tableName)
-        WHERE \(StopsTable.idColumn) = ?
+        SELECT s.\(StopsTable.idColumn), s.\(StopsTable.titleColumn), f.\(FavoriteStopsTable.stopIdColumn)
+        FROM \(StopsTable.tableName) AS s
+        LEFT JOIN \(FavoriteStopsTable.tableName) AS f
+        ON s.\(StopsTable.idColumn) = f.\(FavoriteStopsTable.stopIdColumn)
+        WHERE s.\(StopsTable.idColumn) = ?
         """
         let arguments = StatementArguments([stopId])
         return database.queue
@@ -45,19 +47,19 @@ final class StopDatabaseDataSourceImpl: StopDatabaseDataSource {
 
     func favoriteStop(_ stopId: String) -> AnyPublisher<Void, Swift.Error> {
         let sql = """
-        UPDATE \(StopsTable.tableName)
-        SET \(StopsTable.favoriteColumn) = 1
-        WHERE \(StopsTable.idColumn) = ?;
+        INSERT OR IGNORE INTO \(FavoriteStopsTable.tableName)
+        (\(FavoriteStopsTable.stopIdColumn)) VALUES (?)
         """
+
         return writePublisherForSql(sql, arguments: [stopId])
     }
 
     func unfavoriteStop(_ stopId: String) -> AnyPublisher<Void, Swift.Error> {
         let sql = """
-        UPDATE \(StopsTable.tableName)
-        SET \(StopsTable.favoriteColumn) = 0
-        WHERE \(StopsTable.idColumn) = ?;
+        DELETE FROM \(FavoriteStopsTable.tableName)
+        WHERE \(FavoriteStopsTable.stopIdColumn) = ?
         """
+
         return writePublisherForSql(sql, arguments: [stopId])
     }
 
@@ -65,14 +67,16 @@ final class StopDatabaseDataSourceImpl: StopDatabaseDataSource {
         -> AnyPublisher<[DatabaseDetailedStop], Swift.Error> {
 
         let sql = """
-        SELECT \(StopsTable.idColumn), \(StopsTable.titleColumn), \(StopsTable.serviceTypeColumn),
-        \(StopsTable.latitudeColumn), \(StopsTable.longitudeColumn),
-        \(StopsTable.routesColumn), \(StopsTable.excludedRoutesColumn)
-        FROM \(StopsTable.tableName)
-        WHERE \(StopsTable.latitudeColumn) <= ?
-        AND \(StopsTable.latitudeColumn) >= ?
-        AND \(StopsTable.longitudeColumn) >= ?
-        AND \(StopsTable.longitudeColumn) <= ?
+        SELECT s.\(StopsTable.idColumn), s.\(StopsTable.titleColumn), s.\(StopsTable.serviceTypeColumn),
+        s.\(StopsTable.latitudeColumn), s.\(StopsTable.longitudeColumn),
+        s.\(StopsTable.routesColumn), e.\(ExcludedRoutesTable.routesColumn) AS \(ExcludedRoutesTable.routesColumnAlt)
+        FROM \(StopsTable.tableName) AS s
+        LEFT JOIN \(ExcludedRoutesTable.tableName) AS e
+        ON s.\(StopsTable.idColumn) = e.\(ExcludedRoutesTable.stopIdColumn)
+        WHERE s.\(StopsTable.latitudeColumn) <= ?
+        AND s.\(StopsTable.latitudeColumn) >= ?
+        AND s.\(StopsTable.longitudeColumn) >= ?
+        AND s.\(StopsTable.longitudeColumn) <= ?
         """
         let arguments = StatementArguments([locationBounds.north,
                                             locationBounds.south,
@@ -85,10 +89,13 @@ final class StopDatabaseDataSourceImpl: StopDatabaseDataSource {
 
     func getFavoriteStops() -> AnyPublisher<[DatabaseFavoriteStop], Swift.Error> {
         let sql = """
-        SELECT \(StopsTable.idColumn), \(StopsTable.titleColumn), \(StopsTable.serviceTypeColumn),
-        \(StopsTable.routesColumn), \(StopsTable.excludedRoutesColumn)
-        FROM \(StopsTable.tableName)
-        WHERE \(StopsTable.favoriteColumn) = 1
+        SELECT s.\(StopsTable.idColumn), s.\(StopsTable.titleColumn), s.\(StopsTable.serviceTypeColumn),
+        s.\(StopsTable.routesColumn), e.\(ExcludedRoutesTable.routesColumn) AS \(ExcludedRoutesTable.routesColumnAlt)
+        FROM \(StopsTable.tableName) AS s
+        INNER JOIN \(FavoriteStopsTable.tableName) AS f
+        ON s.\(StopsTable.idColumn) = f.\(FavoriteStopsTable.stopIdColumn)
+        LEFT JOIN \(ExcludedRoutesTable.tableName) as e
+        ON s.\(StopsTable.idColumn) = e.\(ExcludedRoutesTable.stopIdColumn)
         """
         return valueObservationPublisherForSql(sql) { row in
             row.toDatabaseFavoriteStop()
@@ -101,7 +108,12 @@ final class StopDatabaseDataSourceImpl: StopDatabaseDataSource {
         return database.queue
             .flatMap { dbQueue in
                 return dbQueue.writePublisher { db in
+                do {
                     try db.execute(sql: sql, arguments: arguments)
+                } catch {
+                    print(error)
+                    throw error
+                }
                 }
             }
             .first()
@@ -116,8 +128,13 @@ final class StopDatabaseDataSourceImpl: StopDatabaseDataSource {
         return database.queue
             .flatMap { dbQueue in
                 return ValueObservation.tracking { db in
-                    let cursor = try Row.fetchCursor(db, sql: sql, arguments: arguments)
-                    return cursor.compactMap(rowMapper)
+                    do {
+                        let cursor = try Row.fetchCursor(db, sql: sql, arguments: arguments)
+                        return cursor.compactMap(rowMapper)
+                    } catch {
+                        print(error)
+                        throw error
+                    }
                 }
                 .publisher(in: dbQueue)
             }

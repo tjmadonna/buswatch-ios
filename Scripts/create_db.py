@@ -126,7 +126,7 @@ def run(stopsfile: str, routesfile: str, outputfile: str):
             conn,
             """ CREATE TABLE grdb_migrations (
                 identifier TEXT NOT NULL PRIMARY KEY
-            );
+                );
             """,
         )
 
@@ -137,7 +137,7 @@ def run(stopsfile: str, routesfile: str, outputfile: str):
                 id TEXT PRIMARY KEY,
                 title TEXT NOT NULL,
                 color TEXT NOT NULL
-            );
+                );
             """,
         )
 
@@ -147,13 +147,11 @@ def run(stopsfile: str, routesfile: str, outputfile: str):
             """ CREATE TABLE stops (
                 id TEXT PRIMARY KEY,
                 title TEXT NOT NULL,       
-                favorite INTEGER NOT NULL DEFAULT 0,
                 latitude REAL NOT NULL,
                 longitude REAL NOT NULL,
                 routes TEXT,
-                excluded_routes TEXT,
                 service_type INTEGER NOT NULL DEFAULT 0
-            );
+                );
             """,
         )
 
@@ -166,7 +164,7 @@ def run(stopsfile: str, routesfile: str, outputfile: str):
                 south DOUBLE NOT NULL,
                 west DOUBLE NOT NULL,
                 east DOUBLE NOT NULL
-            );
+                );
             """,
         )
 
@@ -175,7 +173,32 @@ def run(stopsfile: str, routesfile: str, outputfile: str):
             conn,
             """ CREATE TABLE resource_versions (
                 version INTEGER PRIMARY KEY
-            );
+                );
+            """,
+        )
+
+        # Favorite stop
+        create_table(
+            conn,
+            """ CREATE TABLE favorite_stops (
+                stop_id TEXT PRIMARY KEY,
+                FOREIGN KEY (stop_id) REFERENCES stops (id)
+                ON UPDATE CASCADE
+                ON DELETE CASCADE
+                );
+            """,
+        )
+
+        # Excluded routes
+        create_table(
+            conn,
+            """ CREATE TABLE excluded_routes (
+                stop_id TEXT PRIMARY KEY,
+                routes TEXT NOT NULL,
+                FOREIGN KEY (stop_id) REFERENCES stops (id)
+                ON UPDATE CASCADE
+                ON DELETE CASCADE
+                );
             """,
         )
 

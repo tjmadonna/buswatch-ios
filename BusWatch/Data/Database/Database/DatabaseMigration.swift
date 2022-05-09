@@ -34,7 +34,7 @@ enum DatabaseMigration {
     }
 
     static func migrateToVersion5(db: GRDB.Database) throws {
-        try StopsTable.Migration.alterTableForVersion5(db: db)
+        try StopsTable.Migration.alterTablesForVersion5(db: db)
         try ResourceVersionsTable.Migration.createTableForVersion5(db: db)
     }
 }
