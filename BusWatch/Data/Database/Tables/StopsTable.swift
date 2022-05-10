@@ -50,7 +50,6 @@ enum StopsTable {
         ]
 
         static func alterTablesForVersion5(db: GRDB.Database) throws {
-            do {
             // Rename old table
             let renameSql = "ALTER TABLE \(tableName) RENAME TO \(tableName)_old"
             try db.execute(sql: renameSql)
@@ -105,9 +104,6 @@ enum StopsTable {
 
             // Drop old table
             try db.execute(sql: "DROP TABLE \(tableName)_old")
-            } catch {
-                print(error)
-            }
         }
     }
 }
