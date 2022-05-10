@@ -26,8 +26,22 @@ extension NetworkPrediction {
             title = Resources.Strings.predictionTitleNoRoute(destination, routeDirection)
         }
 
+        let capacityImageName = getCapacityImageName(self.capacity)
+
+        let arrivalMessage = getArrivalMessage(arrivalTimeDate)
+
+        return Prediction(
+            id: vehicleId,
+            title: title,
+            route: routeId,
+            capacityImageName: capacityImageName,
+            arrivalMessage: arrivalMessage
+        )
+    }
+
+    fileprivate func getCapacityImageName(_ capacityString: String?) -> String? {
         let capacityImageName: String?
-        switch self.capacity?.lowercased() {
+        switch capacityString?.lowercased() {
         case "empty":
             capacityImageName = Resources.Images.capacityEmpty
         case "half_empty":
@@ -37,7 +51,10 @@ extension NetworkPrediction {
         default:
             capacityImageName = nil
         }
+        return capacityImageName
+    }
 
+    fileprivate func getArrivalMessage(_ arrivalTimeDate: Date) -> String {
         let seconds = Int(arrivalTimeDate.timeIntervalSinceNow)
         let arrivalMessage: String
         switch seconds {
@@ -48,13 +65,6 @@ extension NetworkPrediction {
         default:
             arrivalMessage = Resources.Strings.arrivingInNMins(Int(seconds / 60))
         }
-
-        return Prediction(
-            id: vehicleId,
-            title: title,
-            route: routeId,
-            capacityImageName: capacityImageName,
-            arrivalMessage: arrivalMessage
-        )
+        return arrivalMessage
     }
 }
