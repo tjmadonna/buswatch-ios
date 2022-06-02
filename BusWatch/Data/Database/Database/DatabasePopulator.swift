@@ -151,8 +151,13 @@ enum DatabasePopulator {
             }
 
             if !stopChangeset.elementUpdated.isEmpty {
+                let newStopDict = newStops.reduce(into: [String: PopulatorStop]()) { stopDict, stop in
+                    stopDict[stop.id] = stop
+                }
+
                 try stopChangeset.elementUpdated.forEach { element in
-                    try newStops[element.element]
+                    let stop = currentStops[element.element]
+                    try newStopDict[stop.id]?
                         .update(db, columns: [
                             StopsTable.idColumn,
                             StopsTable.titleColumn,
@@ -186,8 +191,13 @@ enum DatabasePopulator {
             }
 
             if !routeChangeset.elementUpdated.isEmpty {
+                let newRouteDict = newRoutes.reduce(into: [String: PopulatorRoute]()) { routeDict, route in
+                    routeDict[route.id] = route
+                }
+
                 try routeChangeset.elementUpdated.forEach { element in
-                    try newRoutes[element.element]
+                    let route = currentRoutes[element.element]
+                    try newRouteDict[route.id]?
                         .update(db, columns: [
                             RoutesTable.idColumn,
                             RoutesTable.titleColumn,
