@@ -6,10 +6,6 @@ from typing import List, Optional
 
 from export_stops import Stop
 
-DB_VERSION = 5
-
-RESOURCE_VERSION = 1
-
 
 @dataclass
 class Route:
@@ -88,9 +84,9 @@ def create_last_location(conn: sqlite3.Connection):
         print(e)
 
 
-def create_migrations(conn: sqlite3.Connection):
+def create_migrations(conn: sqlite3.Connection, db_version: int):
     try:
-        mig_tuples = [(i,) for i in range(1, DB_VERSION + 1)]
+        mig_tuples = [(i,) for i in range(1, db_version + 1)]
         conn.executemany(
             "INSERT INTO grdb_migrations (identifier) values (?);",
             mig_tuples,
@@ -99,9 +95,9 @@ def create_migrations(conn: sqlite3.Connection):
         print(e)
 
 
-def create_resource_version(conn: sqlite3.Connection):
+def create_resource_version(conn: sqlite3.Connection, res_version: int):
     try:
-        res_tuples = [(i,) for i in range(1, RESOURCE_VERSION + 1)]
+        res_tuples = [(i,) for i in range(1, res_version + 1)]
         conn.executemany(
             "INSERT INTO resource_versions (version) values (?);",
             res_tuples,
@@ -110,7 +106,9 @@ def create_resource_version(conn: sqlite3.Connection):
         print(e)
 
 
-def run(stopsfile: str, routesfile: str, outputfile: str):
+def run(
+    stopsfile: str, routesfile: str, outputfile: str, db_version: int, res_version: int
+):
     with open(stopsfile) as stops_file:
         stops = [Stop(**s) for s in json.load(stops_file)]
         filtered = [s for s in stops if s.service_type == 1]
@@ -205,8 +203,8 @@ def run(stopsfile: str, routesfile: str, outputfile: str):
         create_stops(conn, stops)
         create_routes(conn, routes)
         create_last_location(conn)
-        create_migrations(conn)
-        create_resource_version(conn)
+        create_migrations(conn, db_version)
+        create_resource_version(conn, res_version)
 
         conn.commit()
         conn.close()
@@ -227,12 +225,28 @@ if __name__ == "__main__":
         help="path of the routes json file",
     )
     parser.add_argument(
+        "-dv",
+        "--db_version",
+        type=int,
+        help="version of the database",
+    )
+    parser.add_argument(
+        "-rv",
+        "--res_version",
+        type=int,
+        help="version of the resources (stops and routes)",
+    )
+    parser.add_argument(
         "-o",
         "--outputfile",
-        default=f"./databasev{DB_VERSION}.db",
+        default=f"./database.db",
         help="path of the output sqlite file",
     )
     args = parser.parse_args()
     run(
-        stopsfile=args.stopsfile, routesfile=args.routesfile, outputfile=args.outputfile
+        stopsfile=args.stopsfile,
+        routesfile=args.routesfile,
+        outputfile=args.outputfile,
+        db_version=args.db_version,
+        res_version=args.res_version,
     )
