@@ -6,21 +6,13 @@
 //  Copyright © 2020 Tyler Madonna. All rights reserved.
 //
 
-import UIKit
-import MapKit
 import Combine
+import MapKit
+import UIKit
 
 final class StopMapViewController: UIViewController {
 
     // MARK: - Views
-
-    private let titleView: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 18)
-        label.text = "Map"
-        label.textColor = .white
-        return label
-    }()
 
     private let mapView: MKMapView = {
         let mapView = MKMapView()
@@ -31,7 +23,7 @@ final class StopMapViewController: UIViewController {
     private lazy var fabButton: UIButton = {
         let button = UIButton(type: .custom)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = style.locationButtonColor
+        button.backgroundColor = Resources.Colors.appBlack
         button.layer.cornerRadius = 35
         button.tintColor = .white
         button.setImage(UIImage(systemName: "location"), for: .normal)
@@ -57,8 +49,6 @@ final class StopMapViewController: UIViewController {
 
     private let viewModel: StopMapViewModel
 
-    private let style: StopMapStyle
-
     private var cancellables = Set<AnyCancellable>()
 
     private var currentStopAnnotations: [StopMapStopAnnotation]?
@@ -71,9 +61,8 @@ final class StopMapViewController: UIViewController {
 
     // MARK: - Initialization
 
-    init(viewModel: StopMapViewModel, style: StopMapStyle) {
+    init(viewModel: StopMapViewModel) {
         self.viewModel = viewModel
-        self.style = style
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -85,7 +74,6 @@ final class StopMapViewController: UIViewController {
         cancellables.removeAll()
         mapView.removeAllAnnotations()
         mapView.delegate = nil
-        print("Deinniting StopMapViewController")
     }
 
     // MARK: - UIViewController Lifecycle
@@ -97,11 +85,18 @@ final class StopMapViewController: UIViewController {
         setupObservers()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationItem.largeTitleDisplayMode =  .never
+    }
+
     // MARK: - Setup
 
     private func setupViewController() {
-        title = ""
-        navigationItem.titleView = titleView
+        view.backgroundColor = .systemBackground
+        navigationItem.title = "Map"
+        navigationItem.backButtonDisplayMode = .minimal
+        fabButton.isHidden = true
     }
 
     private func setupSubviews() {
@@ -148,6 +143,7 @@ final class StopMapViewController: UIViewController {
         .store(in: &cancellables)
 
         viewModel.fabState.sink { [unowned self] show in
+            fabButton.isHidden = !show
             self.mapView.showsUserLocation = show
             self.fabWidthConstraint?.constant = show ? self.fabButton.layer.cornerRadius * 2 : 0
             UIView.animate(withDuration: 0.25,
@@ -236,7 +232,7 @@ extension StopMapViewController: MKMapViewDelegate {
         view?.isEnabled = true
         view?.canShowCallout = true
         view?.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
-        view?.rightCalloutAccessoryView?.tintColor = style.mapAnnotationTintColor
+        view?.rightCalloutAccessoryView?.tintColor = .label
         return view
     }
 

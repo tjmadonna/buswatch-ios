@@ -10,25 +10,13 @@ import Foundation
 
 final class OverviewComponent {
 
-    private struct OverviewStyleImpl: OverviewStyle {
-
-        let backgroundColor = Colors.backgroundColor
-
-        let cellBackground = Colors.raisedBackgroundColor
-
-        let cellDecoratorColor = Colors.decoratorBackgroundColor
-
-        let cellDecoratorTextColor = Colors.decoratorTextBackgroundColor
-    }
-
     func provideOverviewViewController(_ appComponent: AppComponent,
                                        eventCoordinator: OverviewEventCoordinator) -> OverviewViewController {
 
-        let viewModel = OverviewViewModel(stopRepository: appComponent.stopRepository,
-                                          locationRepository: appComponent.locationRepository,
+        let viewModel = OverviewViewModel(stopService: appComponent.stopService,
+                                          locationService: appComponent.locationService,
                                           eventCoordinator: eventCoordinator)
-        let style = OverviewStyleImpl()
 
-        return OverviewViewController(viewModel: viewModel, style: style)
+        return OverviewViewController(viewModel: viewModel)
     }
 }

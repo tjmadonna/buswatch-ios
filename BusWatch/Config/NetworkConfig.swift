@@ -14,7 +14,8 @@ enum NetworkConfig {
 
     static let host = "truetime.portauthority.org"
 
-    static let apiKey = "YOUR API KEY HERE"
+    static let apiKey = Secrets.apiKey
 
     static let basePath = "/bustime/api/v3"
+
 }

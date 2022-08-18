@@ -12,6 +12,6 @@ import GRDB
 
 protocol Database {
 
-    var queue: AnyPublisher<DatabaseQueue, Error> { get }
+    var queuePublisher: AnyPublisher<DatabaseQueue, Error> { get }
 
 }

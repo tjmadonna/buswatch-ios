@@ -13,8 +13,8 @@ struct Prediction {
     let id: String
     let title: String
     let route: String
-    let capacityImageName: String?
-    let arrivalMessage: String
+    let capacity: Capacity?
+    let arrivalTime: Date
 }
 
 extension Prediction: Equatable { }
@@ -31,7 +31,7 @@ extension Prediction: Differentiable {
         return id == source.id &&
             title == source.title &&
             route == source.route &&
-            capacityImageName == source.capacityImageName &&
-            arrivalMessage == source.arrivalMessage
+            capacity == source.capacity &&
+            arrivalTime == source.arrivalTime
     }
 }

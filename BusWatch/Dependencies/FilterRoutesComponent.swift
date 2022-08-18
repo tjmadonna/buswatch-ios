@@ -16,7 +16,7 @@ final class FilterRoutesComponent {
                                            stopId: String) -> FilterRoutesViewController {
 
         let viewModel = FilterRoutesViewModel(stopId: stopId,
-                                              routeRepository: appComponent.routeRepository,
+                                              routeService: appComponent.routeService,
                                               eventCoordinator: eventCoordinator)
 
         return FilterRoutesViewController(viewModel: viewModel)

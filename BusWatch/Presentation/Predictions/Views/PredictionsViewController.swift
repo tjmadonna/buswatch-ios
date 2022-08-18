@@ -65,11 +65,22 @@ final class PredictionsViewController: UIViewController {
         setupObservers()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationItem.largeTitleDisplayMode =  .never
+        viewModel.handleIntent(.viewAppeared)
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        viewModel.handleIntent(.viewDisappeared)
+    }
+
     // MARK: - Setup
 
     private func setupViewController() {
-        title = ""
-        view.backgroundColor = Resources.Colors.backgroundColor
+        view.backgroundColor = .systemBackground
+        navigationItem.backButtonDisplayMode = .minimal
 
         loadingViewController.view.isHidden = true
         dataViewController.view.isHidden = true

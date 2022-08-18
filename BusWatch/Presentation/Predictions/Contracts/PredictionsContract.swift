@@ -28,6 +28,8 @@ enum PredictionsDataState {
 enum PredictionsIntent {
     case toggleFavorited
     case filterRoutesSelected
+    case viewAppeared
+    case viewDisappeared
 }
 
 // MARK: - Coordinator

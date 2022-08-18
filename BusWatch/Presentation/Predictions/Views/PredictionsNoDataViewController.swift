@@ -35,7 +35,7 @@ final class PredictionsNoDataViewController: UITableViewController {
     // MARK: - Setup
 
     private func setupViewController() {
-        view.backgroundColor = Resources.Colors.backgroundColor
+
     }
 
     private func setupTableView() {

@@ -13,17 +13,7 @@ final class OverviewViewController: UITableViewController {
 
     // MARK: - Properties
 
-    private let titleView: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 18)
-        label.text = "Bus Watch"
-        label.textColor = .white
-        return label
-    }()
-
     private let viewModel: OverviewViewModel
-
-    private let style: OverviewStyle
 
     private var sections = [OverviewSection]()
 
@@ -31,9 +21,8 @@ final class OverviewViewController: UITableViewController {
 
     // MARK: - Initialization
 
-    init(viewModel: OverviewViewModel, style: OverviewStyle) {
+    init(viewModel: OverviewViewModel) {
         self.viewModel = viewModel
-        self.style = style
         super.init(style: .grouped)
     }
 
@@ -54,12 +43,17 @@ final class OverviewViewController: UITableViewController {
         setupObservers()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationItem.title = "Bus Watch"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode =  .always
+    }
+
     // MARK: - Setup
 
     private func setupViewController() {
-        title = ""
-        navigationItem.titleView = titleView
-        view.backgroundColor = style.backgroundColor
+        navigationItem.backButtonDisplayMode = .minimal
     }
 
     private func setupTableView() {
@@ -124,8 +118,7 @@ final class OverviewViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: OverviewTitleHeaderView.reuseId)
             as? OverviewTitleHeaderView
-        header?.configureWithTitle(sections[section].title,
-                                   style: OverviewTitleHeaderViewStyle(backgroundColor: style.cellBackground))
+        header?.configureWithTitle(sections[section].title)
         return header
     }
 
@@ -175,11 +168,7 @@ final class OverviewViewController: UITableViewController {
         }
 
         let dividerVisible = sections[indexPath.section].items.lastIndex != indexPath.row
-        let style = OverviewFavoriteStopCellStyle(dividerVisible: dividerVisible,
-                                                  backgroundColor: style.cellBackground,
-                                                  decoratorColor: style.cellDecoratorColor,
-                                                  decoratorTextColor: style.cellDecoratorTextColor)
-        cell.configureWithStop(favoriteStop, style: style)
+        cell.configureWithStop(favoriteStop, dividerVisible: dividerVisible)
         return cell
     }
 
@@ -191,8 +180,7 @@ final class OverviewViewController: UITableViewController {
             fatalError("OverviewViewController Error: Unable to dequeue OverviewMessageCell at index path \(indexPath)")
         }
 
-        let style = OverviewMessageCellStyle(backgroundColor: style.cellBackground)
-        cell.configureWithMessage("No favorite stops found", style: style)
+        cell.configureWithMessage("No favorite stops found")
         return cell
     }
 
@@ -205,8 +193,7 @@ final class OverviewViewController: UITableViewController {
             fatalError("OverviewViewController Error: Unable to dequeue OverviewMapCell at index path \(indexPath)")
         }
 
-        let style = OverviewMapCellStyle(backgroundColor: style.cellBackground)
-        cell.configureWithLocationBounds(locationBounds, style: style)
+        cell.configureWithLocationBounds(locationBounds)
         return cell
     }
 }

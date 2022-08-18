@@ -8,18 +8,6 @@
 
 import UIKit
 
-struct OverviewFavoriteStopCellStyle {
-
-    let dividerVisible: Bool
-
-    let backgroundColor: UIColor
-
-    let decoratorColor: UIColor
-
-    let decoratorTextColor: UIColor
-
-}
-
 final class OverviewFavoriteStopCell: UITableViewCell {
 
     // MARK: - Properties
@@ -31,14 +19,18 @@ final class OverviewFavoriteStopCell: UITableViewCell {
     private let decoratorContainerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.cornerRadius = 10
+        view.backgroundColor = Resources.Colors.appGold
+        view.layer.cornerRadius = 15
+        view.layer.borderWidth = 1
+        view.layer.borderColor = UIColor(hex: "E7E7E7")?.cgColor
         return view
     }()
 
     private let decoratorLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 35)
+        label.textColor = .black
+        label.font = UIFont.preferredFont(forTextStyle: .title1)
         return label
     }()
 
@@ -90,6 +82,8 @@ final class OverviewFavoriteStopCell: UITableViewCell {
     // MARK: - Setup
 
     private func setupSubviews() {
+        accessoryType = .disclosureIndicator
+
         decoratorContainerView.addSubview(decoratorLabel)
 
         NSLayoutConstraint.activate([
@@ -103,9 +97,9 @@ final class OverviewFavoriteStopCell: UITableViewCell {
 
         NSLayoutConstraint.activate([
             decoratorContainerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            decoratorContainerView.widthAnchor.constraint(equalToConstant: 70),
+            decoratorContainerView.widthAnchor.constraint(equalToConstant: 60),
             decoratorContainerView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            decoratorContainerView.heightAnchor.constraint(equalToConstant: 70),
+            decoratorContainerView.heightAnchor.constraint(equalToConstant: 60),
             decoratorContainerView.topAnchor.constraint(greaterThanOrEqualTo: contentView.topAnchor, constant: 10)
                 .usingPriority(.defaultLow),
             decoratorContainerView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -10)
@@ -132,14 +126,8 @@ final class OverviewFavoriteStopCell: UITableViewCell {
 
     // MARK: - properties/functions
 
-    func configureWithStop(_ favoriteStop: FavoriteStop, style: OverviewFavoriteStopCellStyle) {
-
-        // Colors
-        backgroundColor = style.backgroundColor
-        decoratorContainerView.backgroundColor = style.decoratorColor
-        decoratorLabel.textColor = style.decoratorTextColor
-
-        dividerView.isHidden = !style.dividerVisible
+    func configureWithStop(_ favoriteStop: FavoriteStop, dividerVisible: Bool) {
+        dividerView.isHidden = !dividerVisible
 
         decoratorLabel.text = favoriteStop.title.first?.description
         titleLabel.text = favoriteStop.title

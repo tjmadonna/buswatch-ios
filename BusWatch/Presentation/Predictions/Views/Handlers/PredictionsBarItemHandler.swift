@@ -23,13 +23,6 @@ final class PredictionsNavBarHandler {
 
     // MARK: - Views
 
-    private let titleView: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 18)
-        label.textColor = .white
-        return label
-    }()
-
     private let navigationItem: UINavigationItem
 
     private var state: PredictionsNavBarState = PredictionsNavBarState(favorited: false, title: "")
@@ -38,11 +31,11 @@ final class PredictionsNavBarHandler {
 
     init(navigationItem: UINavigationItem) {
         self.navigationItem = navigationItem
-        navigationItem.titleView = titleView
+        self.navigationItem.backButtonTitle = ""
     }
 
     func setTitleForNavBarState(_ state: PredictionsNavBarState) {
-        titleView.text = state.title
+        navigationItem.title = state.title
     }
 
     func setBarItemsForNavBarState(_ state: PredictionsNavBarState) {

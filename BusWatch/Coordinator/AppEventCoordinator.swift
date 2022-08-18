@@ -19,12 +19,15 @@ final class AppNavigationViewController: UINavigationController {
 
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = Colors.navBarColor
-        appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        appearance.backgroundColor = Resources.Colors.appBlack
+        appearance.titleTextAttributes = [ .foregroundColor: UIColor.white ]
+        appearance.largeTitleTextAttributes = [ .foregroundColor: UIColor.white ]
         navigationBar.standardAppearance = appearance
         navigationBar.scrollEdgeAppearance = navigationBar.standardAppearance
         navigationBar.isTranslucent = false
         navigationBar.tintColor = .white
+
+        view.backgroundColor = .systemGroupedBackground
     }
 }
 
@@ -59,12 +62,11 @@ final class AppEventCoordinator {
         navigationController.pushViewController(viewControlller, animated: true)
     }
 
-    func presentPredictionsViewControllerForStop(_ stopId: String, serviceType: ServiceType) {
+    func presentPredictionsViewControllerForStop(_ stop: TitleServiceStop) {
         let predictionsComponent = PredictionsComponent()
         let viewControlller = predictionsComponent.providePredictionsViewController(appComponent,
                                                                                     eventCoordinator: self,
-                                                                                    stopId: stopId,
-                                                                                    serviceType: serviceType)
+                                                                                    stop: stop)
         navigationController.pushViewController(viewControlller, animated: true)
     }
 
@@ -81,7 +83,8 @@ final class AppEventCoordinator {
 extension AppEventCoordinator: OverviewEventCoordinator {
 
     func favoriteStopSelectedInOverview(_ stop: FavoriteStop) {
-        presentPredictionsViewControllerForStop(stop.id, serviceType: stop.serviceType)
+        let titleServiceStop = TitleServiceStop(id: stop.id, title: stop.title, serviceType: stop.serviceType)
+        presentPredictionsViewControllerForStop(titleServiceStop)
     }
 
     func stopMapSelectedInOverview() {
@@ -92,7 +95,8 @@ extension AppEventCoordinator: OverviewEventCoordinator {
 extension AppEventCoordinator: StopMapEventCoordinator {
 
     func stopSelectedInStopMap(_ stop: DetailedStop) {
-        presentPredictionsViewControllerForStop(stop.id, serviceType: stop.serviceType)
+        let titleServiceStop = TitleServiceStop(id: stop.id, title: stop.title, serviceType: stop.serviceType)
+        presentPredictionsViewControllerForStop(titleServiceStop)
     }
 }
 

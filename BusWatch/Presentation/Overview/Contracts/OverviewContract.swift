@@ -46,16 +46,3 @@ protocol OverviewEventCoordinator: AnyObject {
     func stopMapSelectedInOverview()
 
 }
-
-// MARK: - Resources
-
-protocol OverviewStyle {
-
-    var backgroundColor: UIColor { get }
-
-    var cellBackground: UIColor { get }
-
-    var cellDecoratorColor: UIColor { get }
-
-    var cellDecoratorTextColor: UIColor { get }
-}

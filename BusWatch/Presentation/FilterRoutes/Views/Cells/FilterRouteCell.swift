@@ -25,7 +25,7 @@ final class FilterRouteCell: UITableViewCell {
     private let checkMarkImageView: UIImageView = {
         let image = UIImage(systemName: "checkmark")
         let imageView = UIImageView(image: image)
-        imageView.tintColor = Resources.Colors.capacityImageColor
+        imageView.tintColor = Resources.Colors.capacity
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()

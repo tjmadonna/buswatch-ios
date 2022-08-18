@@ -23,7 +23,7 @@ final class FilterRoutesViewModel {
 
     private let stopId: String
 
-    private let routeRepository: RouteRepository
+    private let routeService: RouteService
 
     private weak var eventCoordinator: FilterRoutesEventCoordinator?
 
@@ -32,10 +32,10 @@ final class FilterRoutesViewModel {
     // MARK: - Initialization
 
     init(stopId: String,
-         routeRepository: RouteRepository,
+         routeService: RouteService,
          eventCoordinator: FilterRoutesEventCoordinator) {
         self.stopId = stopId
-        self.routeRepository = routeRepository
+        self.routeService = routeService
         self.eventCoordinator = eventCoordinator
         setupObservers()
     }
@@ -47,9 +47,10 @@ final class FilterRoutesViewModel {
     // MARK: - Setup
 
     private func setupObservers() {
-        routeRepository.getFilterableRoutesForStopId(stopId)
+        routeService.observeFilterableRoutesForStopId(stopId)
+            .map { routes in routes.sorted { route1, route2 in route1.id.compare(route2.id) == .orderedAscending }}
             .map { routes in FilterRoutesState.data(routes) }
-            .replaceError(with: .error("Couldn't get routes"))
+            .replaceError(with: FilterRoutesState.error("Couldn't get routes"))
             .receive(on: RunLoop.main)
             .subscribe(self.stateSubject)
             .store(in: &cancellables)
@@ -88,7 +89,7 @@ final class FilterRoutesViewModel {
             let excludedRouteIds = routes.filter { route in route.filtered }
                 .map { route in route.id }
 
-            routeRepository.updateExcludedRouteIdsForStopId(stopId, routeIds: excludedRouteIds)
+            routeService.updateExcludedRouteIdsForStopId(stopId, routeIds: excludedRouteIds)
                 .receive(on: RunLoop.main)
                 .sink(receiveCompletion: { _ in
 

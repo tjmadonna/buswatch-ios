@@ -34,48 +34,47 @@ final class AppComponent {
 
     // MARK: - Data Sources
 
-    lazy var stopDatabaseDataSource: StopDatabaseDataSource = {
-        return StopDatabaseDataSourceImpl(database: database)
+    lazy var stopDatabaseDataSource: StopDbDataSource = {
+        return StopDbDataSourceImpl(database: database)
     }()
 
-    lazy var locationDatabaseDataSource: LocationDatabaseDataSource = {
-        return LocationDatabaseDataSourceImpl(database: database)
+    lazy var locationDatabaseDataSource: LocationDbDataSource = {
+        return LocationDbDataSourceImpl(database: database)
     }()
 
-    lazy var locationPermissionDataSource: LocationPermissionDataSource = {
-        return LocationPermissionDataSourceImpl()
+    lazy var locationPermissionDataSource: PermissionDataSource = {
+        return PermissionDataSourceImpl()
     }()
 
-    lazy var predictionNetworkDataSource: PredictionNetworkDataSource = {
+    lazy var predictionNetworkDataSource: NetworkDataSource = {
         let config = UrlConfig(scheme: NetworkConfig.scheme,
                                host: NetworkConfig.host,
                                apiKey: NetworkConfig.apiKey,
                                basePath: NetworkConfig.basePath)
         let urlSource = UrlSourceImpl(urlConfig: config)
-        return PredictionNetworkDataSourceImpl(urlSource: urlSource)
+        return NetworkDataSourceImpl(urlSource: urlSource)
     }()
 
-    lazy var routeDatabaseDataSource: RouteDatabaseDataSource = {
-        return RouteDatabaseDataSourceImpl(database: database)
+    lazy var routeDatabaseDataSource: RouteDbDataSource = {
+        return RouteDbDataSourceImpl(database: database)
     }()
 
     // MARK: - Repositories
 
-    lazy var stopRepository: StopRepository = {
-        return StopRepositoryImpl(database: stopDatabaseDataSource)
+    lazy var stopService: StopService = {
+        return StopServiceImpl(dbDataSource: stopDatabaseDataSource)
     }()
 
-    lazy var locationRepository: LocationRepository = {
-        return LocationRepositoryImpl(database: locationDatabaseDataSource,
-                                      permissions: locationPermissionDataSource)
+    lazy var locationService: LocationService = {
+        return LocationServiceImpl(dbDataSource: locationDatabaseDataSource)
     }()
 
-    lazy var predictionRepository: PredictionRepository = {
-        return PredictionRepositoryImpl(predictionApi: predictionNetworkDataSource,
-                                        routeDatabase: routeDatabaseDataSource)
+    lazy var predictionService: PredictionService = {
+        return PredictionServiceImpl(networkDataSource: predictionNetworkDataSource,
+                                     routeDataSource: routeDatabaseDataSource)
     }()
 
-    lazy var routeRepository: RouteRepository = {
-        return RouteRepositoryImpl(database: routeDatabaseDataSource)
+    lazy var routeService: RouteService = {
+        return RouteServiceImpl(dbDataSource: routeDatabaseDataSource)
     }()
 }

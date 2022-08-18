@@ -31,7 +31,7 @@ final class DatabaseImpl: Database {
 
     // MARK: - DatabaseDataSource
 
-    var queue: AnyPublisher<DatabaseQueue, Error> {
+    var queuePublisher: AnyPublisher<DatabaseQueue, Error> {
         queueSubject.compactMap { $0 }
             .eraseToAnyPublisher()
     }

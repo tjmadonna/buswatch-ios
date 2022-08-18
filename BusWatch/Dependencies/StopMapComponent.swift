@@ -11,21 +11,13 @@ import MapKit
 
 final class StopMapComponent {
 
-    private struct StopMapStyleImpl: StopMapStyle {
-
-        let mapAnnotationTintColor = Colors.navBarColor
-
-        var locationButtonColor = Colors.darkRaisedBackgroundColor
-    }
-
     func provideStopMapViewController(_ appComponent: AppComponent,
                                       eventCoordinator: StopMapEventCoordinator) -> StopMapViewController {
 
-        let viewModel = StopMapViewModel(stopRepository: appComponent.stopRepository,
-                                         locationRepository: appComponent.locationRepository,
+        let viewModel = StopMapViewModel(stopService: appComponent.stopService,
+                                         locationService: appComponent.locationService,
                                          eventCoordinator: eventCoordinator)
-        let style = StopMapStyleImpl()
 
-        return StopMapViewController(viewModel: viewModel, style: style)
+        return StopMapViewController(viewModel: viewModel)
     }
 }

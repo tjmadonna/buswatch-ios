@@ -30,6 +30,49 @@ struct NetworkPrediction: Decodable {
         case arrivalTime = "prdtm"
         case capacity = "psgld"
     }
+
+}
+
+extension NetworkPrediction {
+
+    func toPrediction(route: DbRoute?, dateFormatter: DateFormatter) -> Prediction? {
+        guard let vehicleId = self.vehicleId else { return nil }
+        guard let routeId = self.routeId else { return nil }
+        guard let destination = self.destination?.capitalizingOnlyFirstLetters() else { return nil }
+        guard let routeDirection = self.routeDirection?.capitalizingOnlyFirstLetters() else { return nil }
+        guard let arrivalTimeStr = arrivalTime else { return nil }
+        guard let arrivalTime = dateFormatter.date(from: arrivalTimeStr) else { return nil }
+
+        let capacity = getCapacityType(self.capacity)
+
+        let title: String
+        if let routeTitle = route?.title {
+            title = Resources.Strings.predictionTitleWithRoute(routeTitle, destination, routeDirection)
+        } else {
+            title = Resources.Strings.predictionTitleNoRoute(destination, routeDirection)
+        }
+
+        return Prediction(
+            id: vehicleId,
+            title: title,
+            route: routeId,
+            capacity: capacity,
+            arrivalTime: arrivalTime
+        )
+    }
+
+    private func getCapacityType(_ capacityString: String?) -> Capacity? {
+        switch capacityString?.lowercased() {
+        case "empty":
+            return .empty
+        case "half_empty":
+            return .halfEmpty
+        case "full":
+            return .full
+        default:
+            return nil
+        }
+    }
 }
 
 struct NetworkPredictionError: Decodable {

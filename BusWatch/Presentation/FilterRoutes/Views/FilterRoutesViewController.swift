@@ -56,7 +56,9 @@ final class FilterRoutesViewController: UITableViewController {
     // MARK: - Setup
 
     private func setupViewController() {
-        title = "Filter Routes"
+        view.backgroundColor = .systemBackground
+        navigationItem.title = "Filter Routes"
+        navigationItem.largeTitleDisplayMode = .never
 
         navigationItem.leftBarButtonItem = cancelBarButton
         navigationItem.rightBarButtonItem = saveBarButton

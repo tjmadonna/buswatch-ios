@@ -40,7 +40,6 @@ final class PredictionsLoadingViewController: UIViewController {
     // MARK: - Setup
 
     private func setupViewController() {
-        view.backgroundColor = Resources.Colors.backgroundColor
         loadingIndicatorView.startAnimating()
     }
 

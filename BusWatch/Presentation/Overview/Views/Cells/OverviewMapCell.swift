@@ -9,12 +9,6 @@
 import UIKit
 import MapKit
 
-struct OverviewMapCellStyle {
-
-    let backgroundColor: UIColor
-
-}
-
 final class OverviewMapCell: UITableViewCell {
 
     static let reuseId = "OverviewMapCell"
@@ -43,6 +37,8 @@ final class OverviewMapCell: UITableViewCell {
     // MARK: - Setup
 
     private func setupSubviews() {
+        accessoryType = .disclosureIndicator
+
         contentView.addSubview(mapView)
 
         NSLayoutConstraint.activate([
@@ -59,9 +55,7 @@ final class OverviewMapCell: UITableViewCell {
 
     // MARK: - Properties/functions
 
-    func configureWithLocationBounds(_ locationBounds: LocationBounds, style: OverviewMapCellStyle) {
-        backgroundColor = style.backgroundColor
-
+    func configureWithLocationBounds(_ locationBounds: LocationBounds) {
         mapView.setLocationBounds(locationBounds, animated: false)
     }
 }

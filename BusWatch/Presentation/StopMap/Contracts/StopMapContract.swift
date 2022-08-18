@@ -32,13 +32,3 @@ protocol StopMapEventCoordinator: AnyObject {
     func stopSelectedInStopMap(_ stop: DetailedStop)
 
 }
-
-// MARK: - Resources
-
-protocol StopMapStyle {
-
-    var mapAnnotationTintColor: UIColor { get }
-
-    var locationButtonColor: UIColor { get }
-
-}

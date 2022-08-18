@@ -36,46 +36,16 @@ enum Resources {
 
     enum Colors {
 
-        // MARK: - Navigation Bar
-
-        static var navBarColor: UIColor {
-            UIColor(named: "NavBarColor")!
+        static var appGold: UIColor {
+            UIColor(named: "AppGold")!
         }
 
-        // MARK: - Background
-
-        static var backgroundColor: UIColor {
-            UIColor(named: "BackgroundColor")!
+        static var appBlack: UIColor {
+            UIColor(named: "AppBlack")!
         }
 
-        // MARK: - Raised Background
-
-        static var raisedBackgroundColor: UIColor {
-            UIColor(named: "RaisedBackgroundColor")!
-        }
-
-        // MARK: - Dark Raised Background
-
-        static var darkRaisedBackgroundColor: UIColor {
-            UIColor(named: "DarkRaisedBackgroundColor")!
-        }
-
-        // MARK: - Decorator Background
-
-        static var decoratorBackgroundColor: UIColor {
-            UIColor(named: "DecoratorBackgroundColor")!
-        }
-
-        // MARK: - Decorator Text Background
-
-        static var decoratorTextBackgroundColor: UIColor {
-            UIColor(named: "DecoratorTextBackgroundColor")!
-        }
-
-        // MARK: - Capacity Image Color
-
-        static var capacityImageColor: UIColor {
-            UIColor(named: "CapacityImageColor")!
+        static var capacity: UIColor {
+            UIColor(named: "Capacity")!
         }
     }
 }

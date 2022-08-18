@@ -13,9 +13,7 @@ final class PredictionsViewModel {
 
     // MARK: - Publishers
 
-    private let navBarStateSubject = CurrentValueSubject<PredictionsNavBarState, Never>(
-        PredictionsNavBarState(favorited: false, title: "")
-    )
+    private let navBarStateSubject: CurrentValueSubject<PredictionsNavBarState, Never>
 
     var navBarState: AnyPublisher<PredictionsNavBarState, Never> {
         return navBarStateSubject.eraseToAnyPublisher()
@@ -29,42 +27,49 @@ final class PredictionsViewModel {
 
     // MARK: - Properties
 
-    private let stopId: String
+    private static let predictionsUpdateTime = TimeInterval(15)
 
-    private let serviceType: ServiceType
+    private let stop: TitleServiceStop
 
-    private let stopRepository: StopRepository
+    private let stopService: StopService
 
-    private let predictionRepository: PredictionRepository
+    private let predictionService: PredictionService
+
+    private let routeService: RouteService
 
     private weak var eventCoordinator: PredictionsEventCoordinator?
 
     private var cancellables: [AnyCancellable] = []
 
+    private var predictionsCancellable: AnyCancellable?
+
     // MARK: - Initialization
 
-    init(stopId: String,
-         serviceType: ServiceType,
-         stopRepository: StopRepository,
-         predictionRepository: PredictionRepository,
+    init(stop: TitleServiceStop,
+         stopService: StopService,
+         predictionService: PredictionService,
+         routeService: RouteService,
          eventCoordinator: PredictionsEventCoordinator) {
-        self.stopId = stopId
-        self.serviceType = serviceType
-        self.stopRepository = stopRepository
-        self.predictionRepository = predictionRepository
+        self.stop = stop
+        self.stopService = stopService
+        self.predictionService = predictionService
+        self.routeService = routeService
         self.eventCoordinator = eventCoordinator
+        self.navBarStateSubject = CurrentValueSubject<PredictionsNavBarState, Never>(
+            PredictionsNavBarState(favorited: false, title: stop.title)
+        )
         setupObserversForStop()
     }
 
     deinit {
         cancellables.removeAll()
-        print("Deinniting PredictionsViewModel")
+        predictionsCancellable?.cancel()
     }
 
     // MARK: - Setup
 
     private func setupObserversForStop() {
-        stopRepository.getStopById(stopId)
+        stopService.observeStopById(stop.id)
             .map { stop in PredictionsNavBarState(favorited: stop.favorite, title: stop.title) } // map to navbar state
             // set default navbar state if error occurs
             .replaceError(with: PredictionsNavBarState(favorited: false, title: ""))
@@ -72,18 +77,7 @@ final class PredictionsViewModel {
             .subscribe(self.navBarStateSubject)
             .store(in: &cancellables)
 
-        predictionRepository.getPredictionsForStopId(stopId, serviceType: serviceType)
-            .map { predictions -> PredictionsDataState in
-                if predictions.isEmpty {
-                    return .noData
-                } else {
-                    return .data(predictions)
-                }
-             }
-            .replaceError(with: .error("Couldn't load predictions")) // set error state if error occurs
-            .receive(on: RunLoop.main)
-            .subscribe(self.dataStateSubject)
-            .store(in: &cancellables)
+        startObservingPredictions()
     }
 
     // MARK: - Intent Handling
@@ -94,14 +88,19 @@ final class PredictionsViewModel {
             self.handleToggleFavoritedIntent()
         case .filterRoutesSelected:
             self.handleFilterRoutesSelectedIntent()
+        case .viewAppeared:
+            self.startObservingPredictions()
+        case .viewDisappeared:
+            predictionsCancellable?.cancel()
+            predictionsCancellable = nil
         }
     }
 
     private func handleToggleFavoritedIntent() {
         // If stop is favorited, unfavorite it and if stop if unfavorited, favorite it
         let publisher = navBarStateSubject.value.favorited
-            ? stopRepository.unfavoriteStop(stopId)
-            : stopRepository.favoriteStop(stopId)
+            ? stopService.unfavoriteStop(stop.id)
+            : stopService.favoriteStop(stop.id)
 
         publisher.sink(
             receiveCompletion: { completion in
@@ -114,6 +113,44 @@ final class PredictionsViewModel {
     }
 
     private func handleFilterRoutesSelectedIntent() {
-        eventCoordinator?.filterRoutesSelectedInFilterRoutes(stopId)
+        eventCoordinator?.filterRoutesSelectedInFilterRoutes(stop.id)
+    }
+
+    private func startObservingPredictions() {
+        predictionsCancellable = Publishers.CombineLatest(
+            predictionTimerPublisher(stopId: stop.id, serviceType: stop.serviceType), // get the predictions
+            routeService.observeExcludedRouteIdsForStopId(stop.id) // get the routes to exclude from predictions
+        )
+        .map { (predictions: [Prediction], excludedRouteIds: [String]) -> [Prediction] in
+            let excludedRouteIdSet = Set(excludedRouteIds)
+            return predictions
+                .filter { prediction in
+                    !excludedRouteIdSet.contains(prediction.route)
+                }
+                .sorted { (prediction1: Prediction, prediction2: Prediction) in
+                    prediction1.arrivalTime.compare(prediction2.arrivalTime) == .orderedAscending
+                }
+        }
+        .map { predictions -> PredictionsDataState in
+            if predictions.isEmpty {
+                return .noData
+            } else {
+                return .data(predictions)
+            }
+         }
+        .replaceError(with: .error("Couldn't load predictions")) // set error state if error occurs
+        .receive(on: RunLoop.main)
+        .subscribe(self.dataStateSubject)
+    }
+
+    private func predictionTimerPublisher(stopId: String,
+                                          serviceType: ServiceType) -> AnyPublisher<[Prediction], Error> {
+        return Timer.publish(every: PredictionsViewModel.predictionsUpdateTime, on: .main, in: .common)
+            .autoconnect()
+            .prepend(Date())
+            .flatMap { [unowned self] _ in
+                self.predictionService.getPredictionsForStopId(stopId, serviceType: serviceType)
+            }
+            .eraseToAnyPublisher()
     }
 }

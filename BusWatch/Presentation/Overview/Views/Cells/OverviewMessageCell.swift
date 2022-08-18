@@ -8,12 +8,6 @@
 
 import UIKit
 
-struct OverviewMessageCellStyle {
-
-    let backgroundColor: UIColor
-
-}
-
 final class OverviewMessageCell: UITableViewCell {
 
     static let reuseId = "OverviewMessageCell"
@@ -57,8 +51,7 @@ final class OverviewMessageCell: UITableViewCell {
 
     // MARK: - properties/functions
 
-    func configureWithMessage(_ message: String, style: OverviewMessageCellStyle) {
-        backgroundColor = style.backgroundColor
+    func configureWithMessage(_ message: String) {
         messageLabel.text = message
     }
 }

@@ -30,9 +30,9 @@ final class StopMapViewModel {
 
     // MARK: - Properties
 
-    private let stopRepository: StopRepository
+    private let stopService: StopService
 
-    private let locationRepository: LocationRepository
+    private let locationService: LocationService
 
     private weak var eventCoordinator: StopMapEventCoordinator?
 
@@ -42,11 +42,11 @@ final class StopMapViewModel {
 
     // MARK: - Initialization
 
-    init(stopRepository: StopRepository,
-         locationRepository: LocationRepository,
+    init(stopService: StopService,
+         locationService: LocationService,
          eventCoordinator: StopMapEventCoordinator) {
-        self.stopRepository = stopRepository
-        self.locationRepository = locationRepository
+        self.stopService = stopService
+        self.locationService = locationService
         self.eventCoordinator = eventCoordinator
         setupObservers()
     }
@@ -54,14 +54,14 @@ final class StopMapViewModel {
     // MARK: - Setup
 
     private func setupObservers() {
-        locationRepository.getLastLocationBounds()
+        locationService.observeLastLocationBounds()
             .map { locationBounds in StopMapState.setLocationBounds(locationBounds) }
             .replaceError(with: .error("Can't find last location"))
             .receive(on: RunLoop.main)
             .subscribe(stateSubject)
             .store(in: &cancellables)
 
-        locationStatusCancellable = locationRepository.getCurrentLocationPermissionStatus()
+        locationStatusCancellable = locationService.observeCurrentLocationPermissionStatus()
             .receive(on: RunLoop.main)
             .sink { [unowned self] status in
                 switch status {
@@ -88,7 +88,7 @@ final class StopMapViewModel {
         cancellables.removeAll()
 
         // Save the location, so we can restore it
-        locationRepository.saveLastLocationBounds(locationBounds)
+        locationService.saveLastLocationBounds(locationBounds)
             .sink(receiveCompletion: { completion in
                 if case .failure(let error) = completion {
                     print(error)
@@ -102,7 +102,7 @@ final class StopMapViewModel {
             // If the map is too far zoomed out, we don't display any stops
             stateSubject.value = .setLocationBoundsWithStops(locationBounds, [])
         } else {
-            stopRepository.getStopsInLocationBounds(locationBounds)
+            stopService.observeStopsInLocationBounds(locationBounds)
                 .map { stops in StopMapState.setLocationBoundsWithStops(locationBounds, stops) }
                 .catch { error in Just(StopMapState.error(error.localizedDescription)) }
                 .subscribe(stateSubject)

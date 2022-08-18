@@ -17,16 +17,16 @@ final class PredictionsCell: UITableViewCell {
     private let decoratorContainerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.cornerRadius = 10
-        view.backgroundColor = Resources.Colors.decoratorBackgroundColor
+        view.layer.cornerRadius = 15
+        view.backgroundColor = Resources.Colors.appGold
         return view
     }()
 
     private let decoratorLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 35)
-        label.textColor = Resources.Colors.decoratorTextBackgroundColor
+        label.font = UIFont.preferredFont(forTextStyle: .title1)
+        label.textColor = .black
         label.adjustsFontSizeToFitWidth = true
         label.textAlignment = .center
         return label
@@ -74,7 +74,7 @@ final class PredictionsCell: UITableViewCell {
         return view
     }()
 
-    private var capacityImageViewName: String?
+    private var capacityImageName: String?
 
     // MARK: - Initialization
 
@@ -90,8 +90,6 @@ final class PredictionsCell: UITableViewCell {
     // MARK: - Setup
 
     private func setupSubviews() {
-        backgroundColor = Resources.Colors.raisedBackgroundColor
-
         decoratorContainerView.addSubview(decoratorLabel)
 
         NSLayoutConstraint.activate([
@@ -107,9 +105,9 @@ final class PredictionsCell: UITableViewCell {
 
         NSLayoutConstraint.activate([
             decoratorContainerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            decoratorContainerView.widthAnchor.constraint(equalToConstant: 70),
+            decoratorContainerView.widthAnchor.constraint(equalToConstant: 60),
             decoratorContainerView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            decoratorContainerView.heightAnchor.constraint(equalToConstant: 70),
+            decoratorContainerView.heightAnchor.constraint(equalToConstant: 60),
             decoratorContainerView.topAnchor.constraint(greaterThanOrEqualTo: contentView.topAnchor, constant: 10)
                 .usingPriority(.defaultLow),
             decoratorContainerView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -10)
@@ -144,8 +142,11 @@ final class PredictionsCell: UITableViewCell {
     // MARK: - properties/functions
 
     func configureWithPrediction(_ prediction: Prediction, dividerVisible: Bool, animate: Bool) {
-        capacityImageView.isHidden = prediction.capacityImageName == nil
+        capacityImageView.isHidden = prediction.capacity == nil
         dividerView.isHidden = !dividerVisible
+
+        let capacityImageName = getCapacityImageName(capacity: prediction.capacity)
+        let arrivalMessage = getArrivalMessage(arrivalTime: prediction.arrivalTime)
 
         if animate {
             if decoratorLabel.text != prediction.route {
@@ -156,23 +157,37 @@ final class PredictionsCell: UITableViewCell {
                 animateTextChange(prediction.title, view: titleLabel)
             }
 
-            if capacityImageViewName != prediction.capacityImageName {
-                animateImageChange(prediction.capacityImageName, view: capacityImageView)
+            if capacityImageName != self.capacityImageName {
+                animateImageChange(capacityImageName, view: capacityImageView)
             }
 
-            if arrivalTimeLabel.text != prediction.arrivalMessage {
-                animateTextChange(prediction.arrivalMessage, view: arrivalTimeLabel)
+            if arrivalTimeLabel.text != arrivalMessage {
+                animateTextChange(arrivalMessage, view: arrivalTimeLabel)
             }
 
         } else {
             decoratorLabel.text = prediction.route
             titleLabel.text = prediction.title
-            capacityImageView.image = UIImage(named: prediction.capacityImageName ?? "")?
-                .withTintColor(Resources.Colors.capacityImageColor)
-            arrivalTimeLabel.text = prediction.arrivalMessage
+            capacityImageView.image = UIImage(named: capacityImageName ?? "")?
+                .withTintColor(Resources.Colors.capacity)
+            arrivalTimeLabel.text = arrivalMessage
         }
 
-        capacityImageViewName = prediction.capacityImageName
+        self.capacityImageName = capacityImageName
+    }
+
+    fileprivate func getArrivalMessage(arrivalTime: Date) -> String {
+        let seconds = Int(arrivalTime.timeIntervalSinceNow)
+        let arrivalMessage: String
+        switch seconds {
+        case Int.min...30:
+            arrivalMessage = Resources.Strings.arrivingNow
+        case 30..<120:
+            arrivalMessage = Resources.Strings.arrivingIn1Min
+        default:
+            arrivalMessage = Resources.Strings.arrivingInNMins(Int(seconds / 60))
+        }
+        return arrivalMessage
     }
 
     private func animateTextChange(_ newText: String?, view: UILabel) {
@@ -186,12 +201,25 @@ final class PredictionsCell: UITableViewCell {
         }
     }
 
+    private func getCapacityImageName(capacity: Capacity?) -> String? {
+        switch capacity {
+        case .empty:
+            return Resources.Images.capacityEmpty
+        case .halfEmpty:
+            return Resources.Images.capacityHalfEmpty
+        case .full:
+            return Resources.Images.capacityFull
+        case .none:
+            return nil
+        }
+    }
+
     private func animateImageChange(_ newImageName: String?, view: UIImageView) {
         UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseIn) {
             view.alpha = 0
         } completion: { _ in
             view.image = UIImage(named: newImageName ?? "")?
-                .withTintColor(Resources.Colors.capacityImageColor)
+                .withTintColor(Resources.Colors.capacity)
             UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseIn) {
                 view.alpha = 1
             }

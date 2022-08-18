@@ -39,8 +39,6 @@ final class PredictionsMessageCell: UITableViewCell {
     // MARK: - Setup
 
     private func setupSubviews() {
-        backgroundColor = Resources.Colors.raisedBackgroundColor
-
         contentView.addSubview(messageLabel)
 
         NSLayoutConstraint.activate([

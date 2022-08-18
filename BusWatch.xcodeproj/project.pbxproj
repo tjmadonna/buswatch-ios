@@ -7,55 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B40562B428A433DD0029D94D /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40562B328A433DD0029D94D /* Secrets.swift */; };
 		B41174A12821729700C279FF /* GRDBDatabaseQueueExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41174A02821729700C279FF /* GRDBDatabaseQueueExtensions.swift */; };
 		B41174A328217C9C00C279FF /* DatabaseMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41174A228217C9C00C279FF /* DatabaseMigration.swift */; };
 		B41174A5282197AF00C279FF /* DatabasePopulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41174A4282197AF00C279FF /* DatabasePopulator.swift */; };
-		B41E34CC27EF8BB800142750 /* LocationDatabaseDataSourceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E34CB27EF8BB800142750 /* LocationDatabaseDataSourceImpl.swift */; };
-		B41E34CE27EF8BC600142750 /* StopDatabaseDataSourceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E34CD27EF8BC600142750 /* StopDatabaseDataSourceImpl.swift */; };
-		B41E34D327EF8C9800142750 /* PredictionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E34D227EF8C9800142750 /* PredictionRepository.swift */; };
 		B41E34D527EF8E7C00142750 /* MinimalStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E34D427EF8E7C00142750 /* MinimalStop.swift */; };
 		B41E34D727EF8EE100142750 /* DetailedStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E34D627EF8EE100142750 /* DetailedStop.swift */; };
 		B41E34D927EF8FBC00142750 /* CurrentLocationPermissionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E34D827EF8FBC00142750 /* CurrentLocationPermissionStatus.swift */; };
 		B41E34DB27EF8FD500142750 /* LocationBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E34DA27EF8FD500142750 /* LocationBounds.swift */; };
 		B41E34DD27EF900F00142750 /* FavoriteStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E34DC27EF900F00142750 /* FavoriteStop.swift */; };
 		B41E34DF27EF907400142750 /* FilterableRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E34DE27EF907400142750 /* FilterableRoute.swift */; };
-		B41E34E127EF91FC00142750 /* LocationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E34E027EF91FC00142750 /* LocationRepository.swift */; };
-		B41E34E327EF921A00142750 /* StopRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E34E227EF921A00142750 /* StopRepository.swift */; };
-		B41E34E527EF935500142750 /* RouteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E34E427EF935500142750 /* RouteRepository.swift */; };
-		B41E34E827EF947400142750 /* StopRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E34E727EF947400142750 /* StopRepositoryImpl.swift */; };
-		B41E34EA27EF948400142750 /* LocationRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E34E927EF948400142750 /* LocationRepositoryImpl.swift */; };
-		B41E34EC27EF948E00142750 /* PredictionRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E34EB27EF948E00142750 /* PredictionRepositoryImpl.swift */; };
-		B41E34EE27EF949900142750 /* RouteRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E34ED27EF949900142750 /* RouteRepositoryImpl.swift */; };
-		B41E34F127EF955000142750 /* StopDatabaseDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E34F027EF955000142750 /* StopDatabaseDataSource.swift */; };
-		B41E34F327EF956B00142750 /* LocationDatabaseDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E34F227EF956B00142750 /* LocationDatabaseDataSource.swift */; };
-		B41E34F527EF957900142750 /* PredictionNetworkDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E34F427EF957900142750 /* PredictionNetworkDataSource.swift */; };
-		B41E34F727EF958F00142750 /* RouteDatabaseDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E34F627EF958F00142750 /* RouteDatabaseDataSource.swift */; };
-		B41E34F927EF96D300142750 /* LocationPermissionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E34F827EF96D300142750 /* LocationPermissionDataSource.swift */; };
-		B41E34FE27EF9D0100142750 /* DatabaseRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E34FD27EF9D0100142750 /* DatabaseRoute.swift */; };
-		B41E350227EFA04800142750 /* RouteDatabaseDataSourceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E350127EFA04800142750 /* RouteDatabaseDataSourceImpl.swift */; };
-		B41E350427EFA21A00142750 /* StopMappers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E350327EFA21A00142750 /* StopMappers.swift */; };
 		B41E350727EFA49600142750 /* GRDBExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E350627EFA49600142750 /* GRDBExtensions.swift */; };
-		B41E350B27EFAD3F00142750 /* LocationMappers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E350A27EFAD3F00142750 /* LocationMappers.swift */; };
-		B41E350D27EFB0FC00142750 /* RouteMappers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E350C27EFB0FC00142750 /* RouteMappers.swift */; };
-		B41E351027EFB48900142750 /* PredictionNetworkDataSourceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E350F27EFB48900142750 /* PredictionNetworkDataSourceImpl.swift */; };
 		B41E351227EFB50400142750 /* NetworkPrediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E351127EFB50400142750 /* NetworkPrediction.swift */; };
 		B41E351427EFB5A100142750 /* UrlConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E351327EFB5A100142750 /* UrlConfig.swift */; };
 		B41E351627EFB5E000142750 /* UrlSourceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E351527EFB5E000142750 /* UrlSourceImpl.swift */; };
-		B41E351927EFBBE900142750 /* LocationPermissionDataSourceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E351827EFBBE900142750 /* LocationPermissionDataSourceImpl.swift */; };
+		B41E351927EFBBE900142750 /* PermissionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E351827EFBBE900142750 /* PermissionDataSource.swift */; };
 		B41E351C27EFBC7600142750 /* CurrentLocationPermissionPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E351B27EFBC7600142750 /* CurrentLocationPermissionPublisher.swift */; };
 		B41E352327EFDA6900142750 /* MKMapViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E352227EFDA6900142750 /* MKMapViewExtensions.swift */; };
-		B41E352627EFDC5800142750 /* NetworkPredictionMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E352527EFDC5800142750 /* NetworkPredictionMapper.swift */; };
 		B41E352A27EFF3A100142750 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E352927EFF3A100142750 /* Resources.swift */; };
 		B41E352C27F0BB2600142750 /* buswatch.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = B41E352B27F0BB2500142750 /* buswatch.sqlite */; };
-		B41E353827F110A400142750 /* DatabaseDetailedStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E353727F110A400142750 /* DatabaseDetailedStop.swift */; };
-		B41E353A27F110CD00142750 /* DatabaseFavoriteStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E353927F110CD00142750 /* DatabaseFavoriteStop.swift */; };
-		B41E353C27F1144D00142750 /* DatabaseRoutesWithExclusions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E353B27F1144D00142750 /* DatabaseRoutesWithExclusions.swift */; };
-		B41E353E27F1235000142750 /* DatabaseFavoriteStopMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E353D27F1235000142750 /* DatabaseFavoriteStopMapper.swift */; };
-		B41E354027F1248600142750 /* DatabaseDetailedStopMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E353F27F1248600142750 /* DatabaseDetailedStopMapper.swift */; };
-		B41E354227F1259E00142750 /* DatabaseRoutesWithExclusionsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E354127F1259E00142750 /* DatabaseRoutesWithExclusionsMapper.swift */; };
+		B4247E8E28A6AAC2006F1482 /* TitleServiceStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4247E8D28A6AAC2006F1482 /* TitleServiceStop.swift */; };
 		B430D47A245E362B002EA8FB /* NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = B430D479245E362B002EA8FB /* NetworkConfig.swift */; };
 		B43835FA2771395C00C49537 /* FilterRoutesComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43835F92771395C00C49537 /* FilterRoutesComponent.swift */; };
-		B43E071B2453CEFE00393B76 /* StyleConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43E071A2453CEFE00393B76 /* StyleConfig.swift */; };
 		B45988CA24429720006F9B32 /* AppComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45988C924429720006F9B32 /* AppComponent.swift */; };
 		B46DBE4E27A70F150041E8DF /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F055C9272761A600ED8E30 /* Database.swift */; };
 		B46DBE4F27A70F1A0041E8DF /* StopsTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F055CF272763E500ED8E30 /* StopsTable.swift */; };
@@ -86,7 +59,6 @@
 		B46DBE9227A719DC0041E8DF /* PredictionsBarItemHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A10AD527756EE800E6B632 /* PredictionsBarItemHandler.swift */; };
 		B46DBE9327A719EA0041E8DF /* PredictionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43E071F2455160D00393B76 /* PredictionsViewModel.swift */; };
 		B46DBE9C27A71A0C0041E8DF /* Prediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4076309245A2201008979C5 /* Prediction.swift */; };
-		B46DBEAD27A71A3F0041E8DF /* TimedNetworkPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B463645E2471EBDF00C6EDBB /* TimedNetworkPublisher.swift */; };
 		B46DBEB027A71C290041E8DF /* FilterRoutesContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43835E227712FD800C49537 /* FilterRoutesContract.swift */; };
 		B46DBEB127A71C360041E8DF /* FilterRoutesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43835E027712FD800C49537 /* FilterRoutesViewModel.swift */; };
 		B46DBEB327A71C360041E8DF /* FilterRoutesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43835E827712FD800C49537 /* FilterRoutesViewController.swift */; };
@@ -108,6 +80,21 @@
 		B489F5092827367100C7228D /* ResourceVersionsTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B489F5082827367100C7228D /* ResourceVersionsTable.swift */; };
 		B48F2BCF245F906D001900BE /* DatabaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48F2BCE245F906D001900BE /* DatabaseConfig.swift */; };
 		B490A0082453B4FA000744EB /* AppEventCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B490A0072453B4FA000744EB /* AppEventCoordinator.swift */; };
+		B4AF586028A1805C0073EC7D /* StopService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AF585F28A1805C0073EC7D /* StopService.swift */; };
+		B4AF586328A180A60073EC7D /* StopDbDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AF586228A180A60073EC7D /* StopDbDataSource.swift */; };
+		B4AF586628A196A80073EC7D /* DbMinimalStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AF586528A196A80073EC7D /* DbMinimalStop.swift */; };
+		B4AF586828A1972D0073EC7D /* DbDetailedStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AF586728A1972D0073EC7D /* DbDetailedStop.swift */; };
+		B4AF586A28A1A3600073EC7D /* DbFavoriteStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AF586928A1A3600073EC7D /* DbFavoriteStop.swift */; };
+		B4AF586C28A1A7C10073EC7D /* LocationDbDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AF586B28A1A7C10073EC7D /* LocationDbDataSource.swift */; };
+		B4AF586E28A1A8200073EC7D /* DbLocationBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AF586D28A1A8200073EC7D /* DbLocationBounds.swift */; };
+		B4AF587028A1AAC60073EC7D /* RouteDbDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AF586F28A1AAC60073EC7D /* RouteDbDataSource.swift */; };
+		B4AF587228A1AB5B0073EC7D /* DbRoutesWithExcluded.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AF587128A1AB5B0073EC7D /* DbRoutesWithExcluded.swift */; };
+		B4AF587428A1ADCE0073EC7D /* DbRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AF587328A1ADCE0073EC7D /* DbRoute.swift */; };
+		B4AF587628A1E0FC0073EC7D /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AF587528A1E0FC0073EC7D /* LocationService.swift */; };
+		B4AF587828A1E2A70073EC7D /* RouteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AF587728A1E2A70073EC7D /* RouteService.swift */; };
+		B4AF587A28A1E9E60073EC7D /* PredictionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AF587928A1E9E60073EC7D /* PredictionService.swift */; };
+		B4AF587D28A1EF850073EC7D /* NetworkDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AF587C28A1EF850073EC7D /* NetworkDataSource.swift */; };
+		B4AF587F28A2FF130073EC7D /* Capacity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AF587E28A2FF120073EC7D /* Capacity.swift */; };
 		B4D6F9DB27F5327900892F99 /* ServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D6F9DA27F5327900892F99 /* ServiceType.swift */; };
 		B4DC662027375F3F0046F470 /* OverviewComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DC661F27375F3F0046F470 /* OverviewComponent.swift */; };
 		B4DC6622273836D20046F470 /* StopMapComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DC6621273836D20046F470 /* StopMapComponent.swift */; };
@@ -128,53 +115,27 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B40562B328A433DD0029D94D /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		B4076309245A2201008979C5 /* Prediction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prediction.swift; sourceTree = "<group>"; };
 		B41174A02821729700C279FF /* GRDBDatabaseQueueExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GRDBDatabaseQueueExtensions.swift; sourceTree = "<group>"; };
 		B41174A228217C9C00C279FF /* DatabaseMigration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseMigration.swift; sourceTree = "<group>"; };
 		B41174A4282197AF00C279FF /* DatabasePopulator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabasePopulator.swift; sourceTree = "<group>"; };
-		B41E34CB27EF8BB800142750 /* LocationDatabaseDataSourceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDatabaseDataSourceImpl.swift; sourceTree = "<group>"; };
-		B41E34CD27EF8BC600142750 /* StopDatabaseDataSourceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopDatabaseDataSourceImpl.swift; sourceTree = "<group>"; };
-		B41E34D227EF8C9800142750 /* PredictionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionRepository.swift; sourceTree = "<group>"; };
 		B41E34D427EF8E7C00142750 /* MinimalStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinimalStop.swift; sourceTree = "<group>"; };
 		B41E34D627EF8EE100142750 /* DetailedStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedStop.swift; sourceTree = "<group>"; };
 		B41E34D827EF8FBC00142750 /* CurrentLocationPermissionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocationPermissionStatus.swift; sourceTree = "<group>"; };
 		B41E34DA27EF8FD500142750 /* LocationBounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationBounds.swift; sourceTree = "<group>"; };
 		B41E34DC27EF900F00142750 /* FavoriteStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteStop.swift; sourceTree = "<group>"; };
 		B41E34DE27EF907400142750 /* FilterableRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterableRoute.swift; sourceTree = "<group>"; };
-		B41E34E027EF91FC00142750 /* LocationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationRepository.swift; sourceTree = "<group>"; };
-		B41E34E227EF921A00142750 /* StopRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopRepository.swift; sourceTree = "<group>"; };
-		B41E34E427EF935500142750 /* RouteRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteRepository.swift; sourceTree = "<group>"; };
-		B41E34E727EF947400142750 /* StopRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopRepositoryImpl.swift; sourceTree = "<group>"; };
-		B41E34E927EF948400142750 /* LocationRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationRepositoryImpl.swift; sourceTree = "<group>"; };
-		B41E34EB27EF948E00142750 /* PredictionRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionRepositoryImpl.swift; sourceTree = "<group>"; };
-		B41E34ED27EF949900142750 /* RouteRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteRepositoryImpl.swift; sourceTree = "<group>"; };
-		B41E34F027EF955000142750 /* StopDatabaseDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopDatabaseDataSource.swift; sourceTree = "<group>"; };
-		B41E34F227EF956B00142750 /* LocationDatabaseDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDatabaseDataSource.swift; sourceTree = "<group>"; };
-		B41E34F427EF957900142750 /* PredictionNetworkDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionNetworkDataSource.swift; sourceTree = "<group>"; };
-		B41E34F627EF958F00142750 /* RouteDatabaseDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDatabaseDataSource.swift; sourceTree = "<group>"; };
-		B41E34F827EF96D300142750 /* LocationPermissionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPermissionDataSource.swift; sourceTree = "<group>"; };
-		B41E34FD27EF9D0100142750 /* DatabaseRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseRoute.swift; sourceTree = "<group>"; };
-		B41E350127EFA04800142750 /* RouteDatabaseDataSourceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDatabaseDataSourceImpl.swift; sourceTree = "<group>"; };
-		B41E350327EFA21A00142750 /* StopMappers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopMappers.swift; sourceTree = "<group>"; };
 		B41E350627EFA49600142750 /* GRDBExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GRDBExtensions.swift; sourceTree = "<group>"; };
-		B41E350A27EFAD3F00142750 /* LocationMappers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationMappers.swift; sourceTree = "<group>"; };
-		B41E350C27EFB0FC00142750 /* RouteMappers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteMappers.swift; sourceTree = "<group>"; };
-		B41E350F27EFB48900142750 /* PredictionNetworkDataSourceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionNetworkDataSourceImpl.swift; sourceTree = "<group>"; };
 		B41E351127EFB50400142750 /* NetworkPrediction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkPrediction.swift; sourceTree = "<group>"; };
 		B41E351327EFB5A100142750 /* UrlConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlConfig.swift; sourceTree = "<group>"; };
 		B41E351527EFB5E000142750 /* UrlSourceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlSourceImpl.swift; sourceTree = "<group>"; };
-		B41E351827EFBBE900142750 /* LocationPermissionDataSourceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPermissionDataSourceImpl.swift; sourceTree = "<group>"; };
+		B41E351827EFBBE900142750 /* PermissionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionDataSource.swift; sourceTree = "<group>"; };
 		B41E351B27EFBC7600142750 /* CurrentLocationPermissionPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocationPermissionPublisher.swift; sourceTree = "<group>"; };
 		B41E352227EFDA6900142750 /* MKMapViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKMapViewExtensions.swift; sourceTree = "<group>"; };
-		B41E352527EFDC5800142750 /* NetworkPredictionMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkPredictionMapper.swift; sourceTree = "<group>"; };
 		B41E352927EFF3A100142750 /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		B41E352B27F0BB2500142750 /* buswatch.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = buswatch.sqlite; sourceTree = "<group>"; };
-		B41E353727F110A400142750 /* DatabaseDetailedStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseDetailedStop.swift; sourceTree = "<group>"; };
-		B41E353927F110CD00142750 /* DatabaseFavoriteStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseFavoriteStop.swift; sourceTree = "<group>"; };
-		B41E353B27F1144D00142750 /* DatabaseRoutesWithExclusions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseRoutesWithExclusions.swift; sourceTree = "<group>"; };
-		B41E353D27F1235000142750 /* DatabaseFavoriteStopMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseFavoriteStopMapper.swift; sourceTree = "<group>"; };
-		B41E353F27F1248600142750 /* DatabaseDetailedStopMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseDetailedStopMapper.swift; sourceTree = "<group>"; };
-		B41E354127F1259E00142750 /* DatabaseRoutesWithExclusionsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseRoutesWithExclusionsMapper.swift; sourceTree = "<group>"; };
+		B4247E8D28A6AAC2006F1482 /* TitleServiceStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleServiceStop.swift; sourceTree = "<group>"; };
 		B430D479245E362B002EA8FB /* NetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfig.swift; sourceTree = "<group>"; };
 		B43835E027712FD800C49537 /* FilterRoutesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterRoutesViewModel.swift; sourceTree = "<group>"; };
 		B43835E227712FD800C49537 /* FilterRoutesContract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterRoutesContract.swift; sourceTree = "<group>"; };
@@ -182,7 +143,6 @@
 		B43835F7277130C900C49537 /* ExcludedRoutesTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExcludedRoutesTable.swift; sourceTree = "<group>"; };
 		B43835F92771395C00C49537 /* FilterRoutesComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterRoutesComponent.swift; sourceTree = "<group>"; };
 		B438A6D72724E04800A7797F /* UserDefaultsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsDataSource.swift; sourceTree = "<group>"; };
-		B43E071A2453CEFE00393B76 /* StyleConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleConfig.swift; sourceTree = "<group>"; };
 		B43E071D2455157100393B76 /* PredictionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsViewController.swift; sourceTree = "<group>"; };
 		B43E071F2455160D00393B76 /* PredictionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsViewModel.swift; sourceTree = "<group>"; };
 		B43E07222455164400393B76 /* PredictionsContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsContract.swift; sourceTree = "<group>"; };
@@ -190,7 +150,6 @@
 		B43E072724566C7E00393B76 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		B45988C924429720006F9B32 /* AppComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppComponent.swift; sourceTree = "<group>"; };
 		B45988CB24429C69006F9B32 /* StopMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopMapViewModel.swift; sourceTree = "<group>"; };
-		B463645E2471EBDF00C6EDBB /* TimedNetworkPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimedNetworkPublisher.swift; sourceTree = "<group>"; };
 		B46DBEBD27A726190041E8DF /* DatabaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseImpl.swift; sourceTree = "<group>"; };
 		B470C81D27235D69007CEAF9 /* PredictionsDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsDataViewController.swift; sourceTree = "<group>"; };
 		B470C81F27235D83007CEAF9 /* PredictionsLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsLoadingViewController.swift; sourceTree = "<group>"; };
@@ -212,6 +171,21 @@
 		B4981AFE24453A73003F161F /* StopMapContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopMapContract.swift; sourceTree = "<group>"; };
 		B4981B0124454C94003F161F /* StopMapStopAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopMapStopAnnotation.swift; sourceTree = "<group>"; };
 		B4A10AD527756EE800E6B632 /* PredictionsBarItemHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsBarItemHandler.swift; sourceTree = "<group>"; };
+		B4AF585F28A1805C0073EC7D /* StopService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopService.swift; sourceTree = "<group>"; };
+		B4AF586228A180A60073EC7D /* StopDbDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopDbDataSource.swift; sourceTree = "<group>"; };
+		B4AF586528A196A80073EC7D /* DbMinimalStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DbMinimalStop.swift; sourceTree = "<group>"; };
+		B4AF586728A1972D0073EC7D /* DbDetailedStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DbDetailedStop.swift; sourceTree = "<group>"; };
+		B4AF586928A1A3600073EC7D /* DbFavoriteStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DbFavoriteStop.swift; sourceTree = "<group>"; };
+		B4AF586B28A1A7C10073EC7D /* LocationDbDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDbDataSource.swift; sourceTree = "<group>"; };
+		B4AF586D28A1A8200073EC7D /* DbLocationBounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DbLocationBounds.swift; sourceTree = "<group>"; };
+		B4AF586F28A1AAC60073EC7D /* RouteDbDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDbDataSource.swift; sourceTree = "<group>"; };
+		B4AF587128A1AB5B0073EC7D /* DbRoutesWithExcluded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DbRoutesWithExcluded.swift; sourceTree = "<group>"; };
+		B4AF587328A1ADCE0073EC7D /* DbRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DbRoute.swift; sourceTree = "<group>"; };
+		B4AF587528A1E0FC0073EC7D /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		B4AF587728A1E2A70073EC7D /* RouteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteService.swift; sourceTree = "<group>"; };
+		B4AF587928A1E9E60073EC7D /* PredictionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionService.swift; sourceTree = "<group>"; };
+		B4AF587C28A1EF850073EC7D /* NetworkDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataSource.swift; sourceTree = "<group>"; };
+		B4AF587E28A2FF120073EC7D /* Capacity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Capacity.swift; sourceTree = "<group>"; };
 		B4D6F9DA27F5327900892F99 /* ServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceType.swift; sourceTree = "<group>"; };
 		B4DC65D6273351B20046F470 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		B4DC65DA273363900046F470 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
@@ -248,6 +222,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B40562B228A422250029D94D /* DataSources */ = {
+			isa = PBXGroup;
+			children = (
+				B4AF586228A180A60073EC7D /* StopDbDataSource.swift */,
+				B4AF586B28A1A7C10073EC7D /* LocationDbDataSource.swift */,
+				B4AF586F28A1AAC60073EC7D /* RouteDbDataSource.swift */,
+			);
+			path = DataSources;
+			sourceTree = "<group>";
+		};
 		B40AF460272CE097003A35D6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -269,9 +253,10 @@
 		B41AE570243FFBEB0024FFC1 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				B4DC662527387D870046F470 /* String.swift */,
 				B43E072724566C7E00393B76 /* Array.swift */,
+				B4DC662527387D870046F470 /* String.swift */,
 				B4DC662727387E920046F470 /* URL.swift */,
+				B41E352227EFDA6900142750 /* MKMapViewExtensions.swift */,
 				B48FE2462450F3AE002A5C6C /* NSLayoutConstraint.swift */,
 				B4DC65D6273351B20046F470 /* UIColor.swift */,
 				B4DC65E82734BC0F0046F470 /* UITableView.swift */,
@@ -284,7 +269,6 @@
 			isa = PBXGroup;
 			children = (
 				B41E34D027EF8BF800142750 /* Models */,
-				B41E34D127EF8C6F00142750 /* Repositories */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -295,57 +279,13 @@
 				B4076309245A2201008979C5 /* Prediction.swift */,
 				B41E34D427EF8E7C00142750 /* MinimalStop.swift */,
 				B41E34D627EF8EE100142750 /* DetailedStop.swift */,
+				B4247E8D28A6AAC2006F1482 /* TitleServiceStop.swift */,
 				B4D6F9DA27F5327900892F99 /* ServiceType.swift */,
 				B41E34DC27EF900F00142750 /* FavoriteStop.swift */,
 				B41E34D827EF8FBC00142750 /* CurrentLocationPermissionStatus.swift */,
 				B41E34DA27EF8FD500142750 /* LocationBounds.swift */,
 				B41E34DE27EF907400142750 /* FilterableRoute.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		B41E34D127EF8C6F00142750 /* Repositories */ = {
-			isa = PBXGroup;
-			children = (
-				B41E34E227EF921A00142750 /* StopRepository.swift */,
-				B41E34E027EF91FC00142750 /* LocationRepository.swift */,
-				B41E34D227EF8C9800142750 /* PredictionRepository.swift */,
-				B41E34E427EF935500142750 /* RouteRepository.swift */,
-			);
-			path = Repositories;
-			sourceTree = "<group>";
-		};
-		B41E34E627EF945800142750 /* Repositories */ = {
-			isa = PBXGroup;
-			children = (
-				B41E34E727EF947400142750 /* StopRepositoryImpl.swift */,
-				B41E34E927EF948400142750 /* LocationRepositoryImpl.swift */,
-				B41E34EB27EF948E00142750 /* PredictionRepositoryImpl.swift */,
-				B41E34ED27EF949900142750 /* RouteRepositoryImpl.swift */,
-			);
-			path = Repositories;
-			sourceTree = "<group>";
-		};
-		B41E34EF27EF94C100142750 /* DataSources */ = {
-			isa = PBXGroup;
-			children = (
-				B41E34F027EF955000142750 /* StopDatabaseDataSource.swift */,
-				B41E34F227EF956B00142750 /* LocationDatabaseDataSource.swift */,
-				B41E34F827EF96D300142750 /* LocationPermissionDataSource.swift */,
-				B41E34F427EF957900142750 /* PredictionNetworkDataSource.swift */,
-				B41E34F627EF958F00142750 /* RouteDatabaseDataSource.swift */,
-			);
-			path = DataSources;
-			sourceTree = "<group>";
-		};
-		B41E34FA27EF9BDF00142750 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				B41E353727F110A400142750 /* DatabaseDetailedStop.swift */,
-				B41E353927F110CD00142750 /* DatabaseFavoriteStop.swift */,
-				B41E34FD27EF9D0100142750 /* DatabaseRoute.swift */,
-				B41E353B27F1144D00142750 /* DatabaseRoutesWithExclusions.swift */,
-				B41E351127EFB50400142750 /* NetworkPrediction.swift */,
+				B4AF587E28A2FF120073EC7D /* Capacity.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -382,7 +322,7 @@
 		B41E350E27EFB44500142750 /* DataSources */ = {
 			isa = PBXGroup;
 			children = (
-				B41E350F27EFB48900142750 /* PredictionNetworkDataSourceImpl.swift */,
+				B4AF587C28A1EF850073EC7D /* NetworkDataSource.swift */,
 			);
 			path = DataSources;
 			sourceTree = "<group>";
@@ -390,7 +330,7 @@
 		B41E351727EFBBB800142750 /* DataSources */ = {
 			isa = PBXGroup;
 			children = (
-				B41E351827EFBBE900142750 /* LocationPermissionDataSourceImpl.swift */,
+				B41E351827EFBBE900142750 /* PermissionDataSource.swift */,
 			);
 			path = DataSources;
 			sourceTree = "<group>";
@@ -409,33 +349,6 @@
 				B438A6D72724E04800A7797F /* UserDefaultsDataSource.swift */,
 			);
 			path = DataSources;
-			sourceTree = "<group>";
-		};
-		B41E352027EFDA2B00142750 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				B41E352227EFDA6900142750 /* MKMapViewExtensions.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		B41E352127EFDA3600142750 /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				B41E352027EFDA2B00142750 /* Extensions */,
-			);
-			path = Core;
-			sourceTree = "<group>";
-		};
-		B41E352427EFDC3000142750 /* Mappers */ = {
-			isa = PBXGroup;
-			children = (
-				B41E353D27F1235000142750 /* DatabaseFavoriteStopMapper.swift */,
-				B41E353F27F1248600142750 /* DatabaseDetailedStopMapper.swift */,
-				B41E354127F1259E00142750 /* DatabaseRoutesWithExclusionsMapper.swift */,
-				B41E352527EFDC5800142750 /* NetworkPredictionMapper.swift */,
-			);
-			path = Mappers;
 			sourceTree = "<group>";
 		};
 		B43835DF27712FD800C49537 /* ViewModels */ = {
@@ -466,9 +379,9 @@
 		B43E07192453CEE700393B76 /* Config */ = {
 			isa = PBXGroup;
 			children = (
-				B43E071A2453CEFE00393B76 /* StyleConfig.swift */,
-				B430D479245E362B002EA8FB /* NetworkConfig.swift */,
+				B40562B328A433DD0029D94D /* Secrets.swift */,
 				B48F2BCE245F906D001900BE /* DatabaseConfig.swift */,
+				B430D479245E362B002EA8FB /* NetworkConfig.swift */,
 				B41E352927EFF3A100142750 /* Resources.swift */,
 			);
 			path = Config;
@@ -498,7 +411,6 @@
 		B46DBE4B27A70E850041E8DF /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				B41E352127EFDA3600142750 /* Core */,
 				B46DBE5F27A7101C0041E8DF /* Overview */,
 				B46DBE6327A718420041E8DF /* StopMap */,
 				B46DBE7E27A719730041E8DF /* Predictions */,
@@ -510,10 +422,8 @@
 		B46DBE4C27A70EA80041E8DF /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				B41E34E627EF945800142750 /* Repositories */,
-				B41E34EF27EF94C100142750 /* DataSources */,
-				B41E34FA27EF9BDF00142750 /* Models */,
-				B41E352427EFDC3000142750 /* Mappers */,
+				B4AF585E28A1804A0073EC7D /* Services */,
+				B4AF586428A1967B0073EC7D /* Models */,
 				B46DBE4D27A70EB40041E8DF /* Database */,
 				B46DBE5B27A70F9E0041E8DF /* Network */,
 				B41E34FF27EF9F9900142750 /* Permission */,
@@ -525,10 +435,9 @@
 		B46DBE4D27A70EB40041E8DF /* Database */ = {
 			isa = PBXGroup;
 			children = (
+				B40562B228A422250029D94D /* DataSources */,
 				B41E350027EF9FB800142750 /* Database */,
-				B4F056502729DAD700ED8E30 /* DataSources */,
 				B4F055CE2727639700ED8E30 /* Tables */,
-				B4DC65FA273715E40046F470 /* Mappers */,
 				B41E350527EFA47F00142750 /* Extensions */,
 			);
 			path = Database;
@@ -538,7 +447,6 @@
 			isa = PBXGroup;
 			children = (
 				B41E350E27EFB44500142750 /* DataSources */,
-				B46DBEC627A74B160041E8DF /* Publishers */,
 				B4F216D12730C962006A5748 /* Urls */,
 			);
 			path = Network;
@@ -590,14 +498,6 @@
 				B43835DF27712FD800C49537 /* ViewModels */,
 			);
 			path = FilterRoutes;
-			sourceTree = "<group>";
-		};
-		B46DBEC627A74B160041E8DF /* Publishers */ = {
-			isa = PBXGroup;
-			children = (
-				B463645E2471EBDF00C6EDBB /* TimedNetworkPublisher.swift */,
-			);
-			path = Publishers;
 			sourceTree = "<group>";
 		};
 		B4721AD127F26DBB00D9E04C /* Cells */ = {
@@ -727,14 +627,29 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		B4DC65FA273715E40046F470 /* Mappers */ = {
+		B4AF585E28A1804A0073EC7D /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				B41E350327EFA21A00142750 /* StopMappers.swift */,
-				B41E350A27EFAD3F00142750 /* LocationMappers.swift */,
-				B41E350C27EFB0FC00142750 /* RouteMappers.swift */,
+				B4AF585F28A1805C0073EC7D /* StopService.swift */,
+				B4AF587528A1E0FC0073EC7D /* LocationService.swift */,
+				B4AF587728A1E2A70073EC7D /* RouteService.swift */,
+				B4AF587928A1E9E60073EC7D /* PredictionService.swift */,
 			);
-			path = Mappers;
+			path = Services;
+			sourceTree = "<group>";
+		};
+		B4AF586428A1967B0073EC7D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B4AF586528A196A80073EC7D /* DbMinimalStop.swift */,
+				B4AF586728A1972D0073EC7D /* DbDetailedStop.swift */,
+				B4AF586928A1A3600073EC7D /* DbFavoriteStop.swift */,
+				B4AF586D28A1A8200073EC7D /* DbLocationBounds.swift */,
+				B4AF587128A1AB5B0073EC7D /* DbRoutesWithExcluded.swift */,
+				B4AF587328A1ADCE0073EC7D /* DbRoute.swift */,
+				B41E351127EFB50400142750 /* NetworkPrediction.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		B4DCAD4B2452770800A0E978 /* Contracts */ = {
@@ -780,16 +695,6 @@
 				B45988CB24429C69006F9B32 /* StopMapViewModel.swift */,
 			);
 			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		B4F056502729DAD700ED8E30 /* DataSources */ = {
-			isa = PBXGroup;
-			children = (
-				B41E34CD27EF8BC600142750 /* StopDatabaseDataSourceImpl.swift */,
-				B41E34CB27EF8BB800142750 /* LocationDatabaseDataSourceImpl.swift */,
-				B41E350127EFA04800142750 /* RouteDatabaseDataSourceImpl.swift */,
-			);
-			path = DataSources;
 			sourceTree = "<group>";
 		};
 		B4F216D12730C962006A5748 /* Urls */ = {
@@ -937,61 +842,49 @@
 				B46DBE8927A719BE0041E8DF /* String.swift in Sources */,
 				B41E351227EFB50400142750 /* NetworkPrediction.swift in Sources */,
 				B41174A328217C9C00C279FF /* DatabaseMigration.swift in Sources */,
-				B41E350D27EFB0FC00142750 /* RouteMappers.swift in Sources */,
-				B41E34EA27EF948400142750 /* LocationRepositoryImpl.swift in Sources */,
-				B41E34CE27EF8BC600142750 /* StopDatabaseDataSourceImpl.swift in Sources */,
+				B4AF586628A196A80073EC7D /* DbMinimalStop.swift in Sources */,
+				B4AF587428A1ADCE0073EC7D /* DbRoute.swift in Sources */,
 				B46DBE6427A718B10041E8DF /* StopMapViewModel.swift in Sources */,
-				B41E353827F110A400142750 /* DatabaseDetailedStop.swift in Sources */,
 				B46DBE8C27A719D30041E8DF /* PredictionsNoDataViewController.swift in Sources */,
-				B41E34EE27EF949900142750 /* RouteRepositoryImpl.swift in Sources */,
-				B41E350427EFA21A00142750 /* StopMappers.swift in Sources */,
+				B4AF587628A1E0FC0073EC7D /* LocationService.swift in Sources */,
 				B46DBECC27A754B90041E8DF /* OverviewViewModel.swift in Sources */,
 				B46DBE9327A719EA0041E8DF /* PredictionsViewModel.swift in Sources */,
 				B46DBE8627A719BD0041E8DF /* UIViewController.swift in Sources */,
-				B41E354027F1248600142750 /* DatabaseDetailedStopMapper.swift in Sources */,
+				B4AF586C28A1A7C10073EC7D /* LocationDbDataSource.swift in Sources */,
 				B46DBEB127A71C360041E8DF /* FilterRoutesViewModel.swift in Sources */,
-				B41E354227F1259E00142750 /* DatabaseRoutesWithExclusionsMapper.swift in Sources */,
 				B46DBE4E27A70F150041E8DF /* Database.swift in Sources */,
 				B4721AD327F26DCE00D9E04C /* FilterRouteCell.swift in Sources */,
 				B41E351427EFB5A100142750 /* UrlConfig.swift in Sources */,
 				B41E34DF27EF907400142750 /* FilterableRoute.swift in Sources */,
 				B46DBEDA27A7610B0041E8DF /* OverviewTitleHeaderView.swift in Sources */,
-				B41E353C27F1144D00142750 /* DatabaseRoutesWithExclusions.swift in Sources */,
-				B41E34FE27EF9D0100142750 /* DatabaseRoute.swift in Sources */,
-				B41E34F727EF958F00142750 /* RouteDatabaseDataSource.swift in Sources */,
 				B46DBE5027A70F1D0041E8DF /* FavoriteStopsTable.swift in Sources */,
-				B41E353A27F110CD00142750 /* DatabaseFavoriteStop.swift in Sources */,
 				B46DBECA27A754B90041E8DF /* OverviewContract.swift in Sources */,
+				B4AF586028A1805C0073EC7D /* StopService.swift in Sources */,
 				B46DBE8427A719BD0041E8DF /* UIColor.swift in Sources */,
-				B41E34F127EF955000142750 /* StopDatabaseDataSource.swift in Sources */,
 				B46DBE8527A719BD0041E8DF /* UITableView.swift in Sources */,
 				B490A0082453B4FA000744EB /* AppEventCoordinator.swift in Sources */,
 				B43835FA2771395C00C49537 /* FilterRoutesComponent.swift in Sources */,
 				B46DBE9127A719D80041E8DF /* PredictionsMessageCell.swift in Sources */,
 				B41E34D927EF8FBC00142750 /* CurrentLocationPermissionStatus.swift in Sources */,
 				B45988CA24429720006F9B32 /* AppComponent.swift in Sources */,
-				B41E350B27EFAD3F00142750 /* LocationMappers.swift in Sources */,
 				B46DBE5E27A70FEB0041E8DF /* UserDefaultsDataSource.swift in Sources */,
-				B41E351927EFBBE900142750 /* LocationPermissionDataSourceImpl.swift in Sources */,
+				B4AF586A28A1A3600073EC7D /* DbFavoriteStop.swift in Sources */,
+				B41E351927EFBBE900142750 /* PermissionDataSource.swift in Sources */,
 				B41E34D527EF8E7C00142750 /* MinimalStop.swift in Sources */,
 				B46DBEBE27A726190041E8DF /* DatabaseImpl.swift in Sources */,
 				B46DBE6727A718B10041E8DF /* StopMapContract.swift in Sources */,
-				B41E34CC27EF8BB800142750 /* LocationDatabaseDataSourceImpl.swift in Sources */,
-				B46DBEAD27A71A3F0041E8DF /* TimedNetworkPublisher.swift in Sources */,
 				B46DBE8E27A719D30041E8DF /* PredictionsLoadingViewController.swift in Sources */,
 				B46DBEB027A71C290041E8DF /* FilterRoutesContract.swift in Sources */,
 				B41E350727EFA49600142750 /* GRDBExtensions.swift in Sources */,
 				B46DBE8D27A719D30041E8DF /* PredictionsDataViewController.swift in Sources */,
 				B477CD66243BF7280027AE11 /* AppDelegate.swift in Sources */,
+				B4AF586E28A1A8200073EC7D /* DbLocationBounds.swift in Sources */,
 				B41E34DD27EF900F00142750 /* FavoriteStop.swift in Sources */,
 				B46DBE8B27A719CE0041E8DF /* PredictionsContract.swift in Sources */,
 				B46DBE8A27A719BE0041E8DF /* Array.swift in Sources */,
-				B43E071B2453CEFE00393B76 /* StyleConfig.swift in Sources */,
-				B41E34D327EF8C9800142750 /* PredictionRepository.swift in Sources */,
+				B4AF587A28A1E9E60073EC7D /* PredictionService.swift in Sources */,
 				B41E351C27EFBC7600142750 /* CurrentLocationPermissionPublisher.swift in Sources */,
 				B41E352A27EFF3A100142750 /* Resources.swift in Sources */,
-				B41E34E827EF947400142750 /* StopRepositoryImpl.swift in Sources */,
-				B41E34F327EF956B00142750 /* LocationDatabaseDataSource.swift in Sources */,
 				B41E352327EFDA6900142750 /* MKMapViewExtensions.swift in Sources */,
 				B46DBE5127A70F210041E8DF /* LastLocationTable.swift in Sources */,
 				B46DBEB327A71C360041E8DF /* FilterRoutesViewController.swift in Sources */,
@@ -999,18 +892,17 @@
 				B489F5092827367100C7228D /* ResourceVersionsTable.swift in Sources */,
 				B46DBE9C27A71A0C0041E8DF /* Prediction.swift in Sources */,
 				B46DBE6627A718B10041E8DF /* StopMapStopAnnotation.swift in Sources */,
-				B41E351027EFB48900142750 /* PredictionNetworkDataSourceImpl.swift in Sources */,
 				B46DBE5327A70F280041E8DF /* ExcludedRoutesTable.swift in Sources */,
 				B46DBE9227A719DC0041E8DF /* PredictionsBarItemHandler.swift in Sources */,
 				B430D47A245E362B002EA8FB /* NetworkConfig.swift in Sources */,
 				B477CD68243BF7280027AE11 /* SceneDelegate.swift in Sources */,
-				B41E34EC27EF948E00142750 /* PredictionRepositoryImpl.swift in Sources */,
 				B4DC662027375F3F0046F470 /* OverviewComponent.swift in Sources */,
 				B4DC662427383C580046F470 /* PredictionsComponent.swift in Sources */,
+				B4247E8E28A6AAC2006F1482 /* TitleServiceStop.swift in Sources */,
 				B46DBEC827A754B90041E8DF /* OverviewViewController.swift in Sources */,
-				B41E350227EFA04800142750 /* RouteDatabaseDataSourceImpl.swift in Sources */,
-				B41E352627EFDC5800142750 /* NetworkPredictionMapper.swift in Sources */,
-				B41E34E527EF935500142750 /* RouteRepository.swift in Sources */,
+				B4AF587F28A2FF130073EC7D /* Capacity.swift in Sources */,
+				B4AF587028A1AAC60073EC7D /* RouteDbDataSource.swift in Sources */,
+				B40562B428A433DD0029D94D /* Secrets.swift in Sources */,
 				B46DBE8327A719BD0041E8DF /* URL.swift in Sources */,
 				B46DBEC927A754B90041E8DF /* OverviewMapCell.swift in Sources */,
 				B48F2BCF245F906D001900BE /* DatabaseConfig.swift in Sources */,
@@ -1018,21 +910,21 @@
 				B46DBE6527A718B10041E8DF /* StopMapViewController.swift in Sources */,
 				B46DBE5227A70F240041E8DF /* RoutesTable.swift in Sources */,
 				B41174A5282197AF00C279FF /* DatabasePopulator.swift in Sources */,
+				B4AF587828A1E2A70073EC7D /* RouteService.swift in Sources */,
 				B46DBE8F27A719D30041E8DF /* PredictionsViewController.swift in Sources */,
 				B4DC6622273836D20046F470 /* StopMapComponent.swift in Sources */,
-				B41E34F527EF957900142750 /* PredictionNetworkDataSource.swift in Sources */,
+				B4AF587D28A1EF850073EC7D /* NetworkDataSource.swift in Sources */,
+				B4AF586328A180A60073EC7D /* StopDbDataSource.swift in Sources */,
 				B46DBECB27A754B90041E8DF /* OverviewMessageCell.swift in Sources */,
-				B41E34F927EF96D300142750 /* LocationPermissionDataSource.swift in Sources */,
+				B4AF587228A1AB5B0073EC7D /* DbRoutesWithExcluded.swift in Sources */,
 				B46DBE4F27A70F1A0041E8DF /* StopsTable.swift in Sources */,
 				B46DBE5C27A70FB50041E8DF /* UrlSource.swift in Sources */,
-				B41E353E27F1235000142750 /* DatabaseFavoriteStopMapper.swift in Sources */,
 				B41E351627EFB5E000142750 /* UrlSourceImpl.swift in Sources */,
 				B4D6F9DB27F5327900892F99 /* ServiceType.swift in Sources */,
 				B46DBE8727A719BD0041E8DF /* NSLayoutConstraint.swift in Sources */,
 				B41174A12821729700C279FF /* GRDBDatabaseQueueExtensions.swift in Sources */,
-				B41E34E127EF91FC00142750 /* LocationRepository.swift in Sources */,
 				B46DBEC727A754B90041E8DF /* OverviewFavoriteStopCell.swift in Sources */,
-				B41E34E327EF921A00142750 /* StopRepository.swift in Sources */,
+				B4AF586828A1972D0073EC7D /* DbDetailedStop.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1101,7 +993,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1156,7 +1048,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1175,7 +1067,7 @@
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 3Z4DAK43ND;
 				INFOPLIST_FILE = BusWatch/SupportingFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1197,7 +1089,7 @@
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 3Z4DAK43ND;
 				INFOPLIST_FILE = BusWatch/SupportingFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

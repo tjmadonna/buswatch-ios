@@ -8,12 +8,6 @@
 
 import UIKit
 
-struct OverviewTitleHeaderViewStyle {
-
-    let backgroundColor: UIColor
-
-}
-
 final class OverviewTitleHeaderView: UITableViewHeaderFooterView {
 
     static let reuseId = "OverviewTitleHeaderView"
@@ -23,6 +17,14 @@ final class OverviewTitleHeaderView: UITableViewHeaderFooterView {
     private let textBackgroundView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = UIColor { traitCollection in
+            switch traitCollection.userInterfaceStyle {
+            case .dark:
+                return UIColor.secondarySystemBackground
+            default:
+                return UIColor.systemBackground
+            }
+        }
         return view
     }()
 
@@ -82,8 +84,7 @@ final class OverviewTitleHeaderView: UITableViewHeaderFooterView {
 
     // MARK: - properties/functions
 
-    func configureWithTitle(_ title: String, style: OverviewTitleHeaderViewStyle) {
-        textBackgroundView.backgroundColor = style.backgroundColor
+    func configureWithTitle(_ title: String) {
         titleLabel.text = title
     }
 }
