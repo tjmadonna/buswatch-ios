@@ -117,6 +117,7 @@ final class PredictionsViewModel {
             predictionTimerPublisher(stopId: stop.id, serviceType: stop.serviceType), // get the predictions timer
             routeService.observeExcludedRouteIdsForStopId(stop.id) // get the routes to exclude from predictions
         )
+        .debounce(for: 0.25, scheduler: DispatchQueue.main)
         .map { (predictions: [Prediction], excludedRouteIds: [String]) -> [Prediction] in
             let excludedRouteIdSet = Set(excludedRouteIds)
             return predictions

@@ -176,7 +176,7 @@ final class PredictionsCell: UITableViewCell {
         self.capacityImageName = capacityImageName
     }
 
-    fileprivate func getArrivalMessage(arrivalTime: Date) -> String {
+    private func getArrivalMessage(arrivalTime: Date) -> String {
         let seconds = Int(arrivalTime.timeIntervalSinceNow)
         let arrivalMessage: String
         switch seconds {
