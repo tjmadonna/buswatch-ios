@@ -8,6 +8,7 @@
 
 import Foundation
 import Combine
+import UIKit
 
 final class PredictionsViewModel {
 
@@ -41,8 +42,6 @@ final class PredictionsViewModel {
 
     private var cancellables: [AnyCancellable] = []
 
-    private var predictionsCancellable: AnyCancellable?
-
     // MARK: - Initialization
 
     init(stop: TitleServiceStop,
@@ -58,25 +57,17 @@ final class PredictionsViewModel {
         self.navBarStateSubject = CurrentValueSubject<PredictionsNavBarState, Never>(
             PredictionsNavBarState(favorited: false, title: stop.title)
         )
-        setupObserversForStop()
+        setupObservers()
     }
 
     deinit {
         cancellables.removeAll()
-        predictionsCancellable?.cancel()
     }
 
     // MARK: - Setup
 
-    private func setupObserversForStop() {
-        stopService.observeStopById(stop.id)
-            .map { stop in PredictionsNavBarState(favorited: stop.favorite, title: stop.title) } // map to navbar state
-            // set default navbar state if error occurs
-            .replaceError(with: PredictionsNavBarState(favorited: false, title: ""))
-            .receive(on: RunLoop.main)
-            .subscribe(self.navBarStateSubject)
-            .store(in: &cancellables)
-
+    private func setupObservers() {
+        startObservingNavBarState()
         startObservingPredictions()
     }
 
@@ -88,11 +79,6 @@ final class PredictionsViewModel {
             self.handleToggleFavoritedIntent()
         case .filterRoutesSelected:
             self.handleFilterRoutesSelectedIntent()
-        case .viewAppeared:
-            self.startObservingPredictions()
-        case .viewDisappeared:
-            predictionsCancellable?.cancel()
-            predictionsCancellable = nil
         }
     }
 
@@ -116,9 +102,19 @@ final class PredictionsViewModel {
         eventCoordinator?.filterRoutesSelectedInFilterRoutes(stop.id)
     }
 
+    private func startObservingNavBarState() {
+        stopService.observeStopById(stop.id)
+            .map { stop in PredictionsNavBarState(favorited: stop.favorite, title: stop.title) } // map to navbar state
+            // set default navbar state if error occurs
+            .replaceError(with: PredictionsNavBarState(favorited: false, title: ""))
+            .receive(on: RunLoop.main)
+            .subscribe(self.navBarStateSubject)
+            .store(in: &cancellables)
+    }
+
     private func startObservingPredictions() {
-        predictionsCancellable = Publishers.CombineLatest(
-            predictionTimerPublisher(stopId: stop.id, serviceType: stop.serviceType), // get the predictions
+        Publishers.CombineLatest(
+            predictionTimerPublisher(stopId: stop.id, serviceType: stop.serviceType), // get the predictions timer
             routeService.observeExcludedRouteIdsForStopId(stop.id) // get the routes to exclude from predictions
         )
         .map { (predictions: [Prediction], excludedRouteIds: [String]) -> [Prediction] in
@@ -141,6 +137,7 @@ final class PredictionsViewModel {
         .replaceError(with: .error("Couldn't load predictions")) // set error state if error occurs
         .receive(on: RunLoop.main)
         .subscribe(self.dataStateSubject)
+        .store(in: &cancellables)
     }
 
     private func predictionTimerPublisher(stopId: String,

@@ -68,12 +68,6 @@ final class PredictionsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationItem.largeTitleDisplayMode =  .never
-        viewModel.handleIntent(.viewAppeared)
-    }
-
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        viewModel.handleIntent(.viewDisappeared)
     }
 
     // MARK: - Setup
