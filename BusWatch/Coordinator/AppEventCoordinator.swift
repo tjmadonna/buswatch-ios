@@ -43,8 +43,6 @@ final class AppEventCoordinator {
         return AppNavigationViewController()
     }()
 
-    private var onFilterRoutesDismiss: (() -> Void)?
-
     // MARK: - Initialization
 
     init(window: UIWindow) {
