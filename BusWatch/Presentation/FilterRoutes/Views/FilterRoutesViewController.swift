@@ -6,8 +6,9 @@
 //  Copyright © 2021 Tyler Madonna. All rights reserved.
 //
 
-import UIKit
 import Combine
+import DifferenceKit
+import UIKit
 
 final class FilterRoutesViewController: UITableViewController {
 
@@ -127,11 +128,13 @@ final class FilterRoutesViewController: UITableViewController {
             self.routes = routes
             tableView.reloadData()
         } else {
-            tableView.update(oldData: self.routes, newData: routes, with: .fade, setData: { newData in
-                self.routes = newData
+
+            let stagedChangeset = StagedChangeset(source: self.routes, target: routes)
+            tableView.reload(using: stagedChangeset, with: .fade, setData: { [weak self] newRoutes in
+                self?.routes = newRoutes
             }, reloadRow: { indexPath in
                 let cell = self.tableView.cellForRow(at: indexPath)
-                self.configureCell(cell, forIndexPath: indexPath)
+                configureCell(cell, forIndexPath: indexPath)
             })
         }
     }

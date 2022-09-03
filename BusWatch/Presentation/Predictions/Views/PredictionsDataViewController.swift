@@ -6,6 +6,7 @@
 //  Copyright © 2021 Tyler Madonna. All rights reserved.
 //
 
+import DifferenceKit
 import UIKit
 
 final class PredictionsDataViewController: UITableViewController {
@@ -88,8 +89,9 @@ final class PredictionsDataViewController: UITableViewController {
 
     func updatePredictions(_ predictions: [Prediction], animate: Bool) {
         if animate {
-            tableView.update(oldData: self.predictions, newData: predictions, with: .fade, setData: { newData in
-                self.predictions = newData
+            let stagedChangeset = StagedChangeset(source: self.predictions, target: predictions)
+            tableView.reload(using: stagedChangeset, with: .fade, setData: { [weak self] newPredictions in
+                self?.predictions = newPredictions
             }, reloadRow: { indexPath in
                 let cell = self.tableView.cellForRow(at: indexPath)
                 configureCell(cell, forIndexPath: indexPath)
