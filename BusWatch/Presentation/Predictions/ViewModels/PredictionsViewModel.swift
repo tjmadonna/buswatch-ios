@@ -42,6 +42,8 @@ final class PredictionsViewModel {
 
     private var cancellables: [AnyCancellable] = []
 
+    private var predictionsCancellable: AnyCancellable?
+
     // MARK: - Initialization
 
     init(stop: TitleServiceStop,
@@ -61,6 +63,7 @@ final class PredictionsViewModel {
     }
 
     deinit {
+        cancelPredictionsPublisher()
         cancellables.removeAll()
     }
 
@@ -69,6 +72,7 @@ final class PredictionsViewModel {
     private func setupObservers() {
         startObservingNavBarState()
         startObservingPredictions()
+        startObservingAppNotifications()
     }
 
     // MARK: - Intent Handling
@@ -102,6 +106,17 @@ final class PredictionsViewModel {
         eventCoordinator?.filterRoutesSelectedInFilterRoutes(stop.id)
     }
 
+    private func startObservingAppNotifications() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(cancelPredictionsPublisher),
+                                               name: UIApplication.didEnterBackgroundNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(startObservingPredictions),
+                                               name: UIApplication.didBecomeActiveNotification,
+                                               object: nil)
+    }
+
     private func startObservingNavBarState() {
         stopService.observeStopById(stop.id)
             .map { stop in PredictionsNavBarState(favorited: stop.favorite, title: stop.title) } // map to navbar state
@@ -112,8 +127,11 @@ final class PredictionsViewModel {
             .store(in: &cancellables)
     }
 
-    private func startObservingPredictions() {
-        Publishers.CombineLatest(
+    @objc private func startObservingPredictions() {
+        cancelPredictionsPublisher()
+
+        print("Starting network")
+        predictionsCancellable = Publishers.CombineLatest(
             predictionTimerPublisher(stopId: stop.id, serviceType: stop.serviceType), // get the predictions timer
             routeService.observeExcludedRouteIdsForStopId(stop.id) // get the routes to exclude from predictions
         )
@@ -138,7 +156,6 @@ final class PredictionsViewModel {
         .replaceError(with: .error("Couldn't load predictions")) // set error state if error occurs
         .receive(on: RunLoop.main)
         .subscribe(self.dataStateSubject)
-        .store(in: &cancellables)
     }
 
     private func predictionTimerPublisher(stopId: String,
@@ -150,5 +167,11 @@ final class PredictionsViewModel {
                 self.predictionService.getPredictionsForStopId(stopId, serviceType: serviceType)
             }
             .eraseToAnyPublisher()
+    }
+
+    @objc private func cancelPredictionsPublisher() {
+        print("Canceling network")
+        predictionsCancellable?.cancel()
+        predictionsCancellable = nil
     }
 }
