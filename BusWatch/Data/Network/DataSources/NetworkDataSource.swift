@@ -19,8 +19,10 @@ protocol NetworkDataSource {
 final class NetworkDataSourceImpl: NetworkDataSource {
 
     enum Error: Swift.Error {
+        case invalidResponse
+        case rateLimitted
+        case serverBusy
         case endpoint
-        case non200
     }
 
     private let urlSource: UrlSource
@@ -37,15 +39,41 @@ final class NetworkDataSourceImpl: NetworkDataSource {
 
         let url = urlSource.authenticatedPredictionsURLForStopId(stopId, serviceType: serviceType)
         return urlSession.dataTaskPublisher(for: url)
-            .tryMap { (data, response) in
-                guard let statusCode = (response as? HTTPURLResponse)?.statusCode, 200 ... 299 ~= statusCode else {
-                    throw Error.non200
+            .tryMap { (data: Data, response: URLResponse) -> Result<Data, Swift.Error> in
+                guard let response = response as? HTTPURLResponse else {
+                    return .failure(Error.invalidResponse)
                 }
-                return data
+
+                if response.statusCode == 429 {
+                    throw Error.rateLimitted
+                }
+
+                if response.statusCode == 503 {
+                    throw Error.serverBusy
+                }
+
+                return .success(data)
+            }
+            .catch { (error: Swift.Error) -> AnyPublisher<Result<Data, Swift.Error>, Swift.Error> in
+                switch error {
+                case Error.rateLimitted, Error.serverBusy:
+                    // Retryable error
+                    return Fail(error: error)
+                        .delay(for: 3, scheduler: DispatchQueue.main)
+                        .eraseToAnyPublisher()
+                default:
+                    // Non-retryable error
+                    return Just(.failure(error))
+                        .setFailureType(to: Swift.Error.self)
+                        .eraseToAnyPublisher()
+                }
+            }
+            .retry(2)
+            .tryMap { result in
+                return try result.get()
             }
             .decode(type: NetworkGetPredictionsResponse.self, decoder: JSONDecoder())
-            .tryMap { response -> [NetworkPrediction] in
-
+            .tryMap { (response: NetworkGetPredictionsResponse) -> [NetworkPrediction] in
                 if let errors = response.bustimeResponse?.errors {
                     if errors.first?.message?.lowercased() == "no service scheduled" ||
                         errors.first?.message?.lowercased() == "no arrival times" {

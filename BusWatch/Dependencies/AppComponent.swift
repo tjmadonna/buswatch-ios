@@ -32,6 +32,13 @@ final class AppComponent {
         return UserDefaultsDataSourceImpl()
     }()
 
+    lazy var urlSession: URLSession = {
+        let sessionConfig = URLSessionConfiguration.default
+        sessionConfig.timeoutIntervalForRequest = 10.0
+        sessionConfig.timeoutIntervalForResource = 10.0
+        return URLSession(configuration: sessionConfig)
+    }()
+
     // MARK: - Data Sources
 
     lazy var stopDatabaseDataSource: StopDbDataSource = {
@@ -52,14 +59,14 @@ final class AppComponent {
                                apiKey: NetworkConfig.apiKey,
                                basePath: NetworkConfig.basePath)
         let urlSource = UrlSourceImpl(urlConfig: config)
-        return NetworkDataSourceImpl(urlSource: urlSource)
+        return NetworkDataSourceImpl(urlSource: urlSource, urlSession: urlSession)
     }()
 
     lazy var routeDatabaseDataSource: RouteDbDataSource = {
         return RouteDbDataSourceImpl(database: database)
     }()
 
-    // MARK: - Repositories
+    // MARK: - Services
 
     lazy var stopService: StopService = {
         return StopServiceImpl(dbDataSource: stopDatabaseDataSource)
