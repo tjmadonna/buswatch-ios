@@ -146,7 +146,7 @@ final class PredictionsCell: UITableViewCell {
         dividerView.isHidden = !dividerVisible
 
         let capacityImageName = getCapacityImageName(capacity: prediction.capacity)
-        let arrivalMessage = getArrivalMessage(arrivalTime: prediction.arrivalTime)
+        let arrivalMessage = getArrivalMessage(arrivalInSeconds: prediction.arrivalInSeconds)
 
         if animate {
             if decoratorLabel.text != prediction.route {
@@ -176,16 +176,15 @@ final class PredictionsCell: UITableViewCell {
         self.capacityImageName = capacityImageName
     }
 
-    private func getArrivalMessage(arrivalTime: Date) -> String {
-        let seconds = Int(arrivalTime.timeIntervalSinceNow)
+    private func getArrivalMessage(arrivalInSeconds: Int) -> String {
         let arrivalMessage: String
-        switch seconds {
+        switch arrivalInSeconds {
         case Int.min...30:
             arrivalMessage = Resources.Strings.arrivingNow
         case 30..<120:
             arrivalMessage = Resources.Strings.arrivingIn1Min
         default:
-            arrivalMessage = Resources.Strings.arrivingInNMins(Int(seconds / 60))
+            arrivalMessage = Resources.Strings.arrivingInNMins(Int(arrivalInSeconds / 60))
         }
         return arrivalMessage
     }

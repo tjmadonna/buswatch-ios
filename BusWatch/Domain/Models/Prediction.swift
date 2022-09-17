@@ -14,7 +14,7 @@ struct Prediction {
     let title: String
     let route: String
     let capacity: Capacity?
-    let arrivalTime: Date
+    let arrivalInSeconds: Int
 }
 
 extension Prediction: Equatable { }
@@ -32,6 +32,6 @@ extension Prediction: Differentiable {
             title == source.title &&
             route == source.route &&
             capacity == source.capacity &&
-            arrivalTime == source.arrivalTime
+            arrivalInSeconds == source.arrivalInSeconds
     }
 }

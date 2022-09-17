@@ -143,7 +143,7 @@ final class PredictionsViewModel {
                     !excludedRouteIdSet.contains(prediction.route)
                 }
                 .sorted { (prediction1: Prediction, prediction2: Prediction) in
-                    prediction1.arrivalTime.compare(prediction2.arrivalTime) == .orderedAscending
+                    prediction1.arrivalInSeconds < prediction2.arrivalInSeconds
                 }
         }
         .map { predictions -> PredictionsDataState in

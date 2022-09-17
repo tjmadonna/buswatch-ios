@@ -57,7 +57,7 @@ extension NetworkPrediction {
             title: title,
             route: routeId,
             capacity: capacity,
-            arrivalTime: arrivalTime
+            arrivalInSeconds: Int(arrivalTime.timeIntervalSinceNow)
         )
     }
 
