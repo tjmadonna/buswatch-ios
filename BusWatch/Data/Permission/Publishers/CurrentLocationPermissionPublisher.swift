@@ -56,8 +56,6 @@ struct CurrentLocationPermissionPublisher: Publisher {
         }
 
         private func getCurrentLocationPermissionStatus() -> CurrentLocationPermissionStatus {
-            guard CLLocationManager.locationServicesEnabled() else { return .denied }
-
             let authorizationStatus: CLAuthorizationStatus
             if #available(iOS 14, *) {
                 authorizationStatus = locationManager.authorizationStatus
