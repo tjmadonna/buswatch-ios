@@ -11,15 +11,13 @@ import Foundation
 
 protocol PredictionService {
 
-    func getPredictionsForStopId(_ stopId: String, serviceType: ServiceType) -> AnyPublisher<[Prediction], Swift.Error>
+    func observePredictionsForStopId(_ stopId: String,
+                                     serviceType: ServiceType,
+                                     updateInterval: TimeInterval) -> AnyPublisher<[Prediction], Error>
 
 }
 
 final class PredictionServiceImpl: PredictionService {
-
-    enum Error: Swift.Error {
-        case endpoint
-    }
 
     static private let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
@@ -37,15 +35,18 @@ final class PredictionServiceImpl: PredictionService {
         self.routeDataSource = routeDataSource
     }
 
-    func getPredictionsForStopId(_ stopId: String,
-                                 serviceType: ServiceType) -> AnyPublisher<[Prediction], Swift.Error> {
+    func observePredictionsForStopId(_ stopId: String,
+                                     serviceType: ServiceType,
+                                     updateInterval: TimeInterval = 15) -> AnyPublisher<[Prediction], Error> {
 
-        return networkDataSource.getPredictionsForStopId(stopId, serviceType: serviceType)
-            .flatMap { [unowned self] (predictions: [NetworkPrediction]) -> AnyPublisher<[Prediction], Swift.Error> in
-                let routeIds = predictions.compactMap { prediction in prediction.routeId }
-                return self.mapNetworkPredictions(predictions, using: routeIds)
-            }
-            .eraseToAnyPublisher()
+        return networkDataSource.observePredictionsForStopId(stopId,
+                                                             serviceType: serviceType,
+                                                             updateInterval: updateInterval)
+        .flatMap { [unowned self] (predictions: [NetworkPrediction]) -> AnyPublisher<[Prediction], Swift.Error> in
+            let routeIds = predictions.compactMap { prediction in prediction.routeId }
+            return self.mapNetworkPredictions(predictions, using: routeIds)
+        }
+        .eraseToAnyPublisher()
     }
 
     private func mapNetworkPredictions(_ predictions: [NetworkPrediction],

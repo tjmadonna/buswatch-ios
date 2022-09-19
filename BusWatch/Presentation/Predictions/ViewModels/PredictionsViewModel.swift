@@ -63,6 +63,7 @@ final class PredictionsViewModel {
     }
 
     deinit {
+        NotificationCenter.default.removeObserver(self)
         cancelPredictionsPublisher()
         cancellables.removeAll()
     }
@@ -119,7 +120,8 @@ final class PredictionsViewModel {
 
     private func startObservingNavBarState() {
         stopService.observeStopById(stop.id)
-            .map { stop in PredictionsNavBarState(favorited: stop.favorite, title: stop.title) } // map to navbar state
+            // map to navbar state
+            .map { stop in PredictionsNavBarState(favorited: stop.favorite, title: stop.title) }
             // set default navbar state if error occurs
             .replaceError(with: PredictionsNavBarState(favorited: false, title: ""))
             .receive(on: RunLoop.main)
@@ -130,10 +132,11 @@ final class PredictionsViewModel {
     @objc private func startObservingPredictions() {
         cancelPredictionsPublisher()
 
-        print("Starting network")
+        print("Starting prediction call")
+        // Update date everytime the predictions or excluded routes changes
         predictionsCancellable = Publishers.CombineLatest(
-            predictionTimerPublisher(stopId: stop.id, serviceType: stop.serviceType), // get the predictions timer
-            routeService.observeExcludedRouteIdsForStopId(stop.id) // get the routes to exclude from predictions
+            predictionService.observePredictionsForStopId(stop.id, serviceType: stop.serviceType, updateInterval: 15),
+            routeService.observeExcludedRouteIdsForStopId(stop.id)
         )
         .debounce(for: 0.25, scheduler: DispatchQueue.main)
         .map { (predictions: [Prediction], excludedRouteIds: [String]) -> [Prediction] in
@@ -158,19 +161,8 @@ final class PredictionsViewModel {
         .subscribe(self.dataStateSubject)
     }
 
-    private func predictionTimerPublisher(stopId: String,
-                                          serviceType: ServiceType) -> AnyPublisher<[Prediction], Error> {
-        return Timer.publish(every: PredictionsViewModel.predictionsUpdateTime, on: .main, in: .common)
-            .autoconnect()
-            .prepend(Date())
-            .flatMap { [unowned self] _ in
-                self.predictionService.getPredictionsForStopId(stopId, serviceType: serviceType)
-            }
-            .eraseToAnyPublisher()
-    }
-
     @objc private func cancelPredictionsPublisher() {
-        print("Canceling network")
+        print("Cancelling prediction call")
         predictionsCancellable?.cancel()
         predictionsCancellable = nil
     }

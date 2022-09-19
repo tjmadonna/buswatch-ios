@@ -95,6 +95,7 @@
 		B4AF587A28A1E9E60073EC7D /* PredictionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AF587928A1E9E60073EC7D /* PredictionService.swift */; };
 		B4AF587D28A1EF850073EC7D /* NetworkDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AF587C28A1EF850073EC7D /* NetworkDataSource.swift */; };
 		B4AF587F28A2FF130073EC7D /* Capacity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AF587E28A2FF120073EC7D /* Capacity.swift */; };
+		B4C9350A28D9221A006C7D29 /* TimedNetworkPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C9350928D9221A006C7D29 /* TimedNetworkPublisher.swift */; };
 		B4D6F9DB27F5327900892F99 /* ServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D6F9DA27F5327900892F99 /* ServiceType.swift */; };
 		B4DC662027375F3F0046F470 /* OverviewComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DC661F27375F3F0046F470 /* OverviewComponent.swift */; };
 		B4DC6622273836D20046F470 /* StopMapComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DC6621273836D20046F470 /* StopMapComponent.swift */; };
@@ -186,6 +187,7 @@
 		B4AF587928A1E9E60073EC7D /* PredictionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionService.swift; sourceTree = "<group>"; };
 		B4AF587C28A1EF850073EC7D /* NetworkDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataSource.swift; sourceTree = "<group>"; };
 		B4AF587E28A2FF120073EC7D /* Capacity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Capacity.swift; sourceTree = "<group>"; };
+		B4C9350928D9221A006C7D29 /* TimedNetworkPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimedNetworkPublisher.swift; sourceTree = "<group>"; };
 		B4D6F9DA27F5327900892F99 /* ServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceType.swift; sourceTree = "<group>"; };
 		B4DC65D6273351B20046F470 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		B4DC65DA273363900046F470 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
@@ -447,6 +449,7 @@
 			isa = PBXGroup;
 			children = (
 				B41E350E27EFB44500142750 /* DataSources */,
+				B4C9350828D921CC006C7D29 /* Publishers */,
 				B4F216D12730C962006A5748 /* Urls */,
 			);
 			path = Network;
@@ -650,6 +653,14 @@
 				B41E351127EFB50400142750 /* NetworkPrediction.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		B4C9350828D921CC006C7D29 /* Publishers */ = {
+			isa = PBXGroup;
+			children = (
+				B4C9350928D9221A006C7D29 /* TimedNetworkPublisher.swift */,
+			);
+			path = Publishers;
 			sourceTree = "<group>";
 		};
 		B4DCAD4B2452770800A0E978 /* Contracts */ = {
@@ -872,6 +883,7 @@
 				B4AF586A28A1A3600073EC7D /* DbFavoriteStop.swift in Sources */,
 				B41E351927EFBBE900142750 /* PermissionDataSource.swift in Sources */,
 				B41E34D527EF8E7C00142750 /* MinimalStop.swift in Sources */,
+				B4C9350A28D9221A006C7D29 /* TimedNetworkPublisher.swift in Sources */,
 				B46DBEBE27A726190041E8DF /* DatabaseImpl.swift in Sources */,
 				B46DBE6727A718B10041E8DF /* StopMapContract.swift in Sources */,
 				B46DBE8E27A719D30041E8DF /* PredictionsLoadingViewController.swift in Sources */,
