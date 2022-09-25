@@ -33,6 +33,14 @@ final class PredictionsViewController: UIViewController {
 
     private var currentViewController: UIViewController?
 
+    // MARK: -
+
+    private let loadingView: LoadingStripView = {
+        let view = LoadingStripView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
     // MARK: - Properties
 
     private let viewModel: PredictionsViewModel
@@ -83,6 +91,14 @@ final class PredictionsViewController: UIViewController {
         addChildViewController(loadingViewController)
         addChildViewController(dataViewController)
         addChildViewController(noDataViewController)
+
+        view.addSubview(loadingView)
+        NSLayoutConstraint.activate([
+            loadingView.topAnchor.constraint(equalTo: view.topAnchor),
+            loadingView.heightAnchor.constraint(equalToConstant: 4),
+            loadingView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            loadingView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
     }
 
     private func setupBarItems() {
@@ -107,6 +123,15 @@ final class PredictionsViewController: UIViewController {
                 self?.renderNoDataStateForPredictions()
             case .error(let message):
                 self?.renderErrorDataStateForMessage(message)
+            }
+        }
+        .store(in: &cancellables)
+
+        viewModel.loadingState.sink { [weak self] loading in
+            if loading {
+                self?.loadingView.startAnimating()
+            } else {
+                self?.loadingView.stopAnimating()
             }
         }
         .store(in: &cancellables)

@@ -14,6 +14,7 @@ protocol RouteDbDataSource {
 
     func observeDbRoutesWithExcludedForStopId(_ stopId: String) -> AnyPublisher<DbRoutesWithExcluded, Swift.Error>
     func observeRoutesWithIds(_ routeIds: [String]) -> AnyPublisher<[DbRoute], Swift.Error>
+    func getRoutesWithIds(_ routeIds: [String]) -> Result<[DbRoute], Swift.Error>
     func observeExcludedRouteIdsForStopId(_ stopId: String) -> AnyPublisher<[String], Swift.Error>
     func updateExcludedRouteIdsForStopId(_ stopId: String, routeIds: [String]) -> AnyPublisher<Void, Swift.Error>
 
@@ -70,6 +71,25 @@ final class RouteDbDataSourceImpl: RouteDbDataSource {
                 }
             }
             .eraseToAnyPublisher()
+    }
+
+    func getRoutesWithIds(_ routeIds: [String]) -> Result<[DbRoute], Swift.Error> {
+        let idSet = Set(routeIds)
+        let placeHolderString = Array(repeating: "?", count: idSet.count).joined(separator: ", ")
+        let sql = """
+        SELECT \(RoutesTable.idColumn), \(RoutesTable.titleColumn)
+        FROM \(RoutesTable.tableName)
+        WHERE \(RoutesTable.idColumn) IN (\(placeHolderString))
+        """
+        let arguments = StatementArguments(Array(idSet))
+        do {
+            let routes = try database.queue.read { db in
+                return try DbRoute.fetchAll(db, sql: sql, arguments: arguments)
+            }
+            return .success(routes)
+        } catch {
+            return .failure(error)
+        }
     }
 
     func observeExcludedRouteIdsForStopId(_ stopId: String) -> AnyPublisher<[String], Swift.Error> {

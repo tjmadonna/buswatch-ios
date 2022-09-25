@@ -26,6 +26,12 @@ final class PredictionsViewModel {
         return dataStateSubject.eraseToAnyPublisher()
     }
 
+    private let loadingStateSubject = CurrentValueSubject<Bool, Never>(true)
+
+    var loadingState: AnyPublisher<Bool, Never> {
+        return loadingStateSubject.eraseToAnyPublisher()
+    }
+
     // MARK: - Properties
 
     private static let predictionsUpdateTime = TimeInterval(15)
@@ -66,6 +72,7 @@ final class PredictionsViewModel {
         NotificationCenter.default.removeObserver(self)
         cancelPredictionsPublisher()
         cancellables.removeAll()
+        print("Deinniting predictions view model")
     }
 
     // MARK: - Setup
@@ -133,37 +140,61 @@ final class PredictionsViewModel {
         cancelPredictionsPublisher()
 
         print("Starting prediction call")
-        // Update date everytime the predictions or excluded routes changes
+        // Update data everytime the predictions or excluded routes changes
         predictionsCancellable = Publishers.CombineLatest(
             predictionService.observePredictionsForStopId(stop.id, serviceType: stop.serviceType, updateInterval: 15),
             routeService.observeExcludedRouteIdsForStopId(stop.id)
         )
-        .debounce(for: 0.25, scheduler: DispatchQueue.main)
-        .map { (predictions: [Prediction], excludedRouteIds: [String]) -> [Prediction] in
-            let excludedRouteIdSet = Set(excludedRouteIds)
-            return predictions
-                .filter { prediction in
-                    !excludedRouteIdSet.contains(prediction.route)
-                }
-                .sorted { (prediction1: Prediction, prediction2: Prediction) in
-                    prediction1.arrivalInSeconds < prediction2.arrivalInSeconds
-                }
+        .map { [unowned self] (response, excludedRouteIds) in
+            self.mapToPredictions(response: response, excludedRouteIds: excludedRouteIds)
         }
-        .map { predictions -> PredictionsDataState in
-            if predictions.isEmpty {
-                return .noData
-            } else {
-                return .data(predictions)
-            }
-         }
-        .replaceError(with: .error("Couldn't load predictions")) // set error state if error occurs
-        .receive(on: RunLoop.main)
-        .subscribe(self.dataStateSubject)
+        .receive(on: DispatchQueue.main)
+        .sink(receiveCompletion: { completion in
+            print(completion)
+        }, receiveValue: { [weak self] response in
+            self?.receivePredictionsResponse(response)
+        })
     }
 
     @objc private func cancelPredictionsPublisher() {
         print("Cancelling prediction call")
         predictionsCancellable?.cancel()
         predictionsCancellable = nil
+    }
+
+    private func mapToPredictions(response: LoadingResponse<[Prediction]>,
+                                  excludedRouteIds: [String]) -> LoadingResponse<[Prediction]> {
+        switch response {
+        case .loading:
+            return .loading
+        case .success(let predictions):
+            let excludedRouteIdSet = Set(excludedRouteIds)
+            return .success(predictions
+                .filter { prediction in
+                    !excludedRouteIdSet.contains(prediction.route)
+                }
+                .sorted { (prediction1: Prediction, prediction2: Prediction) in
+                    prediction1.arrivalInSeconds < prediction2.arrivalInSeconds
+                })
+        case .failure(let error):
+            return .failure(error)
+        }
+    }
+
+    private func receivePredictionsResponse(_ response: LoadingResponse<[Prediction]>) {
+        switch response {
+        case .loading:
+            loadingStateSubject.value = true
+        case .success(let predictions):
+            loadingStateSubject.value = false
+            if predictions.isEmpty {
+                dataStateSubject.value = .noData
+            } else {
+                dataStateSubject.value = .data(predictions)
+            }
+        case .failure(let error):
+            loadingStateSubject.value = false
+            print(error)
+        }
     }
 }

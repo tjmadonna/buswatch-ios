@@ -100,6 +100,8 @@
 		B4DC662027375F3F0046F470 /* OverviewComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DC661F27375F3F0046F470 /* OverviewComponent.swift */; };
 		B4DC6622273836D20046F470 /* StopMapComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DC6621273836D20046F470 /* StopMapComponent.swift */; };
 		B4DC662427383C580046F470 /* PredictionsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DC662327383C580046F470 /* PredictionsComponent.swift */; };
+		B4F4E3F528DD108500D752EF /* LoadingStripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F4E3F428DD108500D752EF /* LoadingStripView.swift */; };
+		B4F4E3F828DE96E300D752EF /* LoadingResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F4E3F728DE96E300D752EF /* LoadingResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -207,6 +209,8 @@
 		B4F055D32727643900ED8E30 /* LastLocationTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastLocationTable.swift; sourceTree = "<group>"; };
 		B4F055D52727645E00ED8E30 /* RoutesTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesTable.swift; sourceTree = "<group>"; };
 		B4F216D22730C980006A5748 /* UrlSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlSource.swift; sourceTree = "<group>"; };
+		B4F4E3F428DD108500D752EF /* LoadingStripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingStripView.swift; sourceTree = "<group>"; };
+		B4F4E3F728DE96E300D752EF /* LoadingResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingResponse.swift; sourceTree = "<group>"; };
 		B4FA416E2446888B0066F81E /* OverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewViewController.swift; sourceTree = "<group>"; };
 		B4FDF66A244BB6A800539C92 /* OverviewMapCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewMapCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -278,16 +282,17 @@
 		B41E34D027EF8BF800142750 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				B4076309245A2201008979C5 /* Prediction.swift */,
 				B41E34D427EF8E7C00142750 /* MinimalStop.swift */,
 				B41E34D627EF8EE100142750 /* DetailedStop.swift */,
 				B4247E8D28A6AAC2006F1482 /* TitleServiceStop.swift */,
-				B4D6F9DA27F5327900892F99 /* ServiceType.swift */,
 				B41E34DC27EF900F00142750 /* FavoriteStop.swift */,
+				B4D6F9DA27F5327900892F99 /* ServiceType.swift */,
 				B41E34D827EF8FBC00142750 /* CurrentLocationPermissionStatus.swift */,
 				B41E34DA27EF8FD500142750 /* LocationBounds.swift */,
 				B41E34DE27EF907400142750 /* FilterableRoute.swift */,
+				B4076309245A2201008979C5 /* Prediction.swift */,
 				B4AF587E28A2FF120073EC7D /* Capacity.swift */,
+				B4F4E3F728DE96E300D752EF /* LoadingResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -413,6 +418,7 @@
 		B46DBE4B27A70E850041E8DF /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				B4F4E3F328DD107100D752EF /* Core */,
 				B46DBE5F27A7101C0041E8DF /* Overview */,
 				B46DBE6327A718420041E8DF /* StopMap */,
 				B46DBE7E27A719730041E8DF /* Predictions */,
@@ -747,6 +753,22 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		B4F4E3F328DD107100D752EF /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				B4F4E3F628DD3A9000D752EF /* Views */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		B4F4E3F628DD3A9000D752EF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B4F4E3F428DD108500D752EF /* LoadingStripView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -881,6 +903,7 @@
 				B45988CA24429720006F9B32 /* AppComponent.swift in Sources */,
 				B46DBE5E27A70FEB0041E8DF /* UserDefaultsDataSource.swift in Sources */,
 				B4AF586A28A1A3600073EC7D /* DbFavoriteStop.swift in Sources */,
+				B4F4E3F828DE96E300D752EF /* LoadingResponse.swift in Sources */,
 				B41E351927EFBBE900142750 /* PermissionDataSource.swift in Sources */,
 				B41E34D527EF8E7C00142750 /* MinimalStop.swift in Sources */,
 				B4C9350A28D9221A006C7D29 /* TimedNetworkPublisher.swift in Sources */,
@@ -912,6 +935,7 @@
 				B4DC662027375F3F0046F470 /* OverviewComponent.swift in Sources */,
 				B4DC662427383C580046F470 /* PredictionsComponent.swift in Sources */,
 				B4247E8E28A6AAC2006F1482 /* TitleServiceStop.swift in Sources */,
+				B4F4E3F528DD108500D752EF /* LoadingStripView.swift in Sources */,
 				B46DBEC827A754B90041E8DF /* OverviewViewController.swift in Sources */,
 				B4AF587F28A2FF130073EC7D /* Capacity.swift in Sources */,
 				B4AF587028A1AAC60073EC7D /* RouteDbDataSource.swift in Sources */,

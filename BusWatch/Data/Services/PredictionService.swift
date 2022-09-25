@@ -11,9 +11,8 @@ import Foundation
 
 protocol PredictionService {
 
-    func observePredictionsForStopId(_ stopId: String,
-                                     serviceType: ServiceType,
-                                     updateInterval: TimeInterval) -> AnyPublisher<[Prediction], Error>
+    func observePredictionsForStopId(_ stopId: String, serviceType: ServiceType, updateInterval: TimeInterval)
+        -> AnyPublisher<LoadingResponse<[Prediction]>, Error>
 
 }
 
@@ -35,31 +34,38 @@ final class PredictionServiceImpl: PredictionService {
         self.routeDataSource = routeDataSource
     }
 
-    func observePredictionsForStopId(_ stopId: String,
-                                     serviceType: ServiceType,
-                                     updateInterval: TimeInterval = 15) -> AnyPublisher<[Prediction], Error> {
+    func observePredictionsForStopId(_ stopId: String, serviceType: ServiceType, updateInterval: TimeInterval = 15)
+        -> AnyPublisher<LoadingResponse<[Prediction]>, Error> {
 
         return networkDataSource.observePredictionsForStopId(stopId,
                                                              serviceType: serviceType,
                                                              updateInterval: updateInterval)
-        .flatMap { [unowned self] (predictions: [NetworkPrediction]) -> AnyPublisher<[Prediction], Swift.Error> in
-            let routeIds = predictions.compactMap { prediction in prediction.routeId }
-            return self.mapNetworkPredictions(predictions, using: routeIds)
+        .map { [unowned self] response in
+            self.mapNetworkResponse(response)
         }
         .eraseToAnyPublisher()
     }
 
-    private func mapNetworkPredictions(_ predictions: [NetworkPrediction],
-                                       using routeIds: [String]) -> AnyPublisher<[Prediction], Swift.Error> {
-        return routeDataSource.observeRoutesWithIds(routeIds)
-            .map { (routes: [DbRoute]) -> [Prediction] in
-                let routeMap = Dictionary(uniqueKeysWithValues: routes.map { route in (route.id, route) })
-                return predictions.compactMap { prediction in
+    private func mapNetworkResponse(_ response: LoadingResponse<[NetworkPrediction]>) -> LoadingResponse<[Prediction]> {
+        switch response {
+        case .loading:
+            return .loading
+        case .success(let networkPredictions):
+            let routeIds = networkPredictions.compactMap { prediction in prediction.routeId }
+            let dbRoutesResult = routeDataSource.getRoutesWithIds(routeIds)
+            switch dbRoutesResult {
+            case .success(let dbRoutes):
+                let routeMap = Dictionary(uniqueKeysWithValues: dbRoutes.map { route in (route.id, route) })
+                let routes = networkPredictions.compactMap { prediction in
                     prediction.toPrediction(route: routeMap[prediction.routeId ?? ""],
                                             dateFormatter: PredictionServiceImpl.dateFormatter)
                 }
+                return .success(routes)
+            case .failure(let error):
+                return .failure(error)
             }
-            .eraseToAnyPublisher()
+        case .failure(let error):
+            return .failure(error)
+        }
     }
-
 }

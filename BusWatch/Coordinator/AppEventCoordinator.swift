@@ -37,7 +37,7 @@ final class AppEventCoordinator {
 
     private let window: UIWindow
 
-    private let appComponent = AppComponent()
+    private var appComponent: AppComponent!
 
     private let navigationController: UINavigationController = {
         return AppNavigationViewController()
@@ -47,7 +47,12 @@ final class AppEventCoordinator {
 
     init(window: UIWindow) {
         self.window = window
-        self.window.rootViewController = navigationController
+        do {
+            self.appComponent = try AppComponent()
+            self.window.rootViewController = navigationController
+        } catch {
+            self.window.rootViewController = UIViewController()
+        }
     }
 
     func presentOverviewViewController() {

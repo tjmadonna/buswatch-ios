@@ -16,23 +16,18 @@ final class DatabaseImpl: Database {
 
     static let databaseVersion = "5"
 
-    private let queueSubject = CurrentValueSubject<DatabaseQueue?, Error>(nil)
+    let queue: DatabaseQueue
 
     // MARK: - Initialization
 
-    init(databaseBuilder: GRDB.DatabaseQueue.Builder) {
-        do {
-            let queue = try databaseBuilder.build()
-            queueSubject.value = queue
-        } catch {
-            queueSubject.send(completion: .failure(error))
-        }
+    init(databaseBuilder: GRDB.DatabaseQueue.Builder) throws {
+        self.queue = try databaseBuilder.build()
     }
 
     // MARK: - DatabaseDataSource
 
     var queuePublisher: AnyPublisher<DatabaseQueue, Error> {
-        queueSubject.compactMap { $0 }
+        return CurrentValueSubject(queue)
             .eraseToAnyPublisher()
     }
 }

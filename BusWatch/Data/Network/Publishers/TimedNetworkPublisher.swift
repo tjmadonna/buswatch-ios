@@ -10,7 +10,7 @@ import Combine
 import Foundation
 
 /// Publisher that periodically makes a network request and decodes response into a specified decodable type
-struct TimedNetworkPublisher: Publisher {
+struct TimedNetworkPublisher<T>: Publisher where T: Decodable {
 
     fileprivate enum Error: Swift.Error {
         case invalidResponse
@@ -19,7 +19,7 @@ struct TimedNetworkPublisher: Publisher {
         case endpoint
     }
 
-    typealias Output = Data
+    typealias Output = LoadingResponse<T>
 
     typealias Failure = Swift.Error
 
@@ -49,6 +49,8 @@ struct TimedNetworkPublisher: Publisher {
         typealias DataResult = Result<Data, Swift.Error>
 
         // MARK: - Properties
+
+        private let decoder: JSONDecoder = JSONDecoder()
 
         // URL for the network request
         private let url: URL
@@ -97,45 +99,28 @@ struct TimedNetworkPublisher: Publisher {
             if requestInProgess { return }
             requestInProgess = true
 
+            _ = downstream?.receive(.loading)
             requestCancellable = urlSession.dataTaskPublisher(for: url)
-                .tryMap { (data: Data, response: URLResponse) -> DataResult in
-                    guard let response = response as? HTTPURLResponse else {
-                        return .failure(Error.invalidResponse)
-                    }
-
-                    if response.statusCode == 429 {
-                        throw Error.rateLimitted
-                    }
-
-                    if response.statusCode == 503 {
-                        throw Error.serverBusy
-                    }
-
-                    return .success(data)
+                .tryMap { [unowned self] (data, response) in
+                    try self.tryToMapNetworkResponse(data: data, response: response)
                 }
-                .catch { (error: Swift.Error) -> AnyPublisher<DataResult, Swift.Error> in
-
-                    switch error {
-                    case Error.rateLimitted, Error.serverBusy:
-                        return Fail<DataResult, Swift.Error>(error: error)
-                            .delay(for: 3, scheduler: DispatchQueue.main)
-                            .eraseToAnyPublisher()
-                    default:
-                        return Just(.failure(error))
-                            .setFailureType(to: Swift.Error.self)
-                            .eraseToAnyPublisher()
-                    }
+                .catch { [unowned self] error in
+                    self.catchError(error)
                 }
                 .retry(2)
                 .tryMap { (result: DataResult) -> Data in
                     return try result.get()
                 }
+                .decode(type: T.self, decoder: decoder)
                 .sink(
-                    receiveCompletion: { [weak self] _ in
+                    receiveCompletion: { [weak self] completion in
+                        if case .failure(let error) = completion {
+                            _ = self?.downstream?.receive(.failure(error))
+                        }
                         self?.requestInProgess = false
                     },
-                    receiveValue: { [weak self] (data: Data) in
-                        _ = self?.downstream?.receive(data)
+                    receiveValue: { [weak self] (value: T) in
+                        _ = self?.downstream?.receive(.success(value))
                     })
         }
 
@@ -144,6 +129,35 @@ struct TimedNetworkPublisher: Publisher {
             requestCancellable = nil
             timer?.invalidate()
             timer = nil
+        }
+
+        private func tryToMapNetworkResponse(data: Data, response: URLResponse) throws -> DataResult {
+            guard let response = response as? HTTPURLResponse else {
+                return .failure(Error.invalidResponse)
+            }
+
+            if response.statusCode == 429 {
+                throw Error.rateLimitted
+            }
+
+            if response.statusCode == 503 {
+                throw Error.serverBusy
+            }
+
+            return .success(data)
+        }
+
+        private func catchError(_ error: Swift.Error) -> AnyPublisher<DataResult, Swift.Error> {
+            switch error {
+            case TimedNetworkPublisher.Error.rateLimitted, TimedNetworkPublisher.Error.serverBusy:
+                return Fail<DataResult, Swift.Error>(error: error)
+                    .delay(for: 3, scheduler: DispatchQueue.main)
+                    .eraseToAnyPublisher()
+            default:
+                return Just(.failure(error))
+                    .setFailureType(to: Swift.Error.self)
+                    .eraseToAnyPublisher()
+            }
         }
     }
 }

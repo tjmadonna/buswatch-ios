@@ -11,7 +11,7 @@ import GRDB
 
 final class AppComponent {
 
-    private var databaseBuilder: GRDB.DatabaseQueue.Builder {
+    private static var databaseBuilder: GRDB.DatabaseQueue.Builder {
         return GRDB.DatabaseQueue.Builder(databasePath: DatabaseConfig.url, version: DatabaseImpl.databaseVersion)
             .createFromFile(DatabaseConfig.prePackagedDbUrl)
             .addMigration("1", migration: DatabaseMigration.migrateToVersion1)
@@ -24,9 +24,11 @@ final class AppComponent {
             }
     }
 
-    lazy var database: Database = {
-        return DatabaseImpl(databaseBuilder: databaseBuilder)
-    }()
+    let database: Database
+
+    init() throws {
+        self.database = try DatabaseImpl(databaseBuilder: AppComponent.databaseBuilder)
+    }
 
     lazy var userDefaults: UserDefaultsDataSource = {
         return UserDefaultsDataSourceImpl()
