@@ -1,18 +1,18 @@
 //
-//  OverviewFavoriteStopCell.swift
+//  SectionContentCell.swift
 //  BusWatch
 //
-//  Created by Tyler Madonna on 4/16/20.
-//  Copyright © 2020 Tyler Madonna. All rights reserved.
+//  Created by Tyler Madonna on 9/24/22.
+//  Copyright © 2022 Tyler Madonna. All rights reserved.
 //
 
 import UIKit
 
-final class OverviewFavoriteStopCell: UITableViewCell {
+final class SectionContentCell: UITableViewCell {
 
     // MARK: - Properties
 
-    static let reuseId = "OverviewFavoriteStopCell"
+    static let reuseId = "SectionContentCell"
 
     // MARK: - Subviews
 
@@ -72,18 +72,27 @@ final class OverviewFavoriteStopCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupSubviews()
+        setup()
     }
 
     required init?(coder: NSCoder) {
-        fatalError("OverviewFavoriteStopCell Error: Table View Cell cannot be initialized with init(coder:)")
+        fatalError("init(coder:) cannot be used to create view")
     }
 
-    // MARK: - Setup
+}
 
-    private func setupSubviews() {
+extension SectionContentCell {
+
+    private func setup() {
+        style()
+        layout()
+    }
+
+    private func style() {
         accessoryType = .disclosureIndicator
+    }
 
+    private func layout() {
         decoratorContainerView.addSubview(decoratorLabel)
 
         NSLayoutConstraint.activate([
@@ -124,7 +133,10 @@ final class OverviewFavoriteStopCell: UITableViewCell {
         ])
     }
 
-    // MARK: - properties/functions
+}
+
+// MARK: - Public functions
+extension SectionContentCell {
 
     func configureWithStop(_ favoriteStop: FavoriteStop, dividerVisible: Bool) {
         dividerView.isHidden = !dividerVisible
@@ -133,4 +145,5 @@ final class OverviewFavoriteStopCell: UITableViewCell {
         titleLabel.text = favoriteStop.title
         routesLabel.text = favoriteStop.filteredRoutes.joined(separator: ", ")
     }
+
 }

@@ -1,16 +1,16 @@
 //
-//  OverviewTitleHeaderView.swift
+//  SectionHeaderView.swift
 //  BusWatch
 //
-//  Created by Tyler Madonna on 4/18/20.
-//  Copyright © 2020 Tyler Madonna. All rights reserved.
+//  Created by Tyler Madonna on 9/24/22.
+//  Copyright © 2022 Tyler Madonna. All rights reserved.
 //
 
 import UIKit
 
-final class OverviewTitleHeaderView: UITableViewHeaderFooterView {
+final class SectionHeaderView: UITableViewHeaderFooterView {
 
-    static let reuseId = "OverviewTitleHeaderView"
+    static let reuseId = "SectionHeaderView"
 
     // MARK: - Views
 
@@ -47,16 +47,27 @@ final class OverviewTitleHeaderView: UITableViewHeaderFooterView {
 
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
-        setupSubviews()
+        setup()
     }
 
     required init?(coder: NSCoder) {
-        fatalError("OverviewTitleHeaderView Error: Collection View Cell cannot be initialized with init(coder:)")
+        fatalError("init(coder:) cannot be used to create view")
     }
 
-    // MARK: - Setup
+}
 
-    private func setupSubviews() {
+extension SectionHeaderView {
+
+    private func setup() {
+        style()
+        layout()
+    }
+
+    private func style() {
+
+    }
+
+    private func layout() {
         contentView.addSubview(textBackgroundView)
         contentView.addSubview(titleLabel)
         contentView.addSubview(dividerView)
@@ -82,9 +93,13 @@ final class OverviewTitleHeaderView: UITableViewHeaderFooterView {
         ])
     }
 
-    // MARK: - properties/functions
+}
+
+// MARK: - Public functions
+extension SectionHeaderView {
 
     func configureWithTitle(_ title: String) {
         titleLabel.text = title
     }
+
 }

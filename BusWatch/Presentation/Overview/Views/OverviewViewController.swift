@@ -27,7 +27,7 @@ final class OverviewViewController: UITableViewController {
     }
 
     required init?(coder: NSCoder) {
-        fatalError("OverviewViewController Error: View Controller cannot be initialized with init(coder:)")
+        fatalError("View Controller cannot be initialized with init(coder:)")
     }
 
     deinit {
@@ -58,9 +58,9 @@ final class OverviewViewController: UITableViewController {
 
     private func setupTableView() {
         tableView.separatorStyle = .none
-        tableView.register(OverviewTitleHeaderView.self,
-                           forHeaderFooterViewReuseIdentifier: OverviewTitleHeaderView.reuseId)
-        tableView.register(OverviewFavoriteStopCell.self, forCellReuseIdentifier: OverviewFavoriteStopCell.reuseId)
+        tableView.register(SectionHeaderView.self, forHeaderFooterViewReuseIdentifier: SectionHeaderView.reuseId)
+        tableView.register(SectionFooterView.self, forHeaderFooterViewReuseIdentifier: SectionFooterView.reuseId)
+        tableView.register(SectionContentCell.self, forCellReuseIdentifier: SectionContentCell.reuseId)
         tableView.register(OverviewMessageCell.self, forCellReuseIdentifier: OverviewMessageCell.reuseId)
         tableView.register(OverviewMapCell.self, forCellReuseIdentifier: OverviewMapCell.reuseId)
 
@@ -108,18 +108,21 @@ final class OverviewViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 75
+        return 72
     }
 
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 5
+        return 8
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: OverviewTitleHeaderView.reuseId)
-            as? OverviewTitleHeaderView
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: SectionHeaderView.reuseId) as? SectionHeaderView
         header?.configureWithTitle(sections[section].title)
         return header
+    }
+
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return tableView.dequeueReusableHeaderFooterView(withIdentifier: SectionFooterView.reuseId)
     }
 
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -156,15 +159,10 @@ final class OverviewViewController: UITableViewController {
     // MARK: - Table View Cells
 
     // Favorite Stop Cell
-    private func favoriteStopCellForStop(_ favoriteStop: FavoriteStop,
-                                         indexPath: IndexPath) -> OverviewFavoriteStopCell {
+    private func favoriteStopCellForStop(_ favoriteStop: FavoriteStop, indexPath: IndexPath) -> SectionContentCell {
 
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: OverviewFavoriteStopCell.reuseId,
-                                                       for: indexPath) as? OverviewFavoriteStopCell else {
-            fatalError("""
-                       OverviewViewController Error: Unable to dequeue OverviewFavoriteStopCell at index
-                       path \(indexPath)
-                       """)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SectionContentCell.reuseId, for: indexPath) as? SectionContentCell else {
+            fatalError("Unable to dequeue SectionContentCell at index path \(indexPath)")
         }
 
         let dividerVisible = sections[indexPath.section].items.lastIndex != indexPath.row
