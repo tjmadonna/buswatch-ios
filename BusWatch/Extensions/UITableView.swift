@@ -60,6 +60,16 @@ extension UITableView {
                                    with animation: () -> RowAnimation,
                                    reloadRow: (IndexPath) -> Void) {
 
+        if !changeset.elementDeleted.isEmpty {
+            deleteRows(at: changeset.elementDeleted.map { IndexPath(row: $0.element, section: $0.section) },
+                       with: animation())
+        }
+
+        if !changeset.elementInserted.isEmpty {
+            insertRows(at: changeset.elementInserted.map { IndexPath(row: $0.element, section: $0.section) },
+                       with: animation())
+        }
+
         if !changeset.elementUpdated.isEmpty {
             changeset.elementUpdated.forEach {
                 reloadRow(IndexPath(row: $0.element, section: $0.section))
@@ -70,16 +80,5 @@ extension UITableView {
             moveRow(at: IndexPath(row: source.element, section: source.section),
                     to: IndexPath(row: target.element, section: target.section))
         }
-
-        if !changeset.elementDeleted.isEmpty {
-            deleteRows(at: changeset.elementDeleted.map { IndexPath(row: $0.element, section: $0.section) },
-                       with: animation())
-        }
-
-        if !changeset.elementInserted.isEmpty {
-            insertRows(at: changeset.elementInserted.map { IndexPath(row: $0.element, section: $0.section) },
-                       with: animation())
-        }
     }
-
 }

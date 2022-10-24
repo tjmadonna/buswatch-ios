@@ -93,8 +93,10 @@ final class PredictionsDataViewController: UITableViewController {
             tableView.reload(using: stagedChangeset, with: .fade, setData: { [weak self] newPredictions in
                 self?.predictions = newPredictions
             }, reloadRow: { indexPath in
-                let cell = self.tableView.cellForRow(at: indexPath)
-                configureCell(cell, forIndexPath: indexPath)
+                // Cell will return nil if cell if off screen. We don't need to update it then
+                if let cell = self.tableView.cellForRow(at: indexPath) {
+                    configureCell(cell, forIndexPath: indexPath)
+                }
             })
         } else {
             self.predictions = predictions
