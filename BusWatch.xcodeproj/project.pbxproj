@@ -242,23 +242,6 @@
 			path = DataSources;
 			sourceTree = "<group>";
 		};
-		B40AF460272CE097003A35D6 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				B4FA416E2446888B0066F81E /* OverviewViewController.swift */,
-				B490E4F624492DB4006CA233 /* Cells */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		B40AF465272CE0D0003A35D6 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				B4DCAD49245272B900A0E978 /* OverviewViewModel.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
 		B41AE570243FFBEB0024FFC1 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -361,29 +344,21 @@
 			path = DataSources;
 			sourceTree = "<group>";
 		};
-		B43835DF27712FD800C49537 /* ViewModels */ = {
+		B43835DF27712FD800C49537 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
 				B43835E027712FD800C49537 /* FilterRoutesViewModel.swift */,
 			);
-			path = ViewModels;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		B43835E127712FD800C49537 /* Contracts */ = {
-			isa = PBXGroup;
-			children = (
-				B43835E227712FD800C49537 /* FilterRoutesContract.swift */,
-			);
-			path = Contracts;
-			sourceTree = "<group>";
-		};
-		B43835E727712FD800C49537 /* Views */ = {
+		B43835E727712FD800C49537 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				B43835E827712FD800C49537 /* FilterRoutesViewController.swift */,
 				B4721AD127F26DBB00D9E04C /* Cells */,
 			);
-			path = Views;
+			path = View;
 			sourceTree = "<group>";
 		};
 		B43E07192453CEE700393B76 /* Config */ = {
@@ -416,18 +391,6 @@
 				B43835F92771395C00C49537 /* FilterRoutesComponent.swift */,
 			);
 			path = Dependencies;
-			sourceTree = "<group>";
-		};
-		B46DBE4B27A70E850041E8DF /* Presentation */ = {
-			isa = PBXGroup;
-			children = (
-				B4F4E3F328DD107100D752EF /* Core */,
-				B46DBE5F27A7101C0041E8DF /* Overview */,
-				B46DBE6327A718420041E8DF /* StopMap */,
-				B46DBE7E27A719730041E8DF /* Predictions */,
-				B46DBEAF27A71BD80041E8DF /* FilterRoutes */,
-			);
-			path = Presentation;
 			sourceTree = "<group>";
 		};
 		B46DBE4C27A70EA80041E8DF /* Data */ = {
@@ -472,32 +435,13 @@
 			path = UserDefaults;
 			sourceTree = "<group>";
 		};
-		B46DBE5F27A7101C0041E8DF /* Overview */ = {
-			isa = PBXGroup;
-			children = (
-				B4DCAD4B2452770800A0E978 /* Contracts */,
-				B40AF460272CE097003A35D6 /* Views */,
-				B40AF465272CE0D0003A35D6 /* ViewModels */,
-			);
-			path = Overview;
-			sourceTree = "<group>";
-		};
-		B46DBE6327A718420041E8DF /* StopMap */ = {
-			isa = PBXGroup;
-			children = (
-				B4981AFD24453A60003F161F /* Contracts */,
-				B4F055F22727927F00ED8E30 /* Views */,
-				B4F055F32727928700ED8E30 /* ViewModels */,
-			);
-			path = StopMap;
-			sourceTree = "<group>";
-		};
 		B46DBE7E27A719730041E8DF /* Predictions */ = {
 			isa = PBXGroup;
 			children = (
-				B4F216DF27334C0F006A5748 /* Contracts */,
-				B4F216DE27334BF4006A5748 /* Views */,
-				B4F216E027334C16006A5748 /* ViewModels */,
+				B43E07222455164400393B76 /* PredictionsContract.swift */,
+				B4F216DE27334BF4006A5748 /* View */,
+				B4F216E027334C16006A5748 /* ViewModel */,
+				B4D5E09A29070A0A00808F14 /* Model */,
 			);
 			path = Predictions;
 			sourceTree = "<group>";
@@ -505,9 +449,10 @@
 		B46DBEAF27A71BD80041E8DF /* FilterRoutes */ = {
 			isa = PBXGroup;
 			children = (
-				B43835E127712FD800C49537 /* Contracts */,
-				B43835E727712FD800C49537 /* Views */,
-				B43835DF27712FD800C49537 /* ViewModels */,
+				B43835E227712FD800C49537 /* FilterRoutesContract.swift */,
+				B43835E727712FD800C49537 /* View */,
+				B43835DF27712FD800C49537 /* ViewModel */,
+				B4D5E09B29070A1300808F14 /* Model */,
 			);
 			path = FilterRoutes;
 			sourceTree = "<group>";
@@ -544,7 +489,7 @@
 				B43E07192453CEE700393B76 /* Config */,
 				B490A0062453B4E8000744EB /* Coordinator */,
 				B45988C8244296F1006F9B32 /* Dependencies */,
-				B46DBE4B27A70E850041E8DF /* Presentation */,
+				B4D5E0912907086600808F14 /* Features */,
 				B41E34CF27EF8BE700142750 /* Domain */,
 				B46DBE4C27A70EA80041E8DF /* Data */,
 				B41AE570243FFBEB0024FFC1 /* Extensions */,
@@ -606,14 +551,6 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		B4981AFD24453A60003F161F /* Contracts */ = {
-			isa = PBXGroup;
-			children = (
-				B4981AFE24453A73003F161F /* StopMapContract.swift */,
-			);
-			path = Contracts;
-			sourceTree = "<group>";
-		};
 		B4981B0024454C2F003F161F /* Annotations */ = {
 			isa = PBXGroup;
 			children = (
@@ -663,12 +600,100 @@
 			path = Publishers;
 			sourceTree = "<group>";
 		};
-		B4DCAD4B2452770800A0E978 /* Contracts */ = {
+		B4D5E0912907086600808F14 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				B4D5E0922907087600808F14 /* Core */,
+				B4D5E094290708BE00808F14 /* Overview */,
+				B4D5E0982907092200808F14 /* StopMap */,
+				B46DBE7E27A719730041E8DF /* Predictions */,
+				B46DBEAF27A71BD80041E8DF /* FilterRoutes */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		B4D5E0922907087600808F14 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				B4D5E0932907087F00808F14 /* View */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		B4D5E0932907087F00808F14 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B4F4E3F428DD108500D752EF /* LoadingStripView.swift */,
+				B4E2B0FE28DFD4EF0085AA01 /* Section */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B4D5E094290708BE00808F14 /* Overview */ = {
 			isa = PBXGroup;
 			children = (
 				B4DCAD4C2452771C00A0E978 /* OverviewContract.swift */,
+				B4D5E095290708CD00808F14 /* View */,
+				B4D5E096290708D600808F14 /* ViewModel */,
+				B4D5E097290708E000808F14 /* Model */,
 			);
-			path = Contracts;
+			path = Overview;
+			sourceTree = "<group>";
+		};
+		B4D5E095290708CD00808F14 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B4FA416E2446888B0066F81E /* OverviewViewController.swift */,
+				B490E4F624492DB4006CA233 /* Cells */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B4D5E096290708D600808F14 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B4DCAD49245272B900A0E978 /* OverviewViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		B4D5E097290708E000808F14 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B4D5E0982907092200808F14 /* StopMap */ = {
+			isa = PBXGroup;
+			children = (
+				B4981AFE24453A73003F161F /* StopMapContract.swift */,
+				B4F055F22727927F00ED8E30 /* View */,
+				B4F055F32727928700ED8E30 /* ViewModel */,
+				B4D5E099290709FE00808F14 /* Model */,
+			);
+			path = StopMap;
+			sourceTree = "<group>";
+		};
+		B4D5E099290709FE00808F14 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B4D5E09A29070A0A00808F14 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B4D5E09B29070A1300808F14 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		B4E2B0FE28DFD4EF0085AA01 /* Section */ = {
@@ -702,21 +727,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		B4F055F22727927F00ED8E30 /* Views */ = {
+		B4F055F22727927F00ED8E30 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				B477CD69243BF7280027AE11 /* StopMapViewController.swift */,
 				B4981B0024454C2F003F161F /* Annotations */,
 			);
-			path = Views;
+			path = View;
 			sourceTree = "<group>";
 		};
-		B4F055F32727928700ED8E30 /* ViewModels */ = {
+		B4F055F32727928700ED8E30 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
 				B45988CB24429C69006F9B32 /* StopMapViewModel.swift */,
 			);
-			path = ViewModels;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		B4F216D12730C962006A5748 /* Urls */ = {
@@ -729,7 +754,7 @@
 			path = Urls;
 			sourceTree = "<group>";
 		};
-		B4F216DE27334BF4006A5748 /* Views */ = {
+		B4F216DE27334BF4006A5748 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				B43E071D2455157100393B76 /* PredictionsViewController.swift */,
@@ -739,40 +764,15 @@
 				B43E0724245516CB00393B76 /* Cells */,
 				B4A10AD727756EF000E6B632 /* Handlers */,
 			);
-			path = Views;
+			path = View;
 			sourceTree = "<group>";
 		};
-		B4F216DF27334C0F006A5748 /* Contracts */ = {
-			isa = PBXGroup;
-			children = (
-				B43E07222455164400393B76 /* PredictionsContract.swift */,
-			);
-			path = Contracts;
-			sourceTree = "<group>";
-		};
-		B4F216E027334C16006A5748 /* ViewModels */ = {
+		B4F216E027334C16006A5748 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
 				B43E071F2455160D00393B76 /* PredictionsViewModel.swift */,
 			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		B4F4E3F328DD107100D752EF /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				B4F4E3F628DD3A9000D752EF /* Views */,
-			);
-			path = Core;
-			sourceTree = "<group>";
-		};
-		B4F4E3F628DD3A9000D752EF /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				B4F4E3F428DD108500D752EF /* LoadingStripView.swift */,
-				B4E2B0FE28DFD4EF0085AA01 /* Section */,
-			);
-			path = Views;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
