@@ -23,7 +23,7 @@ final class FilterRoutesViewModel {
 
     private let stopId: String
 
-    private let routeService: RouteService
+    private let service: FilterRoutesServiceConformable
 
     private weak var eventCoordinator: FilterRoutesEventCoordinator?
 
@@ -32,10 +32,10 @@ final class FilterRoutesViewModel {
     // MARK: - Initialization
 
     init(stopId: String,
-         routeService: RouteService,
+         service: FilterRoutesServiceConformable,
          eventCoordinator: FilterRoutesEventCoordinator) {
         self.stopId = stopId
-        self.routeService = routeService
+        self.service = service
         self.eventCoordinator = eventCoordinator
         setupObservers()
     }
@@ -47,7 +47,7 @@ final class FilterRoutesViewModel {
     // MARK: - Setup
 
     private func setupObservers() {
-        routeService.observeFilterableRoutesForStopId(stopId)
+        service.observeFilterableRoutesForStopId(stopId)
             .map { routes in routes.sorted { route1, route2 in route1.id.compare(route2.id) == .orderedAscending }}
             .map { routes in FilterRoutesState.data(routes) }
             .replaceError(with: FilterRoutesState.error("Couldn't get routes"))
@@ -72,8 +72,7 @@ final class FilterRoutesViewModel {
     private func handleRouteSelectedIntent(_ index: Int) {
         if case .data(var routes) = stateSubject.value {
             let currentRoute = routes[index]
-            let newRoute = FilterableRoute(id: currentRoute.id,
-                                           filtered: !currentRoute.filtered)
+            let newRoute = FilterRoute(id: currentRoute.id, filtered: !currentRoute.filtered)
             routes[index] = newRoute
             stateSubject.value = .data(routes)
         }
@@ -89,14 +88,13 @@ final class FilterRoutesViewModel {
             let excludedRouteIds = routes.filter { route in route.filtered }
                 .map { route in route.id }
 
-            routeService.updateExcludedRouteIdsForStopId(stopId, routeIds: excludedRouteIds)
-                .receive(on: RunLoop.main)
-                .sink(receiveCompletion: { _ in
-
-                }, receiveValue: { [weak self] _ in
-                    self?.eventCoordinator?.cancelSelectedInFilterRoutes()
-                })
-                .store(in: &cancellables)
+            Task.init { [unowned self] in
+                _ = await self.service.updateExcludedRouteIdsForStopId(stopId, routeIds: excludedRouteIds)
+                DispatchQueue.main.async {
+                    self.eventCoordinator?.cancelSelectedInFilterRoutes()
+                }
+            }
         }
     }
+
 }

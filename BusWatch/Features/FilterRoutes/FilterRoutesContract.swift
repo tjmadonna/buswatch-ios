@@ -13,7 +13,7 @@ import UIKit
 
 enum FilterRoutesState {
     case loading
-    case data([FilterableRoute])
+    case data([FilterRoute])
     case error(String)
 }
 

@@ -36,13 +36,9 @@ final class PredictionsViewModel {
 
     private static let predictionsUpdateTime = TimeInterval(15)
 
-    private let stop: TitleServiceStop
+    private let stop: PredictionsStop
 
-    private let stopService: StopService
-
-    private let predictionService: PredictionService
-
-    private let routeService: RouteService
+    private let service: PredictionsServiceConformable
 
     private weak var eventCoordinator: PredictionsEventCoordinator?
 
@@ -52,15 +48,11 @@ final class PredictionsViewModel {
 
     // MARK: - Initialization
 
-    init(stop: TitleServiceStop,
-         stopService: StopService,
-         predictionService: PredictionService,
-         routeService: RouteService,
+    init(stop: PredictionsStop,
+         service: PredictionsServiceConformable,
          eventCoordinator: PredictionsEventCoordinator) {
         self.stop = stop
-        self.stopService = stopService
-        self.predictionService = predictionService
-        self.routeService = routeService
+        self.service = service
         self.eventCoordinator = eventCoordinator
         self.navBarStateSubject = CurrentValueSubject<PredictionsNavBarState, Never>(
             PredictionsNavBarState(favorited: false, title: stop.title)
@@ -69,7 +61,6 @@ final class PredictionsViewModel {
     }
 
     deinit {
-        NotificationCenter.default.removeObserver(self)
         cancelPredictionsPublisher()
         cancellables.removeAll()
         print("Deinniting predictions view model")
@@ -80,7 +71,6 @@ final class PredictionsViewModel {
     private func setupObservers() {
         startObservingNavBarState()
         startObservingPredictions()
-        startObservingAppNotifications()
     }
 
     // MARK: - Intent Handling
@@ -96,54 +86,42 @@ final class PredictionsViewModel {
 
     private func handleToggleFavoritedIntent() {
         // If stop is favorited, unfavorite it and if stop if unfavorited, favorite it
-        let publisher = navBarStateSubject.value.favorited
-            ? stopService.unfavoriteStop(stop.id)
-            : stopService.favoriteStop(stop.id)
 
-        publisher.sink(
-            receiveCompletion: { completion in
-                if case .failure(let error) = completion {
+        if navBarStateSubject.value.favorited {
+            Task.init {
+                if case .failure(let error) = await service.unfavoriteStop(stop.id) {
                     print(error)
                 }
-            }, receiveValue: { _ in
-            })
-            .store(in: &cancellables)
+            }
+        } else {
+            Task.init {
+                if case .failure(let error) = await service.favoriteStop(stop.id) {
+                    print(error)
+                }
+            }
+        }
     }
 
     private func handleFilterRoutesSelectedIntent() {
         eventCoordinator?.filterRoutesSelectedInFilterRoutes(stop.id)
     }
 
-    private func startObservingAppNotifications() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(cancelPredictionsPublisher),
-                                               name: UIApplication.didEnterBackgroundNotification,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(startObservingPredictions),
-                                               name: UIApplication.didBecomeActiveNotification,
-                                               object: nil)
-    }
-
     private func startObservingNavBarState() {
-        stopService.observeStopById(stop.id)
-            // map to navbar state
-            .map { stop in PredictionsNavBarState(favorited: stop.favorite, title: stop.title) }
-            // set default navbar state if error occurs
+        service.observeFavoriteStateForStop(stop.id)
+            .map { [unowned self] favorited in PredictionsNavBarState(favorited: favorited, title: self.stop.title) }
             .replaceError(with: PredictionsNavBarState(favorited: false, title: ""))
             .receive(on: RunLoop.main)
             .subscribe(self.navBarStateSubject)
             .store(in: &cancellables)
     }
 
-    @objc private func startObservingPredictions() {
+    private func startObservingPredictions() {
         cancelPredictionsPublisher()
 
-        print("Starting prediction call")
         // Update data everytime the predictions or excluded routes changes
         predictionsCancellable = Publishers.CombineLatest(
-            predictionService.observePredictionsForStopId(stop.id, serviceType: stop.serviceType, updateInterval: 15),
-            routeService.observeExcludedRouteIdsForStopId(stop.id)
+            service.observePredictionsForStop(stop, updateInterval: 15),
+            service.observeExcludedRouteIdsForStopId(stop.id)
         )
         .map { [unowned self] (response, excludedRouteIds) in
             self.mapToPredictions(response: response, excludedRouteIds: excludedRouteIds)
@@ -156,8 +134,7 @@ final class PredictionsViewModel {
         })
     }
 
-    @objc private func cancelPredictionsPublisher() {
-        print("Cancelling prediction call")
+    private func cancelPredictionsPublisher() {
         predictionsCancellable?.cancel()
         predictionsCancellable = nil
     }
@@ -197,4 +174,5 @@ final class PredictionsViewModel {
             print(error)
         }
     }
+
 }

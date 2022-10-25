@@ -67,7 +67,7 @@ final class StopMapViewController: UIViewController {
     }
 
     required init?(coder: NSCoder) {
-        fatalError("StopMapViewController Error: View Controller be cannot initialized with init(coder:)")
+        fatalError("View Controller be cannot initialized with init(coder:)")
     }
 
     deinit {
@@ -128,12 +128,13 @@ final class StopMapViewController: UIViewController {
     private func setupObservers() {
         viewModel.state.sink { [weak self] state in
             switch state {
-            case .setLocationBounds(let locationBounds):
+            case .setCoordinateRegion(let coordinateRegion):
                 // We setup the map view here to avoid the mapView regionDidChangeAnimated on the default map location
                 self?.setupMapView()
-                self?.renderSetLocationBoundsState(locationBounds)
-            case .setLocationBoundsWithStops(let locationBounds, let stops):
-                self?.renderSetLocationBoundsWithStopsState(locationBounds, stops: stops)
+                self?.renderSetCoordinateRegionState(coordinateRegion)
+            case .setCoordinateRegionWithStopMarkers(let coordinateRegion, let markers):
+                self?.renderSetCoordinateRegionWithStopMarkersState(coordinateRegion, stopMarkers: markers)
+
             case .error(let message):
                 self?.renderErrorState(message)
             default:
@@ -166,20 +167,20 @@ final class StopMapViewController: UIViewController {
 
     // MARK: - State Rendering
 
-    private func renderSetLocationBoundsState(_ locationBounds: LocationBounds) {
-        if locationBounds != mapView.locationBounds {
-            mapView.setLocationBounds(locationBounds, animated: false)
+    private func renderSetCoordinateRegionState(_ coordinateRegion: MKCoordinateRegion) {
+        if coordinateRegion != mapView.region {
+            mapView.setRegion(coordinateRegion, animated: false)
         }
     }
 
-    private func renderSetLocationBoundsWithStopsState(_ locationBounds: LocationBounds, stops: [DetailedStop]) {
-        if locationBounds != mapView.locationBounds {
+    private func renderSetCoordinateRegionWithStopMarkersState(_ coordinateRegion: MKCoordinateRegion, stopMarkers: [StopMarker]) {
+        if coordinateRegion != mapView.region {
             // Only update the map location if it's not already set there.
             // This will trigger mapView regionDidChangeAnimated
-            mapView.setLocationBounds(locationBounds, animated: false)
+            mapView.setRegion(coordinateRegion, animated: false)
         }
 
-        let newStopAnnotations = stops.map { stop in StopMapStopAnnotation(stop: stop) }
+        let newStopAnnotations = stopMarkers.map { stopMarker in StopMapStopAnnotation(stopMarker: stopMarker) }
 
         guard let currentStopAnnotations = self.currentStopAnnotations else {
             self.currentStopAnnotations = newStopAnnotations
@@ -222,7 +223,7 @@ final class StopMapViewController: UIViewController {
 extension StopMapViewController: MKMapViewDelegate {
 
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-        viewModel.handleIntent(.mapLocationMoved(mapView.locationBounds))
+        viewModel.handleIntent(.coordinateRegionMoved(mapView.region))
     }
 
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -240,6 +241,6 @@ extension StopMapViewController: MKMapViewDelegate {
                  annotationView view: MKAnnotationView,
                  calloutAccessoryControlTapped control: UIControl) {
         guard let annotation = view.annotation as? StopMapStopAnnotation else { return }
-        viewModel.handleIntent(.stopSelected(annotation.stop))
+        viewModel.handleIntent(.stopMarkerSelected(annotation.stopMarker))
     }
 }

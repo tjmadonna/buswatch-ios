@@ -6,9 +6,10 @@
 //  Copyright © 2020 Tyler Madonna. All rights reserved.
 //
 
-import Foundation
 import Combine
 import CoreLocation
+import Foundation
+import MapKit
 
 final class StopMapViewModel {
 
@@ -30,9 +31,7 @@ final class StopMapViewModel {
 
     // MARK: - Properties
 
-    private let stopService: StopService
-
-    private let locationService: LocationService
+    private let service: StopMapServiceConformable
 
     private weak var eventCoordinator: StopMapEventCoordinator?
 
@@ -42,26 +41,28 @@ final class StopMapViewModel {
 
     // MARK: - Initialization
 
-    init(stopService: StopService,
-         locationService: LocationService,
+    init(service: StopMapServiceConformable,
          eventCoordinator: StopMapEventCoordinator) {
-        self.stopService = stopService
-        self.locationService = locationService
+        self.service = service
         self.eventCoordinator = eventCoordinator
+        setupLastCoordinatorRegion()
         setupObservers()
     }
 
     // MARK: - Setup
 
-    private func setupObservers() {
-        locationService.observeLastLocationBounds()
-            .map { locationBounds in StopMapState.setLocationBounds(locationBounds) }
-            .replaceError(with: .error("Can't find last location"))
-            .receive(on: RunLoop.main)
-            .subscribe(stateSubject)
-            .store(in: &cancellables)
+    private func setupLastCoordinatorRegion() {
+        let result = service.getLastCoordinateRegion()
+        switch result {
+        case .success(let coordinateRegion):
+            stateSubject.value = .setCoordinateRegion(coordinateRegion)
+        case .failure(let error):
+            print(error)
+        }
+    }
 
-        locationStatusCancellable = locationService.observeCurrentLocationPermissionStatus()
+    private func setupObservers() {
+        service.observeCurrentLocationPermission()
             .receive(on: RunLoop.main)
             .sink { [unowned self] status in
                 switch status {
@@ -71,42 +72,40 @@ final class StopMapViewModel {
                     self.fabStateSubject.value = false
                 }
             }
+            .store(in: &cancellables)
     }
 
     // MARK: - Intent Handling
 
     func handleIntent(_ intent: StopMapIntent) {
         switch intent {
-        case .mapLocationMoved(let locationBounds):
-            self.handleMoveMapLocationBoundsIntent(locationBounds: locationBounds)
-        case .stopSelected(let stop):
-            self.eventCoordinator?.stopSelectedInStopMap(stop)
+        case .coordinateRegionMoved(let coordinateRegion):
+            handleCoordinateRegionMovedIntent(coordinateRegion)
+        case .stopMarkerSelected(let stopMarker):
+            eventCoordinator?.stopMarkerSelectedInStopMap(stopMarker)
         }
     }
 
-    private func handleMoveMapLocationBoundsIntent(locationBounds: LocationBounds) {
-        cancellables.removeAll()
+    private func handleCoordinateRegionMovedIntent(_ coordinateRegion: MKCoordinateRegion) {
+        if case .failure(let error) = service.updateLastCoordinateRegion(coordinateRegion) {
+            print(error)
+        }
 
-        // Save the location, so we can restore it
-        locationService.saveLastLocationBounds(locationBounds)
-            .sink(receiveCompletion: { completion in
-                if case .failure(let error) = completion {
-                    print(error)
-                }
-            }, receiveValue: { _ in
-
-            })
-            .store(in: &cancellables)
-
-        if abs(locationBounds.west - locationBounds.east) >= StopMapViewModel.maxLatitudeToShowStops {
+        if abs(coordinateRegion.span.latitudeDelta) >= StopMapViewModel.maxLatitudeToShowStops {
             // If the map is too far zoomed out, we don't display any stops
-            stateSubject.value = .setLocationBoundsWithStops(locationBounds, [])
+            stateSubject.value = .setCoordinateRegionWithStopMarkers(coordinateRegion, [])
         } else {
-            stopService.observeStopsInLocationBounds(locationBounds)
-                .map { stops in StopMapState.setLocationBoundsWithStops(locationBounds, stops) }
-                .catch { error in Just(StopMapState.error(error.localizedDescription)) }
-                .subscribe(stateSubject)
-                .store(in: &cancellables)
+            Task.init { [unowned self] in
+                let result = await self.service.getStopMarkersInCoordinateRegion(coordinateRegion)
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success(let markers):
+                        self.stateSubject.value = .setCoordinateRegionWithStopMarkers(coordinateRegion, markers)
+                    case .failure(let error):
+                        self.stateSubject.value = .error(error.localizedDescription)
+                    }
+                }
+            }
         }
     }
 }

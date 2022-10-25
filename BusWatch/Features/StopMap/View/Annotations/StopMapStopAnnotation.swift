@@ -6,26 +6,28 @@
 //  Copyright © 2020 Tyler Madonna. All rights reserved.
 //
 
+import Foundation
 import MapKit
 
 final class StopMapStopAnnotation: NSObject, MKAnnotation {
 
     var coordinate: CLLocationCoordinate2D {
-        return CLLocationCoordinate2D(latitude: stop.latitude, longitude: stop.longitude)
+        return CLLocationCoordinate2D(latitude: stopMarker.coordinate.latitude,
+                                      longitude: stopMarker.coordinate.longitude)
     }
 
     var title: String? {
-        return stop.title
+        return stopMarker.title
     }
 
     var subtitle: String? {
-        return stop.filteredRoutes.joined(separator: ", ")
+        return stopMarker.routes.joined(separator: ", ")
     }
 
-    let stop: DetailedStop
+    let stopMarker: StopMarker
 
-    init(stop: DetailedStop) {
-        self.stop = stop
+    init(stopMarker: StopMarker) {
+        self.stopMarker = stopMarker
         super.init()
     }
 
@@ -36,4 +38,5 @@ final class StopMapStopAnnotation: NSObject, MKAnnotation {
             coordinate.latitude == otherAnnotation.coordinate.latitude &&
             coordinate.longitude == otherAnnotation.coordinate.longitude
     }
+
 }

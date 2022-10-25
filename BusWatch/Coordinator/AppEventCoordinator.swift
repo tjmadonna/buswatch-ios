@@ -29,6 +29,7 @@ final class AppNavigationViewController: UINavigationController {
 
         view.backgroundColor = .systemGroupedBackground
     }
+
 }
 
 final class AppEventCoordinator {
@@ -67,7 +68,7 @@ final class AppEventCoordinator {
         navigationController.pushViewController(viewControlller, animated: true)
     }
 
-    func presentPredictionsViewControllerForStop(_ stop: TitleServiceStop) {
+    func presentPredictionsViewControllerForStop(_ stop: PredictionsStop) {
         let predictionsComponent = PredictionsComponent()
         let viewControlller = predictionsComponent.providePredictionsViewController(appComponent,
                                                                                     eventCoordinator: self,
@@ -83,26 +84,29 @@ final class AppEventCoordinator {
         let navController = AppNavigationViewController(rootViewController: viewControlller)
         navigationController.present(navController, animated: true, completion: nil)
     }
+
 }
 
 extension AppEventCoordinator: OverviewEventCoordinator {
 
-    func favoriteStopSelectedInOverview(_ stop: FavoriteStop) {
-        let titleServiceStop = TitleServiceStop(id: stop.id, title: stop.title, serviceType: stop.serviceType)
-        presentPredictionsViewControllerForStop(titleServiceStop)
+    func favoriteStopSelectedInOverview(_ stop: OverviewFavoriteStop) {
+        let predictionsStop = PredictionsStop(id: stop.id, title: stop.title, serviceType: stop.serviceType)
+        presentPredictionsViewControllerForStop(predictionsStop)
     }
 
     func stopMapSelectedInOverview() {
         presentStopMapViewController()
     }
+
 }
 
 extension AppEventCoordinator: StopMapEventCoordinator {
 
-    func stopSelectedInStopMap(_ stop: DetailedStop) {
-        let titleServiceStop = TitleServiceStop(id: stop.id, title: stop.title, serviceType: stop.serviceType)
-        presentPredictionsViewControllerForStop(titleServiceStop)
+    func stopMarkerSelectedInStopMap(_ stopMarker: StopMarker) {
+        let predictionsStop = PredictionsStop(id: stopMarker.id, title: stopMarker.title, serviceType: stopMarker.serviceType)
+        presentPredictionsViewControllerForStop(predictionsStop)
     }
+
 }
 
 extension AppEventCoordinator: PredictionsEventCoordinator {
@@ -110,6 +114,7 @@ extension AppEventCoordinator: PredictionsEventCoordinator {
     func filterRoutesSelectedInFilterRoutes(_ stopId: String) {
         presentFilterRoutesViewControllerForStop(stopId)
     }
+
 }
 
 extension AppEventCoordinator: FilterRoutesEventCoordinator {
@@ -121,4 +126,5 @@ extension AppEventCoordinator: FilterRoutesEventCoordinator {
     func cancelSelectedInFilterRoutes() {
         navigationController.topViewController?.dismiss(animated: true, completion: nil)
     }
+
 }

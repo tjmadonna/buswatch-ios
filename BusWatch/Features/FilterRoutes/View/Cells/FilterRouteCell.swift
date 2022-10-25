@@ -45,7 +45,7 @@ final class FilterRouteCell: UITableViewCell {
     }
 
     required init?(coder: NSCoder) {
-        fatalError("FilterRouteCell Error: Table View Cell cannot be initialized with init(coder:)")
+        fatalError("Table View Cell cannot be initialized with init(coder:)")
     }
 
     // MARK: - Setup
@@ -76,10 +76,11 @@ final class FilterRouteCell: UITableViewCell {
         ])
     }
 
-    func configureWithFilterableRoute(_ filterableRoute: FilterableRoute, dividerVisible: Bool) {
-        titleLabel.text = filterableRoute.id
-        checkMarkImageView.isHidden = filterableRoute.filtered
+    func configureWithFilterRoute(_ filterRoute: FilterRoute, dividerVisible: Bool) {
+        titleLabel.text = filterRoute.id
+        checkMarkImageView.isHidden = filterRoute.filtered
 
         dividerView.isHidden = !dividerVisible
     }
+
 }

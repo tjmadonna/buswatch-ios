@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MapKit
 import UIKit
 
 // MARK: - Models
@@ -17,9 +18,9 @@ struct OverviewSection {
 }
 
 enum OverviewItem {
-    case favoriteStop(FavoriteStop)
+    case favoriteStop(OverviewFavoriteStop)
     case emptyFavoriteStop
-    case map(LocationBounds)
+    case map(MKCoordinateRegion)
 }
 
 // MARK: - States
@@ -33,7 +34,7 @@ enum OverviewState {
 // MARK: - Intent
 
 enum OverviewIntent {
-    case favoriteStopSelected(_ favoriteStop: FavoriteStop)
+    case favoriteStopSelected(_ favoriteStop: OverviewFavoriteStop)
     case stopMapSelected
 }
 
@@ -41,7 +42,7 @@ enum OverviewIntent {
 
 protocol OverviewEventCoordinator: AnyObject {
 
-    func favoriteStopSelectedInOverview(_ stop: FavoriteStop)
+    func favoriteStopSelectedInOverview(_ stop: OverviewFavoriteStop)
 
     func stopMapSelectedInOverview()
 

@@ -6,8 +6,9 @@
 //  Copyright © 2020 Tyler Madonna. All rights reserved.
 //
 
-import Foundation
 import Combine
+import Foundation
+import MapKit
 
 final class OverviewViewModel {
 
@@ -21,9 +22,7 @@ final class OverviewViewModel {
 
     // MARK: - Properties
 
-    private let stopService: StopService
-
-    private let locationService: LocationService
+    private let service: OverviewServiceConformable
 
     private weak var eventCoordinator: OverviewEventCoordinator?
 
@@ -31,11 +30,8 @@ final class OverviewViewModel {
 
     // MARK: - Initialization
 
-    init(stopService: StopService,
-         locationService: LocationService,
-         eventCoordinator: OverviewEventCoordinator) {
-        self.stopService = stopService
-        self.locationService = locationService
+    init(service: OverviewServiceConformable, eventCoordinator: OverviewEventCoordinator) {
+        self.service = service
         self.eventCoordinator = eventCoordinator
         setupObservers()
     }
@@ -47,9 +43,9 @@ final class OverviewViewModel {
     // MARK: - Setup
 
     private func setupObservers() {
-        Publishers.CombineLatest(stopService.observeFavoriteStops(), locationService.observeLastLocationBounds())
-            .map { [unowned self] (stops, locationBounds) in
-                self.mapToOverviewSections(stops: stops, locationBounds: locationBounds)
+        Publishers.CombineLatest(service.observeFavoriteStops(), service.observeLastCoordinateRegion())
+            .map { [unowned self] (stops, coordinateRegion) in
+                self.mapToOverviewSections(stops: stops, coordinateRegion: coordinateRegion)
             }
             .map { sections in OverviewState.data(sections) }
             .replaceError(with: .error("Couldn't get favorite stops"))
@@ -58,17 +54,16 @@ final class OverviewViewModel {
             .store(in: &cancellables)
     }
 
-    private func mapToOverviewSections(stops: [FavoriteStop],
-                                       locationBounds: LocationBounds) -> [OverviewSection] {
+    private func mapToOverviewSections(stops: [OverviewFavoriteStop], coordinateRegion: MKCoordinateRegion) -> [OverviewSection] {
         if stops.isEmpty {
             return [
                 OverviewSection(title: "Favorite Stops", items: [.emptyFavoriteStop]),
-                OverviewSection(title: "Map", items: [.map(locationBounds)])
+                OverviewSection(title: "Map", items: [.map(coordinateRegion)])
             ]
         } else {
             return [
                 OverviewSection(title: "Favorite Stops", items: stops.map { stop in .favoriteStop(stop) }),
-                OverviewSection(title: "Map", items: [.map(locationBounds)])
+                OverviewSection(title: "Map", items: [.map(coordinateRegion)])
             ]
         }
     }
@@ -83,4 +78,5 @@ final class OverviewViewModel {
             self.eventCoordinator?.stopMapSelectedInOverview()
         }
     }
+
 }

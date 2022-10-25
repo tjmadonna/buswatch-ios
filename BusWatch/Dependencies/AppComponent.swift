@@ -11,27 +11,18 @@ import GRDB
 
 final class AppComponent {
 
-    private static var databaseBuilder: GRDB.DatabaseQueue.Builder {
-        return GRDB.DatabaseQueue.Builder(databasePath: DatabaseConfig.url, version: DatabaseImpl.databaseVersion)
-            .createFromFile(DatabaseConfig.prePackagedDbUrl)
-            .addMigration("1", migration: DatabaseMigration.migrateToVersion1)
-            .addMigration("2", migration: DatabaseMigration.migrateToVersion2)
-            .addMigration("3", migration: DatabaseMigration.migrateToVersion3)
-            .addMigration("4", migration: DatabaseMigration.migrateToVersion4)
-            .addMigration("5", migration: DatabaseMigration.migrateToVersion5)
-            .addPopulator { queue in
-                try DatabasePopulator.populateFromPrepackagedDbURL(DatabaseConfig.prePackagedDbUrl, queue: queue)
-            }
-    }
-
-    let database: Database
+    let database: DatabaseConformable
 
     init() throws {
-        self.database = try DatabaseImpl(databaseBuilder: AppComponent.databaseBuilder)
+        self.database = try Database()
     }
 
-    lazy var userDefaults: UserDefaultsDataSource = {
-        return UserDefaultsDataSourceImpl()
+    lazy var urlSource: UrlSourceConformable = {
+        let config = UrlConfig(scheme: NetworkConfig.scheme,
+                               host: NetworkConfig.host,
+                               apiKey: NetworkConfig.apiKey,
+                               basePath: NetworkConfig.basePath)
+        return UrlSource(urlConfig: config)
     }()
 
     lazy var urlSession: URLSession = {
@@ -41,49 +32,8 @@ final class AppComponent {
         return URLSession(configuration: sessionConfig)
     }()
 
-    // MARK: - Data Sources
+    var userDefaults: UserDefaults {
+        return .standard
+    }
 
-    lazy var stopDatabaseDataSource: StopDbDataSource = {
-        return StopDbDataSourceImpl(database: database)
-    }()
-
-    lazy var locationDatabaseDataSource: LocationDbDataSource = {
-        return LocationDbDataSourceImpl(database: database)
-    }()
-
-    lazy var locationPermissionDataSource: PermissionDataSource = {
-        return PermissionDataSourceImpl()
-    }()
-
-    lazy var predictionNetworkDataSource: NetworkDataSource = {
-        let config = UrlConfig(scheme: NetworkConfig.scheme,
-                               host: NetworkConfig.host,
-                               apiKey: NetworkConfig.apiKey,
-                               basePath: NetworkConfig.basePath)
-        let urlSource = UrlSourceImpl(urlConfig: config)
-        return NetworkDataSourceImpl(urlSource: urlSource, urlSession: urlSession)
-    }()
-
-    lazy var routeDatabaseDataSource: RouteDbDataSource = {
-        return RouteDbDataSourceImpl(database: database)
-    }()
-
-    // MARK: - Services
-
-    lazy var stopService: StopService = {
-        return StopServiceImpl(dbDataSource: stopDatabaseDataSource)
-    }()
-
-    lazy var locationService: LocationService = {
-        return LocationServiceImpl(dbDataSource: locationDatabaseDataSource)
-    }()
-
-    lazy var predictionService: PredictionService = {
-        return PredictionServiceImpl(networkDataSource: predictionNetworkDataSource,
-                                     routeDataSource: routeDatabaseDataSource)
-    }()
-
-    lazy var routeService: RouteService = {
-        return RouteServiceImpl(dbDataSource: routeDatabaseDataSource)
-    }()
 }

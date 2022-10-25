@@ -13,14 +13,17 @@ final class PredictionsComponent {
 
     func providePredictionsViewController(_ appComponent: AppComponent,
                                           eventCoordinator: PredictionsEventCoordinator,
-                                          stop: TitleServiceStop) -> PredictionsViewController {
+                                          stop: PredictionsStop) -> PredictionsViewController {
 
+        let service = PredictionsService(database: appComponent.database,
+                                         urlSession: appComponent.urlSession,
+                                         urlSource: appComponent.urlSource)
+        
         let viewModel = PredictionsViewModel(stop: stop,
-                                             stopService: appComponent.stopService,
-                                             predictionService: appComponent.predictionService,
-                                             routeService: appComponent.routeService,
+                                             service: service,
                                              eventCoordinator: eventCoordinator)
 
         return PredictionsViewController(viewModel: viewModel)
     }
+
 }

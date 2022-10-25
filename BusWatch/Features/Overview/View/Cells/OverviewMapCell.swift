@@ -6,8 +6,9 @@
 //  Copyright © 2020 Tyler Madonna. All rights reserved.
 //
 
-import UIKit
+import Foundation
 import MapKit
+import UIKit
 
 final class OverviewMapCell: UITableViewCell {
 
@@ -31,7 +32,7 @@ final class OverviewMapCell: UITableViewCell {
     }
 
     required init?(coder: NSCoder) {
-        fatalError("OverviewMapCell Error: Table View Cell cannot be initialized with init(coder:)")
+        fatalError("Table View Cell cannot be initialized with init(coder:)")
     }
 
     // MARK: - Setup
@@ -55,7 +56,8 @@ final class OverviewMapCell: UITableViewCell {
 
     // MARK: - Properties/functions
 
-    func configureWithLocationBounds(_ locationBounds: LocationBounds) {
-        mapView.setLocationBounds(locationBounds, animated: false)
+    func configureWithCoordinateRegion(_ coordinateRegion: MKCoordinateRegion) {
+        mapView.setRegion(coordinateRegion, animated: false)
     }
+
 }

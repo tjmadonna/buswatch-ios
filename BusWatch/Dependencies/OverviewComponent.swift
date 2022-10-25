@@ -13,9 +13,9 @@ final class OverviewComponent {
     func provideOverviewViewController(_ appComponent: AppComponent,
                                        eventCoordinator: OverviewEventCoordinator) -> OverviewViewController {
 
-        let viewModel = OverviewViewModel(stopService: appComponent.stopService,
-                                          locationService: appComponent.locationService,
-                                          eventCoordinator: eventCoordinator)
+        let service = OverviewService(database: appComponent.database, userDefaults: appComponent.userDefaults)
+
+        let viewModel = OverviewViewModel(service: service, eventCoordinator: eventCoordinator)
 
         return OverviewViewController(viewModel: viewModel)
     }

@@ -138,12 +138,12 @@ extension SectionContentCell {
 // MARK: - Public functions
 extension SectionContentCell {
 
-    func configureWithStop(_ favoriteStop: FavoriteStop, dividerVisible: Bool) {
+    func configureWithStop(_ favoriteStop: OverviewFavoriteStop, dividerVisible: Bool) {
         dividerView.isHidden = !dividerVisible
 
         decoratorLabel.text = favoriteStop.title.first?.description
         titleLabel.text = favoriteStop.title
-        routesLabel.text = favoriteStop.filteredRoutes.joined(separator: ", ")
+        routesLabel.text = favoriteStop.routes.joined(separator: ", ")
     }
 
 }

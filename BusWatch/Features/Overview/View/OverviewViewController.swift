@@ -6,8 +6,10 @@
 //  Copyright © 2020 Tyler Madonna. All rights reserved.
 //
 
-import UIKit
 import Combine
+import Foundation
+import MapKit
+import UIKit
 
 final class OverviewViewController: UITableViewController {
 
@@ -151,20 +153,20 @@ final class OverviewViewController: UITableViewController {
             return favoriteStopCellForStop(stop, indexPath: indexPath)
         case .emptyFavoriteStop:
             return simpleMessageCellForIndexPath(indexPath)
-        case .map(let locationBounds):
-            return mapCellForLocationBounds(locationBounds, indexPath: indexPath)
+        case .map(let coordinateRegion):
+            return mapCellForCoordinateRegion(coordinateRegion, indexPath: indexPath)
         }
     }
 
     // MARK: - Table View Cells
 
     // Favorite Stop Cell
-    private func favoriteStopCellForStop(_ favoriteStop: FavoriteStop, indexPath: IndexPath) -> SectionContentCell {
+    private func favoriteStopCellForStop(_ favoriteStop: OverviewFavoriteStop, indexPath: IndexPath) -> SectionContentCell {
 
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: SectionContentCell.reuseId, for: indexPath) as? SectionContentCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SectionContentCell.reuseId,
+                                                       for: indexPath) as? SectionContentCell else {
             fatalError("Unable to dequeue SectionContentCell at index path \(indexPath)")
         }
-
         let dividerVisible = sections[indexPath.section].items.lastIndex != indexPath.row
         cell.configureWithStop(favoriteStop, dividerVisible: dividerVisible)
         return cell
@@ -177,21 +179,19 @@ final class OverviewViewController: UITableViewController {
                                                        for: indexPath) as? OverviewMessageCell else {
             fatalError("OverviewViewController Error: Unable to dequeue OverviewMessageCell at index path \(indexPath)")
         }
-
         cell.configureWithMessage("No favorite stops found")
         return cell
     }
 
     // Map Cell
-    private func mapCellForLocationBounds(_ locationBounds: LocationBounds,
-                                          indexPath: IndexPath) -> OverviewMapCell {
+    private func mapCellForCoordinateRegion(_ coordinateRegion: MKCoordinateRegion, indexPath: IndexPath) -> OverviewMapCell {
 
         guard let cell = tableView.dequeueReusableCell(withIdentifier: OverviewMapCell.reuseId,
                                                        for: indexPath) as? OverviewMapCell else {
             fatalError("OverviewViewController Error: Unable to dequeue OverviewMapCell at index path \(indexPath)")
         }
-
-        cell.configureWithLocationBounds(locationBounds)
+        cell.configureWithCoordinateRegion(coordinateRegion)
         return cell
     }
+
 }

@@ -6,6 +6,7 @@
 //  Copyright © 2020 Tyler Madonna. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
 final class OverviewMessageCell: UITableViewCell {
@@ -33,7 +34,7 @@ final class OverviewMessageCell: UITableViewCell {
     }
 
     required init?(coder: NSCoder) {
-        fatalError("OverviewMessageCell Error: Table View Cell cannot be initialized with init(coder:)")
+        fatalError("Table View Cell cannot be initialized with init(coder:)")
     }
 
     // MARK: - Setup
@@ -54,4 +55,5 @@ final class OverviewMessageCell: UITableViewCell {
     func configureWithMessage(_ message: String) {
         messageLabel.text = message
     }
+
 }

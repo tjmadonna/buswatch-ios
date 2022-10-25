@@ -7,28 +7,29 @@
 //
 
 import Foundation
+import MapKit
 import UIKit
 
 // MARK: - States
 
 enum StopMapState {
     case loading
-    case setLocationBounds(_ locationBounds: LocationBounds)
-    case setLocationBoundsWithStops(_ locationBounds: LocationBounds, _ stops: [DetailedStop])
+    case setCoordinateRegion(_ coordinateRegion: MKCoordinateRegion)
+    case setCoordinateRegionWithStopMarkers(_ coordinateRegion: MKCoordinateRegion, _ stopMarkers: [StopMarker])
     case error(String)
 }
 
 // MARK: - Intents
 
 enum StopMapIntent {
-    case mapLocationMoved(_ locationBounds: LocationBounds)
-    case stopSelected(_ stop: DetailedStop)
+    case coordinateRegionMoved(_ coordinateRegion: MKCoordinateRegion)
+    case stopMarkerSelected(_ stopMarker: StopMarker)
 }
 
 // MARK: - Coordinator
 
 protocol StopMapEventCoordinator: AnyObject {
 
-    func stopSelectedInStopMap(_ stop: DetailedStop)
+    func stopMarkerSelectedInStopMap(_ stopMarker: StopMarker)
 
 }

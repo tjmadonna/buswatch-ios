@@ -30,7 +30,7 @@ final class FilterRoutesViewController: UITableViewController {
 
     private let viewModel: FilterRoutesViewModel
 
-    private var routes = [FilterableRoute]()
+    private var routes = [FilterRoute]()
 
     private var cancellables: [AnyCancellable] = []
 
@@ -42,7 +42,7 @@ final class FilterRoutesViewController: UITableViewController {
     }
 
     required init?(coder: NSCoder) {
-        fatalError("FilterRoutesViewController Error: View Controller cannot be initialized with init(coder:)")
+        fatalError("View Controller cannot be initialized with init(coder:)")
     }
 
     // MARK: - UIViewController Lifecycle
@@ -118,12 +118,12 @@ final class FilterRoutesViewController: UITableViewController {
         }
         let route = routes[indexPath.row]
         cell.selectionStyle = .none
-        cell.configureWithFilterableRoute(route, dividerVisible: indexPath.row != routes.lastIndex)
+        cell.configureWithFilterRoute(route, dividerVisible: indexPath.row != routes.lastIndex)
     }
 
     // MARK: - Render
 
-    private func renderDataStateForRoutes(_ routes: [FilterableRoute]) {
+    private func renderDataStateForRoutes(_ routes: [FilterRoute]) {
         if self.routes.isEmpty {
             self.routes = routes
             tableView.reloadData()
@@ -133,8 +133,9 @@ final class FilterRoutesViewController: UITableViewController {
             tableView.reload(using: stagedChangeset, with: .fade, setData: { [weak self] newRoutes in
                 self?.routes = newRoutes
             }, reloadRow: { indexPath in
-                let cell = self.tableView.cellForRow(at: indexPath)
-                configureCell(cell, forIndexPath: indexPath)
+                if let cell = self.tableView.cellForRow(at: indexPath) {
+                    configureCell(cell, forIndexPath: indexPath)
+                }
             })
         }
     }

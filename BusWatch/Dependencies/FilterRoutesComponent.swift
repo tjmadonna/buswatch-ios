@@ -15,10 +15,14 @@ final class FilterRoutesComponent {
                                            eventCoordinator: FilterRoutesEventCoordinator,
                                            stopId: String) -> FilterRoutesViewController {
 
+        let service = FilterRoutesService(database: appComponent.database,
+                                          eventCoordinator: eventCoordinator)
+
         let viewModel = FilterRoutesViewModel(stopId: stopId,
-                                              routeService: appComponent.routeService,
+                                              service: service,
                                               eventCoordinator: eventCoordinator)
 
         return FilterRoutesViewController(viewModel: viewModel)
     }
+
 }
