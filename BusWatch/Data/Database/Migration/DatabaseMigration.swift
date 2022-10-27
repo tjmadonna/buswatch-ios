@@ -38,4 +38,8 @@ enum DatabaseMigration {
         try ResourceVersionsTable.Migration.createTableForVersion5(db: db)
     }
 
+    static func migrateToVersion6(db: GRDB.Database) throws {
+        try db.execute(sql: LastLocationTable.Migration.dropTableForVersion6)
+    }
+
 }

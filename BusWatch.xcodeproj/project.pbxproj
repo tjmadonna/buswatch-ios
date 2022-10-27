@@ -410,6 +410,14 @@
 			path = ApplicationDelegate;
 			sourceTree = "<group>";
 		};
+		B48683D9290A0A6B0004A568 /* Legacy */ = {
+			isa = PBXGroup;
+			children = (
+				B4F055D32727643900ED8E30 /* LastLocationTable.swift */,
+			);
+			path = Legacy;
+			sourceTree = "<group>";
+		};
 		B490A0062453B4E8000744EB /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
@@ -637,11 +645,11 @@
 			isa = PBXGroup;
 			children = (
 				B4F055CF272763E500ED8E30 /* StopsTable.swift */,
-				B4F055D32727643900ED8E30 /* LastLocationTable.swift */,
 				B4F055D52727645E00ED8E30 /* RoutesTable.swift */,
 				B489F5082827367100C7228D /* ResourceVersionsTable.swift */,
 				B4F055D12727641E00ED8E30 /* FavoriteStopsTable.swift */,
 				B43835F7277130C900C49537 /* ExcludedRoutesTable.swift */,
+				B48683D9290A0A6B0004A568 /* Legacy */,
 			);
 			path = Tables;
 			sourceTree = "<group>";

@@ -67,23 +67,6 @@ def create_routes(conn: sqlite3.Connection, routes: List[Route]):
         print(e)
 
 
-def create_last_location(conn: sqlite3.Connection):
-    try:
-        loc_tuples = (
-            1,
-            40.44785576556447,
-            40.4281598420304,
-            -80.00565690773512,
-            -79.98956365216942,
-        )
-        conn.execute(
-            "INSERT INTO last_location (id, north, south, west, east) values (?, ?, ?, ?, ?);",
-            loc_tuples,
-        )
-    except sqlite3.Error as e:
-        print(e)
-
-
 def create_migrations(conn: sqlite3.Connection, db_version: int):
     try:
         mig_tuples = [(i,) for i in range(1, db_version + 1)]
@@ -153,19 +136,6 @@ def run(
             """,
         )
 
-        # Last Location
-        create_table(
-            conn,
-            """ CREATE TABLE last_location (
-                id INTEGER PRIMARY KEY,
-                north DOUBLE NOT NULL,
-                south DOUBLE NOT NULL,
-                west DOUBLE NOT NULL,
-                east DOUBLE NOT NULL
-                );
-            """,
-        )
-
         # Resource version
         create_table(
             conn,
@@ -202,7 +172,6 @@ def run(
 
         create_stops(conn, stops)
         create_routes(conn, routes)
-        create_last_location(conn)
         create_migrations(conn, db_version)
         create_resource_version(conn, res_version)
 

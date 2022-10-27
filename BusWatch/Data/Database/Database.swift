@@ -22,7 +22,7 @@ final class Database: DatabaseConformable {
     }
 
     // MARK: - Properties
-    private static let databaseVersion = "5"
+    private static let databaseVersion = "6"
 
     let queue: DatabaseQueue
 
@@ -57,6 +57,7 @@ final class Database: DatabaseConformable {
         migrator.registerMigration("3", migrate: DatabaseMigration.migrateToVersion3)
         migrator.registerMigration("4", migrate: DatabaseMigration.migrateToVersion4)
         migrator.registerMigration("5", migrate: DatabaseMigration.migrateToVersion5)
+        migrator.registerMigration("6", migrate: DatabaseMigration.migrateToVersion6)
         try migrator.migrate(queue, upTo: Database.databaseVersion)
 
         // Update

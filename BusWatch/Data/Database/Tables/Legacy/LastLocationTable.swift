@@ -34,6 +34,11 @@ enum LastLocationTable {
         \(eastBoundColumn) DOUBLE NOT NULL
         )
         """
+
+        static let dropTableForVersion6 = """
+        DROP TABLE IF EXISTS \(tableName)
+        """
+
     }
 
     enum DefaultLocation {
@@ -48,4 +53,5 @@ enum LastLocationTable {
             ])
         }
     }
+
 }
