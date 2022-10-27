@@ -50,7 +50,6 @@
 		B46DBEC827A754B90041E8DF /* OverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FA416E2446888B0066F81E /* OverviewViewController.swift */; };
 		B46DBEC927A754B90041E8DF /* OverviewMapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FDF66A244BB6A800539C92 /* OverviewMapCell.swift */; };
 		B46DBECA27A754B90041E8DF /* OverviewContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DCAD4C2452771C00A0E978 /* OverviewContract.swift */; };
-		B46DBECB27A754B90041E8DF /* OverviewMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48F2BC4245F1DFC001900BE /* OverviewMessageCell.swift */; };
 		B46DBECC27A754B90041E8DF /* OverviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DCAD49245272B900A0E978 /* OverviewViewModel.swift */; };
 		B470C82327239368007CEAF9 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = B470C82227239368007CEAF9 /* GRDB */; };
 		B4721AD327F26DCE00D9E04C /* FilterRouteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4721AD227F26DCE00D9E04C /* FilterRouteCell.swift */; };
@@ -140,7 +139,6 @@
 		B477CD71243BF72F0027AE11 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B477CD73243BF72F0027AE11 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B489F5082827367100C7228D /* ResourceVersionsTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceVersionsTable.swift; sourceTree = "<group>"; };
-		B48F2BC4245F1DFC001900BE /* OverviewMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewMessageCell.swift; sourceTree = "<group>"; };
 		B48F2BCE245F906D001900BE /* DatabaseConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseConfig.swift; sourceTree = "<group>"; };
 		B48FE2462450F3AE002A5C6C /* NSLayoutConstraint+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+Utils.swift"; sourceTree = "<group>"; };
 		B490A0072453B4FA000744EB /* AppEventCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEventCoordinator.swift; sourceTree = "<group>"; };
@@ -430,7 +428,6 @@
 			isa = PBXGroup;
 			children = (
 				B4FDF66A244BB6A800539C92 /* OverviewMapCell.swift */,
-				B48F2BC4245F1DFC001900BE /* OverviewMessageCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -851,7 +848,6 @@
 				B46DBE8F27A719D30041E8DF /* PredictionsViewController.swift in Sources */,
 				B4D5E0A629070C2800808F14 /* UserDefaults+Values.swift in Sources */,
 				B4DC6622273836D20046F470 /* StopMapComponent.swift in Sources */,
-				B46DBECB27A754B90041E8DF /* OverviewMessageCell.swift in Sources */,
 				B46DBE4F27A70F1A0041E8DF /* StopsTable.swift in Sources */,
 				B4D5E0A429070BFC00808F14 /* MKCoordinateRegion+Utils.swift in Sources */,
 				B4D5E0B629072B1900808F14 /* PredictionsStop.swift in Sources */,

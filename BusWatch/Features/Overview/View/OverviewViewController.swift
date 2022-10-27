@@ -63,7 +63,7 @@ final class OverviewViewController: UITableViewController {
         tableView.register(SectionHeaderView.self, forHeaderFooterViewReuseIdentifier: SectionHeaderView.reuseId)
         tableView.register(SectionFooterView.self, forHeaderFooterViewReuseIdentifier: SectionFooterView.reuseId)
         tableView.register(SectionContentCell.self, forCellReuseIdentifier: SectionContentCell.reuseId)
-        tableView.register(OverviewMessageCell.self, forCellReuseIdentifier: OverviewMessageCell.reuseId)
+        tableView.register(SectionMessageCell.self, forCellReuseIdentifier: SectionMessageCell.reuseId)
         tableView.register(OverviewMapCell.self, forCellReuseIdentifier: OverviewMapCell.reuseId)
 
         // Preload map cell
@@ -173,11 +173,11 @@ final class OverviewViewController: UITableViewController {
     }
 
     // Empty Favorite Stop Cell
-    private func simpleMessageCellForIndexPath(_ indexPath: IndexPath) -> OverviewMessageCell {
+    private func simpleMessageCellForIndexPath(_ indexPath: IndexPath) -> SectionMessageCell {
 
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: OverviewMessageCell.reuseId,
-                                                       for: indexPath) as? OverviewMessageCell else {
-            fatalError("OverviewViewController Error: Unable to dequeue OverviewMessageCell at index path \(indexPath)")
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SectionMessageCell.reuseId,
+                                                       for: indexPath) as? SectionMessageCell else {
+            fatalError("Unable to dequeue SectionMessageCell at index path \(indexPath)")
         }
         cell.configureWithMessage("No favorite stops found")
         return cell
@@ -188,7 +188,7 @@ final class OverviewViewController: UITableViewController {
 
         guard let cell = tableView.dequeueReusableCell(withIdentifier: OverviewMapCell.reuseId,
                                                        for: indexPath) as? OverviewMapCell else {
-            fatalError("OverviewViewController Error: Unable to dequeue OverviewMapCell at index path \(indexPath)")
+            fatalError("Unable to dequeue OverviewMapCell at index path \(indexPath)")
         }
         cell.configureWithCoordinateRegion(coordinateRegion)
         return cell
