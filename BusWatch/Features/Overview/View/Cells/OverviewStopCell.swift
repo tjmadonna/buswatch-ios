@@ -1,5 +1,5 @@
 //
-//  SectionContentCell.swift
+//  OverviewStopCell.swift
 //  BusWatch
 //
 //  Created by Tyler Madonna on 9/24/22.
@@ -8,11 +8,11 @@
 
 import UIKit
 
-final class SectionContentCell: UITableViewCell {
+final class OverviewStopCell: UITableViewCell {
 
     // MARK: - Properties
 
-    static let reuseId = "SectionContentCell"
+    static let reuseId = "OverviewStopCell"
 
     // MARK: - Subviews
 
@@ -81,7 +81,7 @@ final class SectionContentCell: UITableViewCell {
 
 }
 
-extension SectionContentCell {
+extension OverviewStopCell {
 
     private func setup() {
         style()
@@ -136,7 +136,7 @@ extension SectionContentCell {
 }
 
 // MARK: - Public functions
-extension SectionContentCell {
+extension OverviewStopCell {
 
     func configureWithStop(_ favoriteStop: OverviewFavoriteStop, dividerVisible: Bool) {
         dividerView.isHidden = !dividerVisible

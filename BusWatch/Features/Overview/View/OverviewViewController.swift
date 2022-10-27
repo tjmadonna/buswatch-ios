@@ -62,8 +62,8 @@ final class OverviewViewController: UITableViewController {
         tableView.separatorStyle = .none
         tableView.register(SectionHeaderView.self, forHeaderFooterViewReuseIdentifier: SectionHeaderView.reuseId)
         tableView.register(SectionFooterView.self, forHeaderFooterViewReuseIdentifier: SectionFooterView.reuseId)
-        tableView.register(SectionContentCell.self, forCellReuseIdentifier: SectionContentCell.reuseId)
         tableView.register(SectionMessageCell.self, forCellReuseIdentifier: SectionMessageCell.reuseId)
+        tableView.register(OverviewStopCell.self, forCellReuseIdentifier: OverviewStopCell.reuseId)
         tableView.register(OverviewMapCell.self, forCellReuseIdentifier: OverviewMapCell.reuseId)
 
         // Preload map cell
@@ -161,11 +161,11 @@ final class OverviewViewController: UITableViewController {
     // MARK: - Table View Cells
 
     // Favorite Stop Cell
-    private func favoriteStopCellForStop(_ favoriteStop: OverviewFavoriteStop, indexPath: IndexPath) -> SectionContentCell {
+    private func favoriteStopCellForStop(_ favoriteStop: OverviewFavoriteStop, indexPath: IndexPath) -> OverviewStopCell {
 
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: SectionContentCell.reuseId,
-                                                       for: indexPath) as? SectionContentCell else {
-            fatalError("Unable to dequeue SectionContentCell at index path \(indexPath)")
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: OverviewStopCell.reuseId,
+                                                       for: indexPath) as? OverviewStopCell else {
+            fatalError("Unable to dequeue OverviewStopCell at index path \(indexPath)")
         }
         let dividerVisible = sections[indexPath.section].items.lastIndex != indexPath.row
         cell.configureWithStop(favoriteStop, dividerVisible: dividerVisible)
