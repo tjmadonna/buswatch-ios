@@ -31,7 +31,7 @@ final class Database: DatabaseConformable {
         let queue: DatabaseQueue
         if inMemory {
             // Load database queue in memory
-            queue = DatabaseQueue()
+            queue = try DatabaseQueue()
         } else {
             // Load database from file
             let fileManager = FileManager.default
