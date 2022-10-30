@@ -6,6 +6,7 @@
 //  Copyright © 2020 Tyler Madonna. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
 final class PredictionsCell: UITableViewCell {
@@ -17,18 +18,18 @@ final class PredictionsCell: UITableViewCell {
     private let decoratorContainerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.cornerRadius = 15
         view.backgroundColor = Resources.Colors.appGold
+        view.layer.cornerRadius = 15
+        view.layer.borderWidth = 1
+        view.layer.borderColor = UIColor(hex: "E7E7E7")?.cgColor
         return view
     }()
 
     private let decoratorLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.preferredFont(forTextStyle: .title1)
         label.textColor = .black
-        label.adjustsFontSizeToFitWidth = true
-        label.textAlignment = .center
+        label.font = UIFont.preferredFont(forTextStyle: .title1)
         return label
     }()
 
@@ -36,7 +37,7 @@ final class PredictionsCell: UITableViewCell {
         let stackView = UIStackView(arrangedSubviews: [titleLabel, arrivalTimeLabel])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        stackView.alignment = .fill
+        stackView.alignment = .leading
         stackView.distribution = .fill
         return stackView
     }()
@@ -45,9 +46,17 @@ final class PredictionsCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
-        label.lineBreakMode = .byWordWrapping
         label.font = UIFont.preferredFont(forTextStyle: .body)
         label.textColor = .label
+        return label
+    }()
+
+    private let arrivalTimeLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
+        label.font = UIFont.preferredFont(forTextStyle: .callout)
+        label.textColor = .secondaryLabel
         return label
     }()
 
@@ -55,16 +64,6 @@ final class PredictionsCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
-    }()
-
-    private let arrivalTimeLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 0
-        label.lineBreakMode = .byWordWrapping
-        label.font = UIFont.preferredFont(forTextStyle: .callout)
-        label.textColor = .secondaryLabel
-        return label
     }()
 
     private let dividerView: UIView = {
@@ -80,28 +79,37 @@ final class PredictionsCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupSubviews()
+        setup()
     }
 
     required init?(coder: NSCoder) {
-        fatalError("PredictionCell Error: Table View Cell cannot be initialized with init(coder:)")
+        fatalError("init(coder:) cannot be used to create view")
+    }
+}
+
+extension PredictionsCell {
+
+    private func setup() {
+        style()
+        layout()
     }
 
-    // MARK: - Setup
+    private func style() {
+        accessoryType = .disclosureIndicator
+    }
 
-    private func setupSubviews() {
+    private func layout() {
         decoratorContainerView.addSubview(decoratorLabel)
 
         NSLayoutConstraint.activate([
-            decoratorLabel.centerYAnchor.constraint(equalTo: decoratorContainerView.centerYAnchor),
-            decoratorLabel.leadingAnchor.constraint(equalTo: decoratorContainerView.leadingAnchor, constant: 5),
-            decoratorLabel.trailingAnchor.constraint(equalTo: decoratorContainerView.trailingAnchor, constant: -5)
+            decoratorLabel.centerXAnchor.constraint(equalTo: decoratorContainerView.centerXAnchor),
+            decoratorLabel.centerYAnchor.constraint(equalTo: decoratorContainerView.centerYAnchor)
         ])
 
         contentView.addSubview(decoratorContainerView)
         contentView.addSubview(textStackView)
-        contentView.addSubview(capacityImageView)
         contentView.addSubview(dividerView)
+        contentView.addSubview(capacityImageView)
 
         NSLayoutConstraint.activate([
             decoratorContainerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
@@ -139,9 +147,12 @@ final class PredictionsCell: UITableViewCell {
         ])
     }
 
-    // MARK: - properties/functions
+}
 
-    func configureWithPrediction(_ prediction: Prediction, dividerVisible: Bool, animate: Bool) {
+// MARK: - Public functions
+extension PredictionsCell {
+
+    func configureWithPrediction(_ prediction: PredictionsPredictionDataItem, dividerVisible: Bool, animate: Bool) {
         capacityImageView.isHidden = prediction.capacity == nil
         dividerView.isHidden = !dividerVisible
 
@@ -224,4 +235,5 @@ final class PredictionsCell: UITableViewCell {
             }
         }
     }
+
 }

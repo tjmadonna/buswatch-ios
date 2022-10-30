@@ -10,8 +10,6 @@ import UIKit
 
 final class LoadingStripView: UIView {
 
-    private let screenSize: CGRect = UIScreen.main.bounds
-
     private var isAnimating = false
 
     private let progressBarView: UIView = {
@@ -33,10 +31,6 @@ final class LoadingStripView: UIView {
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) cannot be used to create view")
-    }
-
-    override var intrinsicContentSize: CGSize {
-        return CGSize(width: 200, height: 8)
     }
 
 }

@@ -73,21 +73,21 @@ extension SectionHeaderView {
         contentView.addSubview(dividerView)
 
         NSLayoutConstraint.activate([
-            textBackgroundView.topAnchor.constraint(equalTo: titleLabel.topAnchor, constant: -10),
+            textBackgroundView.topAnchor.constraint(equalTo: titleLabel.topAnchor, constant: -16),
             textBackgroundView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             textBackgroundView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             textBackgroundView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ])
 
         NSLayoutConstraint.activate([
-            titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
+            titleLabel.bottomAnchor.constraint(equalTo: dividerView.topAnchor, constant: -10),
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20)
         ])
 
         NSLayoutConstraint.activate([
             dividerView.heightAnchor.constraint(equalToConstant: 0.75),
-            dividerView.bottomAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
+            dividerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -4),
             dividerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             dividerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0)
         ])

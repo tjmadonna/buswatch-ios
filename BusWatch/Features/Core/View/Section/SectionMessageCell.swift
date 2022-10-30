@@ -65,8 +65,27 @@ extension SectionMessageCell {
 // MARK: - Public functions
 extension SectionMessageCell {
 
-    func configureWithMessage(_ message: String) {
-        messageLabel.text = message
+    func configureWithMessage(_ message: String, animate: Bool = false) {
+        if animate {
+            animateTextChange(message, view: messageLabel)
+        } else {
+            messageLabel.text = message
+        }
     }
     
+}
+
+extension SectionMessageCell {
+
+    private func animateTextChange(_ newText: String?, view: UILabel) {
+        UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseIn) {
+            view.alpha = 0
+        } completion: { _ in
+            view.text = newText
+            UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseIn) {
+                view.alpha = 1
+            }
+        }
+    }
+
 }

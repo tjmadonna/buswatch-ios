@@ -47,9 +47,9 @@ final class OverviewMapCell: UITableViewCell {
             mapView.heightAnchor.constraint(equalTo: mapView.widthAnchor, multiplier: 9 / 16.0),
             mapView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             mapView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-            mapView.topAnchor.constraint(greaterThanOrEqualTo: contentView.topAnchor, constant: 10)
+            mapView.topAnchor.constraint(greaterThanOrEqualTo: contentView.topAnchor, constant: 8)
                 .usingPriority(.defaultLow),
-            mapView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -20)
+            mapView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -8)
                 .usingPriority(.defaultLow)
         ])
     }

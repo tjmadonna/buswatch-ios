@@ -14,19 +14,26 @@ final class PredictionsViewModel {
 
     // MARK: - Publishers
 
-    private let navBarStateSubject: CurrentValueSubject<PredictionsNavBarState, Never>
+    private let titleStateSubject: CurrentValueSubject<String, Never>
 
-    var navBarState: AnyPublisher<PredictionsNavBarState, Never> {
-        return navBarStateSubject.eraseToAnyPublisher()
+    var titleState: AnyPublisher<String, Never> {
+        return titleStateSubject.eraseToAnyPublisher()
     }
 
-    private let dataStateSubject = CurrentValueSubject<PredictionsDataState, Never>(.loading)
+    private let favoriteStateSubject: CurrentValueSubject<Bool, Never> = .init(false)
 
-    var dataState: AnyPublisher<PredictionsDataState, Never> {
+    var favoriteState: AnyPublisher<Bool, Never> {
+        return favoriteStateSubject.eraseToAnyPublisher()
+    }
+
+    private let dataStateSubject: CurrentValueSubject<[any PredictionsDataItemConformable], Never>
+        = .init([PredictionsMessageDataItem(message: "Loading...")])
+
+    var dataState: AnyPublisher<[any PredictionsDataItemConformable], Never> {
         return dataStateSubject.eraseToAnyPublisher()
     }
 
-    private let loadingStateSubject = CurrentValueSubject<Bool, Never>(true)
+    private let loadingStateSubject: CurrentValueSubject<Bool, Never> = .init(true)
 
     var loadingState: AnyPublisher<Bool, Never> {
         return loadingStateSubject.eraseToAnyPublisher()
@@ -42,6 +49,8 @@ final class PredictionsViewModel {
 
     private weak var eventCoordinator: PredictionsEventCoordinator?
 
+    private var initialLoad: Bool = true
+
     private var cancellables: [AnyCancellable] = []
 
     private var predictionsCancellable: AnyCancellable?
@@ -54,9 +63,7 @@ final class PredictionsViewModel {
         self.stop = stop
         self.service = service
         self.eventCoordinator = eventCoordinator
-        self.navBarStateSubject = CurrentValueSubject<PredictionsNavBarState, Never>(
-            PredictionsNavBarState(favorited: false, title: stop.title)
-        )
+        self.titleStateSubject = .init(stop.title)
         setupObservers()
     }
 
@@ -86,8 +93,7 @@ final class PredictionsViewModel {
 
     private func handleToggleFavoritedIntent() {
         // If stop is favorited, unfavorite it and if stop if unfavorited, favorite it
-
-        if navBarStateSubject.value.favorited {
+        if favoriteStateSubject.value {
             Task.init {
                 if case .failure(let error) = await service.unfavoriteStop(stop.id) {
                     print(error)
@@ -108,10 +114,9 @@ final class PredictionsViewModel {
 
     private func startObservingNavBarState() {
         service.observeFavoriteStateForStop(stop.id)
-            .map { [unowned self] favorited in PredictionsNavBarState(favorited: favorited, title: self.stop.title) }
-            .replaceError(with: PredictionsNavBarState(favorited: false, title: ""))
+            .replaceError(with: false)
             .receive(on: RunLoop.main)
-            .subscribe(self.navBarStateSubject)
+            .subscribe(self.favoriteStateSubject)
             .store(in: &cancellables)
     }
 
@@ -163,14 +168,18 @@ final class PredictionsViewModel {
         case .loading:
             loadingStateSubject.value = true
         case .success(let predictions):
+            initialLoad = false
             loadingStateSubject.value = false
             if predictions.isEmpty {
-                dataStateSubject.value = .noData
+                dataStateSubject.value = [PredictionsMessageDataItem(message: "No arrival times")]
             } else {
-                dataStateSubject.value = .data(predictions)
+                dataStateSubject.value = predictions.map { PredictionsPredictionDataItem(prediction: $0) }
             }
         case .failure(let error):
             loadingStateSubject.value = false
+            if initialLoad {
+                dataStateSubject.value = [PredictionsMessageDataItem(message: error.localizedDescription)]
+            }
             print(error)
         }
     }

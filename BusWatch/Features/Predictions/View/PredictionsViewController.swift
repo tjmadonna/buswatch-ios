@@ -2,62 +2,66 @@
 //  PredictionsViewController.swift
 //  BusWatch
 //
-//  Created by Tyler Madonna on 4/25/20.
-//  Copyright © 2020 Tyler Madonna. All rights reserved.
+//  Created by Tyler Madonna on 10/27/22.
+//  Copyright © 2022 Tyler Madonna. All rights reserved.
 //
 
-import UIKit
 import Combine
+import DifferenceKit
+import Foundation
+import UIKit
 
 final class PredictionsViewController: UIViewController {
 
-    // MARK: - Child View Controllers
-
-    private let loadingViewController: PredictionsLoadingViewController = {
-        let viewController = PredictionsLoadingViewController()
-        viewController.view.translatesAutoresizingMaskIntoConstraints = false
-        return viewController
-    }()
-
-    private let dataViewController: PredictionsDataViewController = {
-        let viewController = PredictionsDataViewController()
-        viewController.view.translatesAutoresizingMaskIntoConstraints = false
-        return viewController
-    }()
-
-    private let noDataViewController: PredictionsNoDataViewController = {
-        let viewController = PredictionsNoDataViewController()
-        viewController.view.translatesAutoresizingMaskIntoConstraints = false
-        return viewController
-    }()
-
-    private var currentViewController: UIViewController?
-
-    // MARK: -
-
+    // MARK: - Views
     private let loadingView: LoadingStripView = {
         let view = LoadingStripView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
+    private let tableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.separatorStyle = .none
+        tableView.register(SectionMessageCell.self, forCellReuseIdentifier: SectionMessageCell.reuseId)
+        tableView.register(PredictionsCell.self, forCellReuseIdentifier: PredictionsCell.reuseId)
+        return tableView
+    }()
+
+    private let titleView: SectionHeaderView = {
+        let view = SectionHeaderView(reuseIdentifier: SectionHeaderView.reuseId)
+        return view
+    }()
+
+    private let footerView: SectionFooterView = {
+        let view = SectionFooterView(reuseIdentifier: SectionFooterView.reuseId)
+        return view
+    }()
+
+    private lazy var favoriteUIBarButtonItem: UIBarButtonItem = {
+        let image = UIImage(systemName: "star")
+        return UIBarButtonItem(image: image,
+                               style: .plain,
+                               target: self,
+                               action: #selector(handleFavoriteBarButtonItemTouch(sender:)))
+    }()
+
     // MARK: - Properties
-
     private let viewModel: PredictionsViewModel
-
-    private var barItemHandler: PredictionsNavBarHandler?
 
     private var cancellables: [AnyCancellable] = []
 
-    // MARK: - Initialization
+    private var dataState: [AnyDifferentiable] = [.init(PredictionsMessageDataItem(message: "Loading..."))]
 
+    // MARK: - Initialization
     init(viewModel: PredictionsViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder: NSCoder) {
-        fatalError("PredictionsViewController Error: View Controller cannot be initialized with init(coder:)")
+        fatalError("View Controller cannot be initialized with init(coder:)")
     }
 
     deinit {
@@ -65,7 +69,6 @@ final class PredictionsViewController: UIViewController {
     }
 
     // MARK: - UIViewController Lifecycle
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewController()
@@ -75,141 +78,193 @@ final class PredictionsViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationItem.title = "Arrival Times"
         navigationItem.largeTitleDisplayMode =  .never
     }
 
-    // MARK: - Setup
+}
+
+// MARK: - Setup
+extension PredictionsViewController {
 
     private func setupViewController() {
-        view.backgroundColor = .systemBackground
         navigationItem.backButtonDisplayMode = .minimal
+        tableView.dataSource = self
+        tableView.delegate = self
 
-        loadingViewController.view.isHidden = true
-        dataViewController.view.isHidden = true
-        noDataViewController.view.isHidden = true
-
-        addChildViewController(loadingViewController)
-        addChildViewController(dataViewController)
-        addChildViewController(noDataViewController)
-
+        view.addSubview(tableView)
         view.addSubview(loadingView)
         NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             loadingView.topAnchor.constraint(equalTo: view.topAnchor),
             loadingView.heightAnchor.constraint(equalToConstant: 4),
             loadingView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             loadingView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
+
     }
 
     private func setupBarItems() {
-        barItemHandler = PredictionsNavBarHandler(navigationItem: navigationItem)
-        barItemHandler?.delegate = self
+        let filterImage = UIImage(systemName: "line.3.horizontal.decrease.circle")
+        let filterRouteBarButtonItem = UIBarButtonItem(image: filterImage,
+                                                       style: .plain,
+                                                       target: self,
+                                                       action: #selector(handleFilterRoutesBarButtonItemTouch(sender:)))
+        navigationItem.rightBarButtonItems = [filterRouteBarButtonItem, favoriteUIBarButtonItem]
     }
 
     private func setupObservers() {
-        viewModel.navBarState
-            .sink { [weak self] state in
-                self?.renderNavBarState(state)
-        }
-        .store(in: &cancellables)
-
-        viewModel.dataState.sink { [weak self] state in
-            switch state {
-            case .loading:
-                self?.renderLoadingDataState()
-            case .data(let predictionItems):
-                self?.renderDataStateForPredictions(predictionItems)
-            case .noData:
-                self?.renderNoDataStateForPredictions()
-            case .error(let message):
-                self?.renderErrorDataStateForMessage(message)
+        viewModel.titleState
+            .sink { [weak self] newTitle in
+                self?.titleView.configureWithTitle(newTitle)
             }
-        }
-        .store(in: &cancellables)
+            .store(in: &cancellables)
 
-        viewModel.loadingState.sink { [weak self] loading in
-            if loading {
-                self?.loadingView.startAnimating()
-            } else {
-                self?.loadingView.stopAnimating()
+        viewModel.favoriteState
+            .sink { [weak self] favorite in
+                let imageName = favorite ? "star.fill" : "star"
+                self?.favoriteUIBarButtonItem.image = UIImage(systemName: imageName)
             }
-        }
-        .store(in: &cancellables)
-    }
+            .store(in: &cancellables)
 
-    // MARK: - State Rendering
-
-    private func renderNavBarState(_ state: PredictionsNavBarState) {
-        barItemHandler?.setTitleForNavBarState(state)
-        barItemHandler?.setBarItemsForNavBarState(state)
-    }
-
-    private func renderLoadingDataState() {
-        loadingViewController.view.isHidden = false
-        currentViewController = loadingViewController
-    }
-
-    private func renderDataStateForPredictions(_ predictions: [Prediction]) {
-        let shouldAnimate = currentViewController == dataViewController
-        dataViewController.updatePredictions(predictions, animate: shouldAnimate)
-
-        if !shouldAnimate {
-            self.dataViewController.view.alpha = 0
-            self.dataViewController.view.isHidden = false
-            UIView.animateKeyframes(withDuration: 0.5, delay: 0, options: .calculationModeCubic, animations: {
-                UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.5) {
-                    self.currentViewController?.view.alpha = 0
+        viewModel.loadingState
+            .sink { [weak self] loading in
+                if loading {
+                    self?.loadingView.startAnimating()
+                } else {
+                    self?.loadingView.stopAnimating()
                 }
-                UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.5) {
-                    self.dataViewController.view.alpha = 1
-                }
-            }, completion: { _ in
-                self.loadingViewController.view.isHidden = true
-                self.noDataViewController.view.isHidden = true
-            })
-            self.currentViewController = dataViewController
-        }
-    }
-
-    private func renderNoDataStateForPredictions() {
-        guard self.currentViewController != noDataViewController else { return }
-
-        self.noDataViewController.view.alpha = 0
-        self.noDataViewController.view.isHidden = false
-        UIView.animateKeyframes(withDuration: 0.5, delay: 0, options: .calculationModeCubic, animations: {
-            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.5) {
-                self.currentViewController?.view.alpha = 0
             }
-            UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.5) {
-                self.noDataViewController.view.alpha = 1
+            .store(in: &cancellables)
+
+        viewModel.dataState
+            .sink { [weak self] newDataState in
+                let diffs = newDataState.map { AnyDifferentiable($0) }
+                self?.renderDataState(diffs)
             }
-        }, completion: { _ in
-            self.loadingViewController.view.isHidden = true
-            self.dataViewController.view.isHidden = true
-        })
-        self.currentViewController = noDataViewController
+            .store(in: &cancellables)
     }
 
-    private func renderErrorDataStateForMessage(_ message: String) {
-        loadingViewController.view.isHidden = true
-        dataViewController.view.isHidden = true
-        currentViewController = nil
-        presentAlertViewControllerWithTitle("An Error Occured", message: message)
-    }
 }
 
-extension PredictionsViewController: PredictionsNavBarHandlerDelegate {
+// MARK: - UITableViewDataSource
+extension PredictionsViewController: UITableViewDataSource {
 
-    func predictionsNavBarHandlerDidSelectFavoriteStop(_ predictionsNavBarHandler: PredictionsNavBarHandler) {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return dataState.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let item = dataState[indexPath.row].base
+        if item is PredictionsPredictionDataItem {
+            let cell = tableView.dequeueReusableCell(withIdentifier: PredictionsCell.reuseId, for: indexPath)
+            configurePredictionsCell(cell, forIndexPath: indexPath, animate: false)
+            return cell
+        }
+
+        let cell = tableView.dequeueReusableCell(withIdentifier: SectionMessageCell.reuseId, for: indexPath)
+        if item is PredictionsMessageDataItem {
+            configureMessageCell(cell, forIndexPath: indexPath, animate: false)
+        }
+        return cell
+    }
+
+}
+
+// MARK: - UITableViewDelegate
+extension PredictionsViewController: UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        return nil
+    }
+
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 96
+    }
+
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 16
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return titleView
+    }
+
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return footerView
+    }
+
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+
+}
+
+// MARK: - View Updating
+extension PredictionsViewController {
+
+    private func configurePredictionsCell(_ cell: UITableViewCell?, forIndexPath indexPath: IndexPath, animate: Bool) {
+        guard let cell = cell as? PredictionsCell else {
+            fatalError("Unable to dequeue PredictionsCell at index path \(indexPath))")
+        }
+        guard let prediction = dataState[indexPath.row].base as? PredictionsPredictionDataItem else {
+            fatalError("Data item is not of type PredictionsPredictionDataItem")
+        }
+        cell.selectionStyle = .none
+        cell.accessoryType = .none
+        cell.configureWithPrediction(prediction, dividerVisible: indexPath.row != dataState.lastIndex, animate: animate)
+    }
+
+    private func configureMessageCell(_ cell: UITableViewCell?, forIndexPath indexPath: IndexPath, animate: Bool) {
+        guard let cell = cell as? SectionMessageCell else {
+            fatalError("Unable to dequeue SectionMessageCell at index path \(indexPath))")
+        }
+        guard let item = dataState[indexPath.row].base as? PredictionsMessageDataItem else {
+            fatalError("Data item is not of type PredictionsMessageDataItem")
+        }
+        cell.selectionStyle = .none
+        cell.accessoryType = .none
+        cell.configureWithMessage(item.message, animate: animate)
+    }
+
+    private func renderDataState(_ newDataState: [AnyDifferentiable]) {
+        let stagedChangeset = StagedChangeset(source: self.dataState, target: newDataState)
+        tableView.reload(using: stagedChangeset, with: .fade, setData: { [weak self] newState in
+            self?.dataState = newState
+        }, reloadRow: { indexPath in
+            // Cell will return nil if cell if off screen. We don't need to update it then
+            let cell = self.tableView.cellForRow(at: indexPath)
+            if let cell = cell as? PredictionsCell {
+                configurePredictionsCell(cell, forIndexPath: indexPath, animate: true)
+            }
+            if let cell = cell as? SectionMessageCell {
+                configureMessageCell(cell, forIndexPath: indexPath, animate: true)
+            }
+        })
+    }
+    
+}
+
+// MARK: - Selectors
+extension PredictionsViewController {
+
+    @objc private func handleFavoriteBarButtonItemTouch(sender: Any) {
         viewModel.handleIntent(.toggleFavorited)
     }
 
-    func predictionsNavBarHandlerDidSelectFilterRoutes(_ predictionsNavBarHandler: PredictionsNavBarHandler) {
+    @objc private func handleFilterRoutesBarButtonItemTouch(sender: Any) {
         viewModel.handleIntent(.filterRoutesSelected)
     }
 
-    func predictionsNavBarHandler(_ predictionsNavBarHandler: PredictionsNavBarHandler,
-                                  wantsToPresentAlertController alertController: UIAlertController) {
-        present(alertController, animated: true, completion: nil)
-    }
 }

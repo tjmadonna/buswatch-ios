@@ -12,6 +12,15 @@ final class SectionFooterView: UITableViewHeaderFooterView {
 
     static let reuseId = "SectionFooterView"
 
+    // MARK: - Views
+
+    private let dividerView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .opaqueSeparator
+        return view
+    }()
+
     // MARK: - Initialization
 
     override init(reuseIdentifier: String?) {
@@ -44,7 +53,14 @@ extension SectionFooterView {
     }
 
     private func layout() {
+        contentView.addSubview(dividerView)
 
+        NSLayoutConstraint.activate([
+            dividerView.heightAnchor.constraint(equalToConstant: 0.75),
+            dividerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 4),
+            dividerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            dividerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0)
+        ])
     }
 
 }

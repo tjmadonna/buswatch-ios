@@ -76,9 +76,15 @@ extension UITableView {
             }
         }
 
-        for (source, target) in changeset.elementMoved {
-            moveRow(at: IndexPath(row: source.element, section: source.section),
-                    to: IndexPath(row: target.element, section: target.section))
+        if !changeset.elementMoved.isEmpty {
+            let updatedElements = Set(changeset.elementUpdated)
+            for (source, target) in changeset.elementMoved {
+                if !updatedElements.contains(source) {
+                    reloadRow(IndexPath(row: source.element, section: target.section))
+                }
+                moveRow(at: IndexPath(row: source.element, section: source.section),
+                        to: IndexPath(row: target.element, section: target.section))
+            }
         }
     }
 
