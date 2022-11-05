@@ -39,6 +39,14 @@ final class PredictionsViewModel {
         return loadingStateSubject.eraseToAnyPublisher()
     }
 
+    private let lastUpdatedSubject: CurrentValueSubject<Date?, Never> = .init(nil)
+
+    var lastUpdated: AnyPublisher<Date?, Never> {
+        return lastUpdatedSubject
+            .debounce(for: 0.3, scheduler: RunLoop.main)
+            .eraseToAnyPublisher()
+    }
+
     // MARK: - Properties
 
     private static let predictionsUpdateTime = TimeInterval(15)
@@ -55,6 +63,8 @@ final class PredictionsViewModel {
 
     private var predictionsCancellable: AnyCancellable?
 
+    private var lastUpdatedTimer: Timer?
+
     // MARK: - Initialization
 
     init(stop: PredictionsStop,
@@ -64,16 +74,26 @@ final class PredictionsViewModel {
         self.service = service
         self.eventCoordinator = eventCoordinator
         self.titleStateSubject = .init(stop.title)
+        setupTimer()
         setupObservers()
     }
 
     deinit {
+        lastUpdatedTimer?.invalidate()
         cancelPredictionsPublisher()
         cancellables.removeAll()
         print("Deinniting predictions view model")
     }
 
     // MARK: - Setup
+
+    private func setupTimer() {
+        lastUpdatedTimer = Timer.scheduledTimer(timeInterval: 30,
+                                                target: self,
+                                                selector: #selector(updateLastUpdated),
+                                                userInfo: nil,
+                                                repeats: true)
+    }
 
     private func setupObservers() {
         startObservingNavBarState()
@@ -150,6 +170,7 @@ final class PredictionsViewModel {
         case .loading:
             return .loading
         case .success(let predictions):
+            self.lastUpdatedSubject.value = Date()
             let excludedRouteIdSet = Set(excludedRouteIds)
             return .success(predictions
                 .filter { prediction in
@@ -159,6 +180,7 @@ final class PredictionsViewModel {
                     prediction1.arrivalInSeconds < prediction2.arrivalInSeconds
                 })
         case .failure(let error):
+            print(error)
             return .failure(error)
         }
     }
@@ -182,6 +204,10 @@ final class PredictionsViewModel {
             }
             print(error)
         }
+    }
+
+    @objc private func updateLastUpdated() {
+        self.lastUpdatedSubject.value = self.lastUpdatedSubject.value
     }
 
 }

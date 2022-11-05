@@ -104,7 +104,6 @@ extension PredictionsViewController {
             loadingView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             loadingView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
-
     }
 
     private func setupBarItems() {
@@ -144,6 +143,13 @@ extension PredictionsViewController {
             .sink { [weak self] newDataState in
                 let diffs = newDataState.map { AnyDifferentiable($0) }
                 self?.renderDataState(diffs)
+            }
+            .store(in: &cancellables)
+
+        viewModel.lastUpdated
+            .sink { [weak self] lastUpdated in
+                guard let lastUpdated = lastUpdated else { return }
+                self?.renderLastUpdatedState(lastUpdated)
             }
             .store(in: &cancellables)
     }
@@ -190,7 +196,7 @@ extension PredictionsViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 16
+        return 40
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -252,6 +258,20 @@ extension PredictionsViewController {
                 configureMessageCell(cell, forIndexPath: indexPath, animate: true)
             }
         })
+    }
+
+    private func renderLastUpdatedState(_ lastUpdated: Date) {
+        let lastUpdatedSecs = Int(-1 * lastUpdated.timeIntervalSinceNow)
+        switch lastUpdatedSecs {
+        case Int.min..<30:
+            footerView.configureWithMessage("Last Updated: Just Now")
+        case 30..<60:
+            footerView.configureWithMessage("Last Updated: 30 seconds ago")
+        case 60..<120:
+            footerView.configureWithMessage("Last Updated: 1 minute ago")
+        default:
+            footerView.configureWithMessage("Last Updated: \(Int(lastUpdatedSecs / 60)) minutes ago")
+        }
     }
     
 }
