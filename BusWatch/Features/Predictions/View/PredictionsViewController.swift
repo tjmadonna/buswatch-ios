@@ -89,6 +89,7 @@ extension PredictionsViewController {
 
     private func setupViewController() {
         navigationItem.backButtonDisplayMode = .minimal
+        tableView.estimatedRowHeight = 233.0
         tableView.dataSource = self
         tableView.delegate = self
 
@@ -205,10 +206,6 @@ extension PredictionsViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return footerView
-    }
-
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

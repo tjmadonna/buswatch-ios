@@ -47,6 +47,7 @@ final class OverviewStopCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
         label.font = UIFont.preferredFont(forTextStyle: .body)
         label.textColor = .label
         return label
@@ -56,6 +57,7 @@ final class OverviewStopCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
         label.font = UIFont.preferredFont(forTextStyle: .callout)
         label.textColor = .secondaryLabel
         return label
@@ -66,6 +68,16 @@ final class OverviewStopCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .opaqueSeparator
         return view
+    }()
+
+    private lazy var contentStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [decoratorContainerView, textStackView])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.alignment = .center
+        stackView.distribution = .fill
+        stackView.spacing = 10
+        return stackView
     }()
 
     // MARK: - Initialization
@@ -100,35 +112,25 @@ extension OverviewStopCell {
             decoratorLabel.centerYAnchor.constraint(equalTo: decoratorContainerView.centerYAnchor)
         ])
 
-        contentView.addSubview(decoratorContainerView)
-        contentView.addSubview(textStackView)
+        contentView.addSubview(contentStackView)
         contentView.addSubview(dividerView)
 
         NSLayoutConstraint.activate([
-            decoratorContainerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            contentStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            contentStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            contentStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            contentStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
+        ])
+
+        NSLayoutConstraint.activate([
             decoratorContainerView.widthAnchor.constraint(equalToConstant: 60),
-            decoratorContainerView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            decoratorContainerView.heightAnchor.constraint(equalToConstant: 60),
-            decoratorContainerView.topAnchor.constraint(greaterThanOrEqualTo: contentView.topAnchor, constant: 10)
-                .usingPriority(.defaultLow),
-            decoratorContainerView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -10)
-                .usingPriority(.defaultLow)
+            decoratorContainerView.heightAnchor.constraint(equalToConstant: 60)
         ])
 
         NSLayoutConstraint.activate([
-            textStackView.leadingAnchor.constraint(equalTo: decoratorContainerView.trailingAnchor, constant: 10),
-            textStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-            textStackView.centerYAnchor.constraint(equalTo: decoratorContainerView.centerYAnchor),
-            textStackView.topAnchor.constraint(greaterThanOrEqualTo: contentView.topAnchor, constant: 10)
-                .usingPriority(.defaultLow),
-            textStackView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -10)
-                .usingPriority(.defaultLow)
-        ])
-
-        NSLayoutConstraint.activate([
-            dividerView.heightAnchor.constraint(equalToConstant: 0.75),
+            dividerView.heightAnchor.constraint(equalToConstant: 1),
             dividerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            dividerView.leadingAnchor.constraint(equalTo: textStackView.leadingAnchor),
+            dividerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 90),
             dividerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ])
     }

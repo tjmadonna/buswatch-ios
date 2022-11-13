@@ -69,7 +69,7 @@ final class FilterRouteCell: UITableViewCell {
         ])
 
         NSLayoutConstraint.activate([
-            dividerView.heightAnchor.constraint(equalToConstant: 0.75),
+            dividerView.heightAnchor.constraint(equalToConstant: 1),
             dividerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             dividerView.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             dividerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)

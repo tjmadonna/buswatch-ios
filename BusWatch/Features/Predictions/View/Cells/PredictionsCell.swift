@@ -46,6 +46,7 @@ final class PredictionsCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
         label.font = UIFont.preferredFont(forTextStyle: .body)
         label.textColor = .label
         return label
@@ -55,6 +56,7 @@ final class PredictionsCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
         label.font = UIFont.preferredFont(forTextStyle: .callout)
         label.textColor = .secondaryLabel
         return label
@@ -71,6 +73,17 @@ final class PredictionsCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .opaqueSeparator
         return view
+    }()
+
+    private lazy var contentStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [decoratorContainerView, textStackView, capacityImageView])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.alignment = .center
+        stackView.distribution = .fill
+        stackView.spacing = 10
+        stackView.setCustomSpacing(5, after: textStackView)
+        return stackView
     }()
 
     private var capacityImageName: String?
@@ -106,43 +119,30 @@ extension PredictionsCell {
             decoratorLabel.centerYAnchor.constraint(equalTo: decoratorContainerView.centerYAnchor)
         ])
 
-        contentView.addSubview(decoratorContainerView)
-        contentView.addSubview(textStackView)
+        contentView.addSubview(contentStackView)
         contentView.addSubview(dividerView)
-        contentView.addSubview(capacityImageView)
 
         NSLayoutConstraint.activate([
-            decoratorContainerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            contentStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            contentStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            contentStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            contentStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -11)
+        ])
+
+        NSLayoutConstraint.activate([
             decoratorContainerView.widthAnchor.constraint(equalToConstant: 60),
-            decoratorContainerView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            decoratorContainerView.heightAnchor.constraint(equalToConstant: 60),
-            decoratorContainerView.topAnchor.constraint(greaterThanOrEqualTo: contentView.topAnchor, constant: 10)
-                .usingPriority(.defaultLow),
-            decoratorContainerView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -10)
-                .usingPriority(.defaultLow)
+            decoratorContainerView.heightAnchor.constraint(equalToConstant: 60)
         ])
 
         NSLayoutConstraint.activate([
-            capacityImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            capacityImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -13),
             capacityImageView.widthAnchor.constraint(equalToConstant: 35),
-            capacityImageView.heightAnchor.constraint(equalTo: capacityImageView.widthAnchor, multiplier: 215/280.0)
+            capacityImageView.heightAnchor.constraint(equalToConstant: 27)
         ])
 
         NSLayoutConstraint.activate([
-            textStackView.leadingAnchor.constraint(equalTo: decoratorContainerView.trailingAnchor, constant: 10),
-            textStackView.trailingAnchor.constraint(equalTo: capacityImageView.leadingAnchor, constant: -5),
-            textStackView.centerYAnchor.constraint(equalTo: decoratorContainerView.centerYAnchor),
-            textStackView.topAnchor.constraint(greaterThanOrEqualTo: contentView.topAnchor, constant: 10)
-                .usingPriority(.defaultLow),
-            textStackView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -10)
-                .usingPriority(.defaultLow)
-        ])
-
-        NSLayoutConstraint.activate([
-            dividerView.heightAnchor.constraint(equalToConstant: 0.75),
+            dividerView.heightAnchor.constraint(equalToConstant: 1),
             dividerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            dividerView.leadingAnchor.constraint(equalTo: textStackView.leadingAnchor),
+            dividerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 90),
             dividerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ])
     }
@@ -165,15 +165,23 @@ extension PredictionsCell {
             }
 
             if titleLabel.text != prediction.title {
-                animateTextChange(prediction.title, view: titleLabel)
+                animateTextChange(prediction.title, view: titleLabel) { complete in
+                    if complete {
+                        self.contentView.layoutIfNeeded()
+                    }
+                }
+            }
+
+            if arrivalTimeLabel.text != arrivalMessage {
+                animateTextChange(arrivalMessage, view: arrivalTimeLabel) { complete in
+                    if complete {
+                        self.contentView.layoutIfNeeded()
+                    }
+                }
             }
 
             if capacityImageName != self.capacityImageName {
                 animateImageChange(capacityImageName, view: capacityImageView)
-            }
-
-            if arrivalTimeLabel.text != arrivalMessage {
-                animateTextChange(arrivalMessage, view: arrivalTimeLabel)
             }
 
         } else {
@@ -200,14 +208,15 @@ extension PredictionsCell {
         return arrivalMessage
     }
 
-    private func animateTextChange(_ newText: String?, view: UILabel) {
+    private func animateTextChange(_ newText: String?, view: UILabel, completion: ((Bool) -> Void)? = nil) {
         UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseIn) {
             view.alpha = 0
         } completion: { _ in
             view.text = newText
-            UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseIn) {
+            view.setNeedsLayout()
+            UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseIn, animations: {
                 view.alpha = 1
-            }
+            }, completion: completion)
         }
     }
 

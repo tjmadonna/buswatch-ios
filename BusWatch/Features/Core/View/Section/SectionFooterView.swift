@@ -66,8 +66,8 @@ extension SectionFooterView {
         contentView.addSubview(messageLabel)
 
         NSLayoutConstraint.activate([
-            dividerView.heightAnchor.constraint(equalToConstant: 0.75),
-            dividerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 4),
+            dividerView.heightAnchor.constraint(equalToConstant: 1),
+            dividerView.topAnchor.constraint(equalTo: contentView.topAnchor),
             dividerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             dividerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0)
         ])

@@ -86,8 +86,8 @@ extension SectionHeaderView {
         ])
 
         NSLayoutConstraint.activate([
-            dividerView.heightAnchor.constraint(equalToConstant: 0.75),
-            dividerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -4),
+            dividerView.heightAnchor.constraint(equalToConstant: 1),
+            dividerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             dividerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             dividerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0)
         ])
