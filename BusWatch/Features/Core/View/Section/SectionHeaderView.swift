@@ -36,13 +36,6 @@ final class SectionHeaderView: UITableViewHeaderFooterView {
         return label
     }()
 
-    private let dividerView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .opaqueSeparator
-        return view
-    }()
-
     // MARK: - Initialization
 
     override init(reuseIdentifier: String?) {
@@ -70,7 +63,6 @@ extension SectionHeaderView {
     private func layout() {
         contentView.addSubview(textBackgroundView)
         contentView.addSubview(titleLabel)
-        contentView.addSubview(dividerView)
 
         NSLayoutConstraint.activate([
             textBackgroundView.topAnchor.constraint(equalTo: titleLabel.topAnchor, constant: -16),
@@ -80,16 +72,9 @@ extension SectionHeaderView {
         ])
 
         NSLayoutConstraint.activate([
-            titleLabel.bottomAnchor.constraint(equalTo: dividerView.topAnchor, constant: -10),
+            titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20)
-        ])
-
-        NSLayoutConstraint.activate([
-            dividerView.heightAnchor.constraint(equalToConstant: 1),
-            dividerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            dividerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            dividerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0)
         ])
     }
 

@@ -29,11 +29,12 @@ extension UITableView {
                 return reloadData()
             }
 
-            performBatchUpdates {
+            performBatchUpdates({
                 setData(changeset.data)
                 updateSections(using: changeset, with: animation)
                 updateRows(using: changeset, with: animation, reloadRow: reloadRow)
-            }
+            }, completion: { _ in
+            })
         }
     }
 
@@ -77,11 +78,16 @@ extension UITableView {
         }
 
         if !changeset.elementMoved.isEmpty {
-            let updatedElements = Set(changeset.elementUpdated)
             for (source, target) in changeset.elementMoved {
-                if !updatedElements.contains(source) {
-                    reloadRow(IndexPath(row: source.element, section: target.section))
+
+                if let sourceCell = cellForRow(at: IndexPath(row: source.element, section: source.section)) {
+                    sourceCell.contentView.setNeedsLayout()
                 }
+
+                if let targetCell = cellForRow(at: IndexPath(row: target.element, section: target.section)) {
+                    targetCell.contentView.setNeedsLayout()
+                }
+
                 moveRow(at: IndexPath(row: source.element, section: source.section),
                         to: IndexPath(row: target.element, section: target.section))
             }

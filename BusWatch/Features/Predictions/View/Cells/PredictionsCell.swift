@@ -68,13 +68,6 @@ final class PredictionsCell: UITableViewCell {
         return imageView
     }()
 
-    private let dividerView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .opaqueSeparator
-        return view
-    }()
-
     private lazy var contentStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [decoratorContainerView, textStackView, capacityImageView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -120,7 +113,6 @@ extension PredictionsCell {
         ])
 
         contentView.addSubview(contentStackView)
-        contentView.addSubview(dividerView)
 
         NSLayoutConstraint.activate([
             contentStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
@@ -138,13 +130,6 @@ extension PredictionsCell {
             capacityImageView.widthAnchor.constraint(equalToConstant: 35),
             capacityImageView.heightAnchor.constraint(equalToConstant: 27)
         ])
-
-        NSLayoutConstraint.activate([
-            dividerView.heightAnchor.constraint(equalToConstant: 1),
-            dividerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            dividerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 90),
-            dividerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
-        ])
     }
 
 }
@@ -152,22 +137,25 @@ extension PredictionsCell {
 // MARK: - Public functions
 extension PredictionsCell {
 
-    func configureWithPrediction(_ prediction: PredictionsPredictionDataItem, dividerVisible: Bool, animate: Bool) {
+    func configureWithPrediction(_ prediction: PredictionsPredictionDataItem, animate: Bool) {
         capacityImageView.isHidden = prediction.capacity == nil
-        dividerView.isHidden = !dividerVisible
 
         let capacityImageName = getCapacityImageName(capacity: prediction.capacity)
         let arrivalMessage = getArrivalMessage(arrivalInSeconds: prediction.arrivalInSeconds)
 
         if animate {
             if decoratorLabel.text != prediction.route {
-                animateTextChange(prediction.route, view: decoratorLabel)
+                animateTextChange(prediction.route, view: decoratorLabel) { complete in
+                    if complete {
+                        self.contentStackView.layoutIfNeeded()
+                    }
+                }
             }
 
             if titleLabel.text != prediction.title {
                 animateTextChange(prediction.title, view: titleLabel) { complete in
                     if complete {
-                        self.contentView.layoutIfNeeded()
+                        self.contentStackView.layoutIfNeeded()
                     }
                 }
             }
@@ -175,13 +163,17 @@ extension PredictionsCell {
             if arrivalTimeLabel.text != arrivalMessage {
                 animateTextChange(arrivalMessage, view: arrivalTimeLabel) { complete in
                     if complete {
-                        self.contentView.layoutIfNeeded()
+                        self.contentStackView.layoutIfNeeded()
                     }
                 }
             }
 
             if capacityImageName != self.capacityImageName {
-                animateImageChange(capacityImageName, view: capacityImageView)
+                animateImageChange(capacityImageName, view: capacityImageView) { complete in
+                    if complete {
+                        self.contentStackView.layoutIfNeeded()
+                    }
+                }
             }
 
         } else {
@@ -233,15 +225,16 @@ extension PredictionsCell {
         }
     }
 
-    private func animateImageChange(_ newImageName: String?, view: UIImageView) {
+    private func animateImageChange(_ newImageName: String?, view: UIImageView, completion: ((Bool) -> Void)? = nil) {
         UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseIn) {
             view.alpha = 0
         } completion: { _ in
             view.image = UIImage(named: newImageName ?? "")?
                 .withTintColor(Resources.Colors.capacity)
-            UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseIn) {
+            view.setNeedsLayout()
+            UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseIn, animations: {
                 view.alpha = 1
-            }
+            }, completion: completion)
         }
     }
 

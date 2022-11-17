@@ -23,7 +23,7 @@ final class PredictionsViewController: UIViewController {
     private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.separatorStyle = .none
+        tableView.separatorStyle = .singleLine
         tableView.register(SectionMessageCell.self, forCellReuseIdentifier: SectionMessageCell.reuseId)
         tableView.register(PredictionsCell.self, forCellReuseIdentifier: PredictionsCell.reuseId)
         return tableView
@@ -226,7 +226,7 @@ extension PredictionsViewController {
         }
         cell.selectionStyle = .none
         cell.accessoryType = .none
-        cell.configureWithPrediction(prediction, dividerVisible: indexPath.row != dataState.lastIndex, animate: animate)
+        cell.configureWithPrediction(prediction, animate: animate)
     }
 
     private func configureMessageCell(_ cell: UITableViewCell?, forIndexPath indexPath: IndexPath, animate: Bool) {

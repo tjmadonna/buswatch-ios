@@ -59,7 +59,7 @@ final class OverviewViewController: UITableViewController {
     }
 
     private func setupTableView() {
-        tableView.separatorStyle = .none
+        tableView.separatorStyle = .singleLine
         tableView.register(SectionHeaderView.self, forHeaderFooterViewReuseIdentifier: SectionHeaderView.reuseId)
         tableView.register(SectionFooterView.self, forHeaderFooterViewReuseIdentifier: SectionFooterView.reuseId)
         tableView.register(SectionMessageCell.self, forCellReuseIdentifier: SectionMessageCell.reuseId)
@@ -166,8 +166,7 @@ final class OverviewViewController: UITableViewController {
                                                        for: indexPath) as? OverviewStopCell else {
             fatalError("Unable to dequeue OverviewStopCell at index path \(indexPath)")
         }
-        let dividerVisible = sections[indexPath.section].items.lastIndex != indexPath.row
-        cell.configureWithStop(favoriteStop, dividerVisible: dividerVisible)
+        cell.configureWithStop(favoriteStop)
         return cell
     }
 

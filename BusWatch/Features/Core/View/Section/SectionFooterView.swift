@@ -14,13 +14,6 @@ final class SectionFooterView: UITableViewHeaderFooterView {
 
     // MARK: - Views
 
-    private let dividerView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .opaqueSeparator
-        return view
-    }()
-
     private let messageLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -62,18 +55,10 @@ extension SectionFooterView {
     }
 
     private func layout() {
-        contentView.addSubview(dividerView)
         contentView.addSubview(messageLabel)
 
         NSLayoutConstraint.activate([
-            dividerView.heightAnchor.constraint(equalToConstant: 1),
-            dividerView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            dividerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            dividerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0)
-        ])
-
-        NSLayoutConstraint.activate([
-            messageLabel.topAnchor.constraint(equalTo: dividerView.bottomAnchor, constant: 8),
+            messageLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             messageLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             messageLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20)
         ])

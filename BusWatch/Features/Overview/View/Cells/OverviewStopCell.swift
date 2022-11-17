@@ -63,13 +63,6 @@ final class OverviewStopCell: UITableViewCell {
         return label
     }()
 
-    private let dividerView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .opaqueSeparator
-        return view
-    }()
-
     private lazy var contentStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [decoratorContainerView, textStackView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -113,7 +106,6 @@ extension OverviewStopCell {
         ])
 
         contentView.addSubview(contentStackView)
-        contentView.addSubview(dividerView)
 
         NSLayoutConstraint.activate([
             contentStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
@@ -126,13 +118,6 @@ extension OverviewStopCell {
             decoratorContainerView.widthAnchor.constraint(equalToConstant: 60),
             decoratorContainerView.heightAnchor.constraint(equalToConstant: 60)
         ])
-
-        NSLayoutConstraint.activate([
-            dividerView.heightAnchor.constraint(equalToConstant: 1),
-            dividerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            dividerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 90),
-            dividerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
-        ])
     }
 
 }
@@ -140,9 +125,7 @@ extension OverviewStopCell {
 // MARK: - Public functions
 extension OverviewStopCell {
 
-    func configureWithStop(_ favoriteStop: OverviewFavoriteStop, dividerVisible: Bool) {
-        dividerView.isHidden = !dividerVisible
-
+    func configureWithStop(_ favoriteStop: OverviewFavoriteStop) {
         decoratorLabel.text = favoriteStop.title.first?.description
         titleLabel.text = favoriteStop.title
         routesLabel.text = favoriteStop.routes.joined(separator: ", ")
