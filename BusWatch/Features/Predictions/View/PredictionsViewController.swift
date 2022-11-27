@@ -76,6 +76,12 @@ final class PredictionsViewController: UIViewController {
         setupObservers()
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        // Call from viewDidLayoutSubviews to ensure LoadingStripView has a width
+        setupLoadingObserver()
+    }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationItem.title = "Arrival Times"
@@ -130,16 +136,6 @@ extension PredictionsViewController {
             }
             .store(in: &cancellables)
 
-        viewModel.loadingState
-            .sink { [weak self] loading in
-                if loading {
-                    self?.loadingView.startAnimating()
-                } else {
-                    self?.loadingView.stopAnimating()
-                }
-            }
-            .store(in: &cancellables)
-
         viewModel.dataState
             .sink { [weak self] newDataState in
                 let diffs = newDataState.map { AnyDifferentiable($0) }
@@ -155,6 +151,17 @@ extension PredictionsViewController {
             .store(in: &cancellables)
     }
 
+    private func setupLoadingObserver() {
+        viewModel.loadingState
+            .sink { [weak self] loading in
+                if loading {
+                    self?.loadingView.startAnimating()
+                } else {
+                    self?.loadingView.stopAnimating()
+                }
+            }
+            .store(in: &cancellables)
+    }
 }
 
 // MARK: - UITableViewDataSource

@@ -72,7 +72,9 @@ extension LoadingStripView {
     }
 
     private func animate() {
-        let screenWidth = self.window?.bounds.width ?? 400
+        // Call animate after viewDidLayoutSubviews in view controller
+        // 430 is largest width (iPhone 14 pro max) just in case.
+        let screenWidth = self.window?.bounds.width ?? 430
         progressBarLeadingConstraint?.constant = 0
         progressBarWidthConstraint?.constant = 0
         self.layoutIfNeeded()
