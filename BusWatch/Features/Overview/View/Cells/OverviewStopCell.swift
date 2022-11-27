@@ -108,6 +108,11 @@ extension OverviewStopCell {
         contentView.addSubview(contentStackView)
 
         NSLayoutConstraint.activate([
+            titleLabel.widthAnchor.constraint(equalTo: textStackView.widthAnchor),
+            routesLabel.widthAnchor.constraint(equalTo: textStackView.widthAnchor)
+        ])
+
+        NSLayoutConstraint.activate([
             contentStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             contentStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
             contentStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),

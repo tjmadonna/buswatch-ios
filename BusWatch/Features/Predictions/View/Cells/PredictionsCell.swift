@@ -122,6 +122,11 @@ extension PredictionsCell {
         ])
 
         NSLayoutConstraint.activate([
+            titleLabel.widthAnchor.constraint(equalTo: textStackView.widthAnchor),
+            arrivalTimeLabel.widthAnchor.constraint(equalTo: textStackView.widthAnchor)
+        ])
+
+        NSLayoutConstraint.activate([
             decoratorContainerView.widthAnchor.constraint(equalToConstant: 60),
             decoratorContainerView.heightAnchor.constraint(equalToConstant: 60)
         ])
@@ -145,35 +150,19 @@ extension PredictionsCell {
 
         if animate {
             if decoratorLabel.text != prediction.route {
-                animateTextChange(prediction.route, view: decoratorLabel) { complete in
-                    if complete {
-                        self.contentStackView.layoutIfNeeded()
-                    }
-                }
+                animateTextChange(prediction.route, view: decoratorLabel)
             }
 
             if titleLabel.text != prediction.title {
-                animateTextChange(prediction.title, view: titleLabel) { complete in
-                    if complete {
-                        self.contentStackView.layoutIfNeeded()
-                    }
-                }
+                animateTextChange(prediction.title, view: titleLabel)
             }
 
             if arrivalTimeLabel.text != arrivalMessage {
-                animateTextChange(arrivalMessage, view: arrivalTimeLabel) { complete in
-                    if complete {
-                        self.contentStackView.layoutIfNeeded()
-                    }
-                }
+                animateTextChange(arrivalMessage, view: arrivalTimeLabel)
             }
 
             if capacityImageName != self.capacityImageName {
-                animateImageChange(capacityImageName, view: capacityImageView) { complete in
-                    if complete {
-                        self.contentStackView.layoutIfNeeded()
-                    }
-                }
+                animateImageChange(capacityImageName, view: capacityImageView)
             }
 
         } else {
@@ -200,15 +189,14 @@ extension PredictionsCell {
         return arrivalMessage
     }
 
-    private func animateTextChange(_ newText: String?, view: UILabel, completion: ((Bool) -> Void)? = nil) {
+    private func animateTextChange(_ newText: String?, view: UILabel) {
         UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseIn) {
             view.alpha = 0
         } completion: { _ in
             view.text = newText
-            view.setNeedsLayout()
-            UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseIn, animations: {
+            UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseIn) {
                 view.alpha = 1
-            }, completion: completion)
+            }
         }
     }
 
@@ -225,16 +213,16 @@ extension PredictionsCell {
         }
     }
 
-    private func animateImageChange(_ newImageName: String?, view: UIImageView, completion: ((Bool) -> Void)? = nil) {
+    private func animateImageChange(_ newImageName: String?, view: UIImageView) {
         UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseIn) {
             view.alpha = 0
         } completion: { _ in
             view.image = UIImage(named: newImageName ?? "")?
                 .withTintColor(Resources.Colors.capacity)
             view.setNeedsLayout()
-            UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseIn, animations: {
+            UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseIn) {
                 view.alpha = 1
-            }, completion: completion)
+            }
         }
     }
 
