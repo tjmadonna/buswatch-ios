@@ -969,6 +969,8 @@
 				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = 3Z4DAK43ND;
 				INFOPLIST_FILE = BusWatch/SupportingFiles/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = BusWatch;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.navigation";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -991,6 +993,8 @@
 				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = 3Z4DAK43ND;
 				INFOPLIST_FILE = BusWatch/SupportingFiles/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = BusWatch;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.navigation";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
