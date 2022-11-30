@@ -24,7 +24,7 @@ final class UrlSource: UrlSourceConformable {
 
     func authenticatedPredictionsURLForStopId(_ stopId: String, serviceType: ServiceType) -> URL {
 
-        let rtpiDataFeedParam = serviceType == .lightRail ? "Light Rail" : "Bus"
+        let rtpiDataFeedParam = serviceType == .lightRail ? "Light Rail" : "Port Authority Bus"
 
         var components = URLComponents()
         components.scheme = urlConfig.scheme
