@@ -37,4 +37,21 @@ extension UserDefaults {
         }
     }
 
+    @objc dynamic var appVersion: String {
+        get {
+            string(forKey: "app_version") ?? ""
+        }
+        set(newValue) {
+            set(newValue, forKey: "app_version")
+        }
+    }
+
+    @objc dynamic var buildVersion: String {
+        get {
+            string(forKey: "build_version") ?? ""
+        }
+        set(newValue) {
+            set(newValue, forKey: "build_version")
+        }
+    }
 }

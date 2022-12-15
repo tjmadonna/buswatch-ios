@@ -18,6 +18,7 @@ final class Database: DatabaseConformable {
 
     // MARK: - Error
     enum Error: Swift.Error {
+        case unknownAppVersion
         case packagedDatabaseNotFound
     }
 
@@ -27,7 +28,7 @@ final class Database: DatabaseConformable {
     let queue: DatabaseQueue
 
     // MARK: - Initialization
-    init(inMemory: Bool = false) throws {
+    init(inMemory: Bool = false, userDefaults: UserDefaults = .standard) throws {
         let queue: DatabaseQueue
         if inMemory {
             // Load database queue in memory
@@ -61,10 +62,20 @@ final class Database: DatabaseConformable {
         try migrator.migrate(queue, upTo: Database.databaseVersion)
 
         // Update
-        guard let packagedDbUrl = Bundle.main.url(forResource: "buswatch", withExtension: "sqlite") else {
-            throw Error.packagedDatabaseNotFound
+        guard let appVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String,
+              let buildVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String else {
+            throw Error.unknownAppVersion
         }
-        try DatabaseUpdater.updateFromPrepackagedDbURL(packagedDbUrl, queue: queue)
+
+        if appVersion != userDefaults.appVersion || buildVersion != userDefaults.buildVersion {
+            // Only try to update resources if app version changes
+            guard let packagedDbUrl = Bundle.main.url(forResource: "buswatch", withExtension: "sqlite") else {
+                throw Error.packagedDatabaseNotFound
+            }
+            try DatabaseUpdater.updateFromPrepackagedDbURL(packagedDbUrl, queue: queue)
+            userDefaults.appVersion = appVersion
+            userDefaults.buildVersion = buildVersion
+        }
 
         self.queue = queue
     }
