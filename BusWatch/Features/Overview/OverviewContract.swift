@@ -36,6 +36,7 @@ enum OverviewState {
 enum OverviewIntent {
     case favoriteStopSelected(_ favoriteStop: OverviewFavoriteStop)
     case stopMapSelected
+    case settingsSelected
 }
 
 // MARK: - Coordinator
@@ -45,5 +46,7 @@ protocol OverviewEventCoordinator: AnyObject {
     func favoriteStopSelectedInOverview(_ stop: OverviewFavoriteStop)
 
     func stopMapSelectedInOverview()
+
+    func settingsSelectedInOverview()
 
 }

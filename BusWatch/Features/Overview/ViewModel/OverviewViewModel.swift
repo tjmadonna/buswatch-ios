@@ -76,6 +76,8 @@ final class OverviewViewModel {
             self.eventCoordinator?.favoriteStopSelectedInOverview(favoriteStop)
         case .stopMapSelected:
             self.eventCoordinator?.stopMapSelectedInOverview()
+        case .settingsSelected:
+            self.eventCoordinator?.settingsSelectedInOverview()
         }
     }
 

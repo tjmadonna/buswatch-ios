@@ -85,6 +85,12 @@ final class AppEventCoordinator {
         navigationController.present(navController, animated: true, completion: nil)
     }
 
+    func presentSettingsViewConntroller() {
+        let viewController = SettingsViewController()
+        let navController = AppNavigationViewController(rootViewController: viewController)
+        navigationController.present(navController, animated: true, completion: nil)
+    }
+
 }
 
 extension AppEventCoordinator: OverviewEventCoordinator {
@@ -96,6 +102,10 @@ extension AppEventCoordinator: OverviewEventCoordinator {
 
     func stopMapSelectedInOverview() {
         presentStopMapViewController()
+    }
+
+    func settingsSelectedInOverview() {
+        presentSettingsViewConntroller()
     }
 
 }

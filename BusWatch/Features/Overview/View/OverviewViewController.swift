@@ -56,6 +56,10 @@ final class OverviewViewController: UITableViewController {
 
     private func setupViewController() {
         navigationItem.backButtonDisplayMode = .minimal
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gearshape"),
+                                                            style: .plain,
+                                                            target: self,
+                                                            action: #selector(handleSettingsBarButtonItemTouch(sender:)))
     }
 
     private func setupTableView() {
@@ -190,6 +194,15 @@ final class OverviewViewController: UITableViewController {
         }
         cell.configureWithCoordinateRegion(coordinateRegion)
         return cell
+    }
+
+}
+
+// MARK: - Selectors
+extension OverviewViewController {
+
+    @objc private func handleSettingsBarButtonItemTouch(sender: Any) {
+        viewModel.handleIntent(.settingsSelected)
     }
 
 }
