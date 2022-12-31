@@ -113,8 +113,8 @@ extension OverviewStopCell {
         ])
 
         NSLayoutConstraint.activate([
-            contentStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            contentStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            contentStackView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
+            contentStackView.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
             contentStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             contentStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
         ])

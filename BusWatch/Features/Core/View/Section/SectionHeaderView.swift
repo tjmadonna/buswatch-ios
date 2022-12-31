@@ -73,8 +73,8 @@ extension SectionHeaderView {
 
         NSLayoutConstraint.activate([
             titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
-            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20)
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor)
         ])
     }
 

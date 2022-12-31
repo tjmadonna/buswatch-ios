@@ -114,7 +114,7 @@ final class StopMapViewController: UIViewController {
             fabWidthConstraint,
             fabButton.heightAnchor.constraint(equalToConstant: fabWidthConstraint.constant),
             fabButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30),
-            fabButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20)
+            fabButton.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor)
         ])
         self.fabWidthConstraint = fabWidthConstraint
     }

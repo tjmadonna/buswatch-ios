@@ -55,8 +55,8 @@ extension SectionMessageCell {
         NSLayoutConstraint.activate([
             messageLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 80),
             messageLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -80),
-            messageLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            messageLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20)
+            messageLabel.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
+            messageLabel.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor)
         ])
     }
 
