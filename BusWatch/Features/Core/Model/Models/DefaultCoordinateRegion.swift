@@ -9,7 +9,7 @@
 import MapKit
 
 let defaultCoordinateRegion: MKCoordinateRegion = {
-    let center = CLLocationCoordinate2D(latitude: 40.437718693889764, longitude: -79.99561212860195)
-    let span = MKCoordinateSpan(latitudeDelta: 0.047, longitudeDelta: 0.034)
+    let center = CLLocationCoordinate2D(latitude: 40.43761400152732, longitude: -79.99694668348725)
+    let span = MKCoordinateSpan(latitudeDelta: 0.018638820689957925, longitudeDelta: 0.01328327616849378)
     return MKCoordinateRegion(center: center, span: span)
 }()
