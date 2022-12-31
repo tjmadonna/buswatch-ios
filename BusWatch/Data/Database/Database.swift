@@ -62,8 +62,8 @@ final class Database: DatabaseConformable {
         try migrator.migrate(queue, upTo: Database.databaseVersion)
 
         // Update
-        guard let appVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String,
-              let buildVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String else {
+        guard let appVersion = Bundle.main.appVersion,
+              let buildVersion = Bundle.main.buildVersion else {
             throw Error.unknownAppVersion
         }
 
