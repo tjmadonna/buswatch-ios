@@ -1,25 +1,60 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YHX-T4-aOe">
+    <device id="retina6_72" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
-        <scene sceneID="EHf-IW-A2E">
+        <scene sceneID="6hq-QP-flD">
             <objects>
-                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <viewController id="YHX-T4-aOe" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eut-Sx-qSE">
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2fv-3L-wTt">
+                                <rect key="frame" x="0.0" y="59.000000000000007" width="430" height="96.666666666666686"/>
+                                <color key="backgroundColor" name="AppBlack"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="96.5" id="Ncq-gO-cyk"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2qy-lQ-tYw">
+                                <rect key="frame" x="0.0" y="0.0" width="430" height="59"/>
+                                <color key="backgroundColor" name="AppBlack"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="HFK-Pg-TU1"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="2fv-3L-wTt" firstAttribute="top" secondItem="2qy-lQ-tYw" secondAttribute="bottom" id="Bka-gY-hyg"/>
+                            <constraint firstItem="2fv-3L-wTt" firstAttribute="top" secondItem="HFK-Pg-TU1" secondAttribute="top" id="HjM-bJ-bq2"/>
+                            <constraint firstItem="2qy-lQ-tYw" firstAttribute="leading" secondItem="eut-Sx-qSE" secondAttribute="leading" id="RKS-b5-Vum"/>
+                            <constraint firstItem="2fv-3L-wTt" firstAttribute="leading" secondItem="HFK-Pg-TU1" secondAttribute="leading" id="bFY-3A-LFB"/>
+                            <constraint firstItem="2fv-3L-wTt" firstAttribute="top" secondItem="HFK-Pg-TU1" secondAttribute="top" id="bzZ-2E-3E0"/>
+                            <constraint firstAttribute="trailing" secondItem="2qy-lQ-tYw" secondAttribute="trailing" id="gEU-Vt-FD3"/>
+                            <constraint firstItem="2qy-lQ-tYw" firstAttribute="top" secondItem="eut-Sx-qSE" secondAttribute="top" id="hbd-H1-mvA"/>
+                            <constraint firstItem="2fv-3L-wTt" firstAttribute="trailing" secondItem="HFK-Pg-TU1" secondAttribute="trailing" id="vvm-Ql-Wo4"/>
+                        </constraints>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fSx-lH-ei6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="558.1395348837209" y="677.89699570815458"/>
         </scene>
     </scenes>
+    <resources>
+        <namedColor name="AppBlack">
+            <color red="0.13725490196078433" green="0.13725490196078433" blue="0.13725490196078433" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
