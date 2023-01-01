@@ -1,6 +1,23 @@
-# Bus Watch
+<h1 align="center">
+  <br>
+  <a href="https://apps.apple.com/us/app/pittsburgh-bus-watch/id1599957622"><img src="./Art/AppIcon.png" alt="Pittsburgh Bus Watch" width="150px"></a>
+  <br>
+  Pittsburgh Bus Watch
+  <br>
+</h1>
 
-Bus Watch shows real-time transit information for the Pittsburgh Port Authority transit system. The app shows bus stops from a SQLite database in an MKMapView and retrieves transit arrival times from a [backend RESTful API](https://realtime.portauthority.org/bustime/apidoc/docs/DeveloperAPIGuide3_0.pdf).
+<h4 align="center">A free, open source iOS application that shows real-time transit information for the Pittsburgh Port Authority transit system.</h4>
+
+<div align="center">
+<br>
+<a align="center" href="https://apps.apple.com/us/app/pittsburgh-bus-watch/id1599957622"><img style="width: 200px;" src="./Art/AppStoreBadge.svg" alt="Download on the App Store"></a>
+<br>
+</div>
+<br>
+
+<img style="width: 100%;" src="./Art/AppScreenshots.png" alt="Screenshots of ">
+<br>
+<br>
 
 ## Technologies Used
 
@@ -12,20 +29,3 @@ Bus Watch shows real-time transit information for the Pittsburgh Port Authority 
 * URLSession
 * JSON Decodable
 * Model-View-View Model
-
-## Screenshots
-
-<p align="center">
-  <img src="./Art/OverviewScreen.png" alt="Overview Screen" width="25%" align="center"/>
-  <p align="center">Overview screen showing favorite stops and a map of stops</p>
-</p>
-<br/>
-<p align="center">
-  <img src="./Art/MapScreen.png" alt="Map Screen" width="25%"/>
-  <p align="center">Map screen showing transit stops using MapKit</p>
-</p>
-<br/>
-<p align="center">
-  <img src="./Art/PredictionsScreen.png" alt="Predictions Screen" width="25%"/>
-  <p align="center">Predictions screen showing real-time bus arrival times</p>
-</p>
