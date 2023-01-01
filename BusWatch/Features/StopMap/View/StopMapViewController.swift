@@ -128,15 +128,18 @@ final class StopMapViewController: UIViewController {
     private func setupObservers() {
         viewModel.state.sink { [weak self] state in
             switch state {
-            case .setCoordinateRegion(let coordinateRegion):
+
+            case .setInitialCoordinateRegion(let coordinateRegion):
                 // We setup the map view here to avoid the mapView regionDidChangeAnimated on the default map location
+                self?.renderSetInitialCoordinateRegionState(coordinateRegion)
                 self?.setupMapView()
-                self?.renderSetCoordinateRegionState(coordinateRegion)
-            case .setCoordinateRegionWithStopMarkers(let coordinateRegion, let markers):
-                self?.renderSetCoordinateRegionWithStopMarkersState(coordinateRegion, stopMarkers: markers)
+
+            case .setStopMarkers(let markers):
+                self?.setStopMarkersState(markers)
 
             case .error(let message):
                 self?.renderErrorState(message)
+
             default:
                 break
             }
@@ -167,19 +170,11 @@ final class StopMapViewController: UIViewController {
 
     // MARK: - State Rendering
 
-    private func renderSetCoordinateRegionState(_ coordinateRegion: MKCoordinateRegion) {
-        if coordinateRegion != mapView.region {
-            mapView.setRegion(coordinateRegion, animated: false)
-        }
+    private func renderSetInitialCoordinateRegionState(_ coordinateRegion: MKCoordinateRegion) {
+        mapView.setRegion(coordinateRegion, animated: false)
     }
 
-    private func renderSetCoordinateRegionWithStopMarkersState(_ coordinateRegion: MKCoordinateRegion, stopMarkers: [StopMarker]) {
-        if coordinateRegion != mapView.region {
-            // Only update the map location if it's not already set there.
-            // This will trigger mapView regionDidChangeAnimated
-            mapView.setRegion(coordinateRegion, animated: false)
-        }
-
+    private func setStopMarkersState(_ stopMarkers: [StopMarker]) {
         let newStopAnnotations = stopMarkers.map { stopMarker in StopMapStopAnnotation(stopMarker: stopMarker) }
 
         guard let currentStopAnnotations = self.currentStopAnnotations else {
@@ -237,9 +232,7 @@ extension StopMapViewController: MKMapViewDelegate {
         return view
     }
 
-    func mapView(_ mapView: MKMapView,
-                 annotationView view: MKAnnotationView,
-                 calloutAccessoryControlTapped control: UIControl) {
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         guard let annotation = view.annotation as? StopMapStopAnnotation else { return }
         viewModel.handleIntent(.stopMarkerSelected(annotation.stopMarker))
     }

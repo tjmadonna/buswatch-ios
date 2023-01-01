@@ -13,7 +13,11 @@ import MapKit
 
 final class StopMapViewModel {
 
-    private static let maxLatitudeToShowStops = 0.02
+//    let span = MKCoordinateSpan(latitudeDelta: 0.018638820689957925, longitudeDelta: 0.01328327616849378)
+
+    private static let maxLatitudeToShowStops = 0.020
+
+    private static let maxLongitudeToShowStops = 0.015
 
     // MARK: - Publishers
 
@@ -55,7 +59,7 @@ final class StopMapViewModel {
         let result = service.getLastCoordinateRegion()
         switch result {
         case .success(let coordinateRegion):
-            stateSubject.value = .setCoordinateRegion(coordinateRegion)
+            stateSubject.value = .setInitialCoordinateRegion(coordinateRegion)
         case .failure(let error):
             print(error)
         }
@@ -91,16 +95,17 @@ final class StopMapViewModel {
             print(error)
         }
 
-        if abs(coordinateRegion.span.latitudeDelta) >= StopMapViewModel.maxLatitudeToShowStops {
+        if abs(coordinateRegion.span.latitudeDelta) >= StopMapViewModel.maxLatitudeToShowStops &&
+            abs(coordinateRegion.span.longitudeDelta) >= StopMapViewModel.maxLongitudeToShowStops {
             // If the map is too far zoomed out, we don't display any stops
-            stateSubject.value = .setCoordinateRegionWithStopMarkers(coordinateRegion, [])
+            stateSubject.value = .setStopMarkers([])
         } else {
             Task.init { [unowned self] in
                 let result = await self.service.getStopMarkersInCoordinateRegion(coordinateRegion)
                 DispatchQueue.main.async {
                     switch result {
                     case .success(let markers):
-                        self.stateSubject.value = .setCoordinateRegionWithStopMarkers(coordinateRegion, markers)
+                        self.stateSubject.value = .setStopMarkers(markers)
                     case .failure(let error):
                         self.stateSubject.value = .error(error.localizedDescription)
                     }

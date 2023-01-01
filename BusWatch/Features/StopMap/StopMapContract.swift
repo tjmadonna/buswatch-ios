@@ -14,8 +14,8 @@ import UIKit
 
 enum StopMapState {
     case loading
-    case setCoordinateRegion(_ coordinateRegion: MKCoordinateRegion)
-    case setCoordinateRegionWithStopMarkers(_ coordinateRegion: MKCoordinateRegion, _ stopMarkers: [StopMarker])
+    case setInitialCoordinateRegion(_ coordinateRegion: MKCoordinateRegion)
+    case setStopMarkers(_ stopMarkers: [StopMarker])
     case error(String)
 }
 
