@@ -129,7 +129,6 @@ final class StopMapViewController: UIViewController {
         viewModel.state.sink { [weak self] state in
             switch state {
             case .setCoordinateRegion(let coordinateRegion):
-                print(coordinateRegion)
                 // We setup the map view here to avoid the mapView regionDidChangeAnimated on the default map location
                 self?.setupMapView()
                 self?.renderSetCoordinateRegionState(coordinateRegion)
