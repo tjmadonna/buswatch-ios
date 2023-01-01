@@ -5,3 +5,4 @@ GTFS/
 *.sqlite
 *.db
 *.json
+!versions.json

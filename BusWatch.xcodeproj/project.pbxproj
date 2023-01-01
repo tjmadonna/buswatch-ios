@@ -13,7 +13,6 @@
 		B41E351427EFB5A100142750 /* UrlConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E351327EFB5A100142750 /* UrlConfig.swift */; };
 		B41E351627EFB5E000142750 /* UrlSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E351527EFB5E000142750 /* UrlSource.swift */; };
 		B41E352A27EFF3A100142750 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41E352927EFF3A100142750 /* Resources.swift */; };
-		B41E352C27F0BB2600142750 /* buswatch.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = B41E352B27F0BB2500142750 /* buswatch.sqlite */; };
 		B430D47A245E362B002EA8FB /* NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = B430D479245E362B002EA8FB /* NetworkConfig.swift */; };
 		B433682F290E1163000F05A5 /* PredictionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433682E290E1163000F05A5 /* PredictionsViewController.swift */; };
 		B43835FA2771395C00C49537 /* FilterRoutesComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43835F92771395C00C49537 /* FilterRoutesComponent.swift */; };
@@ -81,6 +80,7 @@
 		B4DC6622273836D20046F470 /* StopMapComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DC6621273836D20046F470 /* StopMapComponent.swift */; };
 		B4DC662427383C580046F470 /* PredictionsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DC662327383C580046F470 /* PredictionsComponent.swift */; };
 		B4DEFEE82960EAF1004A64A5 /* Bundle+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DEFEE72960EAF1004A64A5 /* Bundle+Utils.swift */; };
+		B4DEFEEF29610FAE004A64A5 /* buswatch.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = B4DEFEEE29610FAE004A64A5 /* buswatch.sqlite */; };
 		B4E2B10028DFD50A0085AA01 /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E2B0FF28DFD50A0085AA01 /* SectionHeaderView.swift */; };
 		B4E2B10228DFD5190085AA01 /* OverviewStopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E2B10128DFD5190085AA01 /* OverviewStopCell.swift */; };
 		B4E2B10428DFDD120085AA01 /* SectionFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E2B10328DFDD120085AA01 /* SectionFooterView.swift */; };
@@ -112,7 +112,6 @@
 		B41E351327EFB5A100142750 /* UrlConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlConfig.swift; sourceTree = "<group>"; };
 		B41E351527EFB5E000142750 /* UrlSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlSource.swift; sourceTree = "<group>"; };
 		B41E352927EFF3A100142750 /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
-		B41E352B27F0BB2500142750 /* buswatch.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = buswatch.sqlite; sourceTree = "<group>"; };
 		B430D479245E362B002EA8FB /* NetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfig.swift; sourceTree = "<group>"; };
 		B433682E290E1163000F05A5 /* PredictionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PredictionsViewController.swift; sourceTree = "<group>"; };
 		B43835E027712FD800C49537 /* FilterRoutesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterRoutesViewModel.swift; sourceTree = "<group>"; };
@@ -172,6 +171,7 @@
 		B4DCAD49245272B900A0E978 /* OverviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewViewModel.swift; sourceTree = "<group>"; };
 		B4DCAD4C2452771C00A0E978 /* OverviewContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewContract.swift; sourceTree = "<group>"; };
 		B4DEFEE72960EAF1004A64A5 /* Bundle+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Utils.swift"; sourceTree = "<group>"; };
+		B4DEFEEE29610FAE004A64A5 /* buswatch.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = buswatch.sqlite; sourceTree = "<group>"; };
 		B4E2B0FF28DFD50A0085AA01 /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
 		B4E2B10128DFD5190085AA01 /* OverviewStopCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewStopCell.swift; sourceTree = "<group>"; };
 		B4E2B10328DFDD120085AA01 /* SectionFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionFooterView.swift; sourceTree = "<group>"; };
@@ -389,7 +389,7 @@
 		B477CD7B243BF7590027AE11 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				B41E352B27F0BB2500142750 /* buswatch.sqlite */,
+				B4DEFEEE29610FAE004A64A5 /* buswatch.sqlite */,
 				B477CD6E243BF72F0027AE11 /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -767,7 +767,7 @@
 			files = (
 				B477CD72243BF72F0027AE11 /* LaunchScreen.storyboard in Resources */,
 				B477CD6F243BF72F0027AE11 /* Assets.xcassets in Resources */,
-				B41E352C27F0BB2600142750 /* buswatch.sqlite in Resources */,
+				B4DEFEEF29610FAE004A64A5 /* buswatch.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
