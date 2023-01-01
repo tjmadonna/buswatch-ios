@@ -12,6 +12,8 @@ import UIKit
 
 final class OverviewMapCell: UITableViewCell {
 
+    // MARK: - Properties
+
     static let reuseId = "OverviewMapCell"
 
     // MARK: - Subviews
@@ -28,18 +30,28 @@ final class OverviewMapCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupSubviews()
+        setup()
     }
 
     required init?(coder: NSCoder) {
         fatalError("Table View Cell cannot be initialized with init(coder:)")
     }
 
-    // MARK: - Setup
+}
 
-    private func setupSubviews() {
+// MARK: - Setup
+extension OverviewMapCell {
+
+    private func setup() {
+        style()
+        layout()
+    }
+
+    private func style() {
         accessoryType = .disclosureIndicator
+    }
 
+    private func layout() {
         contentView.addSubview(mapView)
 
         NSLayoutConstraint.activate([
@@ -51,7 +63,10 @@ final class OverviewMapCell: UITableViewCell {
         ])
     }
 
-    // MARK: - Properties/functions
+}
+
+// MARK: - Public functions
+extension OverviewMapCell {
 
     func configureWithCoordinateRegion(_ coordinateRegion: MKCoordinateRegion) {
         mapView.setRegion(coordinateRegion, animated: false)

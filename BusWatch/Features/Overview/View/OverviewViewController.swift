@@ -13,6 +13,11 @@ import UIKit
 
 final class OverviewViewController: UITableViewController {
 
+    // MARK: - Views
+    private let mapCell: OverviewMapCell = {
+        return OverviewMapCell(style: .default, reuseIdentifier: nil)
+    }()
+
     // MARK: - Properties
 
     private let viewModel: OverviewViewModel
@@ -47,12 +52,13 @@ final class OverviewViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationItem.title = "Bus Watch"
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.largeTitleDisplayMode =  .always
+        refreshNavigationItems()
     }
 
-    // MARK: - Setup
+}
+
+// MARK: - Setup
+extension OverviewViewController {
 
     private func setupViewController() {
         navigationItem.backButtonDisplayMode = .minimal
@@ -68,10 +74,6 @@ final class OverviewViewController: UITableViewController {
         tableView.register(SectionFooterView.self, forHeaderFooterViewReuseIdentifier: SectionFooterView.reuseId)
         tableView.register(SectionMessageCell.self, forCellReuseIdentifier: SectionMessageCell.reuseId)
         tableView.register(OverviewStopCell.self, forCellReuseIdentifier: OverviewStopCell.reuseId)
-        tableView.register(OverviewMapCell.self, forCellReuseIdentifier: OverviewMapCell.reuseId)
-
-        // Preload map cell
-        _ = tableView.dequeueReusableCell(withIdentifier: OverviewMapCell.reuseId, for: IndexPath(row: 0, section: 1))
     }
 
     private func setupObservers() {
@@ -87,7 +89,16 @@ final class OverviewViewController: UITableViewController {
         }.store(in: &cancellables)
     }
 
-    // MARK: - State Rendering
+    private func refreshNavigationItems() {
+        navigationItem.title = "Bus Watch"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode =  .always
+    }
+
+}
+
+// MARK: - State Rendering
+extension OverviewViewController {
 
     private func renderDataStateForSections(_ sections: [OverviewSection]) {
         self.sections = sections
@@ -98,7 +109,11 @@ final class OverviewViewController: UITableViewController {
         presentAlertViewControllerWithTitle("An Error Occurred", message: message)
     }
 
-    // MARK: - UITableViewDelegate
+}
+
+// MARK: - UITableViewDelegate
+extension OverviewViewController {
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = sections[indexPath.section].items[indexPath.row]
 
@@ -138,7 +153,10 @@ final class OverviewViewController: UITableViewController {
         return UITableView.automaticDimension
     }
 
-    // MARK: - UITableViewDataSource
+}
+
+// MARK: - UITableViewDataSource
+extension OverviewViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
@@ -161,7 +179,10 @@ final class OverviewViewController: UITableViewController {
         }
     }
 
-    // MARK: - Table View Cells
+}
+
+// MARK: - Table View Cells
+extension OverviewViewController {
 
     // Favorite Stop Cell
     private func favoriteStopCellForStop(_ favoriteStop: OverviewFavoriteStop, indexPath: IndexPath) -> OverviewStopCell {
@@ -187,16 +208,13 @@ final class OverviewViewController: UITableViewController {
 
     // Map Cell
     private func mapCellForCoordinateRegion(_ coordinateRegion: MKCoordinateRegion, indexPath: IndexPath) -> OverviewMapCell {
-
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: OverviewMapCell.reuseId,
-                                                       for: indexPath) as? OverviewMapCell else {
-            fatalError("Unable to dequeue OverviewMapCell at index path \(indexPath)")
-        }
+        let cell = mapCell
         cell.configureWithCoordinateRegion(coordinateRegion)
         return cell
     }
 
 }
+
 
 // MARK: - Selectors
 extension OverviewViewController {

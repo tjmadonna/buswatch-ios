@@ -17,6 +17,7 @@ struct OverviewFavoriteStop {
     let routes: [String]
 }
 
+// MARK: - GRDB Initialization
 extension OverviewFavoriteStop: GRDB.FetchableRecord  {
 
     init(row: GRDB.Row) {

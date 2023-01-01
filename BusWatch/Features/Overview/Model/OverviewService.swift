@@ -11,12 +11,13 @@ import Foundation
 import GRDB
 import MapKit
 
-// MARK: - Service
+// MARK: - Conformable
 protocol OverviewServiceConformable {
     func observeFavoriteStops() -> AnyPublisher<[OverviewFavoriteStop], Swift.Error>
     func observeLastCoordinateRegion() -> AnyPublisher<MKCoordinateRegion, Swift.Error>
 }
 
+// MARK: - Service
 final class OverviewService: OverviewServiceConformable {
 
     private let database: DatabaseConformable
@@ -29,6 +30,11 @@ final class OverviewService: OverviewServiceConformable {
         self.database = database
         self.userDefaults = userDefaults
     }
+
+}
+
+// MARK: - OverviewServiceConformable
+extension OverviewService {
 
     func observeFavoriteStops() -> AnyPublisher<[OverviewFavoriteStop], Swift.Error> {
         let sql = """

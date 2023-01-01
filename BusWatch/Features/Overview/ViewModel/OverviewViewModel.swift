@@ -40,7 +40,10 @@ final class OverviewViewModel {
         cancellables.removeAll()
     }
 
-    // MARK: - Setup
+}
+
+// MARK: - Setup
+extension OverviewViewModel {
 
     private func setupObservers() {
         Publishers.CombineLatest(service.observeFavoriteStops(), service.observeLastCoordinateRegion())
@@ -53,6 +56,11 @@ final class OverviewViewModel {
             .subscribe(self.stateSubject)
             .store(in: &cancellables)
     }
+
+}
+
+// MARK: - Mappers
+extension OverviewViewModel {
 
     private func mapToOverviewSections(stops: [OverviewFavoriteStop], coordinateRegion: MKCoordinateRegion) -> [OverviewSection] {
         if stops.isEmpty {
@@ -68,7 +76,10 @@ final class OverviewViewModel {
         }
     }
 
-    // MARK: - Intent Handling
+}
+
+// MARK: - Intent Handling
+extension OverviewViewModel {
 
     func handleIntent(_ intent: OverviewIntent) {
         switch intent {

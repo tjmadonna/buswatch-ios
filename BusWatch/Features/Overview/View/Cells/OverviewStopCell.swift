@@ -6,6 +6,7 @@
 //  Copyright © 2022 Tyler Madonna. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
 final class OverviewStopCell: UITableViewCell {
@@ -86,6 +87,7 @@ final class OverviewStopCell: UITableViewCell {
 
 }
 
+// MARK: - Setup
 extension OverviewStopCell {
 
     private func setup() {
