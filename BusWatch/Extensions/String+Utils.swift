@@ -14,15 +14,25 @@ extension String {
         return prefix(1).capitalized + dropFirst().lowercased()
     }
 
-    func capitalizingOnlyFirstLetters() -> String {
-        let words = components(separatedBy: " ")
-            .map { word in word.prefix(1).capitalized + word.dropFirst().lowercased()
-        }
-        return words.joined(separator: " ")
-    }
+    private static let wordDelimiters = [" ", "-"]
 
-    mutating func capitalizeOnlyFirstLetter() {
-        self = self.capitalizingOnlyFirstLetter()
+    private static let capitalizedExceptions = ["via"]
+
+    func capitalizingOnlyFirstLetters() -> String {
+        var str = self.lowercased().capitalized
+        for delimiter in String.wordDelimiters {
+            if str.contains(delimiter) {
+                str = str.components(separatedBy: delimiter)
+                    .map { word in
+                        if String.capitalizedExceptions.contains(word.lowercased()) {
+                            return word.lowercased()
+                        }
+                        return word.prefix(1).capitalized + word.dropFirst().lowercased()
+                    }
+                    .joined(separator: " ")
+            }
+        }
+        return str
     }
 
 }
