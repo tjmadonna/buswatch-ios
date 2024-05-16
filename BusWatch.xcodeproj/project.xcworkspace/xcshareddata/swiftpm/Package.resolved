@@ -1,4 +1,5 @@
 {
+  "originHash" : "7e14bddba3cc3fe662aa3d87ca49ba55455ac8a7a8f7f5555aa50d21c4b73ebf",
   "pins" : [
     {
       "identity" : "differencekit",
@@ -14,10 +15,10 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/groue/GRDB.swift",
       "state" : {
-        "revision" : "06ac26a213cd5b64b4a1ded776f01f0fc0f2add0",
-        "version" : "6.22.0"
+        "revision" : "639fa9168d36931b36a79e60dc06b7d23852f1f4",
+        "version" : "6.27.0"
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }
